@@ -14,15 +14,15 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:var(--g
 #app{background:#F0F4F8}
 .lw{display:flex;width:100%;max-width:1140px;margin:auto;flex:1;min-height:0;box-shadow:0 25px 80px rgba(0,0,0,.5);border-radius:0}
 .ll{width:460px;min-width:460px;background:linear-gradient(160deg,#F8FAFF 0%,#EEF4FF 100%);padding:56px 48px;display:flex;flex-direction:column;justify-content:center;position:relative}
-.ll::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2B2B2E 0%,#B5651D 50%,#D98A4A 100%)}
+
 .lr{flex:1;overflow:hidden;position:relative;background:linear-gradient(160deg,#2B2B2E 0%,#3D2812 60%,#B5651D 100%)}
 .lr img{width:100%;height:100%;object-fit:cover;opacity:.3;display:block}
 .lr-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,18,10,.92) 0%,rgba(61,40,18,.75) 50%,rgba(122,70,20,.55) 100%)}
 .lr-ct{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:48px 44px}
-.lr-top{display:flex;align-items:center;gap:18px}
-.lr-logo-big{width:68px;height:68px;background:rgba(255,255,255,.15);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;font-family:system-ui,sans-serif;border:.5px solid rgba(255,255,255,.25)}
-.lr-brand{font-size:19px;font-weight:800;color:#fff;letter-spacing:.02em}
-.lr-brand-sub{font-size:12px;color:rgba(255,255,255,.65);margin-top:3px}
+.lr-top{display:flex;align-items:center;gap:22px}
+.lr-logo-big{width:96px;height:96px;background:rgba(255,255,255,.18);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;font-family:system-ui,sans-serif;border:1px solid rgba(255,255,255,.3)}
+.lr-brand{font-size:28px;font-weight:800;color:#fff;letter-spacing:.01em}
+.lr-brand-sub{font-size:14px;color:rgba(255,255,255,.7);margin-top:4px}
 .r-tag{display:inline-block;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.15em;border:1px solid rgba(255,255,255,.3);padding:6px 14px;border-radius:20px;margin-bottom:22px;background:rgba(255,255,255,.08);backdrop-filter:blur(4px)}
 .r-t{font-size:42px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1.5px}
 .r-s{font-size:13px;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:32px;max-width:380px}

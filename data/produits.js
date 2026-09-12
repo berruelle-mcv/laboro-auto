@@ -8,18 +8,30 @@ const CLIENTS = [
   {
     "id": "CLI-001",
     "ini": "MR",
-    "nom": "M. Rasoamanana (artisan plombier)",
+    "nom": "M. Rasoamanana (plomberie)",
     "type": "B2B",
-    "fidelite": "Nouveau",
+    "fidelite": "Régulier",
     "sect": "Artisanat BTP",
     "contact": "M. Rasoamanana",
     "tel": "06 12 34 56 78",
     "email": "rasoamanana.plomberie@mail.fr",
     "ca": 22000,
     "potentiel": 25000,
+    "panier": 22000,
+    "freq": 1,
+    "nps": 72,
     "prochaine": "Relance devis Kangoo Van",
     "dernier": "08/09",
-    "col": "#B5651D"
+    "col": "#B5651D",
+    "hist": [
+      "2024 — Achat Kangoo Van Confort (occasion)",
+      "2023 — Entretien courant atelier Vasseur"
+    ],
+    "note": "Client fidèle sur l'entretien, sensible au prix. Bon candidat pour une offre de reprise avantageuse.",
+    "tags": [
+      "Artisan",
+      "Flotte réduite"
+    ]
   },
   {
     "id": "CLI-002",
@@ -35,11 +47,17 @@ const CLIENTS = [
     "potentiel": 42000,
     "prochaine": "Appel de qualification Trafic",
     "dernier": "05/09",
-    "col": "#8E44AD"
+    "col": "#8E44AD",
+    "hist": [],
+    "note": "Flotte vieillissante repérée lors d'un salon local. Jamais acheté chez Vasseur.",
+    "tags": [
+      "Prospect B2B",
+      "Flotte à renouveler"
+    ]
   },
   {
     "id": "CLI-003",
-    "ini": "CE",
+    "ini": "GI",
     "nom": "CE Groupe Industriel Essonne",
     "type": "B2B",
     "fidelite": "Stratégique",
@@ -49,9 +67,22 @@ const CLIENTS = [
     "email": "ce@groupe-industriel91.fr",
     "ca": 95000,
     "potentiel": 120000,
+    "panier": 31500,
+    "freq": 3,
+    "nps": 81,
     "prochaine": "Renouvellement flotte utilitaires",
     "dernier": "01/09",
-    "col": "#27500A"
+    "col": "#27500A",
+    "hist": [
+      "2026 — 2 Master L2H2 (neuf)",
+      "2025 — 1 Trafic Grand Confort (neuf)",
+      "2023 — 3 Kangoo Van (neuf)"
+    ],
+    "note": "Compte stratégique, renouvellement de flotte régulier tous les 18-24 mois. Interlocuteur unique : M. Bonnet.",
+    "tags": [
+      "Grand compte",
+      "Flotte B2B"
+    ]
   },
   {
     "id": "CLI-004",
@@ -65,9 +96,20 @@ const CLIENTS = [
     "email": "s.dubreuil@mail.fr",
     "ca": 26000,
     "potentiel": 30000,
+    "panier": 26000,
+    "freq": 1,
+    "nps": 88,
     "prochaine": "Essai Captur Techno",
     "dernier": "10/09",
-    "col": "#B5651D"
+    "col": "#B5651D",
+    "hist": [
+      "2021 — Achat Clio 5 (neuf)"
+    ],
+    "note": "Très satisfaite de son premier achat, envisage de passer au SUV hybride.",
+    "tags": [
+      "Fidèle",
+      "Intérêt hybride"
+    ]
   },
   {
     "id": "CLI-005",
@@ -83,11 +125,17 @@ const CLIENTS = [
     "potentiel": 21000,
     "prochaine": "Qualification Twingo E-Tech",
     "dernier": "09/09",
-    "col": "#D97706"
+    "col": "#D97706",
+    "hist": [],
+    "note": "Premier contact via le site, cherche une première citadine électrique.",
+    "tags": [
+      "Prospect",
+      "Premier achat"
+    ]
   },
   {
     "id": "CLI-006",
-    "ini": "AP",
+    "ini": "AF",
     "nom": "Artisan Peinture Faucher & Fils",
     "type": "B2B",
     "fidelite": "Régulier",
@@ -97,9 +145,19 @@ const CLIENTS = [
     "email": "faucher.peinture@mail.fr",
     "ca": 24000,
     "potentiel": 24000,
+    "panier": 24000,
+    "freq": 1,
+    "nps": 65,
     "prochaine": "",
     "dernier": "28/08",
-    "col": "#7A4614"
+    "col": "#7A4614",
+    "hist": [
+      "2025 — Achat Kangoo Van (occasion)"
+    ],
+    "note": "Satisfait de son véhicule actuel, pas de projet immédiat.",
+    "tags": [
+      "Artisan"
+    ]
   },
   {
     "id": "CLI-007",
@@ -113,9 +171,20 @@ const CLIENTS = [
     "email": "technique@courcouronnes.fr",
     "ca": 68000,
     "potentiel": 80000,
+    "panier": 34000,
+    "freq": 2,
+    "nps": 75,
     "prochaine": "Visite flotte Kangoo E-Tech",
     "dernier": "03/09",
-    "col": "#27500A"
+    "col": "#27500A",
+    "hist": [
+      "2024 — 2 Kangoo E-Tech (neuf, électrique)"
+    ],
+    "note": "Politique de flotte 100% électrique d'ici 2028. Prioriser les arguments écologiques.",
+    "tags": [
+      "Collectivité",
+      "Électrique"
+    ]
   },
   {
     "id": "CLI-008",
@@ -131,11 +200,17 @@ const CLIENTS = [
     "potentiel": 25000,
     "prochaine": "Relance après essai",
     "dernier": "04/09",
-    "col": "#8E44AD"
+    "col": "#8E44AD",
+    "hist": [],
+    "note": "A essayé une Captur, hésite encore sur le budget.",
+    "tags": [
+      "Prospect",
+      "Hésitant"
+    ]
   },
   {
     "id": "CLI-009",
-    "ini": "PME",
+    "ini": "PS",
     "nom": "PME Services Info Essonne",
     "type": "B2B",
     "fidelite": "Nouveau",
@@ -145,9 +220,20 @@ const CLIENTS = [
     "email": "contact@pme-services91.fr",
     "ca": 19000,
     "potentiel": 35000,
+    "panier": 19000,
+    "freq": 1,
+    "nps": 70,
     "prochaine": "Proposition flotte électrique",
     "dernier": "06/09",
-    "col": "#D97706"
+    "col": "#D97706",
+    "hist": [
+      "2026 — 1 Renault 5 E-Tech (neuf)"
+    ],
+    "note": "Premier véhicule de fonction acheté chez Vasseur, envisage d'en équiper 3 commerciaux.",
+    "tags": [
+      "PME",
+      "Potentiel flotte"
+    ]
   },
   {
     "id": "CLI-010",
@@ -161,9 +247,20 @@ const CLIENTS = [
     "email": "k.belhaj@mail.fr",
     "ca": 13000,
     "potentiel": 20000,
+    "panier": 13000,
+    "freq": 1,
+    "nps": 55,
     "prochaine": "Relance renouvellement",
     "dernier": "12/06",
-    "col": "#6B7280"
+    "col": "#6B7280",
+    "hist": [
+      "2019 — Achat Clio occasion"
+    ],
+    "note": "Aucun contact depuis 3 mois, véhicule vieillissant, bon candidat à la relance.",
+    "tags": [
+      "Dormant",
+      "À relancer"
+    ]
   },
   {
     "id": "CLI-011",
@@ -177,9 +274,20 @@ const CLIENTS = [
     "email": "e.lambert@mail.fr",
     "ca": 31000,
     "potentiel": 35000,
+    "panier": 31000,
+    "freq": 1,
+    "nps": 90,
     "prochaine": "Essai Renault 5 E-Tech",
     "dernier": "11/09",
-    "col": "#B5651D"
+    "col": "#B5651D",
+    "hist": [
+      "2022 — Achat Captur (neuf)"
+    ],
+    "note": "Cliente très satisfaite du SAV, ambassadrice naturelle. Bon relais pour un avis Google.",
+    "tags": [
+      "Fidèle",
+      "Ambassadrice"
+    ]
   },
   {
     "id": "CLI-012",
@@ -195,7 +303,15 @@ const CLIENTS = [
     "potentiel": 15000,
     "prochaine": "",
     "dernier": "15/03",
-    "col": "#C53030"
+    "col": "#C53030",
+    "hist": [
+      "2022 — 1 véhicule occasion (revendu depuis)"
+    ],
+    "note": "Parti chez un concurrent après un désaccord sur une reprise. Relation à reconstruire prudemment.",
+    "tags": [
+      "Perdu",
+      "Sensible au prix"
+    ]
   },
   {
     "id": "CLI-013",
@@ -211,7 +327,13 @@ const CLIENTS = [
     "potentiel": 19000,
     "prochaine": "Qualification occasion",
     "dernier": "07/09",
-    "col": "#D97706"
+    "col": "#D97706",
+    "hist": [],
+    "note": "Budget serré, oriente naturellement vers l'occasion multimarque.",
+    "tags": [
+      "Prospect",
+      "Budget limité"
+    ]
   },
   {
     "id": "CLI-014",
@@ -225,9 +347,167 @@ const CLIENTS = [
     "email": "electricite.rasoamanana@mail.fr",
     "ca": 22500,
     "potentiel": 22500,
+    "panier": 22500,
+    "freq": 1,
+    "nps": 68,
     "prochaine": "",
     "dernier": "20/08",
-    "col": "#7A4614"
+    "col": "#7A4614",
+    "hist": [
+      "2025 — Achat Kangoo Van (occasion)"
+    ],
+    "note": "Homonyme du plombier, activité différente. Ne pas confondre les dossiers.",
+    "tags": [
+      "Artisan"
+    ]
+  },
+  {
+    "id": "CLI-015",
+    "ini": "NB",
+    "nom": "Nadia Belkacem",
+    "type": "B2C",
+    "fidelite": "Nouveau",
+    "sect": "Particulier",
+    "contact": "Nadia Belkacem",
+    "tel": "06 88 11 22 33",
+    "email": "n.belkacem@mail.fr",
+    "ca": 0,
+    "potentiel": 24000,
+    "prochaine": "Simulation financement LOA",
+    "dernier": "11/09",
+    "col": "#D97706",
+    "hist": [],
+    "note": "Intéressée par le Symbioz, hésite entre LOA et crédit classique.",
+    "tags": [
+      "Prospect",
+      "Financement à clarifier"
+    ]
+  },
+  {
+    "id": "CLI-016",
+    "ini": "BTP",
+    "nom": "BTP Rénov' Essonne",
+    "type": "B2B",
+    "fidelite": "Prospect",
+    "sect": "Artisanat BTP",
+    "contact": "M. Costa",
+    "tel": "06 90 11 22 33",
+    "email": "contact@btprenov91.fr",
+    "ca": 0,
+    "potentiel": 30000,
+    "prochaine": "Devis Master L1H1",
+    "dernier": "02/09",
+    "col": "#8E44AD",
+    "hist": [],
+    "note": "Entreprise en croissance, cherche un second utilitaire.",
+    "tags": [
+      "Prospect B2B",
+      "Croissance"
+    ]
+  },
+  {
+    "id": "CLI-017",
+    "ini": "CV",
+    "nom": "Camille Vasseur (aucun lien avec le groupe)",
+    "type": "B2C",
+    "fidelite": "Fidèle",
+    "sect": "Particulier",
+    "contact": "Camille Vasseur",
+    "tel": "06 45 22 11 00",
+    "email": "c.vasseur.perso@mail.fr",
+    "ca": 45000,
+    "potentiel": 50000,
+    "panier": 22500,
+    "freq": 2,
+    "nps": 85,
+    "prochaine": "",
+    "dernier": "25/07",
+    "col": "#B5651D",
+    "hist": [
+      "2026 — Achat Rafale (neuf)",
+      "2020 — Achat Mégane (occasion, reprise)"
+    ],
+    "note": "Cliente de longue date, homonymie amusante avec le groupe mais sans lien.",
+    "tags": [
+      "Fidèle",
+      "Premium"
+    ]
+  },
+  {
+    "id": "CLI-018",
+    "ini": "HD",
+    "nom": "Hôtel-restaurant Le Domaine",
+    "type": "B2B",
+    "fidelite": "Nouveau",
+    "sect": "Hôtellerie-restauration",
+    "contact": "Mme Faure",
+    "tel": "01 64 33 22 11",
+    "email": "contact@ledomaine91.fr",
+    "ca": 18000,
+    "potentiel": 18000,
+    "panier": 18000,
+    "freq": 1,
+    "nps": 60,
+    "prochaine": "",
+    "dernier": "15/08",
+    "col": "#D97706",
+    "hist": [
+      "2026 — Achat Kangoo Van occasion (livraisons)"
+    ],
+    "note": "Usage livraison courte distance, pas de besoin de renouvellement à court terme.",
+    "tags": [
+      "PME",
+      "Usage ponctuel"
+    ]
+  },
+  {
+    "id": "CLI-019",
+    "ini": "YM",
+    "nom": "Yasmine Moreau",
+    "type": "B2C",
+    "fidelite": "Prospect",
+    "sect": "Particulier",
+    "contact": "Yasmine Moreau",
+    "tel": "06 19 28 37 46",
+    "email": "y.moreau@mail.fr",
+    "ca": 0,
+    "potentiel": 33000,
+    "prochaine": "Présentation Austral hybride",
+    "dernier": "10/09",
+    "col": "#8E44AD",
+    "hist": [],
+    "note": "Famille nombreuse, cherche un SUV 7 places, sensible à la sécurité.",
+    "tags": [
+      "Prospect",
+      "Famille"
+    ]
+  },
+  {
+    "id": "CLI-020",
+    "ini": "AR",
+    "nom": "Auto-École Réussite Évry",
+    "type": "B2B",
+    "fidelite": "Régulier",
+    "sect": "Formation",
+    "contact": "M. Diallo",
+    "tel": "01 60 77 88 99",
+    "email": "contact@ae-reussite.fr",
+    "ca": 21000,
+    "potentiel": 25000,
+    "panier": 21000,
+    "freq": 1,
+    "nps": 73,
+    "prochaine": "Renouvellement citadine double-commande",
+    "dernier": "18/07",
+    "col": "#7A4614",
+    "hist": [
+      "2023 — Achat Clio (neuf)"
+    ],
+    "note": "Renouvelle son véhicule école tous les 3 ans en moyenne.",
+    "tags": [
+      "PME",
+      "Cycle régulier"
+    ]
   }
 ];
 
