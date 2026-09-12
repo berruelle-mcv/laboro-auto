@@ -113,17 +113,12 @@ function openProduit(id){
       + '</div>'
     : '';
 
-  // Argumentaire 3 points
-  const args = [
-    '✓ ' + p.desc.split(',')[0],
-    '✓ Marque LABORO — 100% ' + getNomEntreprise().replace('LABORO ',''),
-    '✓ Disponible' + (p.stock > 0 ? ' en stock immédiat' : ' sur commande')
-  ];
-  const argsHtml = '<div style="margin-bottom:10px">'
-    + args.map(function(a){
-        return '<div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6">'+a+'</div>';
-      }).join('')
-    + '</div>';
+  // Équipements de série (faits bruts, pas d'argumentaire pré-rédigé)
+  const equipHtml = (p.equipements && p.equipements.length)
+    ? '<div style="margin-bottom:10px">' + p.equipements.map(function(e){
+        return '<div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6">✓ '+e+'</div>';
+      }).join('') + '</div>'
+    : '<div style="font-size:11px;color:#9CA3AF">Aucun équipement renseigné.</div>';
 
   // Produits complémentaires — même catégorie, différent produit
   const comps = PRODUITS.filter(function(x){ return x.cat===p.cat && x.id!==p.id; }).slice(0,3);
@@ -173,12 +168,25 @@ function openProduit(id){
     +'<div style="padding:16px 18px;border-right:1px solid #F3F4F6">'
     +'<div style="font-size:11px;font-weight:800;color:#2B2B2E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">📋 Caractéristiques</div>'
     +'<div style="font-size:11px">Stock : '+stockHtml+'</div>'
-    +(p.seuil>0?'<div style="font-size:10px;color:#9CA3AF;margin-top:2px">Seuil : '+p.seuil+' u. · TVA '+p.tva+'%</div>':'')
-    +(p.tailles&&p.tailles.length?'<div style="font-size:10px;color:#6B7280;margin-top:6px">Tailles : '+p.tailles.join(', ')+'</div>':'')
+    +(p.puissance?'<div style="font-size:11px;color:#374151;margin-top:6px">⚙️ Puissance : <strong>'+p.puissance+' ch</strong></div>':'')
+    +(p.zero_100?'<div style="font-size:11px;color:#374151;margin-top:3px">🚀 0 à 100 km/h : <strong>'+p.zero_100+'</strong></div>':'')
+    +(p.vitesse_max?'<div style="font-size:11px;color:#374151;margin-top:3px">🏁 Vitesse max : <strong>'+p.vitesse_max+'</strong></div>':'')
+    +(p.boite?'<div style="font-size:11px;color:#374151;margin-top:3px">⚙️ Boîte : <strong>'+p.boite+'</strong></div>':'')
+    +(p.consommation_urbaine?'<div style="font-size:11px;color:#374151;margin-top:6px">⛽ Conso. urbaine : <strong>'+p.consommation_urbaine+'</strong></div>':(p.consommation?'<div style="font-size:11px;color:#374151;margin-top:6px">⛽ Consommation : <strong>'+p.consommation+'</strong></div>':''))
+    +(p.consommation_mixte?'<div style="font-size:11px;color:#374151;margin-top:3px">⛽ Conso. mixte : <strong>'+p.consommation_mixte+'</strong></div>':'')
+    +(p.reservoir?'<div style="font-size:11px;color:#374151;margin-top:3px">⛽ Réservoir : <strong>'+p.reservoir+'</strong></div>':'')
+    +(p.co2?'<div style="font-size:11px;color:#374151;margin-top:3px">🌱 Émissions CO2 : <strong>'+p.co2+'</strong></div>':'')
+    +(p.dimensions?'<div style="font-size:11px;color:#374151;margin-top:6px">📐 Dimensions : <strong>'+p.dimensions+'</strong></div>':'')
+    +(p.places?'<div style="font-size:11px;color:#374151;margin-top:3px">💺 Places : <strong>'+p.places+'</strong></div>':'')
+    +(p.coffre?'<div style="font-size:11px;color:#374151;margin-top:3px">🧳 Coffre : <strong>'+p.coffre+'</strong></div>':'')
+    +(p.garantie?'<div style="font-size:11px;color:#374151;margin-top:3px">🛡️ Garantie : <strong>'+p.garantie+'</strong></div>':'')
+    +(p.historique?'<div style="font-size:11px;color:#374151;margin-top:6px">📖 Historique : <strong>'+p.historique+'</strong></div>':'')
+    +(p.controle_technique?'<div style="font-size:11px;color:#374151;margin-top:3px">🔍 Contrôle technique : <strong>'+p.controle_technique+'</strong></div>':'')
+    +(p.garantie_occasion?'<div style="font-size:11px;color:#374151;margin-top:3px">🛡️ Garantie occasion : <strong>'+p.garantie_occasion+'</strong></div>':'')
     +'</div>'
     +'<div style="padding:16px 18px;border-right:1px solid #F3F4F6">'
-    +'<div style="font-size:11px;font-weight:800;color:#2B2B2E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">💬 Argumentaire vendeur</div>'
-    +argsHtml
+    +'<div style="font-size:11px;font-weight:800;color:#2B2B2E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🔧 Équipements</div>'
+    +equipHtml
     +'</div>'
     +'<div style="padding:16px 18px">'
     +'<div style="font-size:11px;font-weight:800;color:#2B2B2E;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🔗 Produits complémentaires</div>'

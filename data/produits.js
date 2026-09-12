@@ -1,6 +1,6 @@
 // ================================================
 //   LABORO Auto — Catalogue véhicules Groupe Vasseur
-//   46 véhicules — fiches techniques enrichies par motorisation réelle
+//   46 véhicules — fiches techniques et commerciales enrichies
 //   (faits bruts uniquement, pas d'argumentaire pré-rédigé)
 // ================================================
 
@@ -579,7 +579,11 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "3,79 m x 1,68 m x 1,54 m",
+    "places": 4,
+    "vitesse_max": "135 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-002",
@@ -610,7 +614,11 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "3,79 m x 1,68 m x 1,54 m",
+    "places": 4,
+    "vitesse_max": "135 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-003",
@@ -641,7 +649,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,05 m x 1,80 m x 1,48 m",
+    "places": 5,
+    "consommation_urbaine": "5,8 l/100km",
+    "consommation_mixte": "5 l/100km",
+    "reservoir": "42 L",
+    "vitesse_max": "188 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-004",
@@ -672,7 +687,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,05 m x 1,80 m x 1,48 m",
+    "places": 5,
+    "consommation_urbaine": "4,5 l/100km",
+    "consommation_mixte": "4 l/100km",
+    "reservoir": "42 L",
+    "vitesse_max": "175 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-005",
@@ -703,7 +725,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,23 m x 1,80 m x 1,58 m",
+    "places": 5,
+    "consommation_urbaine": "6,8 l/100km",
+    "consommation_mixte": "6 l/100km",
+    "reservoir": "48 L",
+    "vitesse_max": "188 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-006",
@@ -734,7 +763,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,23 m x 1,80 m x 1,58 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "48 L",
+    "vitesse_max": "170 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-007",
@@ -765,7 +801,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,41 m x 1,79 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "170 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-008",
@@ -798,7 +841,14 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,41 m x 1,79 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "170 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-009",
@@ -829,7 +879,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,51 m x 1,84 m x 1,62 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-010",
@@ -862,7 +919,14 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,51 m x 1,84 m x 1,62 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "185 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-011",
@@ -893,7 +957,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,64 m x 1,87 m x 1,61 m",
+    "places": 5,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-012",
@@ -926,7 +997,14 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,64 m x 1,87 m x 1,61 m",
+    "places": 5,
+    "consommation_urbaine": "2 l/100km",
+    "consommation_mixte": "1,5 l/100km",
+    "reservoir": "40 L",
+    "vitesse_max": "175 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-013",
@@ -957,7 +1035,14 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,72 m x 1,87 m x 1,66 m",
+    "places": 7,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-014",
@@ -990,7 +1075,14 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,72 m x 1,87 m x 1,66 m",
+    "places": 7,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique multimode"
   },
   {
     "id": "VAS-VN-015",
@@ -1021,7 +1113,13 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,20 m x 1,77 m x 1,50 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "15 kWh/100km",
+    "vitesse_max": "150 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-016",
@@ -1054,7 +1152,13 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,20 m x 1,77 m x 1,50 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "16 kWh/100km",
+    "vitesse_max": "160 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-017",
@@ -1085,7 +1189,13 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,47 m x 1,86 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "15 kWh/100km",
+    "vitesse_max": "170 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-018",
@@ -1118,7 +1228,13 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,47 m x 1,86 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "16 kWh/100km",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-019",
@@ -1149,7 +1265,13 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "3,92 m x 1,77 m x 1,50 m",
+    "places": 4,
+    "consommation_urbaine": "13 kWh/100km",
+    "consommation_mixte": "15 kWh/100km",
+    "vitesse_max": "132 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-020",
@@ -1182,7 +1304,13 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "3,92 m x 1,77 m x 1,50 m",
+    "places": 4,
+    "consommation_urbaine": "13 kWh/100km",
+    "consommation_mixte": "15 kWh/100km",
+    "vitesse_max": "150 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-021",
@@ -1213,7 +1341,13 @@ const PRODUITS = [
       "Régulateur de vitesse",
       "Radio/Bluetooth",
       "Vitres électriques"
-    ]
+    ],
+    "dimensions": "4,14 m x 1,80 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "16 kWh/100km",
+    "vitesse_max": "130 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-022",
@@ -1246,7 +1380,13 @@ const PRODUITS = [
       "Vitres électriques",
       "Caméra de recul",
       "Écran tactile 10 pouces"
-    ]
+    ],
+    "dimensions": "4,14 m x 1,80 m x 1,57 m",
+    "places": 5,
+    "consommation_urbaine": "14 kWh/100km",
+    "consommation_mixte": "16 kWh/100km",
+    "vitesse_max": "150 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-023",
@@ -1276,7 +1416,14 @@ const PRODUITS = [
       "Prise 12V",
       "Radio/Bluetooth",
       "Aide au stationnement arrière"
-    ]
+    ],
+    "dimensions": "4,49 m x 1,86 m x 1,84 m",
+    "places": 3,
+    "consommation_urbaine": "6,5 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "54 L",
+    "vitesse_max": "168 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-024",
@@ -1308,7 +1455,13 @@ const PRODUITS = [
       "Aide au stationnement arrière",
       "Caméra de recul",
       "Climatisation"
-    ]
+    ],
+    "dimensions": "4,49 m x 1,86 m x 1,84 m",
+    "places": 3,
+    "consommation_urbaine": "17 kWh/100km",
+    "consommation_mixte": "18 kWh/100km",
+    "vitesse_max": "132 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VN-025",
@@ -1338,7 +1491,14 @@ const PRODUITS = [
       "Prise 12V",
       "Radio/Bluetooth",
       "Aide au stationnement arrière"
-    ]
+    ],
+    "dimensions": "4,99 m x 1,96 m x 1,97 m",
+    "places": 3,
+    "consommation_urbaine": "8,5 l/100km",
+    "consommation_mixte": "7 l/100km",
+    "reservoir": "80 L",
+    "vitesse_max": "176 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-026",
@@ -1370,7 +1530,14 @@ const PRODUITS = [
       "Aide au stationnement arrière",
       "Caméra de recul",
       "Climatisation"
-    ]
+    ],
+    "dimensions": "5,40 m x 1,96 m x 1,97 m",
+    "places": 3,
+    "consommation_urbaine": "8,5 l/100km",
+    "consommation_mixte": "7 l/100km",
+    "reservoir": "80 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-027",
@@ -1400,7 +1567,14 @@ const PRODUITS = [
       "Prise 12V",
       "Radio/Bluetooth",
       "Aide au stationnement arrière"
-    ]
+    ],
+    "dimensions": "5,55 m x 2,02 m x 2,31 m",
+    "places": 3,
+    "consommation_urbaine": "10 l/100km",
+    "consommation_mixte": "8,5 l/100km",
+    "reservoir": "105 L",
+    "vitesse_max": "160 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VN-028",
@@ -1432,7 +1606,14 @@ const PRODUITS = [
       "Aide au stationnement arrière",
       "Caméra de recul",
       "Climatisation"
-    ]
+    ],
+    "dimensions": "6,20 m x 2,02 m x 2,49 m",
+    "places": 3,
+    "consommation_urbaine": "10,5 l/100km",
+    "consommation_mixte": "9 l/100km",
+    "reservoir": "105 L",
+    "vitesse_max": "165 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-001",
@@ -1460,7 +1641,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,09 m x 1,85 m x 1,50 m",
+    "places": 5,
+    "consommation_urbaine": "6,5 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "169 km/h",
+    "boite": "Manuelle 5 rapports"
   },
   {
     "id": "VAS-VO-002",
@@ -1488,7 +1676,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,01 m x 1,76 m x 1,48 m",
+    "places": 5,
+    "consommation_urbaine": "6,5 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "45 L",
+    "vitesse_max": "172 km/h",
+    "boite": "Manuelle 5 rapports"
   },
   {
     "id": "VAS-VO-003",
@@ -1516,7 +1711,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "3,94 m x 1,75 m x 1,50 m",
+    "places": 5,
+    "consommation_urbaine": "4 l/100km",
+    "consommation_mixte": "3,8 l/100km",
+    "reservoir": "36 L",
+    "vitesse_max": "175 km/h",
+    "boite": "Automatique CVT"
   },
   {
     "id": "VAS-VO-004",
@@ -1544,7 +1746,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,37 m x 1,85 m x 1,44 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,2 l/100km",
+    "reservoir": "52 L",
+    "vitesse_max": "200 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-005",
@@ -1572,7 +1781,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,28 m x 1,79 m x 1,49 m",
+    "places": 5,
+    "consommation_urbaine": "5,2 l/100km",
+    "consommation_mixte": "4,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "205 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-006",
@@ -1600,7 +1816,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,36 m x 1,81 m x 1,45 m",
+    "places": 5,
+    "consommation_urbaine": "7 l/100km",
+    "consommation_mixte": "6 l/100km",
+    "reservoir": "47 L",
+    "vitesse_max": "190 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-007",
@@ -1628,7 +1851,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,36 m x 1,83 m x 1,47 m",
+    "places": 5,
+    "consommation_urbaine": "4,8 l/100km",
+    "consommation_mixte": "4 l/100km",
+    "reservoir": "47 L",
+    "vitesse_max": "200 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-008",
@@ -1656,7 +1886,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,45 m x 1,84 m x 1,62 m",
+    "places": 5,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5 l/100km",
+    "reservoir": "53 L",
+    "vitesse_max": "195 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-009",
@@ -1684,7 +1921,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,43 m x 1,84 m x 1,62 m",
+    "places": 5,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5 l/100km",
+    "reservoir": "55 L",
+    "vitesse_max": "190 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-010",
@@ -1712,7 +1956,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,49 m x 1,84 m x 1,64 m",
+    "places": 5,
+    "consommation_urbaine": "6,5 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "58 L",
+    "vitesse_max": "198 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-011",
@@ -1740,7 +1991,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,50 m x 1,87 m x 1,65 m",
+    "places": 5,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5,3 l/100km",
+    "reservoir": "54 L",
+    "vitesse_max": "190 km/h",
+    "boite": "Automatique 6 rapports"
   },
   {
     "id": "VAS-VO-012",
@@ -1768,7 +2026,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,34 m x 1,82 m x 1,43 m",
+    "places": 5,
+    "consommation_urbaine": "6,5 l/100km",
+    "consommation_mixte": "5,5 l/100km",
+    "reservoir": "50 L",
+    "vitesse_max": "210 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-013",
@@ -1796,7 +2061,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,36 m x 1,80 m x 1,46 m",
+    "places": 5,
+    "consommation_urbaine": "5 l/100km",
+    "consommation_mixte": "4,3 l/100km",
+    "reservoir": "42 L",
+    "vitesse_max": "210 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-014",
@@ -1824,7 +2096,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,42 m x 1,80 m x 1,44 m",
+    "places": 5,
+    "consommation_urbaine": "7 l/100km",
+    "consommation_mixte": "6 l/100km",
+    "reservoir": "43 L",
+    "vitesse_max": "220 km/h",
+    "boite": "Automatique 7 rapports"
   },
   {
     "id": "VAS-VO-015",
@@ -1852,7 +2131,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,48 m x 1,84 m x 1,59 m",
+    "places": 5,
+    "consommation_urbaine": "6 l/100km",
+    "consommation_mixte": "5,2 l/100km",
+    "reservoir": "58 L",
+    "vitesse_max": "202 km/h",
+    "boite": "Manuelle 6 rapports"
   },
   {
     "id": "VAS-VO-016",
@@ -1880,7 +2166,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,37 m x 1,79 m x 1,44 m",
+    "places": 5,
+    "consommation_urbaine": "4,5 l/100km",
+    "consommation_mixte": "4 l/100km",
+    "reservoir": "43 L",
+    "vitesse_max": "180 km/h",
+    "boite": "Automatique CVT"
   },
   {
     "id": "VAS-VO-017",
@@ -1908,7 +2201,13 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,09 m x 1,79 m x 1,56 m",
+    "places": 5,
+    "consommation_urbaine": "15 kWh/100km",
+    "consommation_mixte": "16 kWh/100km",
+    "vitesse_max": "135 km/h",
+    "boite": "Automatique (réducteur)"
   },
   {
     "id": "VAS-VO-018",
@@ -1936,7 +2235,14 @@ const PRODUITS = [
       "Radio/Bluetooth",
       "Vitres électriques",
       "Régulateur de vitesse"
-    ]
+    ],
+    "dimensions": "4,40 m x 1,85 m x 1,85 m",
+    "places": 3,
+    "consommation_urbaine": "7 l/100km",
+    "consommation_mixte": "5,8 l/100km",
+    "reservoir": "60 L",
+    "vitesse_max": "168 km/h",
+    "boite": "Manuelle 6 rapports"
   }
 ];
 
