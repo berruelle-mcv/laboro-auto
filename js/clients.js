@@ -25,7 +25,7 @@ function accepterCharte(){
     window.__pendingOnboarding = false;
     if(typeof startOb === 'function') startOb();
   } else {
-    showNotifEleve("Bienvenue dans l'équipe LABORO !", 'success');
+    showNotifEleve("Bienvenue dans l'équipe Vasseur !", 'success');
   }
 }
 

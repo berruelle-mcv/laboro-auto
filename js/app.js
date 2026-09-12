@@ -24,9 +24,9 @@ function getMsg(classe,poste){
   // ── Messages dynamiques selon progression ──
   // 1. Première connexion (aucune mission)
   if(done===0&&att===0){
-    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue dans l'équipe LABORO ! Je suis "+getResp().nom+", "+getResp().poste+". Ta première mission t'attend — lis bien la ressource avant de te lancer. C'est comme ça qu'on progresse ici."};
-    if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:"Bienvenue chez LABORO ! Je suis "+getTutrice().nom+", "+getTutrice().poste+". Ta première mission de terrain t'attend. Prends le temps de lire la ressource — sur le terrain, on n'a pas de filet !"};
-    if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue chez LABORO ! Je suis "+getResp().nom+", "+getResp().poste+". Cette année tu vas découvrir nos métiers — la vente, la relation client, la gestion commerciale. Commence par explorer — lis bien la ressource avant chaque mission."};
+    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue dans l'équipe Vasseur ! Je suis "+getResp().nom+", "+getResp().poste+". Ta première mission t'attend — lis bien la ressource avant de te lancer. C'est comme ça qu'on progresse ici."};
+    if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:"Bienvenue chez Vasseur ! Je suis "+getTutrice().nom+", "+getTutrice().poste+". Ta première mission de terrain t'attend. Prends le temps de lire la ressource — sur le terrain, on n'a pas de filet !"};
+    if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue chez Vasseur ! Je suis "+getResp().nom+", "+getResp().poste+". Cette année tu vas découvrir nos métiers — la vente, la relation client, la gestion commerciale. Commence par explorer — lis bien la ressource avant chaque mission."};
   }
 
   // 2. Missions en attente de correction — encourager la patience
@@ -44,7 +44,7 @@ function getMsg(classe,poste){
 
   // 4. Très bonne moyenne — féliciter
   if(done>=3&&moy>=15){
-    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:`Excellente moyenne à ${moy}/20 ! C'est exactement le niveau qu'on attend d'un(e) conseiller(ère) de vente chez LABORO. Continue comme ça — les meilleures opportunités vont aux meilleurs. Bravo.`};
+    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:`Excellente moyenne à ${moy}/20 ! C'est exactement le niveau qu'on attend d'un(e) conseiller(ère) de vente chez Vasseur. Continue comme ça — les meilleures opportunités vont aux meilleurs. Bravo.`};
     if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:`${moy}/20 de moyenne — impressionnant ! Un commercial avec ces résultats chez nous, on le garde. Tu prouves que travail et méthode paient. Continue sur cette lancée.`};
     if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:`Moyenne à ${moy}/20 — félicitations ! Tu montres déjà de vraies qualités professionnelles. Continue à t'investir comme ça.`};
   }
