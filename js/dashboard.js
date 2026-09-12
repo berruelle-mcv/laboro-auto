@@ -7,18 +7,18 @@
 
 // ═══ ACTUALITÉS LABORO ═══
 const ACTUS_LABORO=[
-  {date:'Lun',icon:'📦',titre:'Réception commande',txt:'50 ballons de football LABORO T5 et 30 chasubles LABORO Pro reçus en entrepôt. Mise en rayon prévue demain.'},
-  {date:'Lun',icon:'📞',titre:'Prospect à rappeler',txt:'M. Dubois (CE Renault Évry) a demandé un devis pour 20 maillots personnalisés. Romain Sauzet prend en charge.'},
-  {date:'Mar',icon:'🎯',titre:'Objectif semaine',txt:'Objectif : 8 500 € de CA cette semaine. À J+1 : 3 240 € réalisés. Bonne dynamique sur le rayon chaussures.'},
-  {date:'Mar',icon:'⚠️',titre:'Stock critique',txt:'Chaussures running LABORO EasyRun taille 42 : 2 unités restantes. Commande fournisseur en cours — délai 5 jours.'},
-  {date:'Mer',icon:'🤝',titre:'Visite client B2B',txt:'Isabelle Faure (CE PSA Stellantis) visite le showroom à 14h. Préparer la salle de réunion et le catalogue B2B.'},
-  {date:'Mer',icon:'📊',titre:'Bilan mi-semaine',txt:'4 réclamations traitées, taux de satisfaction 94%. Bravo a tous !'},
-  {date:'Jeu',icon:'🚀',titre:'Nouvelle collection',txt:'Arrivée de la collection été : shorts 2en1, t-shirts techniques et coupe-vents légers. Étiquetage en cours.'},
-  {date:'Jeu',icon:'📱',titre:'Avis Google',txt:'3 nouveaux avis cette semaine : 2 × 5 étoiles, 1 × 3 étoiles. Sophie Blanc gère les réponses.'},
-  {date:'Ven',icon:'🏆',titre:'Résultats semaine',txt:'CA semaine : 9 120 € — objectif dépassé ! Top vendeur : Marco Pellini avec 2 340 € de ventes perso.'},
-  {date:'Ven',icon:'📅',titre:'Planning semaine prochaine',txt:'Réunion équipe lundi 9h. Formation e-commerce mercredi. Inventaire partiel vendredi après-midi.'},
-  {date:'Sam',icon:'🎉',titre:'Soirée fidélisation',txt:'La soirée clients du mois dernier a généré 4 200 € de commandes. 18 clients présents, 12 ont repassé commande.'},
-  {date:'Sam',icon:'💡',titre:'Idée du moment',txt:'Nina Chevalier propose un pack rentrée sportive : basket + t-shirt + gourde. Réflexion en cours.'},
+  {date:'Lun',icon:'📦',titre:'Livraison Renault',txt:'3 Twingo E-Tech et 2 Captur livrés au dépôt. Préparation avant mise en exposition prévue demain.'},
+  {date:'Lun',icon:'📞',titre:'Prospect à rappeler',txt:'M. Rasoamanana (artisan plombier) a demandé un devis pour un Kangoo Van. Karim Yildiz prend en charge.'},
+  {date:'Mar',icon:'🎯',titre:'Objectif semaine',txt:'Objectif : 45 000 € de CA cette semaine. À J+1 : 18 200 € réalisés. Bonne dynamique sur les hybrides.'},
+  {date:'Mar',icon:'⚠️',titre:'Stock critique',txt:'Renault 5 E-Tech Iconic : 1 unité restante en stock. Prochaine livraison prévue dans 5 jours.'},
+  {date:'Mer',icon:'🤝',titre:'Visite client B2B',txt:'Un responsable de flotte d\'une PME locale visite la concession à 14h pour un renouvellement de 4 utilitaires. Préparer la salle et le catalogue B2B.'},
+  {date:'Mer',icon:'📊',titre:'Bilan mi-semaine',txt:'3 réclamations traitées, taux de satisfaction 92%. Bravo à tous !'},
+  {date:'Jeu',icon:'🚀',titre:'Nouveau modèle',txt:'Arrivée de la nouvelle Renault 4 E-Tech en concession. Mise en avant prévue en vitrine dès cette semaine.'},
+  {date:'Jeu',icon:'📱',titre:'Avis Google',txt:'3 nouveaux avis cette semaine : 2 × 5 étoiles, 1 × 3 étoiles. Isabelle Ferrand gère les réponses.'},
+  {date:'Ven',icon:'🏆',titre:'Résultats semaine',txt:'CA semaine : 52 000 € — objectif dépassé ! Top vendeur : Karim Yildiz avec 3 véhicules vendus.'},
+  {date:'Ven',icon:'📅',titre:'Planning semaine prochaine',txt:'Réunion équipe lundi 9h. Formation nouveaux modèles hybrides mercredi. Inventaire atelier vendredi après-midi.'},
+  {date:'Sam',icon:'🎉',titre:'Portes ouvertes',txt:'La journée portes ouvertes du mois dernier a généré 3 ventes fermes. 22 visiteurs, 8 essais réalisés.'},
+  {date:'Sam',icon:'💡',titre:'Idée du moment',txt:'Isabelle Ferrand propose une offre de reprise majorée pour les véhicules diesel avant la fin du mois. Réflexion en cours.'},
 ];
 
 function getActusDuJour(){
@@ -49,7 +49,7 @@ function getIndicateursLive(ud){
 
 function setAccentColor(classe){
   const colors = {
-    '2nde':      {c1:'#7F1414', cf:'#1A3A6E', cm:'#F3C6C6', cb:'#FBEAEA'},
+    '2nde':      {c1:'#7F1414', cf:'#5A1A1A', cm:'#F3C6C6', cb:'#FBEAEA'},
     '1ere-AGEC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
     '1ere-PVOC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
     'Term-AGEC': {c1:'#7B2D42', cf:'#5A1F30', cm:'#E8AABF', cb:'#F9E8EE'},
@@ -103,7 +103,7 @@ function renderDashboard(){
   const msgFromEl=document.getElementById('msg-f');
   if(msgFromEl){
     const initials=msgDyn.from.split(' ').slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();
-    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(10,37,64,.3)">'+initials+'</span>'
+    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(28,28,30,.3)">'+initials+'</span>'
       +'<span>'+msgDyn.from+'</span>';
   }
   document.getElementById('msg-t').textContent=msgDyn.txt;
@@ -308,7 +308,7 @@ function renderActus(){
 
   // Message personnalisé selon progression
   const persoMsg = score >= 80
-    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Romain Sauzet a note ta progression — continue ainsi !', color:'#FBEAEA', border:'#B91C1C'}
+    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Karim Yildiz a noté ta progression — continue ainsi !', color:'#FBEAEA', border:'#B91C1C'}
     : done.length === 0
     ? {icon:'🚀', titre:'Bienvenue chez LABORO !', texte:'Ta première mission t\'attend. Lis bien la ressource avant de répondre — elle contient tout ce qu\'il faut savoir.', color:'#FEF3C7', border:'#D97706'}
     : done.length < 5
@@ -317,18 +317,18 @@ function renderActus(){
 
   // Agenda mensuel
   const agendas = [
-    'Inventaire annuel du showroom cette semaine.',
-    'Salon ISPO Munich — LABORO y participe.',
-    'Operation Printemps — -15% sur les chaussures trail.',
-    'Semaine du sport scolaire — LABORO partenaire.',
-    'Collections ete Running et Fitness disponibles.',
-    'Forum associations sportives de l Essonne.',
-    'Bilan semestriel LABORO — resultats communiques.',
-    'Rentree sportive — promotions clubs en cours.',
-    'Rentree scolaire — LABORO equipe les lycees pro.',
-    'Salon Mondial du Sport Paris — octobre.',
-    'Black Friday LABORO — -20% sur tout le catalogue.',
-    'Cadeaux entreprise et CE — commandes ouvertes.'
+    'Inventaire annuel de la concession cette semaine.',
+    'Salon automobile régional — Vasseur y participe.',
+    'Opération Printemps — reprise majorée sur les citadines.',
+    'Semaine de l\'éco-mobilité — Vasseur partenaire.',
+    'Nouvelle gamme électrique disponible à l\'essai.',
+    'Forum des entreprises de l\'Essonne — stand Vasseur.',
+    'Bilan semestriel Vasseur — résultats communiqués.',
+    'Offres de rentrée — promotions flottes en cours.',
+    'Rentrée — Vasseur accompagne les artisans locaux.',
+    'Mondial de l\'Automobile Paris — octobre.',
+    'Black Friday Vasseur — reprises exceptionnelles.',
+    'Offres flottes entreprise — devis ouverts.'
   ];
 
   const items = [persoMsg].concat(

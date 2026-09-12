@@ -40,7 +40,7 @@ function updatePoste(){
     if(hint){hint.style.display='block';hint.textContent="Tu découvres les métiers du commerce et de la vente chez LABORO.";}
   } else if(cls.includes('AGEC')){
     sel.value='Conseiller de vente — Showroom & E-commerce';
-    if(hint){hint.style.display='block';hint.textContent="Tu travailles au showroom d'Évry et sur laboro-sport.fr.";}
+    if(hint){hint.style.display='block';hint.textContent="Tu travailles chez Vasseur Renault Évry et Vasseur Sélection Occasion.";}
   } else if(cls.includes('PVOC')){
     sel.value='Commercial terrain — Prospection & Vente B2B';
     if(hint){hint.style.display='block';hint.textContent='Tu prospectes et développes le portefeuille clients professionnels de LABORO.';}

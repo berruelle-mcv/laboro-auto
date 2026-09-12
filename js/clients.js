@@ -195,7 +195,7 @@ function ouvrirFormulaireProspect(prospect){
           </div>
           <div>
             <label style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;display:block;margin-bottom:4px">Secteur</label>
-            <input id="pf-sect" type="text" value="${isEdit ? (prospect.sect||'') : ''}" placeholder="Ex: Sport, Collectivité..." style="width:100%;padding:10px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:13px;box-sizing:border-box">
+            <input id="pf-sect" type="text" value="${isEdit ? (prospect.sect||'') : ''}" placeholder="Ex: Artisan, Collectivité..." style="width:100%;padding:10px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:13px;box-sizing:border-box">
           </div>
         </div>
         <div>

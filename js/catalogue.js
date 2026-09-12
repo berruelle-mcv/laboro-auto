@@ -227,11 +227,11 @@ function renderCatalogue(catFiltre){
   let gridHtml='';
   const makeBanner=function(cat,filtered){
     const cc=CAT_CFG[cat]||{col:'#B91C1C'};
-    return '<div style="background:#F0F4FF;border:1px solid #D0DCF0;border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px">'
+    return '<div style="background:#FBEAEA;border:1px solid #F0C5C5;border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px">'
       +'<div style="width:10px;height:10px;border-radius:50%;background:'+cc.col+';flex-shrink:0"></div>'
       +'<div><div style="font-size:15px;font-weight:900;color:#1C1C1E">'+cat+'</div>'
       +'<div style="font-size:11px;color:#6B7280;margin-top:2px">'+PRODUITS.filter(function(p){return p.cat===cat;})[0]&&''+'</div></div>'
-      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#B91C1C;background:#D6E8FF;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
+      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#B91C1C;background:#FBEAEA;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
       +'</div>';
   };
 

@@ -150,7 +150,7 @@ function genererPortfolioEleve(mail){
     + '<div>'
     + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Portfolio d\'activités professionnelles</div>'
     + '<div style="font-size:20px;font-weight:900">'+nom+'</div>'
-    + '<div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:3px">'+(classe||'Bac Pro MCV')+' · LABORO Sport &amp; Outdoor · '+dateJour+'</div>'
+    + '<div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:3px">'+(classe||'Bac Pro MCV')+' · Groupe Vasseur · '+dateJour+'</div>'
     + '</div>'
     + '<div style="text-align:right">'
     + '<div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Score LABORO</div>'
