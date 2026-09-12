@@ -58,8 +58,8 @@ function calcPosturePro(ud){
 }
 
 function getPostureLabel(score){
-  if(score >= 90) return {label:'Excellent', color:'#B91C1C', bg:'#FBEAEA'};
-  if(score >= 75) return {label:'Bien', color:'#7F1414', bg:'#FBEAEA'};
+  if(score >= 90) return {label:'Excellent', color:'#B5651D', bg:'#F5E6D8'};
+  if(score >= 75) return {label:'Bien', color:'#7A4614', bg:'#F5E6D8'};
   if(score >= 60) return {label:'A ameliorer', color:'#D97706', bg:'#FEF3C7'};
   return {label:'Insuffisant', color:'#C53030', bg:'#FEE2E2'};
 }
@@ -83,7 +83,7 @@ function ouvrirRappelModal(mail){
   const titleDiv = document.createElement('div');
   titleDiv.style.marginBottom = '20px';
   titleDiv.innerHTML = '<div style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Rappel professionnel</div>'
-    + '<div style="font-size:18px;font-weight:800;color:#1C1C1E">Message pour ' + prenom + '</div>'
+    + '<div style="font-size:18px;font-weight:800;color:#2B2B2E">Message pour ' + prenom + '</div>'
     + '<div style="font-size:12px;color:#6B7280;margin-top:4px">Visible dans son espace au prochain chargement</div>';
   box.appendChild(titleDiv);
   const choicesDiv = document.createElement('div');
@@ -93,8 +93,8 @@ function ouvrirRappelModal(mail){
     item.id = 'rc-' + r.id;
     item.style.cssText = 'display:flex;align-items:center;gap:12px;padding:10px 14px;border:1.5px solid #E5E7EB;border-radius:10px;cursor:pointer';
     item.innerHTML = '<div style="font-size:20px;flex-shrink:0">' + r.icon + '</div>'
-      + '<div style="font-size:12px;font-weight:600;color:#1C1C1E;flex:1">' + r.label + '</div>'
-      + '<div id="rc-check-' + r.id + '" style="display:none;color:#7F1414;font-size:16px">✓</div>';
+      + '<div style="font-size:12px;font-weight:600;color:#2B2B2E;flex:1">' + r.label + '</div>'
+      + '<div id="rc-check-' + r.id + '" style="display:none;color:#7A4614;font-size:16px">✓</div>';
     item.onclick = function(){ selectRappel(r.id); };
     choicesDiv.appendChild(item);
   });
@@ -107,7 +107,7 @@ function ouvrirRappelModal(mail){
   const footer = document.createElement('div');
   footer.innerHTML = '<div style="background:#FEF3C7;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:11px;color:#92400E"><strong>Signe :</strong> '+getResp().nom+' — '+getResp().poste+' — '+getNomEntreprise()+'</div>';
   const sendBtn = document.createElement('button');
-  sendBtn.style.cssText = 'width:100%;background:#1C1C1E;color:#fff;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer';
+  sendBtn.style.cssText = 'width:100%;background:#2B2B2E;color:#fff;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer';
   sendBtn.textContent = '📨 Envoyer le rappel';
   sendBtn.onclick = function(){ envoyerRappel(mail); };
   footer.appendChild(sendBtn);
@@ -134,7 +134,7 @@ function envoyerRappel(mail){
   document.getElementById('rappel-modal').style.display = 'none';
   selectedRappelId = null;
   const notifEns = document.createElement('div');
-  notifEns.style.cssText = 'position:fixed;top:20px;right:20px;background:#1C1C1E;color:#fff;padding:12px 20px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2)';
+  notifEns.style.cssText = 'position:fixed;top:20px;right:20px;background:#2B2B2E;color:#fff;padding:12px 20px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2)';
   notifEns.textContent = '✓ Rappel envoye — visible au prochain chargement';
   document.body.appendChild(notifEns);
   setTimeout(function(){ notifEns.remove(); }, 4000);
@@ -142,6 +142,34 @@ function envoyerRappel(mail){
 }
 
 function openClient(id){ ouvrirFicheClient(id); }
+
+function voirAvisClients(){
+  const avis = [
+    {nom:"Sophie D.", note:5, texte:"Très bon accueil, Karim a su me conseiller sans pression. Livraison de mon Captur dans les temps."},
+    {nom:"Julien M.", note:5, texte:"Premier achat électrique, j'avais plein de questions. Réponses claires, je recommande."},
+    {nom:"Thomas P.", note:4, texte:"Bonne expérience sur l'occasion, juste un peu d'attente pour le rendez-vous."},
+    {nom:"M. Rasoamanana", note:5, texte:"Suivi impeccable pour le renouvellement de mon utilitaire, Isabelle a été très réactive."},
+    {nom:"Laura G.", note:3, texte:"L'essai s'est bien passé mais je n'ai pas eu de nouvelles après, un peu déçue."},
+    {nom:"Élise L.", note:5, texte:"Très satisfaite de mon nouveau véhicule et du suivi après-vente avec Bruno."}
+  ];
+  const modal=document.createElement('div');
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9990;display:flex;align-items:center;justify-content:center';
+  modal.onclick=function(e){ if(e.target===modal) modal.remove(); };
+  const box=document.createElement('div');
+  box.style.cssText='background:#fff;border-radius:16px;max-width:520px;width:92%;max-height:80vh;overflow-y:auto;padding:24px;position:relative';
+  let html='<button onclick="this.closest(\'div[style*=fixed]\').remove()" style="position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:#9CA3AF">✕</button>';
+  html+='<div style="font-size:16px;font-weight:800;color:#2B2B2E;margin-bottom:14px">Échantillon d\'avis clients</div>';
+  avis.forEach(function(a){
+    html+='<div style="border-bottom:.5px solid #E5E7EB;padding:10px 0">'
+      +'<div style="display:flex;justify-content:space-between;margin-bottom:4px">'
+      +'<strong style="font-size:12px;color:#2B2B2E">'+a.nom+'</strong>'
+      +'<span style="font-size:12px;color:#B5651D">'+'★'.repeat(a.note)+'☆'.repeat(5-a.note)+'</span>'
+      +'</div><div style="font-size:12px;color:#6B7280;line-height:1.5">'+a.texte+'</div></div>';
+  });
+  box.innerHTML=html;
+  modal.appendChild(box);
+  document.body.appendChild(modal);
+}
 
 function renderClients(){
   if(!CU)return;
@@ -179,7 +207,7 @@ function ouvrirFormulaireProspect(prospect){
   overlay.innerHTML = `
     <div style="background:#fff;border-radius:16px;max-width:480px;width:90%;padding:28px;position:relative;border-top:4px solid var(--bl);max-height:85vh;overflow-y:auto">
       <button onclick="document.getElementById('prospect-form-overlay').remove()" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;color:#6B7280">✕</button>
-      <div style="font-size:16px;font-weight:800;color:#1C1C1E;margin-bottom:20px">${isEdit ? '✏️ Modifier le prospect' : '➕ Nouveau prospect'}</div>
+      <div style="font-size:16px;font-weight:800;color:#2B2B2E;margin-bottom:20px">${isEdit ? '✏️ Modifier le prospect' : '➕ Nouveau prospect'}</div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div>
           <label style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;display:block;margin-bottom:4px">Nom / Entreprise *</label>
@@ -286,7 +314,7 @@ function convertirProspect(id, modal){
     nom: p.nom,
     type: p.type || 'B2C',
     ini: p.ini || p.nom.substring(0,2).toUpperCase(),
-    col: '#B91C1C',
+    col: '#B5651D',
     sect: p.sect || '',
     contact: p.contact || '',
     tel: p.tel || '',
@@ -318,8 +346,8 @@ function ouvrirFicheClient(id){
   const isProspectEleve = c.ajouteParEleve === true;
 
   // Couleur selon fidélité
-  const fidelCols={'Stratégique':'#27500A','Fidèle':'#B91C1C','Régulier':'#7F1414','Nouveau':'#D97706','Prospect':'#8E44AD','Dormant':'#6B7280','Perdu':'#C53030'};
-  const col = fidelCols[c.fidelite||c.statut] || '#B91C1C';
+  const fidelCols={'Stratégique':'#27500A','Fidèle':'#B5651D','Régulier':'#7A4614','Nouveau':'#D97706','Prospect':'#8E44AD','Dormant':'#6B7280','Perdu':'#C53030'};
+  const col = fidelCols[c.fidelite||c.statut] || '#B5651D';
 
   const modal=document.createElement('div');
   modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9990;display:flex;align-items:center;justify-content:center';
@@ -375,7 +403,7 @@ function ouvrirFicheClient(id){
     }
     const addSicBtn=document.createElement('button');
     addSicBtn.textContent=c.commentaire?'✏️ Modifier le commentaire SIC':'📝 Ajouter un commentaire SIC';
-    addSicBtn.style.cssText='width:100%;margin-bottom:8px;padding:8px;background:#F0FDF4;color:#1C1C1E;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700';
+    addSicBtn.style.cssText='width:100%;margin-bottom:8px;padding:8px;background:#F0FDF4;color:#2B2B2E;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700';
     addSicBtn.onclick=function(){
       const txt=prompt('Commentaire SIC :',c.commentaire||'');
       if(txt!==null){
@@ -392,12 +420,12 @@ function ouvrirFicheClient(id){
     // Boutons prospect
     const convertBtn=document.createElement('button');
     convertBtn.textContent='🔄 Convertir en client';
-    convertBtn.style.cssText='width:100%;margin-top:12px;padding:10px;background:#FBEAEA;color:#065F46;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700';
+    convertBtn.style.cssText='width:100%;margin-top:12px;padding:10px;background:#F5E6D8;color:#065F46;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700';
     convertBtn.onclick=function(){ convertirProspect(c.id,modal); };
     box.appendChild(convertBtn);
     const editBtn=document.createElement('button');
     editBtn.textContent='✏️ Modifier ce prospect';
-    editBtn.style.cssText='width:100%;margin-top:8px;padding:10px;background:#FBEAEA;color:var(--bl);border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700';
+    editBtn.style.cssText='width:100%;margin-top:8px;padding:10px;background:#F5E6D8;color:var(--bl);border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700';
     editBtn.onclick=function(){ modal.remove(); ouvrirFormulaireProspect(c); };
     box.appendChild(editBtn);
 
@@ -413,8 +441,8 @@ function ouvrirFicheClient(id){
     const freqFmt=c.freq?c.freq+'×/an':'—';
     [
       [caFmt,'CA total',col],
-      [potFmt,'Réalisation potentiel','#B91C1C'],
-      [panierFmt,'Panier moyen','#7F1414'],
+      [potFmt,'Réalisation potentiel','#B5651D'],
+      [panierFmt,'Panier moyen','#7A4614'],
       [freqFmt,'Fréquence','#6B7280']
     ].forEach(function(k){
       const cell=document.createElement('div');
@@ -450,7 +478,7 @@ function ouvrirFicheClient(id){
     });
     // NPS si disponible
     if(c.nps){
-      const npsCol=c.nps>=75?'#B91C1C':c.nps>=50?'#D97706':'#C53030';
+      const npsCol=c.nps>=75?'#B5651D':c.nps>=50?'#D97706':'#C53030';
       const npsCell=document.createElement('div');
       npsCell.style.cssText='background:var(--gc);border-radius:8px;padding:10px;text-align:center';
       npsCell.innerHTML='<div style="font-size:9px;color:var(--gm);text-transform:uppercase;font-weight:700;margin-bottom:2px">NPS</div>'
@@ -504,7 +532,7 @@ function ouvrirFicheClient(id){
       tagsWrap.style.cssText='display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px';
       c.tags.forEach(function(tag){
         const t=document.createElement('span');
-        t.style.cssText='font-size:10px;font-weight:700;padding:3px 10px;border-radius:12px;background:#FBEAEA;color:#7F1414';
+        t.style.cssText='font-size:10px;font-weight:700;padding:3px 10px;border-radius:12px;background:#F5E6D8;color:#7A4614';
         t.textContent=tag;
         tagsWrap.appendChild(t);
       });

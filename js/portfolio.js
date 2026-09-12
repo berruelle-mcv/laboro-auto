@@ -32,7 +32,7 @@ function genererPortfolioEleve(mail){
 
   // Labels de niveau (0 à 4)
   const niveauLabels = ['Non démarré','Découverte','En progression','Acquis','Maîtrisé'];
-  const niveauCols   = ['#9CA3AF','#E88A8A','#B91C1C','#B91C1C','#1C1C1E'];
+  const niveauCols   = ['#9CA3AF','#E0A868','#B5651D','#B5651D','#2B2B2E'];
 
   // Positionnement global LABORO selon le score
   const posGlobal = score>=75 ? 'Professionnel performant'
@@ -98,7 +98,7 @@ function genererPortfolioEleve(mail){
     const comps = COMP.filter(function(c){ return ep.groupes.indexOf(c.g) >= 0; });
     if(!comps.length) return '';
     return '<div style="margin-bottom:16px">'
-      + '<div style="font-size:11px;font-weight:800;color:#7F1414;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">'
+      + '<div style="font-size:11px;font-weight:800;color:#7A4614;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">'
       + ep.code+' — '+ep.titre+' <span style="font-size:9px;opacity:.6;font-weight:600">'+ep.coef+'</span></div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">'
       + comps.map(carteComp).join('')
@@ -108,7 +108,7 @@ function genererPortfolioEleve(mail){
   // Liste des missions validées (les 8 meilleures pour rester lisible)
   const missionsHtml = nbValidees
     ? missionsValidees.slice(0,8).map(function(m){
-        const col = m.score>=14 ? '#B91C1C' : m.score>=11 ? '#D97706' : '#C53030';
+        const col = m.score>=14 ? '#B5651D' : m.score>=11 ? '#D97706' : '#C53030';
         const dateTxt = m.date ? new Date(m.date).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—';
         return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F3F4F6;font-size:11px">'
           + '<span style="color:#374151;flex:1">'+m.titre+'</span>'
@@ -146,7 +146,7 @@ function genererPortfolioEleve(mail){
   overlay.innerHTML =
     '<div id="portfolio-doc" style="max-width:780px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 50px rgba(0,0,0,.3)">'
     // En-tête
-    + '<div style="background:linear-gradient(135deg,#1C1C1E,#7F1414);padding:22px 26px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start">'
+    + '<div style="background:linear-gradient(135deg,#2B2B2E,#7A4614);padding:22px 26px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start">'
     + '<div>'
     + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Portfolio d\'activités professionnelles</div>'
     + '<div style="font-size:20px;font-weight:900">'+nom+'</div>'
@@ -154,7 +154,7 @@ function genererPortfolioEleve(mail){
     + '</div>'
     + '<div style="text-align:right">'
     + '<div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Score LABORO</div>'
-    + '<div style="font-size:30px;font-weight:900;color:#F0B0B0">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
+    + '<div style="font-size:30px;font-weight:900;color:#E8C9A0">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
     + '</div>'
     + '</div>'
     // Corps
@@ -168,12 +168,12 @@ function genererPortfolioEleve(mail){
     + '</div>'
     // Appréciation
     + '<div style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Appréciation motivée — générée automatiquement</div>'
-    + '<div style="background:#F0F4FF;border-left:3px solid #7F1414;border-radius:0 8px 8px 0;padding:12px 16px;font-size:12px;color:#1C1C1E;line-height:1.7">'+appreciation+'</div>'
+    + '<div style="background:#F0F4FF;border-left:3px solid #7A4614;border-radius:0 8px 8px 0;padding:12px 16px;font-size:12px;color:#2B2B2E;line-height:1.7">'+appreciation+'</div>'
     + '<div style="font-size:10px;color:#9CA3AF;font-style:italic;margin-top:10px;text-align:right">Généré par LABORO · '+nbValidees+' missions validées'+(classe?' · '+classe:'')+'</div>'
     + '</div>'
     // Barre d'actions (non imprimée)
     + '<div class="portfolio-actions" style="padding:14px 26px;background:#F8FAFF;border-top:1px solid #F3F4F6;display:flex;gap:10px;justify-content:flex-end">'
-    + '<button onclick="window.print()" style="background:#7F1414;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">🖨 Imprimer / PDF</button>'
+    + '<button onclick="window.print()" style="background:#7A4614;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">🖨 Imprimer / PDF</button>'
     + '<button onclick="fermerPortfolio()" style="background:#fff;color:#4B5563;border:1px solid #E5E7EB;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">Fermer</button>'
     + '</div>'
     + '</div>';

@@ -10,7 +10,7 @@ const CAT_CFG = {
   'Basketball':                {col:'#E87722', light:'#FFF5ED'},
   'Running':                   {col:'#0096C7', light:'#EFF9FF'},
   'Fitness':                   {col:'#7B2FBE', light:'#F8F0FF'},
-  'LABORO Pro Line':           {col:'#B91C1C', light:'#FBEAEA'},
+  'LABORO Pro Line':           {col:'#B5651D', light:'#F5E6D8'},
   'Natation':                  {col:'#0077B6', light:'#E0F4FF'},
   'Tennis / Padel':            {col:'#F5A623', light:'#FFF8E6'},
   'Cyclisme':                  {col:'#27AE60', light:'#EDFBF2'},
@@ -219,19 +219,19 @@ function renderCatalogue(catFiltre){
     +'<div class="cat-tab '+((!catFiltre)?'on':'')+'" onclick="renderCatalogue(\'\')">Tous <span class="cat-count">'+PRODUITS.length+'</span></div>'
     +cats.map(function(c){
       const count=PRODUITS.filter(function(p){return p.cat===c;}).length;
-      const cc=CAT_CFG[c]||{col:'#B91C1C'};
+      const cc=CAT_CFG[c]||{col:'#B5651D'};
       const isActive=catFiltre===c;
       return '<div class="cat-tab '+(isActive?'on':'')+'" onclick="renderCatalogue(\''+c+'\')" style="'+(isActive?'border-bottom:3px solid '+cc.col+';color:'+cc.col:'')+'">'+c+' <span class="cat-count">'+count+'</span></div>';
     }).join('')+'</div>';
 
   let gridHtml='';
   const makeBanner=function(cat,filtered){
-    const cc=CAT_CFG[cat]||{col:'#B91C1C'};
-    return '<div style="background:#FBEAEA;border:1px solid #F0C5C5;border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px">'
+    const cc=CAT_CFG[cat]||{col:'#B5651D'};
+    return '<div style="background:#F5E6D8;border:1px solid #E8CBA8;border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px">'
       +'<div style="width:10px;height:10px;border-radius:50%;background:'+cc.col+';flex-shrink:0"></div>'
-      +'<div><div style="font-size:15px;font-weight:900;color:#1C1C1E">'+cat+'</div>'
+      +'<div><div style="font-size:15px;font-weight:900;color:#2B2B2E">'+cat+'</div>'
       +'<div style="font-size:11px;color:#6B7280;margin-top:2px">'+PRODUITS.filter(function(p){return p.cat===cat;})[0]&&''+'</div></div>'
-      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#B91C1C;background:#FBEAEA;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
+      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#B5651D;background:#F5E6D8;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
       +'</div>';
   };
 
@@ -249,15 +249,30 @@ function renderCatalogue(catFiltre){
 }
 
 // ═══ CARD PRODUIT ═══
+function carPlaceholder(segment){
+  const shapes = {
+    'Citadine': '<path d="M18 38 L24 24 Q26 20 32 20 L58 20 Q64 20 66 24 L72 38 L78 38 Q82 38 82 42 L82 46 L18 46 L18 42 Q18 38 22 38 Z" fill="#B5651D"/><circle cx="30" cy="46" r="7" fill="#2B2B2E"/><circle cx="68" cy="46" r="7" fill="#2B2B2E"/>',
+    'SUV': '<path d="M14 40 L20 22 Q22 16 30 16 L64 16 Q72 16 74 22 L80 40 L84 40 Q88 40 88 44 L88 48 L12 48 L12 44 Q12 40 16 40 Z" fill="#B5651D"/><circle cx="27" cy="48" r="8" fill="#2B2B2E"/><circle cx="71" cy="48" r="8" fill="#2B2B2E"/>',
+    'Familiale': '<path d="M14 40 L20 22 Q22 16 30 16 L64 16 Q72 16 74 22 L80 40 L84 40 Q88 40 88 44 L88 48 L12 48 L12 44 Q12 40 16 40 Z" fill="#B5651D"/><circle cx="27" cy="48" r="8" fill="#2B2B2E"/><circle cx="71" cy="48" r="8" fill="#2B2B2E"/>',
+    'Utilitaire': '<path d="M12 44 L12 24 Q12 18 20 18 L64 18 L74 30 L82 30 Q86 30 86 36 L86 44 L12 44 Z" fill="#B5651D"/><circle cx="26" cy="46" r="7" fill="#2B2B2E"/><circle cx="72" cy="46" r="7" fill="#2B2B2E"/>',
+    'Premium': '<path d="M16 39 L23 21 Q25 15 33 15 L61 15 Q69 15 71 21 L78 39 L82 39 Q86 39 86 43 L86 47 L14 47 L14 43 Q14 39 18 39 Z" fill="#B5651D"/><circle cx="28" cy="47" r="8" fill="#2B2B2E"/><circle cx="70" cy="47" r="8" fill="#2B2B2E"/>',
+    'Compacte': '<path d="M18 38 L24 24 Q26 20 32 20 L58 20 Q64 20 66 24 L72 38 L78 38 Q82 38 82 42 L82 46 L18 46 L18 42 Q18 38 22 38 Z" fill="#B5651D"/><circle cx="30" cy="46" r="7" fill="#2B2B2E"/><circle cx="68" cy="46" r="7" fill="#2B2B2E"/>'
+  };
+  const shape = shapes[segment] || shapes['Citadine'];
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">'
+    + '<rect width="100" height="60" fill="#F5E6D8"/>' + shape + '</svg>';
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
 function renderProdCard(p){
-  const c = CAT_CFG[p.cat]||{col:'#B91C1C', light:'#FBEAEA'};
-  const img = PROD_IMAGES[p.id] || 'https://via.placeholder.com/400x400/F8FAFC/94A3B8?text=LABORO';
+  const c = CAT_CFG[p.cat]||{col:'#B5651D', light:'#F5E6D8'};
+  const img = PROD_IMAGES[p.id] || carPlaceholder(p.segment);
 
   const stockBadge = p.stock===0
     ? '<span style="display:inline-block;font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:6px;margin-top:6px">Sur commande</span>'
     : p.stock<=p.seuil
     ? '<span style="display:inline-block;font-size:9px;font-weight:700;color:#B45309;background:#FEF3C7;padding:3px 8px;border-radius:6px;margin-top:6px">⚠ Stock faible</span>'
-    : '<span style="display:inline-block;font-size:9px;font-weight:700;color:#B91C1C;background:#FBEAEA;padding:3px 8px;border-radius:6px;margin-top:6px">✓ En stock</span>';
+    : '<span style="display:inline-block;font-size:9px;font-weight:700;color:#B5651D;background:#F5E6D8;padding:3px 8px;border-radius:6px;margin-top:6px">✓ En stock</span>';
 
   return '<div class="pc" onclick="openProduit(\''+p.id+'\')">'
     + '<div style="position:relative;height:120px;overflow:hidden;background:#F8FAFC;border-radius:10px 10px 0 0">'
@@ -267,7 +282,7 @@ function renderProdCard(p){
     + '<div style="position:absolute;bottom:8px;left:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border:1px solid rgba(0,0,0,.08);color:#374151;font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:.4px">'+p.marque+'</div>'
     + '</div>'
     + '<div style="padding:12px 14px 14px">'
-    + '<div style="font-size:13px;font-weight:800;color:#1C1C1E;line-height:1.35;margin-bottom:3px">'+p.nom+'</div>'
+    + '<div style="font-size:13px;font-weight:800;color:#2B2B2E;line-height:1.35;margin-bottom:3px">'+p.nom+'</div>'
     + '<div style="font-size:10px;color:#94A3B8;margin-bottom:10px">Réf. '+p.ref+'</div>'
     + '<div style="display:flex;align-items:center;justify-content:space-between">'
     + '<div style="font-size:18px;font-weight:900;color:'+c.col+';letter-spacing:-.5px">'+p.pv+' €</div>'
@@ -287,7 +302,7 @@ function selectRappel(id){
   });
   const el = document.getElementById('rc-'+id);
   const check = document.getElementById('rc-check-'+id);
-  if(el){ el.style.borderColor='#7F1414'; el.style.background='#FBEAEA'; }
+  if(el){ el.style.borderColor='#7A4614'; el.style.background='#F5E6D8'; }
   if(check) check.style.display = 'block';
   selectedRappelId = id;
   const cw = document.getElementById('rappel-custom-wrap');
@@ -303,11 +318,11 @@ function showNotifEleve(message, type){
     document.body.appendChild(notif);
   }
   const icons = {info:'📋', success:'✅', warning:'⚠️', rappel:'🔔'};
-  const bgs = {info:'#1C1C1E', success:'#1C1C1E', warning:'#7B3F00', rappel:'#1C1C1E'};
-  const borders = {info:'#B91C1C', success:'#E05C5C', warning:'#D97706', rappel:'#B91C1C'};
+  const bgs = {info:'#2B2B2E', success:'#2B2B2E', warning:'#7B3F00', rappel:'#2B2B2E'};
+  const borders = {info:'#B5651D', success:'#D98A4A', warning:'#D97706', rappel:'#B5651D'};
   const ic = icons[type]||'📋';
-  const bg = bgs[type]||'#1C1C1E';
-  const bd = borders[type]||'#B91C1C';
+  const bg = bgs[type]||'#2B2B2E';
+  const bd = borders[type]||'#B5651D';
   const closeBtn = document.createElement('button');
   closeBtn.textContent = '✕';
   closeBtn.style.cssText = 'background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;flex-shrink:0;padding:0;margin-left:8px';

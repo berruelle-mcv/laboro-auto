@@ -4,6 +4,271 @@
 //   (faits bruts uniquement, pas d'argumentaire pré-rédigé)
 // ================================================
 
+const CLIENTS = [
+  {
+    "id": "CLI-001",
+    "ini": "MR",
+    "nom": "M. Rasoamanana (artisan plombier)",
+    "type": "B2B",
+    "fidelite": "Nouveau",
+    "sect": "Artisanat BTP",
+    "contact": "M. Rasoamanana",
+    "tel": "06 12 34 56 78",
+    "email": "rasoamanana.plomberie@mail.fr",
+    "ca": 22000,
+    "potentiel": 25000,
+    "prochaine": "Relance devis Kangoo Van",
+    "dernier": "08/09",
+    "col": "#B5651D"
+  },
+  {
+    "id": "CLI-002",
+    "ini": "TL",
+    "nom": "Transport Leroy (PME)",
+    "type": "B2B",
+    "fidelite": "Prospect",
+    "sect": "Transport/logistique",
+    "contact": "Mme Leroy",
+    "tel": "01 45 67 89 10",
+    "email": "contact@transport-leroy.fr",
+    "ca": 0,
+    "potentiel": 42000,
+    "prochaine": "Appel de qualification Trafic",
+    "dernier": "05/09",
+    "col": "#8E44AD"
+  },
+  {
+    "id": "CLI-003",
+    "ini": "CE",
+    "nom": "CE Groupe Industriel Essonne",
+    "type": "B2B",
+    "fidelite": "Stratégique",
+    "sect": "Collectivité/CE",
+    "contact": "M. Bonnet",
+    "tel": "01 60 12 34 56",
+    "email": "ce@groupe-industriel91.fr",
+    "ca": 95000,
+    "potentiel": 120000,
+    "prochaine": "Renouvellement flotte utilitaires",
+    "dernier": "01/09",
+    "col": "#27500A"
+  },
+  {
+    "id": "CLI-004",
+    "ini": "SD",
+    "nom": "Sophie Dubreuil",
+    "type": "B2C",
+    "fidelite": "Fidèle",
+    "sect": "Particulier",
+    "contact": "Sophie Dubreuil",
+    "tel": "06 22 33 44 55",
+    "email": "s.dubreuil@mail.fr",
+    "ca": 26000,
+    "potentiel": 30000,
+    "prochaine": "Essai Captur Techno",
+    "dernier": "10/09",
+    "col": "#B5651D"
+  },
+  {
+    "id": "CLI-005",
+    "ini": "JM",
+    "nom": "Julien Meunier",
+    "type": "B2C",
+    "fidelite": "Nouveau",
+    "sect": "Particulier",
+    "contact": "Julien Meunier",
+    "tel": "07 11 22 33 44",
+    "email": "j.meunier@mail.fr",
+    "ca": 0,
+    "potentiel": 21000,
+    "prochaine": "Qualification Twingo E-Tech",
+    "dernier": "09/09",
+    "col": "#D97706"
+  },
+  {
+    "id": "CLI-006",
+    "ini": "AP",
+    "nom": "Artisan Peinture Faucher & Fils",
+    "type": "B2B",
+    "fidelite": "Régulier",
+    "sect": "Artisanat BTP",
+    "contact": "M. Faucher",
+    "tel": "06 33 44 55 66",
+    "email": "faucher.peinture@mail.fr",
+    "ca": 24000,
+    "potentiel": 24000,
+    "prochaine": "",
+    "dernier": "28/08",
+    "col": "#7A4614"
+  },
+  {
+    "id": "CLI-007",
+    "ini": "MC",
+    "nom": "Mairie de Courcouronnes",
+    "type": "B2B",
+    "fidelite": "Stratégique",
+    "sect": "Collectivité",
+    "contact": "Service technique",
+    "tel": "01 60 88 88 00",
+    "email": "technique@courcouronnes.fr",
+    "ca": 68000,
+    "potentiel": 80000,
+    "prochaine": "Visite flotte Kangoo E-Tech",
+    "dernier": "03/09",
+    "col": "#27500A"
+  },
+  {
+    "id": "CLI-008",
+    "ini": "LG",
+    "nom": "Laura Guichard",
+    "type": "B2C",
+    "fidelite": "Prospect",
+    "sect": "Particulier",
+    "contact": "Laura Guichard",
+    "tel": "06 44 55 66 77",
+    "email": "l.guichard@mail.fr",
+    "ca": 0,
+    "potentiel": 25000,
+    "prochaine": "Relance après essai",
+    "dernier": "04/09",
+    "col": "#8E44AD"
+  },
+  {
+    "id": "CLI-009",
+    "ini": "PME",
+    "nom": "PME Services Info Essonne",
+    "type": "B2B",
+    "fidelite": "Nouveau",
+    "sect": "PME tertiaire",
+    "contact": "Mme Rousseau",
+    "tel": "01 69 12 34 56",
+    "email": "contact@pme-services91.fr",
+    "ca": 19000,
+    "potentiel": 35000,
+    "prochaine": "Proposition flotte électrique",
+    "dernier": "06/09",
+    "col": "#D97706"
+  },
+  {
+    "id": "CLI-010",
+    "ini": "KB",
+    "nom": "Karim Belhaj",
+    "type": "B2C",
+    "fidelite": "Dormant",
+    "sect": "Particulier",
+    "contact": "Karim Belhaj",
+    "tel": "06 55 66 77 88",
+    "email": "k.belhaj@mail.fr",
+    "ca": 13000,
+    "potentiel": 20000,
+    "prochaine": "Relance renouvellement",
+    "dernier": "12/06",
+    "col": "#6B7280"
+  },
+  {
+    "id": "CLI-011",
+    "ini": "EL",
+    "nom": "Élise Lambert",
+    "type": "B2C",
+    "fidelite": "Fidèle",
+    "sect": "Particulier",
+    "contact": "Élise Lambert",
+    "tel": "07 66 77 88 99",
+    "email": "e.lambert@mail.fr",
+    "ca": 31000,
+    "potentiel": 35000,
+    "prochaine": "Essai Renault 5 E-Tech",
+    "dernier": "11/09",
+    "col": "#B5651D"
+  },
+  {
+    "id": "CLI-012",
+    "ini": "GC",
+    "nom": "Garage Coopératif du Val d'Essonne",
+    "type": "B2B",
+    "fidelite": "Perdu",
+    "sect": "Revente/reprise",
+    "contact": "M. Antunes",
+    "tel": "01 64 55 66 77",
+    "email": "contact@gcve.fr",
+    "ca": 8000,
+    "potentiel": 15000,
+    "prochaine": "",
+    "dernier": "15/03",
+    "col": "#C53030"
+  },
+  {
+    "id": "CLI-013",
+    "ini": "TP",
+    "nom": "Thomas Petit",
+    "type": "B2C",
+    "fidelite": "Nouveau",
+    "sect": "Particulier",
+    "contact": "Thomas Petit",
+    "tel": "06 77 88 99 00",
+    "email": "t.petit@mail.fr",
+    "ca": 0,
+    "potentiel": 19000,
+    "prochaine": "Qualification occasion",
+    "dernier": "07/09",
+    "col": "#D97706"
+  },
+  {
+    "id": "CLI-014",
+    "ini": "AE",
+    "nom": "Artisan Électricité Rasoamanana",
+    "type": "B2B",
+    "fidelite": "Régulier",
+    "sect": "Artisanat BTP",
+    "contact": "M. Rasoamanana",
+    "tel": "06 12 99 88 77",
+    "email": "electricite.rasoamanana@mail.fr",
+    "ca": 22500,
+    "potentiel": 22500,
+    "prochaine": "",
+    "dernier": "20/08",
+    "col": "#7A4614"
+  }
+];
+
+const IMPREVU = {
+  "B4.1": {
+    "titre": "Donnée manquante",
+    "txt": "Au moment de finaliser ta fiche de synthèse, tu réalises que le budget du prospect n'a pas été communiqué clairement.",
+    "q": "Comment gères-tu la transmission de cette fiche incomplète à Karim, sans bloquer le dossier ?"
+  },
+  "B4.2": {
+    "titre": "Contrainte de dernière minute",
+    "txt": "Karim t'informe que le budget prévu pour la campagne vient d'être réduit de 20%.",
+    "q": "Comment ajustes-tu ton plan de campagne pour tenir cet objectif révisé ?"
+  },
+  "B4.3": {
+    "titre": "Objection inattendue",
+    "txt": "En plein appel de prospection, le prospect t'annonce qu'il vient de signer avec un concurrent la veille.",
+    "q": "Comment réagis-tu pour ne pas perdre totalement le contact ?"
+  },
+  "C1.1": {
+    "titre": "Information contradictoire",
+    "txt": "Le client te montre une offre concurrente aux caractéristiques différentes de celles que tu avais en tête.",
+    "q": "Comment vérifies-tu l'information avant de répondre au client ?"
+  },
+  "C1.2": {
+    "titre": "Canal saturé",
+    "txt": "Le client attend une réponse par chat, mais le sujet est trop complexe pour ce format.",
+    "q": "Comment proposes-tu de basculer vers un canal plus adapté sans perdre le client ?"
+  },
+  "C1.3": {
+    "titre": "Erreur détectée tardivement",
+    "txt": "En relisant le dossier de vente juste avant transmission, tu remarques une incohérence entre le prix annoncé et les options cochées.",
+    "q": "Comment corriges-tu la situation avant que le dossier ne parte plus loin ?"
+  },
+  "C2.1": {
+    "titre": "Retard supplémentaire",
+    "txt": "Le fournisseur t'informe d'un second retard, après que tu as déjà rassuré le client une première fois.",
+    "q": "Comment annonces-tu ce nouveau retard sans casser la confiance du client ?"
+  }
+};
+
 const PRODUITS = [
   {
     "id": "VAS-VN-001",
@@ -1395,4 +1660,4 @@ const PRODUITS = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = { PRODUITS };
+if (typeof module !== 'undefined') module.exports = { PRODUITS, CLIENTS, IMPREVU };

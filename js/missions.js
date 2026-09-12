@@ -75,7 +75,7 @@ function openMission(id){
   document.getElementById('mo-m').innerHTML=`${compBadge(m.comp)} · Palier ${m.palier} — ${['','Débutant','Apprenti','Professionnel compétent','Professionnel performant'][m.palier]}`;
   const palierDescs=['',"Palier 1 — Découverte · Tu découvres le contexte professionnel de LABORO. L'objectif est de comprendre les bases avant tout. Suis d'abord la ressource, puis réponds aux questions. Note ≥ 11/20 pour débloquer le Palier 2.","Palier 2 — Apprenti · Tu connais les bases. Ici tu commences à les appliquer avec un cadre. Les questions demandent de la justification. Note ≥ 11/20 pour débloquer le Palier 3.","Palier 3 — Professionnel compétent · Les situations sont complexes, les données plus nombreuses. On attend de toi de l'analyse, de la rigueur et de la réflexivité. Tu travailles comme un(e) professionnel(le) en poste. Note ≥ 11/20 pour débloquer le Palier 4.","Palier 4 — Expert · Niveau stratégique. Tu es en autonomie complète. Les missions de ce palier te préparent directement aux épreuves de Terminale. Pas de palier suivant — c'est ici que tout se joue."];
   const pdEl=document.getElementById('mo-palier-desc');
-  if(pdEl&&m.palier>=1&&m.palier<=4){pdEl.textContent=palierDescs[m.palier-1];pdEl.style.display='block';const pc2=['','#FBEAEA','#FBEAEA','#FEF3C7','#F5F0FF'];pdEl.style.background=pc2[m.palier]||'#F7F6F2';pdEl.style.color='#1a1a1a';pdEl.style.fontWeight='500';}
+  if(pdEl&&m.palier>=1&&m.palier<=4){pdEl.textContent=palierDescs[m.palier-1];pdEl.style.display='block';const pc2=['','#F5E6D8','#F5E6D8','#FEF3C7','#F5F0FF'];pdEl.style.background=pc2[m.palier]||'#F7F6F2';pdEl.style.color='#1a1a1a';pdEl.style.fontWeight='500';}
   // Ressource
   const resKey=m.comp.startsWith('ACC')?'ACC':(m.comp.startsWith('G4A')||m.comp.startsWith('C4A'))?'G4A':m.comp.startsWith('G4B')?'G4B':m.comp.startsWith('B4.1')?'B4.1':m.comp.startsWith('B4.2')?'B4.2':m.comp.startsWith('B4.3')?'B4.3':m.comp.startsWith('B4.4')?'B4.4':m.comp.startsWith('B4.5')?'B4.5':m.comp;
   const res=RES[resKey];
@@ -88,10 +88,10 @@ function openMission(id){
   const contexteAffiche = (isPVOC && m.contexte_pvoc) ? m.contexte_pvoc : m.contexte;
   // ── Objectif de la mission (Axe 1 — compétence explicite) ──
   if(m.objectif){
-    html+=`<div style="background:#FBEAEA;border:.5px solid #F0C5C5;border-left:3px solid #B91C1C;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:12px">
-      <div style="font-size:10px;font-weight:700;color:#B91C1C;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">🎯 Objectif de cette mission</div>
-      <div style="font-size:12px;color:#1C1C1E;line-height:1.6">${m.objectif}</div>
-      <div style="font-size:11px;color:#B91C1C;margin-top:4px">Compétence travaillée : <strong>${m.comp}</strong> — ${m.comp_libelle}</div>
+    html+=`<div style="background:#F5E6D8;border:.5px solid #E8CBA8;border-left:3px solid #B5651D;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:#B5651D;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">🎯 Objectif de cette mission</div>
+      <div style="font-size:12px;color:#2B2B2E;line-height:1.6">${m.objectif}</div>
+      <div style="font-size:11px;color:#B5651D;margin-top:4px">Compétence travaillée : <strong>${m.comp}</strong> — ${m.comp_libelle}</div>
     </div>`;
   }
   html+=`<div class="ph1"><div class="ph-l" style="color:var(--bl)">Mise en situation</div><div class="ph-c">${contexteAffiche}</div></div>`;
@@ -117,7 +117,7 @@ function openMission(id){
   // ── Axe 3 : Grille de critères visible par l'élève AVANT soumission ──
   if(m.criteres && m.criteres.length > 0){
     const niveaux = ['Non acquis','En cours d\'acquisition','Acquis','Maîtrisé'];
-    const couleurs = ['#DC2626','#D97706','#1D9E75','#B91C1C'];
+    const couleurs = ['#DC2626','#D97706','#1D9E75','#B5651D'];
     html+=`<div style="background:#FFFBEA;border:.5px solid #F0C040;border-left:3px solid #D97706;border-radius:0 8px 8px 0;padding:12px 14px;margin-top:14px">
       <div style="font-size:10px;font-weight:700;color:#8A6500;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">📋 Ce qu'on attend de toi — critères d'évaluation</div>
       <div style="font-size:11px;color:#92400E;margin-bottom:10px;line-height:1.5">Avant de soumettre, vérifie que ta réponse répond à chacun de ces critères.</div>
@@ -125,7 +125,7 @@ function openMission(id){
         <div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:.5px solid #FDE68A${ci===m.criteres.length-1?';border-bottom:none':''}">
           <div style="width:20px;height:20px;border-radius:50%;background:#FEF3C7;border:1.5px solid #F0C040;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#B45309;flex-shrink:0;margin-top:1px">${ci+1}</div>
           <div style="flex:1">
-            <div style="font-size:11px;font-weight:700;color:#1C1C1E;margin-bottom:2px">${cr.c}</div>
+            <div style="font-size:11px;font-weight:700;color:#2B2B2E;margin-bottom:2px">${cr.c}</div>
             <div style="font-size:11px;color:#6B7280;line-height:1.4">${cr.i}</div>
           </div>
         </div>
@@ -435,10 +435,10 @@ function renderCompetences(){
 
   const niveaux = [
     {label:'Non démarré',    col:'#A0AEC0', bg:'#F7FAFC', icon:'○'},
-    {label:'Découverte',     col:'#E88A8A', bg:'#EBF8FF', icon:'◔'},
-    {label:'En progression', col:'#B91C1C', bg:'#FBEAEA', icon:'◑'},
-    {label:'Acquis',         col:'#B91C1C', bg:'#F0FFF4', icon:'◕'},
-    {label:'Maîtrisé',      col:'#B91C1C', bg:'#FBEAEA', icon:'●'}
+    {label:'Découverte',     col:'#E0A868', bg:'#EBF8FF', icon:'◔'},
+    {label:'En progression', col:'#B5651D', bg:'#F5E6D8', icon:'◑'},
+    {label:'Acquis',         col:'#B5651D', bg:'#F0FFF4', icon:'◕'},
+    {label:'Maîtrisé',      col:'#B5651D', bg:'#F5E6D8', icon:'●'}
   ];
 
   // Calcul automatique pour tous les comps
@@ -477,7 +477,7 @@ function renderCompetences(){
     statsDiv.innerHTML = '<span>✅ <strong>'+acquises+'</strong> acquise(s)</span>'
       + '<span>🔷 <strong>'+enCours+'</strong> en cours</span>'
       + '<span>○ <strong>'+niveauCounts[0]+'</strong> non démarrée(s)</span>'
-      + '<span style="color:#B91C1C;font-style:italic">Progression calculée automatiquement</span>';
+      + '<span style="color:#B5651D;font-style:italic">Progression calculée automatiquement</span>';
     
     legend.innerHTML = '';
     legend.appendChild(badgesDiv);
@@ -511,7 +511,7 @@ function renderCompetences(){
       + '</div>'
 
       // Nom
-      + '<div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:10px;line-height:1.3">'+c.label+'</div>'
+      + '<div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:10px;line-height:1.3">'+c.label+'</div>'
 
       // Barre de progression
       + '<div style="background:#E2E8F0;border-radius:8px;height:12px;overflow:hidden;margin-bottom:6px;position:relative">'

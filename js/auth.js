@@ -4,7 +4,7 @@ function showLoginError(msg){
   if(!el){
     el = document.createElement('div');
     el.id = 'login-error';
-    el.style.cssText = 'margin-top:10px;padding:10px 14px;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:8px;font-size:12px;color:#B91C1C;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease';
+    el.style.cssText = 'margin-top:10px;padding:10px 14px;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:8px;font-size:12px;color:#B5651D;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease';
     el.innerHTML = '<span style="flex-shrink:0">⚠️</span><span id="login-error-txt"></span>';
     const btn = document.getElementById('btn-li') || document.querySelector('.btn-li');
     if(btn && btn.parentNode) btn.parentNode.insertBefore(el, btn.nextSibling);
@@ -63,11 +63,11 @@ function ouvrirAccesRapide(){
   overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center';
   const box = document.createElement('div');
   box.style.cssText = 'background:#fff;border-radius:16px;padding:28px;min-width:280px;text-align:center';
-  box.innerHTML = '<div style="font-size:16px;font-weight:800;color:#1C1C1E;margin-bottom:20px">🔑 Accès rapide Pascal</div>';
+  box.innerHTML = '<div style="font-size:16px;font-weight:800;color:#2B2B2E;margin-bottom:20px">🔑 Accès rapide Pascal</div>';
   profils.forEach(function(p){
     const btn = document.createElement('button');
     btn.textContent = p.label;
-    btn.style.cssText = 'display:block;width:100%;margin-bottom:8px;padding:12px;background:#FBEAEA;color:#1C1C1E;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700';
+    btn.style.cssText = 'display:block;width:100%;margin-bottom:8px;padding:12px;background:#F5E6D8;color:#2B2B2E;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700';
     btn.onclick = function(){
       document.body.removeChild(overlay);
       const posteMap={
@@ -95,6 +95,7 @@ function doLogin(){
     ouvrirAccesRapide();
     return;
   }
+
 
   if(!mail||!cls){showLoginError('Merci de renseigner tous les champs.');return}
   if(!mail.includes('@')){showLoginError('Adresse mail invalide — vérifie le format prenom.nom@monlycee.net.');return}
@@ -173,15 +174,15 @@ function startOb(){
       msg=`<div class="ob-h1">Prêt(e) pour les CCF ?</div>
       <div class="ob-sub">Cette année, tu passes tes épreuves de certification. LABORO t'y prépare directement.</div>
       <div class="ob-steps">
-        <div class="ob-step"><div class="ob-step-n" style="background:#7F1414;color:#fff">E31</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#7A4614;color:#fff">E31</div><div>
           <div class="ob-step-t">Sous-épreuve E31 — Conseiller et vendre <span style="font-size:10px;opacity:.7">coef. 3</span></div>
           <div class="ob-step-d">Veille commerciale · Réalisation de la vente · Exécution de la vente · Communication</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#B91C1C;color:#fff">E32</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#B5651D;color:#fff">E32</div><div>
           <div class="ob-step-t">Sous-épreuve E32 — Suivre les ventes <span style="font-size:10px;opacity:.7">coef. 2</span></div>
           <div class="ob-step-d">Suivi commande · Services associés · Réclamations · Satisfaction client</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#1C1C1E;color:#fff">E33</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#2B2B2E;color:#fff">E33</div><div>
           <div class="ob-step-t">Sous-épreuve E33 — Développer la relation client <span style="font-size:10px;opacity:.7">coef. 3</span></div>
           <div class="ob-step-d">Information client · Actions de fidélisation · Évaluation</div>
         </div></div>
@@ -193,44 +194,44 @@ function startOb(){
       msg=`<div class="ob-h1">Comment ça fonctionne ?</div>
       <div class="ob-sub">Tu connais déjà les bases. Cette année on va plus loin — missions plus complexes, contextes B2B, gestion de la relation client.</div>
       <div class="ob-steps">
-        <div class="ob-step"><div class="ob-step-n" style="background:#7F1414;color:#fff">1</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#7A4614;color:#fff">1</div><div>
           <div class="ob-step-t">📚 Lis la ressource</div>
           <div class="ob-step-d">Chaque mission inclut la méthode. Lis-la avant d'agir — même si tu penses connaître.</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#B91C1C;color:#fff">2</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#B5651D;color:#fff">2</div><div>
           <div class="ob-step-t">✍️ Produis en autonomie</div>
           <div class="ob-step-d">Les questions de 1ère demandent de vrais arguments, des calculs, des analyses. Pas de QCM.</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#1C1C1E;color:#fff">3</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:#2B2B2E;color:#fff">3</div><div>
           <div class="ob-step-t">⭐ Progresse et monte en compétences</div>
           <div class="ob-step-d">Ton score et ton niveau de maîtrise sont suivis par ton enseignant. Vise le niveau Professionnel compétent ou Professionnel performant.</div>
         </div></div>
       </div>`;
     } else {
       // 2nde
-      msg=`<div style="font-size:11px;font-weight:700;color:#B91C1C;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Mode d'emploi</div>
-      <div style="font-size:22px;font-weight:900;color:#1C1C1E;margin-bottom:6px">Comment ça fonctionne ?</div>
+      msg=`<div style="font-size:11px;font-weight:700;color:#B5651D;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Mode d'emploi</div>
+      <div style="font-size:22px;font-weight:900;color:#2B2B2E;margin-bottom:6px">Comment ça fonctionne ?</div>
       <div style="font-size:13px;color:#6B7280;margin-bottom:20px">3 étapes simples pour chaque mission.</div>
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:8px">
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
-          <div style="width:34px;height:34px;background:#1C1C1E;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">1</div>
-          <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">📚 Tu apprends la notion</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
+          <div style="width:34px;height:34px;background:#2B2B2E;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">1</div>
+          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">📚 Tu apprends la notion</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Chaque mission commence par une ressource courte. Lis-la — elle contient tout ce qu'il faut savoir.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
-          <div style="width:34px;height:34px;background:#7F1414;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">2</div>
-          <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">✍️ Tu réponds aux questions</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
+          <div style="width:34px;height:34px;background:#7A4614;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">2</div>
+          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">✍️ Tu réponds aux questions</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Des situations réelles chez LABORO — tu observes, tu identifies, tu complètes. C'est guidé.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
-          <div style="width:34px;height:34px;background:#B91C1C;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
-          <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">⭐ Tu progresses</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
+          <div style="width:34px;height:34px;background:#B5651D;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
+          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">⭐ Tu progresses</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Ton enseignant valide tes réponses. Tu montes en compétences et tu débloques de nouvelles missions.</div></div>
         </div>
       </div>`;
     }
     const wrapStart='<div style="background:#fff;border-radius:16px;padding:28px 32px;max-width:560px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.15)">';
-    const navHtml='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><button class="ob-btn-prev" onclick="obPrev()" style="background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button><div style="display:flex;gap:10px"><button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button><button class="ob-btn-next" onclick="obNext()" style="background:#1C1C1E;border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Commencer mes missions →</button></div></div></div>';
+    const navHtml='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><button class="ob-btn-prev" onclick="obPrev()" style="background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button><div style="display:flex;gap:10px"><button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button><button class="ob-btn-next" onclick="obNext()" style="background:#2B2B2E;border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Commencer mes missions →</button></div></div></div>';
     ob3.innerHTML=wrapStart+msg+navHtml;
   }
   obStep=0;updateOb();
@@ -365,8 +366,8 @@ function doLogout(){
   CU=null;localStorage.removeItem('laboro_u');
   // Remettre la couleur par défaut
   const r=document.documentElement;
-  r.style.setProperty('--bl','#B91C1C');r.style.setProperty('--bf','#4A1414');
-  r.style.setProperty('--bm','#F0C5C5');r.style.setProperty('--bc','#FBEAEA');
+  r.style.setProperty('--bl','#B5651D');r.style.setProperty('--bf','#5C3814');
+  r.style.setProperty('--bm','#E8CBA8');r.style.setProperty('--bc','#F5E6D8');
   ['app','onboarding'].forEach(id=>document.getElementById(id).classList.remove('on'));
   document.getElementById('login').classList.add('on');
 }
@@ -471,11 +472,12 @@ async function doLoginServeur(){
   const mail = document.getElementById('inp-mail').value.trim();
   const mdp  = document.getElementById('inp-mdp').value;
 
-  // Outil de test : "ana" ouvre le menu d'accès rapide (avant toute vérification).
   if(mail.toLowerCase()==='ana'){
     ouvrirAccesRapide();
     return;
   }
+
+  // Outil de test : "ana" ouvre le menu d'accès rapide (avant toute vérification).
 
   if(!mail || !mdp){ showLoginError('Merci de saisir ton adresse mail et ton mot de passe.'); return; }
 

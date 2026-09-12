@@ -49,9 +49,9 @@ function getIndicateursLive(ud){
 
 function setAccentColor(classe){
   const colors = {
-    '2nde':      {c1:'#7F1414', cf:'#5A1A1A', cm:'#F3C6C6', cb:'#FBEAEA'},
-    '1ere-AGEC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
-    '1ere-PVOC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
+    '2nde':      {c1:'#7A4614', cf:'#5C3814', cm:'#F3C6C6', cb:'#F5E6D8'},
+    '1ere-AGEC': {c1:'#B5651D', cf:'#5C3814', cm:'#E8CBA8', cb:'#F5E6D8'},
+    '1ere-PVOC': {c1:'#B5651D', cf:'#5C3814', cm:'#E8CBA8', cb:'#F5E6D8'},
     'Term-AGEC': {c1:'#7B2D42', cf:'#5A1F30', cm:'#E8AABF', cb:'#F9E8EE'},
     'Term-PVOC': {c1:'#7B2D42', cf:'#5A1F30', cm:'#E8AABF', cb:'#F9E8EE'},
     'enseignant':{c1:'#2C2C2A', cf:'#1a1a18', cm:'#888780', cb:'#F1EFE8'}
@@ -86,7 +86,7 @@ function renderCCFDashboard(){
     + '<div style="background:var(--vc,#D1FAE5);border-radius:8px;padding:10px 14px;text-align:center">'
     + '<div style="font-size:20px;font-weight:800;color:var(--vt,#065F46)">' + done.length + '</div>'
     + '<div class="u-label-sm">Missions validées</div></div>'
-    + '<div style="background:var(--bc,#FBEAEA);border-radius:8px;padding:10px 14px;text-align:center">'
+    + '<div style="background:var(--bc,#F5E6D8);border-radius:8px;padding:10px 14px;text-align:center">'
     + '<div style="font-size:20px;font-weight:800;color:var(--bl)">' + comps.length + '</div>'
     + '<div class="u-label-sm">Compétences acquises</div></div>'
     + '</div>';
@@ -103,7 +103,7 @@ function renderDashboard(){
   const msgFromEl=document.getElementById('msg-f');
   if(msgFromEl){
     const initials=msgDyn.from.split(' ').slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();
-    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(28,28,30,.3)">'+initials+'</span>'
+    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2B2B2E,#B5651D);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(43,43,46,.3)">'+initials+'</span>'
       +'<span>'+msgDyn.from+'</span>';
   }
   document.getElementById('msg-t').textContent=msgDyn.txt;
@@ -204,10 +204,10 @@ function renderDashboard(){
       const ps=podStyles[i]||podStyles[0];
       const isMe=u.mail===CU.mail;
       podHtml+='<div style="text-align:center;flex:1;max-width:90px">'
-        +'<div style="font-size:11px;font-weight:700;color:#1C1C1E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(isMe?'<strong>'+u.nom.split(' ')[0]+'</strong>':u.nom.split(' ')[0])+'</div>'
+        +'<div style="font-size:11px;font-weight:700;color:#2B2B2E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(isMe?'<strong>'+u.nom.split(' ')[0]+'</strong>':u.nom.split(' ')[0])+'</div>'
         +'<div style="background:'+ps.bg+';border:1.5px solid '+ps.border+';border-radius:10px;height:'+ps.height+';display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px'+(isMe?';box-shadow:0 0 0 2px var(--bl)':'')+';">'
         +'<div style="font-size:20px">'+ps.medal+'</div>'
-        +'<div style="font-size:14px;font-weight:900;color:#1C1C1E">'+u.score+'</div>'
+        +'<div style="font-size:14px;font-weight:900;color:#2B2B2E">'+u.score+'</div>'
         +'<div style="font-size:8px;color:#6B7280">pts</div>'
         +'</div></div>';
     });
@@ -217,9 +217,9 @@ function renderDashboard(){
     clt.slice(0,8).forEach(function(u,i){
       const isMe=u.mail===CU.mail;
       const rankMedal=i<3?medals[i]:(i+1)+'';
-      listHtml+='<div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;'+(isMe?'background:var(--ac1b,#FBEAEA);font-weight:700':'background:transparent')+'">'
+      listHtml+='<div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;'+(isMe?'background:var(--ac1b,#F5E6D8);font-weight:700':'background:transparent')+'">'
         +'<span style="width:22px;text-align:center;font-size:'+(i<3?'14':'11')+'px;flex-shrink:0">'+rankMedal+'</span>'
-        +'<span style="flex:1;font-size:12px;color:#1C1C1E;'+(isMe?'font-weight:800':'')+'white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+u.nom.split(' ')[0]+'</span>'
+        +'<span style="flex:1;font-size:12px;color:#2B2B2E;'+(isMe?'font-weight:800':'')+'white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+u.nom.split(' ')[0]+'</span>'
         +'<span style="font-size:11px;font-weight:800;color:var(--bl)">'+u.score+'</span>'
         +'</div>';
     });
@@ -234,13 +234,13 @@ function renderDashboard(){
       +'<div style="font-size:24px;margin-bottom:8px">🏆</div>'
       +'<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Le classement se construit au fil des missions</div>'
       +'<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Complète ta première mission pour apparaître ici.</div>'
-      +'<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
+      +'<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#2B2B2E,#B5651D);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
       +'</div>';
   }
   // Progression
-  const lc=['var(--gb)','#E59090','var(--bl)','var(--vt)','#27500A'];
+  const lc=['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
   const niveauLabels2=['—','Découverte','En cours','Acquis','Maîtrisé'];
-  const niveauCols2=['var(--gb)','#E88A8A','#B91C1C','#7F1414','#1C1C1E'];
+  const niveauCols2=['var(--gb)','#E0A868','#B5651D','#7A4614','#2B2B2E'];
   document.getElementById('dash-prog').innerHTML=COMP.slice(0,6).map(function(c){
     const lv=calcNiveauComp(c.code,ud);
     return '<div class="u-mb8">'
@@ -267,12 +267,12 @@ function renderDashboard(){
             const mid = entry[0]; const v = entry[1];
             const m = MISSIONS.find(function(x){ return x.id===mid; });
             if(!m) return '';
-            const palierColors = ['','#B91C1C','#7F1414','#B91C1C','#7B2FBE'];
-            const pCol = palierColors[m.palier] || '#B91C1C';
-            const scoreColor = v.score>=14 ? '#B91C1C' : v.score>=11 ? '#D97706' : '#C53030';
+            const palierColors = ['','#B5651D','#7A4614','#B5651D','#7B2FBE'];
+            const pCol = palierColors[m.palier] || '#B5651D';
+            const scoreColor = v.score>=14 ? '#B5651D' : v.score>=11 ? '#D97706' : '#C53030';
             return '<div style="display:flex;align-items:center;gap:10px;padding:8px;background:#F8FAFF;border-radius:10px;border-left:3px solid '+pCol+'">'
               + '<div class="u-flex-1">'
-              + '<div style="font-size:12px;font-weight:700;color:#1C1C1E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+m.titre+'</div>'
+              + '<div style="font-size:12px;font-weight:700;color:#2B2B2E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+m.titre+'</div>'
               + '<div style="font-size:10px;color:#6B7280;margin-top:2px">'+compBadge(m.comp)+'</div>'
               + '</div>'
               + '<div style="font-size:16px;font-weight:900;color:'+scoreColor+'">'+v.score+'<span style="font-size:10px;color:#9CA3AF">/20</span></div>'
@@ -284,7 +284,7 @@ function renderDashboard(){
         + '<div style="font-size:24px;margin-bottom:8px">🚀</div>'
         + '<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Prêt(e) pour ta première mission ?</div>'
         + '<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Lis la ressource, réponds aux questions, progresse.</div>'
-        + '<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Lancer ma première mission →</button>'
+        + '<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#2B2B2E,#B5651D);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Lancer ma première mission →</button>'
         + '</div>';
     }
   }
@@ -308,11 +308,11 @@ function renderActus(){
 
   // Message personnalisé selon progression
   const persoMsg = score >= 80
-    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Karim Yildiz a noté ta progression — continue ainsi !', color:'#FBEAEA', border:'#B91C1C'}
+    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Karim Yildiz a noté ta progression — continue ainsi !', color:'#F5E6D8', border:'#B5651D'}
     : done.length === 0
     ? {icon:'🚀', titre:'Bienvenue chez LABORO !', texte:'Ta première mission t\'attend. Lis bien la ressource avant de répondre — elle contient tout ce qu\'il faut savoir.', color:'#FEF3C7', border:'#D97706'}
     : done.length < 5
-    ? {icon:'💪', titre:'Bonne lancee !', texte:'Tu as complété '+done.length+' mission(s). Chaque mission validée fait progresser tes compétences CCF.', color:'#FBEAEA', border:'#B91C1C'}
+    ? {icon:'💪', titre:'Bonne lancee !', texte:'Tu as complété '+done.length+' mission(s). Chaque mission validée fait progresser tes compétences CCF.', color:'#F5E6D8', border:'#B5651D'}
     : {icon:'⭐', titre:'Progression solide', texte:done.length+' missions complétées. Ton dossier CCF se construit automatiquement. Vise le niveau Professionnel compétent !', color:'#EDE9FE', border:'#7B2FBE'};
 
   // Agenda mensuel
@@ -336,13 +336,13 @@ function renderActus(){
       return {icon:a.icon, titre:a.titre, texte:a.txt, color:'#F8FAFF', border:'#CBD5E0'};
     })
   ).concat([
-    {icon:'📅', titre:'Agenda LABORO', texte:agendas[month], color:'#F0F4FF', border:'#B91C1C'}
+    {icon:'📅', titre:'Agenda LABORO', texte:agendas[month], color:'#F0F4FF', border:'#B5651D'}
   ]);
 
   el.innerHTML = items.map(function(a){
     return '<div style="background:'+a.color+';border-left:3px solid '+a.border+';border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start">'
       + '<span style="font-size:18px;flex-shrink:0">'+a.icon+'</span>'
-      + '<div><div style="font-size:11px;font-weight:800;color:#1C1C1E;margin-bottom:2px">'+a.titre+'</div>'
+      + '<div><div style="font-size:11px;font-weight:800;color:#2B2B2E;margin-bottom:2px">'+a.titre+'</div>'
       + '<div style="font-size:11px;color:#4B5563;line-height:1.5">'+a.texte+'</div></div>'
       + '</div>';
   }).join('');
@@ -360,8 +360,8 @@ function renderIndicateurs(){
   const totalMissions = getMissions().length;
   const compsAcquis = COMP.filter(function(c){ return calcNiveauComp(c.code, ud) >= 3; }).length;
   const kpis = [
-    {label:'Missions complétées', value:done.length, total:totalMissions, icon:'✅', color:'#B91C1C', bg:'#FBEAEA'},
-    {label:'En cours', value:wip.length, total:null, icon:'🔷', color:'#7F1414', bg:'#FBEAEA'},
+    {label:'Missions complétées', value:done.length, total:totalMissions, icon:'✅', color:'#B5651D', bg:'#F5E6D8'},
+    {label:'En cours', value:wip.length, total:null, icon:'🔷', color:'#7A4614', bg:'#F5E6D8'},
     {label:'Moyenne générale', value:avg+'', total:null, unit:'/20', icon:'📊', color:'#D97706', bg:'#FEF3C7'},
     {label:'Compétences acquises', value:compsAcquis, total:COMP.length, icon:'⭐', color:'#7B2FBE', bg:'#EDE9FE'},
   ];
@@ -402,10 +402,10 @@ function isPalierUnlocked(m,ud){
 
 function compBadge(code){
   const colors = {
-    'C1.1':'#B91C1C','C1.2':'#B91C1C','C1.3':'#B91C1C',
+    'C1.1':'#B5651D','C1.2':'#B5651D','C1.3':'#B5651D',
     'C2.1':'#E87722','C2.1b':'#E87722','C2.2':'#E87722','C2.3':'#E87722',
     'C3.1':'#0096C7','C3.2':'#0096C7','C3.3':'#0096C7','C3.3b':'#0096C7',
-    'G4A':'#7F1414','C4A.1':'#7F1414','C4A.2':'#7F1414','C4A.3':'#7F1414','G4B':'#7B2FBE',
+    'G4A':'#7A4614','C4A.1':'#7A4614','C4A.2':'#7A4614','C4A.3':'#7A4614','G4B':'#7B2FBE',
     'B4.1':'#7B2FBE','B4.2':'#7B2FBE','B4.3':'#7B2FBE','B4.4':'#7B2FBE','B4.5':'#7B2FBE',
     'SA1':'#D97706','SA2':'#D97706','SA3':'#D97706',
     'ACC':'#E63B2E','ACC1':'#E63B2E','ACC2':'#E63B2E','ACC3':'#E63B2E','ACC4':'#E63B2E'
@@ -423,8 +423,8 @@ function renderMissions(){
   if(fp) ms = ms.filter(function(m){ return m.palier==fp; });
   if(fc) ms = ms.filter(function(m){ return m.comp.startsWith(fc); });
 
-  const palierColors = ['','#B91C1C','#7F1414','#B91C1C','#7B2FBE'];
-  const palierBgs    = ['','#FBEAEA','#FBEAEA','#D1FAE5','#EDE9FE'];
+  const palierColors = ['','#B5651D','#7A4614','#B5651D','#7B2FBE'];
+  const palierBgs    = ['','#F5E6D8','#F5E6D8','#D1FAE5','#EDE9FE'];
   const palierLabels = ['','Débutant','Apprenti','Pro compétent','Pro performant'];
 
   // Grouper par compétence pour un affichage structuré
@@ -464,8 +464,8 @@ function renderMissions(){
     const st     = ud.missions[m.id]?.status || 'todo';
     const sc     = ud.missions[m.id]?.score;
     const locked = !isPalierUnlocked(m, ud) && CU.classe !== 'enseignant';
-    const pCol   = palierColors[m.palier] || '#B91C1C';
-    const pBg    = palierBgs[m.palier]   || '#FBEAEA';
+    const pCol   = palierColors[m.palier] || '#B5651D';
+    const pBg    = palierBgs[m.palier]   || '#F5E6D8';
     const pLbl   = palierLabels[m.palier] || '';
 
     // Badge statut
@@ -474,7 +474,7 @@ function renderMissions(){
       : st==='done'
         ? '<span class="sp" style="background:#D1FAE5;color:#065F46">✓ '+sc+'/20</span>'
         : st==='att'
-        ? '<span class="sp" style="background:#FBEAEA;color:#7A1515">⏳ En attente</span>'
+        ? '<span class="sp" style="background:#F5E6D8;color:#7A4614">⏳ En attente</span>'
         : st==='wip'
         ? '<span class="sp" style="background:#FEF3C7;color:#92400E">✏️ En cours</span>'
         : '<span class="sp" style="background:#F3F4F6;color:#6B7280">À faire</span>';
@@ -483,7 +483,7 @@ function renderMissions(){
     const progressBar = st==='wip'
       ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:40%"></div></div>'
       : st==='done'
-      ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:100%;background:#B91C1C"></div></div>'
+      ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:100%;background:#B5651D"></div></div>'
       : '';
 
     const clickAction = "handleMission('" + m.id + "')";
