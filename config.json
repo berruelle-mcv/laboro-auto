@@ -14,16 +14,16 @@
 
   "personnages": {
     "responsable": {
-      "prenom": "Karim",
-      "nom": "Yildiz",
-      "poste": "Responsable des ventes VN",
-      "avatar": "KY"
-    },
-    "tutrice": {
       "prenom": "Isabelle",
       "nom": "Ferrand",
       "poste": "Responsable du pôle occasion",
       "avatar": "IF"
+    },
+    "tutrice": {
+      "prenom": "Karim",
+      "nom": "Yildiz",
+      "poste": "Responsable des ventes VN",
+      "avatar": "KY"
     },
     "chef_atelier": {
       "prenom": "Bruno",
