@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plateforme interne — Espace collaborateur</title>
+<link rel="stylesheet" href="style.css">
+<script>
+// ================================================
+//   LABORO — Chargement configuration filière
+//   Le moteur lit config.json avant tout démarrage
+// ================================================
+var LABORO_CONFIG = null;
+
+async function loadConfig() {
+  try {
+    const response = await fetch('config.json');
+    LABORO_CONFIG = await response.json();
+    console.log('[LABORO] Config chargée :', LABORO_CONFIG.filiere, 'v' + LABORO_CONFIG.version);
+    document.title = LABORO_CONFIG.nom_plateforme || 'LABORO';
+    const vEls = document.querySelectorAll('#app-version, #tb-version');
+    vEls.forEach(el => { if(el) el.textContent = 'v' + LABORO_CONFIG.version; });
+    const ent = LABORO_CONFIG.entreprise || {};
+    const perso = LABORO_CONFIG.personnages || {};
+    const resp = perso.responsable || {};
+    const nomEnt = ent.nom || 'LABORO Sport & Outdoor';
+    const villeEnt = ent.ville || 'Évry-Courcouronnes';
+    const secteur = ent.secteur || 'Sport & Outdoor';
+    const nomResp = (resp.prenom || 'Romain') + ' ' + (resp.nom || 'Sauzet');
+    const posteResp = resp.poste || 'Resp. Commerce';
+    const setTxt = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
+    setTxt('cfg-brand', nomEnt);
+    setTxt('cfg-brand-sub', villeEnt + ' · Essonne (91)');
+    setTxt('cfg-lv', secteur + ' · ' + villeEnt);
+    setTxt('cfg-entreprise-sub', secteur + ' · ' + villeEnt + ' (91)');
+    setTxt('msg-f', nomResp + ' — ' + posteResp);
+    setTxt('mo-m', nomEnt);
+    const nomPlateforme = LABORO_CONFIG.nom_plateforme || 'LABORO';
+    window.applyNomPlateforme = function() {
+      ['cfg-nom-plateforme','cfg-nom-plateforme-2','cfg-nom-plateforme-3','cfg-nom-plateforme-4'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = nomPlateforme;
+      });
+      document.querySelectorAll('.btn-li').forEach(el => {
+        if(el.textContent.includes('LABORO') || el.textContent.includes('Se connecter')) el.textContent = 'Se connecter à ' + nomPlateforme + ' →';
+      });
+    };
+    if(document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(window.applyNomPlateforme, 100);
+    } else {
+      window.addEventListener('load', window.applyNomPlateforme);
+    }
+    if (LABORO_CONFIG.couleurs) {
+      document.documentElement.style.setProperty('--laboro-primary', LABORO_CONFIG.couleurs.primaire);
+      document.documentElement.style.setProperty('--laboro-secondary', LABORO_CONFIG.couleurs.secondaire);
+    }
+  } catch(e) {
+    console.warn('[LABORO] config.json non trouvé — valeurs par défaut utilisées');
+    LABORO_CONFIG = {
+      filiere: 'mcv',
+      version: '1.0.0',
+      nom_plateforme: 'LABORO',
+      entreprise: { nom: 'LABORO Sport & Outdoor', ville: 'Évry-Courcouronnes' },
+      couleurs: { primaire: '#1C1C1E', secondaire: '#B91C1C' }
+    };
+  }
+}
+
+window.addEventListener('error', function(e) {
+  if(e.target && e.target.tagName === 'SCRIPT' && e.target.src) {
+    const src = e.target.src;
+    const fichier = src.split('/').pop();
+    console.error('[LABORO] Échec chargement :', fichier);
+    const existing = document.getElementById('laboro-error-banner');
+    if(!existing) {
+      const banner = document.createElement('div');
+      banner.id = 'laboro-error-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#DC2626;color:#fff;padding:12px 20px;font-family:Arial,sans-serif;font-size:13px;font-weight:600;display:flex;align-items:center;gap:12px;';
+      banner.innerHTML = "⚠️ Erreur de chargement — Le fichier <strong>" + fichier + "</strong> n'a pas pu être chargé. Vérifiez votre connexion et rechargez la page. &nbsp;<button onclick='location.reload()' style='background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px'>Recharger</button>";
+      document.body.appendChild(banner);
+    }
+  }
+}, true);
+
+document.addEventListener('DOMContentLoaded', loadConfig);
+</script>
+
+
+
+
+
+</head>
+<body>
+<!-- LOGIN -->
+<div id="login" class="scr on">
+<div class="lw">
+  <div class="ll">
+    <div class="lz">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+        <div class="lc"><span>L</span></div>
+        <div>
+          <div class="ln" id="cfg-nom-plateforme">LABORO</div>
+          <div class="lv" id="cfg-lv">Sport & Outdoor · Évry-Courcouronnes (91)</div>
+        </div>
+      </div>
+    </div>
+    <div class="lt">Accès collaborateur</div>
+    <div class="ls">Connecte-toi avec ton adresse mail institutionnelle pour accéder à ton espace de travail.</div>
+    <div class="fg"><label>Adresse mail</label><input type="email" id="inp-mail" placeholder="prenom.nom@monlycee.net"/></div>
+    <!-- Liste classe retirée : la classe est désormais fournie par le serveur au login.
+         Champ caché conservé pour compatibilité avec d'anciennes fonctions (doLogin/ana de test). -->
+    <input type="hidden" id="inp-classe" value="">
+    <div class="fg" id="fg-poste" style="display:none">
+      <label>Poste chez LABORO</label>
+      <select id="inp-poste">
+        <option value="Conseiller de vente — Showroom &amp; E-commerce">Conseiller de vente — Showroom</option>
+        <option value="Commercial terrain — Prospection &amp; Vente B2B">Commercial terrain — B2B</option>
+        <option value="Découverte de la famille des métiers MCV">Découverte de la famille des métiers MCV</option>
+      </select>
+      <div class="ph" id="poste-hint"></div>
+    </div>
+    <div class="fg" id="fg-mdp" style="display:block">
+      <label>🔐 Mot de passe</label>
+      <input type="password" id="inp-mdp" placeholder="Ton mot de passe" onkeydown="if(event.key==='Enter')doLoginServeur()"/>
+      <div class="mdp-hint">Saisis ton mot de passe LABORO</div>
+    </div>
+    <button class="btn-li" onclick="doLoginServeur()">Se connecter à LABORO →</button>
+    <p class="ln2">Tes données sont sauvegardées de façon sécurisée sur le serveur LABORO.</p>
+    <div style="margin-top:24px;padding-top:16px;border-top:1px solid #E2E8F0;text-align:center">
+      <div style="font-size:10px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Plateforme conçue par</div>
+      <div style="font-size:12px;font-weight:700;color:#374151">M. et Mme Berruelle</div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px">Enseignant Bac Pro MCV · Essonne (91) · 2026</div>
+    </div>
+  </div>
+  <div class="lr">
+    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80" alt="" onerror="this.style.display='none'"/>
+    <div class="lr-ov"></div>
+    <div class="lr-ct">
+      <div class="lr-top">
+        <div class="lr-logo-big"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 0 4 0M5 17a2 2 0 1 1 4 0M15 17a2 2 0 1 0 4 0M15 17a2 2 0 1 1 4 0M3 17V11l2-5h10l4 5v6"/></svg></div>
+        <div>
+          <div class="lr-brand" id="cfg-brand">LABORO Sport & Outdoor</div>
+          <div class="lr-brand-sub" id="cfg-brand-sub">Évry-Courcouronnes · Essonne (91)</div>
+        </div>
+      </div>
+      <div>
+        <div class="r-tag">Plateforme pédagogique · Bac Pro MCV · Options AGEC & PVOC</div>
+        <div class="r-t">Bienvenue<br>chez LABORO.</div>
+        <div class="r-s">Des missions professionnelles réelles, un univers sport & outdoor immersif, des compétences directement alignées sur tes épreuves. Bienvenue chez LABORO.</div>
+        <div class="r-st">
+          <div class="r-st-item"><div class="r-st-n">50+</div><div class="r-st-l">Clients actifs</div></div>
+          <div class="r-st-item"><div class="r-st-n">130+</div><div class="r-st-l">Missions</div></div>
+          <div class="r-st-item"><div class="r-st-n">FMRC</div><div class="r-st-l">Filière</div></div>
+          <div class="r-st-item"><div class="r-st-n">100%</div><div class="r-st-l">Référentiel</div></div>
+        </div>
+        <div style="margin-top:28px;padding-top:20px;border-top:.5px solid rgba(255,255,255,.15);font-size:10px;color:rgba(255,255,255,.4)">
+          Une création de <strong style="color:rgba(255,255,255,.7)">M. et Mme Berruelle</strong> — Enseignants PLP Bac Pro MCV · Essonne (91) · 2026 · <span id="app-version" style="color:rgba(255,255,255,.5)">v1.0.0</span>
+          <div style="margin-top:16px">
+            <button onclick="showVitrine()" style="background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:10px 22px;border-radius:10px;font-size:11px;cursor:pointer;font-weight:700;letter-spacing:.05em;backdrop-filter:blur(4px);transition:all .2s">
+              ✦ Découvrir LABORO — Espace prescripteurs
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- VITRINE PRESCRIPTEURS -->
+<div id="vitrine" class="scr" style="display:none;background:#F3F4F6;overflow-y:auto">
+  <div style="max-width:900px;margin:0 auto;padding:40px 24px 80px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,#7F1414,#B91C1C);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff">L</div>
+        <div>
+          <div style="font-size:20px;font-weight:900;color:#1F2937;letter-spacing:-.5px" id="cfg-nom-plateforme-2">LABORO</div>
+          <div style="font-size:11px;color:#6B7280">Sport &amp; Outdoor · Plateforme pédagogique Bac Pro MCV</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button onclick="startDemo()" style="background:#7F1414;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">▶ Mode démo</button>
+        <button onclick="hideVitrine()" style="background:#fff;color:#4B5563;border:1px solid #E5E7EB;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer">← Connexion</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding:12px 16px;background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+      <span style="font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;margin-right:4px;line-height:32px">Aller à :</span>
+      <a href="#vitrine-concept" style="padding:6px 14px;background:#F3F4F6;color:#374151;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#E5E7EB'" onmouseout="this.style.background='#F3F4F6'">🎯 Le concept</a>
+      <a href="#vitrine-parcours" style="padding:6px 14px;background:#F3F4F6;color:#374151;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.background='#E5E7EB'" onmouseout="this.style.background='#F3F4F6'">📚 Parcours élève</a>
+      <a href="#vitrine-ccf" style="padding:6px 14px;background:#F3F4F6;color:#374151;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.background='#E5E7EB'" onmouseout="this.style.background='#F3F4F6'">📋 Alignement CCF</a>
+      <a href="#vitrine-revolution" style="padding:6px 14px;background:#F3F4F6;color:#374151;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none" onmouseover="this.style.background='#E5E7EB'" onmouseout="this.style.background='#F3F4F6'">⚡ La révolution</a>
+      <a href="#vitrine-demo" style="padding:6px 14px;background:#7F1414;color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none" onmouseover="this.style.background='#1A3A6E'" onmouseout="this.style.background='#7F1414'">▶ Mode démo</a>
+    </div>
+    <div id="vitrine-concept" style="background:linear-gradient(135deg,#1C1C1E 0%,#7F1414 60%,#B91C1C 100%);border-radius:20px;padding:48px 40px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-30px;bottom:-50px;font-size:200px;font-weight:900;color:rgba(255,255,255,.04);line-height:1">L</div>
+      <div style="position:relative;z-index:1">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-bottom:12px">Plateforme pédagogique immersive</div>
+        <div style="font-size:32px;font-weight:900;line-height:1.2;margin-bottom:16px;letter-spacing:-.5px">L'entreprise simulation<br>pour le Bac Pro MCV</div>
+        <div style="font-size:15px;color:rgba(255,255,255,.8);line-height:1.7;max-width:560px;margin-bottom:28px">LABORO plonge les élèves dans une entreprise fictive crédible — LABORO Sport &amp; Outdoor, basée à Évry-Courcouronnes. Chaque mission correspond à une situation professionnelle réelle, alignée sur le référentiel MCV et les grilles CCF officielles.</div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-size:28px;font-weight:900">130+</div><div style="font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.08em">Missions</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:900">3</div><div style="font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.08em">Niveaux</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:900">2</div><div style="font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.08em">Options</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:900">100%</div><div style="font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.08em">Référentiel</div></div>
+          <div style="text-align:center"><div style="font-size:28px;font-weight:900">E31/E32</div><div style="font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.08em">Aligné CCF</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px">
+      <div style="background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+        <div style="font-size:24px;margin-bottom:12px">🎯</div>
+        <div style="font-size:15px;font-weight:700;color:#1F2937;margin-bottom:8px">Immersion totale</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.6">Les élèves ne font pas des exercices — ils travaillent dans une entreprise. Ils ont un poste, des collègues, des clients, des objectifs.</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+        <div style="font-size:24px;margin-bottom:12px">📋</div>
+        <div style="font-size:15px;font-weight:700;color:#1F2937;margin-bottom:8px">Aligné référentiel</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.6">Chaque mission est rattachée à une compétence (C1.1 à G4B), un palier (1 à 4) et une épreuve CCF. Le portfolio généré reprend les critères officiels des grilles E31/E32.</div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+        <div style="font-size:24px;margin-bottom:12px">📊</div>
+        <div style="font-size:15px;font-weight:700;color:#1F2937;margin-bottom:8px">Pilotage enseignant</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.6">Vue classe en temps réel, validation des missions, génération du portfolio CCF en 1 clic, analyse de remédiation automatique et fiche de positionnement élève.</div>
+      </div>
+    </div>
+    <div id="vitrine-parcours" style="background:#fff;border-radius:14px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#B91C1C;margin-bottom:16px">Parcours élève — de la 2nde à la Terminale</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="border-left:3px solid #B91C1C;padding-left:14px">
+          <div style="font-size:14px;font-weight:700;color:#1F2937;margin-bottom:6px">2nde — Découverte</div>
+          <div style="font-size:12px;color:#6B7280;line-height:1.6">Questions guidées, choix multiples, complétions. L'élève observe et identifie avant de produire. 29 missions adaptées au niveau novice.</div>
+        </div>
+        <div style="border-left:3px solid #7F1414;padding-left:14px">
+          <div style="font-size:14px;font-weight:700;color:#1F2937;margin-bottom:6px">1ère — Approfondissement</div>
+          <div style="font-size:12px;color:#6B7280;line-height:1.6">Production autonome avec méthodes (CAB, BANT, ERESA). Contextes B2B/B2C. Options AGEC et PVOC distinctes. 38+ missions.</div>
+        </div>
+        <div style="border-left:3px solid #1C1C1E;padding-left:14px">
+          <div style="font-size:14px;font-weight:700;color:#1F2937;margin-bottom:6px">Terminale — Maîtrise CCF</div>
+          <div style="font-size:12px;color:#6B7280;line-height:1.6">Missions complexes alignées E31/E32/E33. Analyse, justification, optimisation. Portfolio auto-généré selon grilles officielles. 40+ missions.</div>
+        </div>
+      </div>
+    </div>
+    <div id="vitrine-ccf" style="background:#FBEAEA;border-radius:14px;padding:28px;margin-bottom:32px">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7F1414;margin-bottom:16px">Alignement sur les grilles CCF officielles</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:#fff;border-radius:10px;padding:16px">
+          <div style="font-size:11px;font-weight:700;color:#7F1414;margin-bottom:6px">E31 — Coeff. 3</div>
+          <div style="font-size:13px;font-weight:600;color:#1F2937;margin-bottom:8px">Conseiller et vendre</div>
+          <div style="font-size:11px;color:#6B7280;line-height:1.5">C1.1 Veille commerciale<br>C1.2 Réalisation de la vente<br>C1.3 Exécution de la vente<br>+ Communication</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:16px">
+          <div style="font-size:11px;font-weight:700;color:#7F1414;margin-bottom:6px">E32 — Coeff. 2</div>
+          <div style="font-size:13px;font-weight:600;color:#1F2937;margin-bottom:8px">Suivre les ventes</div>
+          <div style="font-size:11px;color:#6B7280;line-height:1.5">C2.1 Suivi commande &amp; services<br>C2.2 Réclamations clients<br>C2.3 Satisfaction client<br>+ Communication</div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:16px">
+          <div style="font-size:11px;font-weight:700;color:#7F1414;margin-bottom:6px">E33 — Coeff. 3</div>
+          <div style="font-size:13px;font-weight:600;color:#1F2937;margin-bottom:8px">Développer la relation client</div>
+          <div style="font-size:11px;color:#6B7280;line-height:1.5">C3.1 Information client<br>C3.2 Actions de fidélisation<br>C3.3 Évaluation fidélisation<br>+ Options AGEC/PVOC</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:11px;color:#B91C1C;font-style:italic">Le portfolio généré par LABORO reprend mot pour mot les critères et indicateurs des grilles officielles d'évaluation E31 et E32.</div>
+    </div>
+    <div id="vitrine-revolution" style="background:#fff;border-radius:14px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;border-left:4px solid #D97706">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#D97706;margin-bottom:14px">⚡ La révolution CCF — ce que LABORO change concrètement</div>
+      <p style="font-size:13px;color:#374151;line-height:1.8;margin-bottom:16px">Aujourd'hui, le positionnement CCF en fin de Terminale est un exercice complexe : les enseignants ne sont pas toujours les mêmes de la Seconde à la Terminale, les traces de progression sont dispersées sur 3 ans, et reconstituer un parcours complet prend du temps. LABORO apporte la traçabilité qui manque.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+        <div style="background:#FEF3C7;border-radius:10px;padding:16px">
+          <div style="font-size:12px;font-weight:700;color:#92400E;margin-bottom:8px">😔 Sans LABORO</div>
+          <ul style="font-size:12px;color:#78350F;line-height:1.8;padding-left:16px">
+            <li>Suivi des compétences difficile à maintenir sur 3 ans</li>
+            <li>Traces de progression dispersées et difficiles à centraliser</li>
+            <li>Positionnement CCF complexe à étayer sans traces objectives</li>
+            <li>Positionnement reconstitué en fin de parcours, faute de traçabilité continue</li>
+          </ul>
+        </div>
+        <div style="background:#ECFDF5;border-radius:10px;padding:16px">
+          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:8px">✅ Avec LABORO</div>
+          <ul style="font-size:12px;color:#064E3B;line-height:1.8;padding-left:16px">
+            <li>Chaque mission = trace objective datée et notée</li>
+            <li>Portfolio auto-généré sur 3 ans de progression</li>
+            <li>Positionnement 1-2-3-4 calculé automatiquement</li>
+            <li>Appréciation motivée pré-rédigée en 1 clic</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background:#FBEAEA;border-radius:8px;padding:12px 16px;font-size:12px;color:#1E3A5F;line-height:1.7">
+        <strong>Résultat :</strong> L'enseignant ouvre le portfolio LABORO d'un élève, vérifie que le positionnement lui semble juste, copie l'appréciation dans son dossier académique. <strong>5 minutes au lieu de 30. Sur la base de 3 ans de preuves réelles.</strong>
+      </div>
+
+      <!-- ── Aperçu portfolio LABORO ── -->
+      <div style="margin-top:20px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#D97706;margin-bottom:12px">📄 Aperçu — Portfolio CCF généré par LABORO</div>
+        <div style="border:1.5px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+
+          <!-- En-tête portfolio -->
+          <div style="background:linear-gradient(135deg,#1C1C1E,#7F1414);padding:16px 20px;color:#fff;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">Portfolio d'activités professionnelles</div>
+              <div style="font-size:16px;font-weight:800">MARTIN Léa</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:2px">Terminale Bac Pro MCV · Option AGEC · LABORO Sport &amp; Outdoor</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Score LABORO</div>
+              <div style="font-size:28px;font-weight:900;color:#93C5FD">78<span style="font-size:13px;opacity:.6">/100</span></div>
+            </div>
+          </div>
+
+          <!-- Grille compétences -->
+          <div style="padding:16px 20px;background:#F9FAFB;border-bottom:1px solid #E5E7EB">
+            <div style="font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Positionnement par compétence</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB">
+                <div style="font-size:9px;font-weight:700;color:#B91C1C;margin-bottom:3px">C1 — Conseiller &amp; vendre</div>
+                <div style="display:flex;gap:3px;margin-bottom:4px">
+                  <div style="width:18px;height:6px;border-radius:3px;background:#185FA5"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#185FA5"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#185FA5"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E5E7EB"></div>
+                </div>
+                <div style="font-size:9px;color:#185FA5;font-weight:700">Niveau 3 — Acquis</div>
+              </div>
+              <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB">
+                <div style="font-size:9px;font-weight:700;color:#E87722;margin-bottom:3px">C2 — Suivre la commande</div>
+                <div style="display:flex;gap:3px;margin-bottom:4px">
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E87722"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E87722"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E5E7EB"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E5E7EB"></div>
+                </div>
+                <div style="font-size:9px;color:#E87722;font-weight:700">Niveau 2 — En progression</div>
+              </div>
+              <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB">
+                <div style="font-size:9px;font-weight:700;color:#0096C7;margin-bottom:3px">C3 — Fidéliser</div>
+                <div style="display:flex;gap:3px;margin-bottom:4px">
+                  <div style="width:18px;height:6px;border-radius:3px;background:#0096C7"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#0096C7"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#0096C7"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#E5E7EB"></div>
+                </div>
+                <div style="font-size:9px;color:#0096C7;font-weight:700">Niveau 3 — Acquis</div>
+              </div>
+              <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB">
+                <div style="font-size:9px;font-weight:700;color:#7F1414;margin-bottom:3px">C4A — Espace commercial</div>
+                <div style="display:flex;gap:3px;margin-bottom:4px">
+                  <div style="width:18px;height:6px;border-radius:3px;background:#7F1414"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#7F1414"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#7F1414"></div>
+                  <div style="width:18px;height:6px;border-radius:3px;background:#7F1414"></div>
+                </div>
+                <div style="font-size:9px;color:#7F1414;font-weight:700">Niveau 4 — Maîtrisé</div>
+              </div>
+              <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #E5E7EB;grid-column:span 2">
+                <div style="font-size:9px;font-weight:700;color:#6B7280;margin-bottom:6px">Missions validées · 3 dernières</div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:#374151">Fixer les prix et analyser la rentabilité</span><span style="font-weight:700;color:#185FA5">16/20</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:#374151">Gérer une réclamation complexe</span><span style="font-weight:700;color:#185FA5">14/20</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:#374151">Analyser les indicateurs de satisfaction</span><span style="font-weight:700;color:#185FA5">17/20</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appréciation pré-rédigée -->
+          <div style="padding:14px 20px;background:#fff">
+            <div style="font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Appréciation motivée — générée automatiquement</div>
+            <div style="background:#F0F4FF;border-left:3px solid #7F1414;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:#1C1C1E;line-height:1.7;font-style:italic">
+              "Léa MARTIN maîtrise les compétences liées à l'animation de l'espace commercial (C4A, niveau 4) et au conseil client (C1, niveau 3). Elle démontre une réelle capacité à analyser les indicateurs commerciaux et à proposer des actions correctives argumentées. La compétence C2 (suivi de la commande) est en cours d'acquisition — des progrès nets sont observés en fin de parcours. Positionnement global : <strong>Professionnel compétent</strong>."
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:10px">
+              <div style="font-size:10px;color:#9CA3AF;font-style:italic">Généré par LABORO · 34 missions validées · Parcours 2nde → Terminale AGEC</div>
+            </div>
+          </div>
+
+        </div>
+        <div style="font-size:10px;color:#9CA3AF;text-align:center;margin-top:8px;font-style:italic">Exemple fictif à titre illustratif — le portfolio réel est généré depuis l'espace enseignant</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,#1C1C1E,#7F1414);border-radius:14px;padding:28px;color:#fff;margin-bottom:32px">
+      <div style="font-size:14px;line-height:1.8;color:rgba(255,255,255,.9);font-style:italic;margin-bottom:16px">"LABORO n'est pas un outil numérique de plus. C'est une salle de classe augmentée où l'élève est acteur d'une entreprise réelle — et où l'enseignant pilote la progression compétence par compétence, en lien direct avec les exigences des CCF."</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6)">M. et Mme Berruelle — Enseignants PLP Bac Pro MCV, Essonne (91)</div>
+    </div>
+    <div id="vitrine-demo" style="text-align:center;padding:32px;background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
+      <div style="font-size:20px;font-weight:700;color:#1F2937;margin-bottom:8px">Prêt à explorer LABORO ?</div>
+      <div style="font-size:13px;color:#6B7280;margin-bottom:24px">Lancez le mode démo pour voir la plateforme en action — aucune installation, aucun compte requis.</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button onclick="startDemo()" style="background:#7F1414;color:#fff;border:none;padding:14px 32px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(45,82,130,.3)">▶ Lancer la démo — élève Terminale</button>
+        <button onclick="hideVitrine()" style="background:#F3F4F6;color:#4B5563;border:1px solid #E5E7EB;padding:14px 32px;border-radius:10px;font-size:14px;cursor:pointer">Se connecter →</button>
+      </div>
+      <div style="margin-top:20px;font-size:11px;color:#9CA3AF">Contact : pascal.berruelle@ac-versailles.fr · Pour tout renseignement sur le déploiement de LABORO dans votre établissement</div>
+    </div>
+  </div>
+</div>
+
+<!-- ONBOARDING -->
+<div id="onboarding" class="scr">
+<div class="ob-w">
+  <div class="ob-pg"><div class="obs cur" id="obs0"></div><div class="obs" id="obs1"></div><div class="obs" id="obs2"></div><div class="obs" id="obs3"></div></div>
+  <div class="obp on" id="ob0">
+    <div class="lettre">
+      <div class="lb-entete">
+        <div>
+          <div class="lb-entete-logo" id="cfg-nom-plateforme-3">LABORO</div>
+          <div class="lb-entete-sub" id="cfg-entreprise-sub">Sport &amp; Outdoor · Évry-Courcouronnes (91)</div>
+        </div>
+        <div class="lb-entete-date">Évry-Courcouronnes, le 6 mai 2026<br><span style="font-size:10px;color:#BFDBFE;margin-top:2px;display:block">Lettre de bienvenue — Confidentiel</span></div>
+      </div>
+      <div class="lb-b">
+        <p>Bonjour <strong id="ob-prenom"></strong>,</p>
+        <p>C'est avec un réel plaisir que je vous accueille au sein de <strong>LABORO Sport &amp; Outdoor</strong>. Notre entreprise, implantée à Évry-Courcouronnes depuis plusieurs années, est spécialisée dans la distribution d'équipements sportifs et de loisirs en Essonne.</p>
+        <p>Vous rejoignez une équipe engagée et professionnelle. Dès aujourd'hui, vous êtes un collaborateur à part entière — avec un poste, des responsabilités et des clients à accompagner. Chaque mission que vous réaliserez ici correspond à de vraies situations professionnelles que vous rencontrerez dans votre carrière.</p>
+        <p>Lisez attentivement chaque ressource avant d'agir. Observez, posez des questions, progressez. C'est ainsi que l'on devient un professionnel du commerce.</p>
+        <p>Bienvenue dans l'équipe LABORO. Nous comptons sur vous.</p>
+      </div>
+      <div class="lb-s">
+        <div class="lb-sig">Pascal Berruelle</div>
+        <div class="lb-sig-nom">Pascal Berruelle — Président Directeur Général</div>
+        <div style="font-size:10px;color:#9CA3AF;margin-top:4px">LABORO Sport &amp; Outdoor · SAS au capital de 250 000 € · Évry-Courcouronnes</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding:0 2px">
+      <button onclick="skipOb()" style="background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.7);padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer l'introduction</button>
+      <button class="ob-btn-next" onclick="obNext()" style="background:#fff;color:#1C1C1E;border:none;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer">Continuer →</button>
+    </div>
+  </div>
+  <div class="obp" id="ob1">
+  <div style="background:#fff;border-radius:16px;padding:28px 32px;max-width:560px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.15)">
+    <div style="font-size:11px;font-weight:700;color:#B91C1C;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">LABORO en chiffres</div>
+    <div style="font-size:22px;font-weight:900;color:#1C1C1E;margin-bottom:6px">L'entreprise que tu vas représenter</div>
+    <div style="font-size:13px;color:#6B7280;margin-bottom:20px">Basée à Évry-Courcouronnes (91) — spécialiste de l'équipement sportif B2B et B2C</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+      <div style="background:#F0F4FF;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:28px;font-weight:900;color:#1C1C1E">12</div>
+        <div style="font-size:11px;color:#6B7280;font-weight:600">Collaborateurs</div>
+      </div>
+      <div style="background:#F0FFF4;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:28px;font-weight:900;color:#276749">50+</div>
+        <div style="font-size:11px;color:#6B7280;font-weight:600">Clients actifs</div>
+      </div>
+      <div style="background:#FFF7ED;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:28px;font-weight:900;color:#D97706">176</div>
+        <div style="font-size:11px;color:#6B7280;font-weight:600">Références produits</div>
+      </div>
+      <div style="background:#FEF2F2;border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:28px;font-weight:900;color:#E63B2E">91</div>
+        <div style="font-size:11px;color:#6B7280;font-weight:600">Essonne — Île-de-France</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="ob-btn-prev" onclick="obPrev()" style="display:none;background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button>
+      <div></div>
+      <div style="display:flex;gap:10px">
+        <button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button>
+        <button class="ob-btn-next" onclick="obNext()" style="background:#1C1C1E;border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Suivant →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="obp" id="ob2">
+  <div style="background:#fff;border-radius:16px;padding:28px 32px;max-width:560px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.15)">
+    <div style="font-size:11px;font-weight:700;color:#B91C1C;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Ton accréditation</div>
+    <div style="font-size:22px;font-weight:900;color:#1C1C1E;margin-bottom:6px">Ton badge LABORO</div>
+    <div style="font-size:13px;color:#6B7280;margin-bottom:20px">Tu fais officiellement partie de l'équipe. Voici ton accréditation.</div>
+    <div style="background:linear-gradient(135deg,#1C1C1E,#7F1414);border-radius:14px;padding:20px 24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:20px">
+      <div style="width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0" id="ob-badge-init">PB</div>
+      <div>
+        <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Collaborateur(trice) LABORO</div>
+        <div style="font-size:17px;font-weight:900;margin-bottom:2px" id="ob-badge-nom2">—</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.75)" id="ob-badge-poste2">—</div>
+      </div>
+    </div>
+    <div style="background:#F0F4FF;border-radius:10px;padding:12px 16px;font-size:12px;color:#374151;margin-bottom:20px">
+      💡 Ce badge sera visible dans ton espace à chaque connexion. Tes missions, ton score et ta progression sont sauvegardés automatiquement.
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="ob-btn-prev" onclick="obPrev()" style="background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button>
+      <div style="display:flex;gap:10px">
+        <button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button>
+        <button class="ob-btn-next" onclick="obNext()" style="background:#1C1C1E;border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Suivant →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="obp" id="ob3" style="display:flex;align-items:center;justify-content:center;width:100%;padding:10px">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(29,158,117,.2);border:.5px solid rgba(29,158,117,.4);border-radius:20px;padding:6px 16px;margin-bottom:16px">
+        <div style="width:8px;height:8px;border-radius:50%;background:#93C5FD;animation:pulse 1.5s infinite"></div>
+        <span style="font-size:11px;font-weight:700;color:#93C5FD;letter-spacing:.08em;text-transform:uppercase">Mission disponible</span>
+      </div>
+      <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
+      <div class="ob-h1" style="text-align:center">Ta première mission t'attend.</div>
+      <div class="ob-sub" style="text-align:center;max-width:460px;margin:8px auto 0">Lis d'abord la ressource pédagogique — elle contient tout ce qu'il faut savoir. Ensuite tu mets en pratique. C'est comme ça qu'on progresse chez LABORO.</div>
+    </div>
+    <div class="fm">
+      <div class="fm-l">🎯 Ta première mission</div>
+      <div class="fm-t" id="ob-fm-t">Accueillir un client et découvrir ses besoins</div>
+      <div class="fm-m">Compétence C1.2 · Palier 1 — Découverte · ~55 minutes</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.7;margin-top:8px">Un client entre dans le showroom d'Évry. Il cherche des chaussures de sport. Romain Sauzet te demande de le prendre en charge.</div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:5px 10px;font-size:10px;color:rgba(255,255,255,.6)">📚 Ressource incluse</div>
+        <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:5px 10px;font-size:10px;color:rgba(255,255,255,.6)">⏱ ~55 min</div>
+        <div style="background:rgba(29,158,117,.2);border-radius:6px;padding:5px 10px;font-size:10px;color:#93C5FD;font-weight:700">Palier 1 — Découverte</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+    <div class="mo-taskbar" id="mo-taskbar" onclick="moRestore()">
+      <span style="font-size:16px">📋</span>
+      <span class="mo-taskbar-title" id="mo-taskbar-title">Mission en cours</span>
+      <button class="mo-taskbar-btn" onclick="event.stopPropagation();moRestore()">↑ Ouvrir</button>
+      <button class="mo-taskbar-btn" onclick="event.stopPropagation();closeMo()" style="background:rgba(255,100,100,.3)">✕</button>
+    </div>
+
+<div class="cp-overlay" id="cp-overlay" onclick="if(event.target===this)closeCoupDePouce()">
+  <div class="cp-modal">
+    <div class="cp-modal-hd">
+      <div>
+        <div class="cp-modal-t">💡 Coup de pouce</div>
+        <div class="cp-modal-sub">La ressource qui t'aide à débloquer — tu peux y revenir autant de fois que tu veux</div>
+      </div>
+      <button class="cp-modal-cl" onclick="closeCoupDePouce()">✕</button>
+    </div>
+    <div class="cp-modal-body" id="cp-content"></div>
+    <div class="cp-footer">Cette aide est normale — les pros aussi consultent leurs ressources 💪</div>
+  </div>
+</div>
+
+<div class="ana-overlay" id="ana-overlay" onclick="if(event.target===this)closeAnalyse()">
+  <div class="ana-modal">
+    <div class="ana-hd">
+      <div>
+        <div class="ana-hd-t" id="ana-titre">Analyse de classe</div>
+        <div class="ana-hd-s" id="ana-sous">—</div>
+      </div>
+      <button class="ana-cl" onclick="closeAnalyse()">✕</button>
+    </div>
+    <div class="ana-body" id="ana-body"></div>
+  </div>
+</div>
+
+<div class="org-overlay" id="org-overlay" onclick="if(event.target===this)closeOrg()">
+  <div class="org-modal">
+    <div class="org-hd">
+      <div>
+        <div class="org-hd-t" id="org-titre">Mon poste chez LABORO</div>
+        <div class="org-hd-s" id="org-sous">—</div>
+      </div>
+      <button class="org-cl" onclick="closeOrg()">✕</button>
+    </div>
+    <div class="org-body">
+      <div class="org-tabs">
+        <div class="org-tab on" onclick="orgTab(0,this)">🏢 Organigramme</div>
+        <div class="org-tab" onclick="orgTab(1,this)">📋 Fiche de poste</div>
+      </div>
+      <div id="org-content"></div>
+      <div id="org-fp" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div id="ob-ens" class="scr" style="display:none">
+  <div class="ob-ens-w">
+    <div class="ob-ens-pg">
+      <div class="ob-ens-dot cur" id="obed0"></div>
+      <div class="ob-ens-dot" id="obed1"></div>
+      <div class="ob-ens-dot" id="obed2"></div>
+      <div class="ob-ens-dot" id="obed3"></div>
+    </div>
+    <div class="ob-ens-p on" id="obe0">
+      <div class="ob-ens-card">
+        <div class="ob-ens-tag">Première connexion</div>
+        <div class="ob-ens-titre">Bienvenue sur LABORO,<br><span id="ob-ens-prenom" style="color:var(--vt)">Enseignant</span>.</div>
+        <div class="ob-ens-sub">LABORO est votre plateforme pédagogique immersive pour le Bac Pro MCV. Vos élèves y travaillent comme de vrais collaborateurs d'une entreprise sport & outdoor. Vous, vous pilotez, observez et remédiez.</div>
+        <div class="ob-ens-grid">
+          <div class="ob-ens-feat"><div class="ob-ens-feat-ico">🎯</div><div class="ob-ens-feat-t">130+ missions</div><div class="ob-ens-feat-d">Alignées sur le référentiel MCV — 2nde à Terminale, AGEC et PVOC</div></div>
+          <div class="ob-ens-feat"><div class="ob-ens-feat-ico">📊</div><div class="ob-ens-feat-t">Suivi en temps réel</div><div class="ob-ens-feat-d">Notes, progression, coups de pouce — tout visible depuis votre espace</div></div>
+          <div class="ob-ens-feat"><div class="ob-ens-feat-ico">🛠</div><div class="ob-ens-feat-t">Analyse & remédiation</div><div class="ob-ens-feat-d">Identifiez les points faibles de la classe en un clic</div></div>
+          <div class="ob-ens-feat"><div class="ob-ens-feat-ico">📄</div><div class="ob-ens-feat-t">Portfolio automatique</div><div class="ob-ens-feat-d">Document d'aide au positionnement généré en 2 clics</div></div>
+        </div>
+      </div>
+      <div class="ob-ens-nav">
+        <button style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.6);color:#fff;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer" onclick="skipObEns()">Passer l'introduction →</button>
+        <button class="ob-ens-next" onclick="nextObEns(1)">Suivant →</button>
+      </div>
+    </div>
+    <div class="ob-ens-p" id="obe1">
+      <div class="ob-ens-card">
+        <div class="ob-ens-tag">Fonctionnalité clé · 1/3</div>
+        <div class="ob-ens-titre">👥 Suivre vos élèves<br>en temps réel</div>
+        <div class="ob-ens-sub">La vue classe vous donne une vision instantanée de chaque élève : missions validées, moyenne, coups de pouce utilisés, missions en attente de correction.</div>
+        <div class="ob-ens-feat" style="margin-bottom:12px">
+          <div class="ob-ens-feat-t">Comment y accéder ?</div>
+          <div class="ob-ens-feat-d" style="margin-top:4px">Menu gauche → <strong style="color:#1C1C1E">Vue classe</strong> · Filtrez par classe avec les onglets colorés · Cliquez sur un élève pour sa fiche détaillée</div>
+        </div>
+        <div class="ob-ens-feat">
+          <div class="ob-ens-feat-t">💡 Le coup de pouce</div>
+          <div class="ob-ens-feat-d" style="margin-top:4px">Quand un élève de 1ère ou Terminale utilise l'aide intégrée, vous le voyez dans sa fiche — sans qu'il ait à lever la main.</div>
+        </div>
+      </div>
+      <div class="ob-ens-nav">
+        <button class="ob-ens-skip" onclick="prevObEns(0)">← Retour</button>
+        <button class="ob-ens-next" onclick="nextObEns(2)">Suivant →</button>
+      </div>
+    </div>
+    <div class="ob-ens-p" id="obe2">
+      <div class="ob-ens-card">
+        <div class="ob-ens-tag">Fonctionnalité clé · 2/3</div>
+        <div class="ob-ens-titre">📈 Analyser et<br>préparer la remédiation</div>
+        <div class="ob-ens-sub">Le bouton "Analyse de classe" calcule automatiquement les missions les moins réussies, les compétences fragiles et les points de blocage de votre classe.</div>
+        <div class="ob-ens-feat" style="margin-bottom:12px">
+          <div class="ob-ens-feat-t">La fiche de remédiation</div>
+          <div class="ob-ens-feat-d" style="margin-top:4px">En un clic, générez un document imprimable avec : élèves en difficulté · ressource pédagogique · zones à remplir pour votre cours de soutien.</div>
+        </div>
+        <div class="ob-ens-feat">
+          <div class="ob-ens-feat-t">📄 Le portfolio</div>
+          <div class="ob-ens-feat-d" style="margin-top:4px">Générez le Portfolio d'activités professionnelles de chaque élève depuis sa fiche. Structuré par épreuve E31/E32/E33/E2.</div>
+        </div>
+      </div>
+      <div class="ob-ens-nav">
+        <button class="ob-ens-skip" onclick="prevObEns(1)">← Retour</button>
+        <button class="ob-ens-next" onclick="nextObEns(3)">Suivant →</button>
+      </div>
+    </div>
+    <div class="ob-ens-p" id="obe3">
+      <div class="ob-ens-card" style="text-align:center;padding:40px 32px">
+        <div style="font-size:48px;margin-bottom:16px">🎓</div>
+        <div class="ob-ens-titre" style="text-align:center">Vous êtes prêt(e) !</div>
+        <div class="ob-ens-sub" style="text-align:center;max-width:440px;margin:0 auto 20px">Votre espace enseignant est configuré. Vos élèves se connectent avec leur adresse mail institutionnelle et leur mot de passe : leur classe et leur parcours sont reconnus automatiquement.</div>
+        <div class="ob-ens-mdp"><span>🔐</span><span>Votre compte enseignant a été créé par l'administrateur LABORO. Connectez-vous avec votre <strong style="color:#1C1C1E">adresse mail</strong> et votre <strong style="color:#1C1C1E">mot de passe</strong> personnels.</span></div>
+        <div class="ob-ens-mdp"><span>💡</span><span>Besoin d'aide ? Contactez <strong style="color:#1C1C1E">Pascal Berruelle</strong> — créateur de la plateforme avec Sandrine Berruelle</span></div>
+      </div>
+      <div class="ob-ens-nav" style="justify-content:space-between">
+        <button style="background:none;border:1px solid #CBD5E0;color:#4A5568;border-radius:8px;padding:10px 16px;font-size:12px;cursor:pointer" onclick="goObEns(2)">← Retour</button>
+        <button class="ob-ens-next" style="padding:14px 40px;font-size:14px" onclick="skipObEns()">Accéder à mon espace LABORO →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="scr">
+<div class="sb">
+  <div class="sb-lo"><div class="sb-li">L</div><div class="sb-lt"><div class="n" id="cfg-nom-plateforme-4">LABORO</div><div class="t">SPORT & OUTDOOR</div></div></div>
+  <div class="sb-u"><div class="avu" id="av-i">AL</div><div><div class="sb-un" id="sb-n">—</div><div class="sb-ur" id="sb-r">—</div></div></div>
+  <div class="sb-nv">
+    <div class="ns">Mon espace</div>
+    <div class="ni on" onclick="goP('dashboard',this)"><div class="nd" style="background:var(--bl)"></div>Tableau de bord</div>
+    <div class="ni" onclick="goP('missions',this)"><div class="nd" style="background:#534AB7"></div>Mes missions</div>
+    <div class="ni" onclick="goP('competences',this)"><div class="nd" style="background:var(--vt)"></div>Mes compétences</div>
+    <div class="ns">Entreprise LABORO</div>
+    <div class="ni" onclick="goP('catalogue',this)"><div class="nd" style="background:var(--am)"></div>Catalogue produits</div>
+    <div class="ni" onclick="goP('clients',this)"><div class="nd" style="background:#D85A30"></div>Fichier clients</div>
+    <div class="ni" onclick="goP('indicateurs',this)"><div class="nd" style="background:var(--rg)"></div>Indicateurs</div>
+    <div class="ns" id="ns-prepa" style="display:none">Préparation examen</div>
+    <div class="ni" onclick="goP('e2agec',this)" style="display:none" id="ni-e2agec"><div class="nd" style="background:#B7410E"></div>Prép. E2 AGEC</div>
+    <div class="ni" onclick="goP('e2pvoc',this)" style="display:none" id="ni-e2pvoc"><div class="nd" style="background:#B91C1C"></div>Prép. E2 PVOC</div>
+    <div class="ns" id="ns-ens" style="display:none">Enseignant</div>
+    <div class="ni" id="ni-mdj" style="display:none" onclick="goP('missiondujour',this)"><div class="nd" style="background:var(--bl)"></div>Mission du jour</div>
+    <div class="ni" id="ni-cl" style="display:none" onclick="goP('classe',this)"><div class="nd" style="background:#D4537E"></div>Vue classe</div>
+    <div class="ni" id="ni-gn" style="display:none" onclick="goP('generation',this)"><div class="nd" style="background:var(--rg)"></div>Générer mission</div>
+  </div>
+  <div class="sb-bt">
+    <button class="btn-guide" id="btn-guide-ens" style="display:none;width:100%;padding:8px 12px;background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.2);border-radius:8px;color:rgba(255,255,255,.8);font-size:11px;font-weight:600;cursor:pointer;margin-bottom:8px;text-align:left" onclick="revoirObEns()">📖 Guide de démarrage</button>
+    <button class="btn-out" onclick="doLogout()">Se déconnecter</button>
+  </div>
+</div>
+<div class="main">
+  <div class="topbar"><div class="tb-t" id="tb-t">Tableau de bord</div><div class="tb-r"><span class="badge" id="tb-lvl" style="font-size:10px;padding:3px 9px;border-radius:10px;font-weight:700;margin-right:4px">—</span><span class="badge bb" id="tb-c" style="display:none">—</span><span style="font-size:11px;color:var(--gm)" id="tb-d"></span></div></div>
+  <div class="content">
+    <div id="panel-dashboard" class="panel on">
+      <div class="wb">
+        <div class="wb-l">
+          <h2 id="wb-b">Bonjour !</h2>
+          <p id="wb-p" style="margin-bottom:8px">—</p>
+          <div id="wb-palier" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.9);font-weight:700"></div>
+          <div id="posture-score" style="margin-top:8px"></div>
+        </div>
+        <div class="wb-r">
+          <div class="big" id="wb-s">0</div>
+          <div class="sm">Score LABORO /100</div>
+          <div id="wb-rank" style="margin-top:6px;font-size:10px;color:rgba(255,255,255,.6)"></div>
+        </div>
+      </div>
+      <div id="emp-wrap"></div>
+      <div id="poste-card-wrap"></div>
+      <div id="mdj-wrap"></div>
+      <div class="dg">
+        <div>
+          <div class="card"><div class="ct">Classement de la semaine</div><div id="clt-dash"></div></div>
+          <div class="card"><div class="ct">Missions récentes</div><div id="dash-rec"></div></div>
+        </div>
+        <div>
+          <div class="card"><div class="ct" id="msg-section-title">Message de ton responsable</div><div class="msg-box"><div class="msg-from" id="msg-f">Romain Sauzet — Resp. Commerce</div><div id="msg-t">Bienvenue chez LABORO ! Ta première mission t'attend. Lis bien la ressource avant de commencer.</div></div></div>
+          <div class="card"><div class="ct">Ma progression</div><div id="dash-prog"></div></div>
+        </div>
+      </div>
+      <div id="dash-ccf" class="card" style="margin-top:14px;display:none"></div>
+      <div class="card" style="margin-top:14px">
+        <div class="ct">📰 Actualités LABORO — aujourd'hui</div>
+        <div id="dash-actus"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="ct">📊 Mes indicateurs</div>
+        <div id="dash-indic"></div>
+      </div>
+    </div>
+
+    <div id="panel-missions" class="panel">
+      <div class="fr" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <select id="f-pal" onchange="renderMissions()" style="padding:7px 12px;border:1px solid var(--gb);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">
+          <option value="">Tous les paliers</option>
+          <option value="1">🟢 P1 — Débutant</option>
+          <option value="2">🔵 P2 — Apprenti</option>
+          <option value="3">🟡 P3 — Pro compétent</option>
+          <option value="4">🟣 P4 — Pro performant</option>
+        </select>
+        <select id="f-comp" onchange="renderMissions()" style="padding:7px 12px;border:1px solid var(--gb);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">
+          <option value="">Toutes compétences</option>
+        </select>
+      </div>
+      <div id="missions-list"></div>
+    </div>
+
+    <div id="panel-competences" class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:var(--gr)">Mes compétences LABORO</div>
+        <button id="btn-portfolio-eleve" onclick="genererPortfolio()" style="padding:8px 16px;background:var(--bl);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700">📄 Générer mon portfolio</button>
+      </div>
+      <div class="comp-grid" id="comp-grid"></div>
+      <div class="leg"><span>Niveau :</span><span><span class="dl" style="background:var(--gb)"></span> Non démarré</span><span><span class="dl" style="background:#85B7EB"></span> Découverte</span><span><span class="dl" style="background:var(--bl)"></span> En progression</span><span><span class="dl" style="background:var(--vt)"></span> Acquis</span><span><span class="dl" style="background:#27500A"></span> Maîtrisé</span></div>
+    </div>
+
+    <div id="panel-catalogue" class="panel"><div id="cat-list"></div><div id="fiche-produit" class="fp"></div></div>
+    <div id="panel-clients" class="panel"><button class="add-cl" onclick="addClient()">+ Ajouter un prospect</button><div id="client-list"></div><div id="fiche-client" class="fc"></div></div>
+
+    <div id="panel-indicateurs" class="panel">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px">
+        <div class="card" style="margin-bottom:0"><div class="ct">CA mensuel</div><div style="font-size:24px;font-weight:800">21 400 €</div><div style="font-size:11px;color:var(--vt)">+9% vs N-1</div></div>
+        <div class="card" style="margin-bottom:0"><div class="ct">Panier moyen</div><div style="font-size:24px;font-weight:800">172 €</div><div style="font-size:11px;color:var(--gm)">B2B: 2 100€ · B2C: 130€</div></div>
+        <div class="card" style="margin-bottom:0"><div class="ct">Taux transformation</div><div style="font-size:24px;font-weight:800">34%</div><div style="font-size:11px;color:var(--vt)">+3 pts vs M-1</div></div>
+        <div class="card" style="margin-bottom:0"><div class="ct">Satisfaction client</div><div style="font-size:24px;font-weight:800">4,1/5</div><div style="font-size:11px;color:var(--gm)">118 avis</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card"><div class="ct">CA mensuel (k€)</div><div class="bar-chart"><div class="bw"><div class="bv2">16</div><div class="bar" style="height:57%"></div><div class="bl2">Oct</div></div><div class="bw"><div class="bv2">19</div><div class="bar" style="height:68%"></div><div class="bl2">Nov</div></div><div class="bw"><div class="bv2">27</div><div class="bar" style="height:96%"></div><div class="bl2">Déc</div></div><div class="bw"><div class="bv2">14</div><div class="bar" style="height:50%"></div><div class="bl2">Jan</div></div><div class="bw"><div class="bv2">20</div><div class="bar" style="height:71%"></div><div class="bl2">Fév</div></div><div class="bw"><div class="bv2">21</div><div class="bar" style="height:75%"></div><div class="bl2">Mar</div></div></div></div>
+        <div class="card"><div class="ct">Répartition CA</div><div style="font-size:12px;line-height:2.2"><div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--gc)"><span>Running / Trail</span><strong>36%</strong></div><div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--gc)"><span>Randonnée</span><strong>26%</strong></div><div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--gc)"><span>Textile perso.</span><strong>19%</strong></div><div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--gc)"><span>Fitness</span><strong>11%</strong></div><div style="display:flex;justify-content:space-between"><span>Outdoor</span><strong>8%</strong></div></div></div>
+      </div>
+      <div id="indic-pedago" style="margin-top:16px"></div>
+    </div>
+
+    <div id="panel-e2agec" class="panel"><div id="e2-home"></div></div>
+    <div id="panel-e2pvoc" class="panel"><div id="e2pvoc-home"></div></div>
+
+    <div id="panel-missiondujour" class="panel">
+      <div class="mdj-cfg"><div class="ct">Assigner la mission du jour</div><div class="mdj-sel"><select id="mdj-cl"><option value="">— Classe —</option><option value="2nde">2nde</option><option value="1ere-AGEC">1ère AGEC</option><option value="1ere-PVOC">1ère PVOC</option><option value="Term-AGEC">Term. AGEC</option><option value="Term-PVOC">Term. PVOC</option></select><select id="mdj-ms"><option value="">— Mission —</option></select><button class="btn-mdj" onclick="assignerMDJ()">Assigner</button></div><div id="mdj-st" style="font-size:12px;color:var(--gm);margin-top:8px"></div></div>
+      <div class="card"><div class="ct">Missions du jour assignées</div><div id="mdj-liste"></div></div>
+    </div>
+
+    <div id="panel-classe" class="panel">
+      <div class="card" style="margin-bottom:12px">
+        <div class="ct">Gestion des élèves</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:8px;text-transform:uppercase">Ajouter un élève</div>
+            <input id="add-nom" placeholder="Nom Prénom" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:6px;box-sizing:border-box"/>
+            <input id="add-mail" placeholder="prenom.nom@monlycee.net" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:6px;box-sizing:border-box"/>
+            <select id="add-cls" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:8px;box-sizing:border-box">
+              <option value="2nde">2nde professionnelle</option>
+              <option value="1ere-AGEC">1ère AGEC</option>
+              <option value="1ere-PVOC">1ère PVOC</option>
+              <option value="Term-AGEC">Terminale AGEC</option>
+              <option value="Term-PVOC">Terminale PVOC</option>
+            </select>
+            <button onclick="ajouterEleve()" style="width:100%;padding:8px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">+ Ajouter cet élève</button>
+            <div id="add-msg" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:8px;text-transform:uppercase">Actions sur un élève sélectionné</div>
+            <div style="font-size:11px;color:var(--gm);padding:8px;background:var(--gc);border-radius:6px;margin-bottom:8px">💡 Cliquer sur un élève dans le tableau ci-dessous pour le sélectionner, puis utiliser les actions.</div>
+            <div id="eleve-selectionne-nom" style="font-size:12px;font-weight:700;color:var(--bf);margin-bottom:8px;min-height:18px"></div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <button onclick="changerClasseEleve()" style="padding:8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600;text-align:left">✏️ Changer de classe</button>
+              <button onclick="reinitialiserEleve()" style="padding:8px;background:none;border:.5px solid var(--am);border-radius:6px;cursor:pointer;font-size:12px;color:var(--am);font-weight:600;text-align:left">🔄 Réinitialiser les missions</button>
+              <button onclick="supprimerEleve()" style="padding:8px;background:none;border:.5px solid var(--rg);border-radius:6px;cursor:pointer;font-size:12px;color:var(--rg);font-weight:600;text-align:left">🗑 Supprimer cet élève</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="classe-tabs" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+        <div style="font-size:11px;font-weight:700;color:var(--gm);margin-right:4px">Filtrer :</div>
+        <div class="cls-tab on" onclick="filtrerClasse('',this)">Toutes les classes</div>
+      </div>
+      <div id="classe-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px"></div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <button class="btn-val-all" onclick="validerAll()" style="margin-bottom:0">Valider notes IA ≥ 12/20</button>
+        <button onclick="exporterClasse()" style="padding:8px 16px;background:none;border:.5px solid var(--gb);border-radius:7px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600">📊 Exporter la liste</button>
+        <button class="ana-btn" onclick="openAnalyse()">📈 Analyse de classe</button>
+      </div>
+      <div class="card" style="overflow-x:auto;margin-bottom:12px">
+        <div class="ct" id="cl-titre">Vue classe — cliquer sur un élève pour sa fiche</div>
+        <table class="ctl"><thead><tr><th>Élève</th><th>Classe</th><th>C1</th><th>C2</th><th>C3</th><th>G4</th><th>Score</th><th>Posture</th><th>Missions</th><th>Moy.</th></tr></thead><tbody id="cl-tbody"></tbody></table>
+      </div>
+      <div id="fe-wrap"></div>
+    </div>
+
+    <div id="panel-generation" class="panel">
+      <div class="card"><div class="ct">Clé API Claude</div>
+      <div class="api-row"><input type="password" id="api-inp" placeholder="sk-ant-api03-..."/><button class="btn-sm" onclick="saveKey()">Enregistrer</button></div><div style="font-size:11px;color:var(--gm)">console.anthropic.com · Stockée localement · ~0,002 € par correction et génération</div></div>
+      <div class="card"><div class="ct">Générer une nouvelle mission</div><div class="gen-grid"><select id="g-opt"><option value="AGEC">AGEC</option><option value="PVOC">PVOC</option></select><select id="g-pal"><option value="1">Palier 1 — Débutant</option><option value="2">Palier 2 — Apprenti</option><option value="3">Palier 3 — Professionnel compétent</option><option value="4">Palier 4 — Expert</option></select><select id="g-comp"><option value="C1.1">C1.1 Veille commerciale</option><option value="C1.2">C1.2 Vente omnicanale</option><option value="C1.3">C1.3 Exécution vente</option><option value="C2.1">C2.1 Suivi commande</option><option value="C2.1b">C2.1b Services associés</option><option value="C2.2">C2.2 Réclamations</option><option value="C2.3">C2.3 Satisfaction client</option><option value="C3.1">C3.1 Contact client</option><option value="C3.2">C3.2 Fidélisation</option><option value="C3.3">C3.3 Évaluation FDRC</option><option value="A4.1">A4.1 Opérations préalables</option><option value="A4.2">A4.2 Attractivité UC</option><option value="A4.3">A4.3 Développement clientèle</option><option value="B4.1">B4.1 Infos prospection</option><option value="B4.2">B4.2 Conception prospection</option><option value="B4.3">B4.3 Mise en oeuvre</option><option value="B4.4">B4.4 Suivi prospection</option><option value="B4.5">B4.5 Valorisation offre</option></select><select id="g-cli"><option value="B2C particulier">B2C — Particulier</option><option value="B2B club sportif">B2B — Club sportif</option><option value="B2B CE">B2B — CE</option><option value="B2B collectivité">B2B — Collectivité</option><option value="B2B lycée">B2B — Lycée</option></select></div><button class="btn-gen" onclick="genMission()">Générer la mission →</button><div class="gen-res" id="gen-res" style="color:var(--gm);font-style:italic">La mission générée apparaîtra ici…</div></div>
+    </div>
+
+    <div id="mo" class="mo">
+      <div class="modal">
+        <div class="mo-h"><div style="flex:1;min-width:0"><h2 id="mo-t" style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</h2><p id="mo-m" style="font-size:11px;opacity:.75;margin-top:2px">LABORO Sport & Outdoor</p><div id="mo-palier-desc" style="display:none;margin-top:6px;padding:6px 12px;border-radius:6px;font-size:11.5px;line-height:1.5;border-left:3px solid var(--ac1)"></div></div><div id="mo-timer" style="font-size:12px;font-weight:700;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 10px;margin-right:8px;display:none;align-items:center;gap:5px"><span>⏱</span><span id="mo-timer-val">55:00</span></div><div class="mo-controls"><button class="mo-ctrl-btn" onclick="moMinimize()" title="Minimiser">─</button><button class="mo-ctrl-btn" onclick="moFullscreen()" id="mo-fs-btn" title="Plein écran">⛶</button><button class="mo-ctrl-btn mo-ctrl-close" onclick="closeMo()" title="Fermer">✕</button></div></div>
+        <div class="mo-tabs"><div class="mo-tab on" onclick="moTab(0,this)">Apprendre d'abord</div><div class="mo-tab" onclick="moTab(1,this)">La mission</div><div class="mo-tab" id="tab-fb" style="display:none" onclick="moTab(2,this)">Feedback IA</div></div>
+        <div class="mo-body"><div class="mo-tp on" id="mo-learn"></div><div class="mo-tp" id="mo-mission"></div><div class="mo-tp" id="mo-fb"></div></div>
+        <div class="mo-act">
+          <button class="cp-btn" id="cp-btn" onclick="openCoupDePouce()">💡 Coup de pouce — je suis bloqué(e)</button>
+          <button class="btn-p" id="btn-submit" onclick="soumettreReponses()">Soumettre mes réponses</button>
+          <button class="btn-cont" id="btn-cont" onclick="sauvegarderEtFermer()">Continuer la prochaine fois</button>
+          <button class="btn-s2" onclick="closeMo()">Fermer</button>
+          <button class="btn-s2" style="color:var(--rg);border-color:var(--rg)" onclick="resetMission()">↺ Recommencer</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<script src="data/competences.js"></script>
+<script src="data/missions.js"></script>
+<script src="data/produits.js"></script>
+<script src="data/e2-agec.js"></script>
+<script src="data/e2-pvoc.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/correction-serveur.js"></script>
+<script src="js/catalogue.js"></script>
+<script src="js/clients.js"></script>
+<script src="js/teacher.js"></script>
+<script src="js/classe-serveur.js"></script>
+<script src="js/portfolio.js"></script>
+<script src="js/utils.js"></script>
+
+<div id="charte-laboro" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#1C1C1E 0%,#7F1414 100%);z-index:9999;overflow-y:auto;padding:40px 20px">
+  <div style="max-width:680px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="width:64px;height:64px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;font-weight:900;color:#1C1C1E">L</div>
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">LABORO Sport &amp; Outdoor — Évry-Courcouronnes</div>
+      <div style="font-size:26px;font-weight:900;color:#fff;margin-bottom:6px">Charte du Collaborateur</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.75)">En rejoignant LABORO, vous intégrez une équipe professionnelle.<br>Ces engagements s'appliquent dès votre première mission.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">👔</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Tenue et présentation professionnelle</div><div style="font-size:12px;color:#374151;line-height:1.6">Chez LABORO, la présentation reflète l'image de l'entreprise. Chaque collaborateur se présente en tenue soignée et adaptée à son poste.</div></div></div>
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">📱</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Téléphone personnel — usage professionnel uniquement</div><div style="font-size:12px;color:#374151;line-height:1.6">Pendant les heures de travail, le téléphone personnel est rangé. LABORO Connect est notre outil de travail.</div></div></div>
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">🖊️</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Matériel de travail</div><div style="font-size:12px;color:#374151;line-height:1.6">Tout collaborateur LABORO arrive équipé : stylo, carnet de notes, matériel nécessaire à sa mission.</div></div></div>
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">⏰</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Ponctualité et engagement</div><div style="font-size:12px;color:#374151;line-height:1.6">Les missions LABORO ont des délais. La ponctualité et le respect des engagements sont des valeurs fondamentales.</div></div></div>
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">🤝</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Respect et esprit d'équipe</div><div style="font-size:12px;color:#374151;line-height:1.6">LABORO est une équipe. Chaque collaborateur traite ses collègues et sa hiérarchie avec respect.</div></div></div>
+      <div style="background:#fff;border-radius:14px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start"><div style="font-size:28px;flex-shrink:0">💼</div><div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:4px">Posture professionnelle</div><div style="font-size:12px;color:#374151;line-height:1.6">Chez LABORO on se tient droit, on regarde ses interlocuteurs, on parle clairement.</div></div></div>
+    </div>
+    <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:20px;margin-bottom:24px;text-align:center">
+      <div style="font-size:12px;color:rgba(255,255,255,.8);margin-bottom:12px">En cliquant sur "Je m'engage", vous confirmez avoir lu et accepté la Charte du Collaborateur LABORO.</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.5);font-style:italic">LABORO Sport &amp; Outdoor — Évry-Courcouronnes (91)</div>
+    </div>
+    <div style="text-align:center">
+      <button onclick="accepterCharte()" style="background:#fff;color:#1C1C1E;border:none;padding:16px 48px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.2)">✓ Je m'engage à respecter cette charte</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
