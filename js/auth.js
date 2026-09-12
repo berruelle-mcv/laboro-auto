@@ -116,6 +116,39 @@ function doLogin(){
   }
   finishLogin(mail,cls,poste,null);
 }
+let PENDING_LOGIN = null;
+
+async function validerChangementMdpObligatoire(){
+  const npEl = document.getElementById('fmdp-new');
+  const ncEl = document.getElementById('fmdp-confirm');
+  const errEl = document.getElementById('fmdp-error');
+  if(errEl) errEl.textContent = '';
+  const np = npEl ? npEl.value : '';
+  const nc = ncEl ? ncEl.value : '';
+  if(!np || np.length < 8){ if(errEl) errEl.textContent = 'Le mot de passe doit faire au moins 8 caractères.'; return; }
+  if(np !== nc){ if(errEl) errEl.textContent = 'Les deux mots de passe ne correspondent pas.'; return; }
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ if(errEl) errEl.textContent = 'Session expirée, reconnecte-toi.'; return; }
+  try{
+    const rep = await fetch(LABORO_API + '/api/mon-mot-de-passe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ nouveauMotDePasse: np })
+    });
+    const d = await rep.json();
+    if(!d.ok){ if(errEl) errEl.textContent = d.erreur || 'Erreur, réessaie.'; return; }
+    const overlay = document.getElementById('force-mdp-overlay');
+    if(overlay) overlay.style.display = 'none';
+    if(PENDING_LOGIN){
+      finishLogin(PENDING_LOGIN.mail, PENDING_LOGIN.cls, PENDING_LOGIN.poste, PENDING_LOGIN.nomComplet);
+      PENDING_LOGIN = null;
+    }
+  }catch(e){
+    if(errEl) errEl.textContent = 'Impossible de joindre le serveur LABORO.';
+    console.error('validerChangementMdpObligatoire :', e);
+  }
+}
+
 function finishLogin(mail,cls,poste,nomParam){
   const nom=nomParam||mail.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
   CU={mail,classe:cls,poste,nom};
@@ -508,6 +541,13 @@ async function doLoginServeur(){
     const nomComplet = (u.prenom || u.nom)
       ? ((u.prenom||'') + ' ' + (u.nom||'')).trim()
       : mail.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    if(u.doit_changer_mdp){
+      PENDING_LOGIN = { mail, cls, poste, nomComplet };
+      const overlay = document.getElementById('force-mdp-overlay');
+      if(overlay) overlay.style.display='flex';
+      return;
+    }
 
     finishLogin(mail, cls, poste, nomComplet);
 
