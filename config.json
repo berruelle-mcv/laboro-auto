@@ -78,6 +78,6 @@
   "fichiers_data": {
     "missions": "data/missions.js",
     "competences": "data/competences.js",
-    "catalogue": "data/catalogue.js"
+    "catalogue": "data/produits.js"
   }
 }

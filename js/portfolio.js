@@ -32,7 +32,7 @@ function genererPortfolioEleve(mail){
 
   // Labels de niveau (0 à 4)
   const niveauLabels = ['Non démarré','Découverte','En progression','Acquis','Maîtrisé'];
-  const niveauCols   = ['#9CA3AF','#63B3ED','#B91C1C','#185FA5','#0A2540'];
+  const niveauCols   = ['#9CA3AF','#E88A8A','#B91C1C','#B91C1C','#1C1C1E'];
 
   // Positionnement global LABORO selon le score
   const posGlobal = score>=75 ? 'Professionnel performant'
@@ -108,7 +108,7 @@ function genererPortfolioEleve(mail){
   // Liste des missions validées (les 8 meilleures pour rester lisible)
   const missionsHtml = nbValidees
     ? missionsValidees.slice(0,8).map(function(m){
-        const col = m.score>=14 ? '#185FA5' : m.score>=11 ? '#D97706' : '#C53030';
+        const col = m.score>=14 ? '#B91C1C' : m.score>=11 ? '#D97706' : '#C53030';
         const dateTxt = m.date ? new Date(m.date).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—';
         return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F3F4F6;font-size:11px">'
           + '<span style="color:#374151;flex:1">'+m.titre+'</span>'
@@ -154,7 +154,7 @@ function genererPortfolioEleve(mail){
     + '</div>'
     + '<div style="text-align:right">'
     + '<div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Score LABORO</div>'
-    + '<div style="font-size:30px;font-weight:900;color:#93C5FD">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
+    + '<div style="font-size:30px;font-weight:900;color:#F0B0B0">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
     + '</div>'
     + '</div>'
     // Corps

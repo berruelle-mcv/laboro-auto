@@ -10,7 +10,7 @@ const CAT_CFG = {
   'Basketball':                {col:'#E87722', light:'#FFF5ED'},
   'Running':                   {col:'#0096C7', light:'#EFF9FF'},
   'Fitness':                   {col:'#7B2FBE', light:'#F8F0FF'},
-  'LABORO Pro Line':           {col:'#185FA5', light:'#FBEAEA'},
+  'LABORO Pro Line':           {col:'#B91C1C', light:'#FBEAEA'},
   'Natation':                  {col:'#0077B6', light:'#E0F4FF'},
   'Tennis / Padel':            {col:'#F5A623', light:'#FFF8E6'},
   'Cyclisme':                  {col:'#27AE60', light:'#EDFBF2'},
@@ -229,9 +229,9 @@ function renderCatalogue(catFiltre){
     const cc=CAT_CFG[cat]||{col:'#B91C1C'};
     return '<div style="background:#F0F4FF;border:1px solid #D0DCF0;border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px">'
       +'<div style="width:10px;height:10px;border-radius:50%;background:'+cc.col+';flex-shrink:0"></div>'
-      +'<div><div style="font-size:15px;font-weight:900;color:#0A2540">'+cat+'</div>'
+      +'<div><div style="font-size:15px;font-weight:900;color:#1C1C1E">'+cat+'</div>'
       +'<div style="font-size:11px;color:#6B7280;margin-top:2px">'+PRODUITS.filter(function(p){return p.cat===cat;})[0]&&''+'</div></div>'
-      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#185FA5;background:#D6E8FF;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
+      +'<div style="margin-left:auto;font-size:11px;font-weight:700;color:#B91C1C;background:#D6E8FF;padding:4px 12px;border-radius:20px">'+filtered.length+' produits</div>'
       +'</div>';
   };
 
@@ -250,14 +250,14 @@ function renderCatalogue(catFiltre){
 
 // ═══ CARD PRODUIT ═══
 function renderProdCard(p){
-  const c = CAT_CFG[p.cat]||{col:'#185FA5', light:'#FBEAEA'};
+  const c = CAT_CFG[p.cat]||{col:'#B91C1C', light:'#FBEAEA'};
   const img = PROD_IMAGES[p.id] || 'https://via.placeholder.com/400x400/F8FAFC/94A3B8?text=LABORO';
 
   const stockBadge = p.stock===0
     ? '<span style="display:inline-block;font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:6px;margin-top:6px">Sur commande</span>'
     : p.stock<=p.seuil
     ? '<span style="display:inline-block;font-size:9px;font-weight:700;color:#B45309;background:#FEF3C7;padding:3px 8px;border-radius:6px;margin-top:6px">⚠ Stock faible</span>'
-    : '<span style="display:inline-block;font-size:9px;font-weight:700;color:#185FA5;background:#FBEAEA;padding:3px 8px;border-radius:6px;margin-top:6px">✓ En stock</span>';
+    : '<span style="display:inline-block;font-size:9px;font-weight:700;color:#B91C1C;background:#FBEAEA;padding:3px 8px;border-radius:6px;margin-top:6px">✓ En stock</span>';
 
   return '<div class="pc" onclick="openProduit(\''+p.id+'\')">'
     + '<div style="position:relative;height:120px;overflow:hidden;background:#F8FAFC;border-radius:10px 10px 0 0">'
@@ -267,7 +267,7 @@ function renderProdCard(p){
     + '<div style="position:absolute;bottom:8px;left:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border:1px solid rgba(0,0,0,.08);color:#374151;font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:.4px">'+p.marque+'</div>'
     + '</div>'
     + '<div style="padding:12px 14px 14px">'
-    + '<div style="font-size:13px;font-weight:800;color:#0A2540;line-height:1.35;margin-bottom:3px">'+p.nom+'</div>'
+    + '<div style="font-size:13px;font-weight:800;color:#1C1C1E;line-height:1.35;margin-bottom:3px">'+p.nom+'</div>'
     + '<div style="font-size:10px;color:#94A3B8;margin-bottom:10px">Réf. '+p.ref+'</div>'
     + '<div style="display:flex;align-items:center;justify-content:space-between">'
     + '<div style="font-size:18px;font-weight:900;color:'+c.col+';letter-spacing:-.5px">'+p.pv+' €</div>'
@@ -303,8 +303,8 @@ function showNotifEleve(message, type){
     document.body.appendChild(notif);
   }
   const icons = {info:'📋', success:'✅', warning:'⚠️', rappel:'🔔'};
-  const bgs = {info:'#0A2540', success:'#0A2540', warning:'#7B3F00', rappel:'#1C1C1E'};
-  const borders = {info:'#185FA5', success:'#4A9EE8', warning:'#D97706', rappel:'#B91C1C'};
+  const bgs = {info:'#1C1C1E', success:'#1C1C1E', warning:'#7B3F00', rappel:'#1C1C1E'};
+  const borders = {info:'#B91C1C', success:'#E05C5C', warning:'#D97706', rappel:'#B91C1C'};
   const ic = icons[type]||'📋';
   const bg = bgs[type]||'#1C1C1E';
   const bd = borders[type]||'#B91C1C';

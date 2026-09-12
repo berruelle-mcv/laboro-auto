@@ -50,10 +50,10 @@ function afficherClasse(){
       + '<span class="cls-count">' + eleves.length + '</span></div>'
       + classes.map(function(cls){
           const n = eleves.filter(e => (e.classe||'Sans classe')===cls).length;
-          const clsColor = cls.indexOf('2nde')>=0 ? '#2E7D5E' : cls.indexOf('Term')>=0 ? '#7B2D42' : '#185FA5';
+          const clsColor = cls.indexOf('2nde')>=0 ? '#2E7D5E' : cls.indexOf('Term')>=0 ? '#7B2D42' : '#B91C1C';
           const activeStyle = classeFiltre===cls ? ('background:'+clsColor+';color:#fff;border-color:'+clsColor) : ('border-color:'+clsColor+';color:'+clsColor);
           return '<div class="cls-tab' + (classeFiltre===cls?' on':'') + '" onclick="filtrerClasse(\'' + cls + '\')" style="' + activeStyle + '">'
-            + cls + ' <span style="font-size:9px;background:#E6F1FB;color:#185FA5;padding:1px 5px;border-radius:8px">' + n + '</span></div>';
+            + cls + ' <span style="font-size:9px;background:#FBEAEA;color:#B91C1C;padding:1px 5px;border-radius:8px">' + n + '</span></div>';
         }).join('');
   }
 

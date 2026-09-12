@@ -212,18 +212,18 @@ function startOb(){
       <div style="font-size:22px;font-weight:900;color:#1C1C1E;margin-bottom:6px">Comment ça fonctionne ?</div>
       <div style="font-size:13px;color:#6B7280;margin-bottom:20px">3 étapes simples pour chaque mission.</div>
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:8px">
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
           <div style="width:34px;height:34px;background:#1C1C1E;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">1</div>
           <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">📚 Tu apprends la notion</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Chaque mission commence par une ressource courte. Lis-la — elle contient tout ce qu'il faut savoir.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
           <div style="width:34px;height:34px;background:#7F1414;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">2</div>
           <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">✍️ Tu réponds aux questions</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Des situations réelles chez LABORO — tu observes, tu identifies, tu complètes. C'est guidé.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #DBEAFE">
-          <div style="width:34px;height:34px;background:#185FA5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #FBEAEA">
+          <div style="width:34px;height:34px;background:#B91C1C;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
           <div><div style="font-size:13px;font-weight:800;color:#1C1C1E;margin-bottom:3px">⭐ Tu progresses</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Ton enseignant valide tes réponses. Tu montes en compétences et tu débloques de nouvelles missions.</div></div>
         </div>
@@ -365,8 +365,8 @@ function doLogout(){
   CU=null;localStorage.removeItem('laboro_u');
   // Remettre la couleur par défaut
   const r=document.documentElement;
-  r.style.setProperty('--bl','#185FA5');r.style.setProperty('--bf','#0C447C');
-  r.style.setProperty('--bm','#B5D4F4');r.style.setProperty('--bc','#E6F1FB');
+  r.style.setProperty('--bl','#B91C1C');r.style.setProperty('--bf','#4A1414');
+  r.style.setProperty('--bm','#F0C5C5');r.style.setProperty('--bc','#FBEAEA');
   ['app','onboarding'].forEach(id=>document.getElementById(id).classList.remove('on'));
   document.getElementById('login').classList.add('on');
 }

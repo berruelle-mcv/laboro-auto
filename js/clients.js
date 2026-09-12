@@ -58,7 +58,7 @@ function calcPosturePro(ud){
 }
 
 function getPostureLabel(score){
-  if(score >= 90) return {label:'Excellent', color:'#185FA5', bg:'#FBEAEA'};
+  if(score >= 90) return {label:'Excellent', color:'#B91C1C', bg:'#FBEAEA'};
   if(score >= 75) return {label:'Bien', color:'#7F1414', bg:'#FBEAEA'};
   if(score >= 60) return {label:'A ameliorer', color:'#D97706', bg:'#FEF3C7'};
   return {label:'Insuffisant', color:'#C53030', bg:'#FEE2E2'};
@@ -134,7 +134,7 @@ function envoyerRappel(mail){
   document.getElementById('rappel-modal').style.display = 'none';
   selectedRappelId = null;
   const notifEns = document.createElement('div');
-  notifEns.style.cssText = 'position:fixed;top:20px;right:20px;background:#0A2540;color:#fff;padding:12px 20px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2)';
+  notifEns.style.cssText = 'position:fixed;top:20px;right:20px;background:#1C1C1E;color:#fff;padding:12px 20px;border-radius:10px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2)';
   notifEns.textContent = '✓ Rappel envoye — visible au prochain chargement';
   document.body.appendChild(notifEns);
   setTimeout(function(){ notifEns.remove(); }, 4000);
@@ -286,7 +286,7 @@ function convertirProspect(id, modal){
     nom: p.nom,
     type: p.type || 'B2C',
     ini: p.ini || p.nom.substring(0,2).toUpperCase(),
-    col: '#185FA5',
+    col: '#B91C1C',
     sect: p.sect || '',
     contact: p.contact || '',
     tel: p.tel || '',
@@ -318,7 +318,7 @@ function ouvrirFicheClient(id){
   const isProspectEleve = c.ajouteParEleve === true;
 
   // Couleur selon fidélité
-  const fidelCols={'Stratégique':'#27500A','Fidèle':'#185FA5','Régulier':'#7F1414','Nouveau':'#D97706','Prospect':'#8E44AD','Dormant':'#6B7280','Perdu':'#C53030'};
+  const fidelCols={'Stratégique':'#27500A','Fidèle':'#B91C1C','Régulier':'#7F1414','Nouveau':'#D97706','Prospect':'#8E44AD','Dormant':'#6B7280','Perdu':'#C53030'};
   const col = fidelCols[c.fidelite||c.statut] || '#B91C1C';
 
   const modal=document.createElement('div');
@@ -375,7 +375,7 @@ function ouvrirFicheClient(id){
     }
     const addSicBtn=document.createElement('button');
     addSicBtn.textContent=c.commentaire?'✏️ Modifier le commentaire SIC':'📝 Ajouter un commentaire SIC';
-    addSicBtn.style.cssText='width:100%;margin-bottom:8px;padding:8px;background:#F0FDF4;color:#0A2540;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700';
+    addSicBtn.style.cssText='width:100%;margin-bottom:8px;padding:8px;background:#F0FDF4;color:#1C1C1E;border:1.5px solid #A7F3D0;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700';
     addSicBtn.onclick=function(){
       const txt=prompt('Commentaire SIC :',c.commentaire||'');
       if(txt!==null){
@@ -413,7 +413,7 @@ function ouvrirFicheClient(id){
     const freqFmt=c.freq?c.freq+'×/an':'—';
     [
       [caFmt,'CA total',col],
-      [potFmt,'Réalisation potentiel','#185FA5'],
+      [potFmt,'Réalisation potentiel','#B91C1C'],
       [panierFmt,'Panier moyen','#7F1414'],
       [freqFmt,'Fréquence','#6B7280']
     ].forEach(function(k){
@@ -450,7 +450,7 @@ function ouvrirFicheClient(id){
     });
     // NPS si disponible
     if(c.nps){
-      const npsCol=c.nps>=75?'#185FA5':c.nps>=50?'#D97706':'#C53030';
+      const npsCol=c.nps>=75?'#B91C1C':c.nps>=50?'#D97706':'#C53030';
       const npsCell=document.createElement('div');
       npsCell.style.cssText='background:var(--gc);border-radius:8px;padding:10px;text-align:center';
       npsCell.innerHTML='<div style="font-size:9px;color:var(--gm);text-transform:uppercase;font-weight:700;margin-bottom:2px">NPS</div>'

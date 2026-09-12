@@ -50,8 +50,8 @@ function getIndicateursLive(ud){
 function setAccentColor(classe){
   const colors = {
     '2nde':      {c1:'#7F1414', cf:'#1A3A6E', cm:'#F3C6C6', cb:'#FBEAEA'},
-    '1ere-AGEC': {c1:'#185FA5', cf:'#0C447C', cm:'#B5D4F4', cb:'#E6F1FB'},
-    '1ere-PVOC': {c1:'#185FA5', cf:'#0C447C', cm:'#B5D4F4', cb:'#E6F1FB'},
+    '1ere-AGEC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
+    '1ere-PVOC': {c1:'#B91C1C', cf:'#4A1414', cm:'#F0C5C5', cb:'#FBEAEA'},
     'Term-AGEC': {c1:'#7B2D42', cf:'#5A1F30', cm:'#E8AABF', cb:'#F9E8EE'},
     'Term-PVOC': {c1:'#7B2D42', cf:'#5A1F30', cm:'#E8AABF', cb:'#F9E8EE'},
     'enseignant':{c1:'#2C2C2A', cf:'#1a1a18', cm:'#888780', cb:'#F1EFE8'}
@@ -103,7 +103,7 @@ function renderDashboard(){
   const msgFromEl=document.getElementById('msg-f');
   if(msgFromEl){
     const initials=msgDyn.from.split(' ').slice(0,2).map(function(w){return w[0];}).join('').toUpperCase();
-    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#0A2540,#185FA5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(10,37,64,.3)">'+initials+'</span>'
+    msgFromEl.innerHTML='<span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;box-shadow:0 2px 6px rgba(10,37,64,.3)">'+initials+'</span>'
       +'<span>'+msgDyn.from+'</span>';
   }
   document.getElementById('msg-t').textContent=msgDyn.txt;
@@ -234,13 +234,13 @@ function renderDashboard(){
       +'<div style="font-size:24px;margin-bottom:8px">🏆</div>'
       +'<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Le classement se construit au fil des missions</div>'
       +'<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Complète ta première mission pour apparaître ici.</div>'
-      +'<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#0A2540,#185FA5);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
+      +'<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
       +'</div>';
   }
   // Progression
-  const lc=['var(--gb)','#85B7EB','var(--bl)','var(--vt)','#27500A'];
+  const lc=['var(--gb)','#E59090','var(--bl)','var(--vt)','#27500A'];
   const niveauLabels2=['—','Découverte','En cours','Acquis','Maîtrisé'];
-  const niveauCols2=['var(--gb)','#63B3ED','#B91C1C','#7F1414','#0A2540'];
+  const niveauCols2=['var(--gb)','#E88A8A','#B91C1C','#7F1414','#1C1C1E'];
   document.getElementById('dash-prog').innerHTML=COMP.slice(0,6).map(function(c){
     const lv=calcNiveauComp(c.code,ud);
     return '<div class="u-mb8">'
@@ -267,9 +267,9 @@ function renderDashboard(){
             const mid = entry[0]; const v = entry[1];
             const m = MISSIONS.find(function(x){ return x.id===mid; });
             if(!m) return '';
-            const palierColors = ['','#B91C1C','#7F1414','#185FA5','#7B2FBE'];
+            const palierColors = ['','#B91C1C','#7F1414','#B91C1C','#7B2FBE'];
             const pCol = palierColors[m.palier] || '#B91C1C';
-            const scoreColor = v.score>=14 ? '#185FA5' : v.score>=11 ? '#D97706' : '#C53030';
+            const scoreColor = v.score>=14 ? '#B91C1C' : v.score>=11 ? '#D97706' : '#C53030';
             return '<div style="display:flex;align-items:center;gap:10px;padding:8px;background:#F8FAFF;border-radius:10px;border-left:3px solid '+pCol+'">'
               + '<div class="u-flex-1">'
               + '<div style="font-size:12px;font-weight:700;color:#1C1C1E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+m.titre+'</div>'
@@ -284,7 +284,7 @@ function renderDashboard(){
         + '<div style="font-size:24px;margin-bottom:8px">🚀</div>'
         + '<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Prêt(e) pour ta première mission ?</div>'
         + '<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Lis la ressource, réponds aux questions, progresse.</div>'
-        + '<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#0A2540,#185FA5);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Lancer ma première mission →</button>'
+        + '<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#1C1C1E,#B91C1C);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Lancer ma première mission →</button>'
         + '</div>';
     }
   }
@@ -308,7 +308,7 @@ function renderActus(){
 
   // Message personnalisé selon progression
   const persoMsg = score >= 80
-    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Romain Sauzet a note ta progression — continue ainsi !', color:'#FBEAEA', border:'#185FA5'}
+    ? {icon:'🏆', titre:'Excellent travail !', texte:'Ton score LABORO est dans le top 10%. Romain Sauzet a note ta progression — continue ainsi !', color:'#FBEAEA', border:'#B91C1C'}
     : done.length === 0
     ? {icon:'🚀', titre:'Bienvenue chez LABORO !', texte:'Ta première mission t\'attend. Lis bien la ressource avant de répondre — elle contient tout ce qu\'il faut savoir.', color:'#FEF3C7', border:'#D97706'}
     : done.length < 5
@@ -360,7 +360,7 @@ function renderIndicateurs(){
   const totalMissions = getMissions().length;
   const compsAcquis = COMP.filter(function(c){ return calcNiveauComp(c.code, ud) >= 3; }).length;
   const kpis = [
-    {label:'Missions complétées', value:done.length, total:totalMissions, icon:'✅', color:'#185FA5', bg:'#FBEAEA'},
+    {label:'Missions complétées', value:done.length, total:totalMissions, icon:'✅', color:'#B91C1C', bg:'#FBEAEA'},
     {label:'En cours', value:wip.length, total:null, icon:'🔷', color:'#7F1414', bg:'#FBEAEA'},
     {label:'Moyenne générale', value:avg+'', total:null, unit:'/20', icon:'📊', color:'#D97706', bg:'#FEF3C7'},
     {label:'Compétences acquises', value:compsAcquis, total:COMP.length, icon:'⭐', color:'#7B2FBE', bg:'#EDE9FE'},
@@ -423,8 +423,8 @@ function renderMissions(){
   if(fp) ms = ms.filter(function(m){ return m.palier==fp; });
   if(fc) ms = ms.filter(function(m){ return m.comp.startsWith(fc); });
 
-  const palierColors = ['','#B91C1C','#7F1414','#185FA5','#7B2FBE'];
-  const palierBgs    = ['','#FBEAEA','#DBEAFE','#D1FAE5','#EDE9FE'];
+  const palierColors = ['','#B91C1C','#7F1414','#B91C1C','#7B2FBE'];
+  const palierBgs    = ['','#FBEAEA','#FBEAEA','#D1FAE5','#EDE9FE'];
   const palierLabels = ['','Débutant','Apprenti','Pro compétent','Pro performant'];
 
   // Grouper par compétence pour un affichage structuré
@@ -474,7 +474,7 @@ function renderMissions(){
       : st==='done'
         ? '<span class="sp" style="background:#D1FAE5;color:#065F46">✓ '+sc+'/20</span>'
         : st==='att'
-        ? '<span class="sp" style="background:#DBEAFE;color:#1E40AF">⏳ En attente</span>'
+        ? '<span class="sp" style="background:#FBEAEA;color:#7A1515">⏳ En attente</span>'
         : st==='wip'
         ? '<span class="sp" style="background:#FEF3C7;color:#92400E">✏️ En cours</span>'
         : '<span class="sp" style="background:#F3F4F6;color:#6B7280">À faire</span>';
@@ -483,7 +483,7 @@ function renderMissions(){
     const progressBar = st==='wip'
       ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:40%"></div></div>'
       : st==='done'
-      ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:100%;background:#185FA5"></div></div>'
+      ? '<div class="pb" style="margin-top:8px"><div class="pf" style="width:100%;background:#B91C1C"></div></div>'
       : '';
 
     const clickAction = "handleMission('" + m.id + "')";

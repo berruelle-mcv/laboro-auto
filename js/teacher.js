@@ -37,10 +37,10 @@ function renderCompetencesEnseignant(){
 
     const niveaux = [
       {label:'Non démarré', col:'#A0AEC0'},
-      {label:'Découverte',  col:'#63B3ED'},
+      {label:'Découverte',  col:'#E88A8A'},
       {label:'En progression', col:'#B91C1C'},
-      {label:'Acquis',     col:'#185FA5'},
-      {label:'Maîtrisé',  col:'#0A2540'}
+      {label:'Acquis',     col:'#B91C1C'},
+      {label:'Maîtrisé',  col:'#1C1C1E'}
     ];
 
     const barSegments = total > 0 ? niveaux.map(function(n,i){
@@ -48,7 +48,7 @@ function renderCompetencesEnseignant(){
       return pct > 0 ? '<div style="height:100%;width:'+pct+'%;background:'+n.col+';flex-shrink:0" title="'+n.label+' : '+counts[i]+'"></div>' : '';
     }).join('') : '<div style="height:100%;width:100%;background:#E2E8F0"></div>';
 
-    const statusColor = pctAcquis >= 75 ? '#185FA5' : pctAcquis >= 40 ? '#D97706' : '#A0AEC0';
+    const statusColor = pctAcquis >= 75 ? '#B91C1C' : pctAcquis >= 40 ? '#D97706' : '#A0AEC0';
 
     return '<div class="cc" style="border-left:4px solid '+statusColor+'">'
       + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'
@@ -91,7 +91,7 @@ function openProduit(id){
     : '<span class="u-success">✓ '+p.stock+' en stock</span>';
 
   const nBg = {'Débutant':'#FBEAEA','Intermédiaire':'#FBEAEA','Expert':'#FEE2E2','Compétition':'#FEE2E2','Tous niveaux':'#F3F4F6','Pro':'#FBEAEA','Entraînement':'#F0FFF4','Loisir':'#FFF7ED','Spécialisé':'#FAF5FF'};
-  const nCo = {'Débutant':'#185FA5','Intermédiaire':'#7F1414','Expert':'#C53030','Compétition':'#C53030','Tous niveaux':'#6B7280','Pro':'#185FA5','Entraînement':'#27AE60','Loisir':'#D97706','Spécialisé':'#7B2FBE'};
+  const nCo = {'Débutant':'#B91C1C','Intermédiaire':'#7F1414','Expert':'#C53030','Compétition':'#C53030','Tous niveaux':'#6B7280','Pro':'#B91C1C','Entraînement':'#27AE60','Loisir':'#D97706','Spécialisé':'#7B2FBE'};
 
   // Pastilles coloris
   const colorisHtml = p.coloris && p.coloris.length
@@ -204,8 +204,8 @@ function renderClasse(){
       ${classes.map(cls=>{
         const n=allUsers.filter(u=>(u.classe||'Inconnue')===cls).length;
         const att=allUsers.filter(u=>(u.classe||'Inconnue')===cls&&Object.values(u.missions||{}).some(m=>m.status==='att')).length;
-        const clsColor=cls.includes('2nde')?'#2E7D5E':cls.includes('Term')?'#7B2D42':'#185FA5';
-        const clsBg=cls.includes('2nde')?'#FBEAEA':cls.includes('Term')?'#F9E8EE':'#E6F1FB';
+        const clsColor=cls.includes('2nde')?'#2E7D5E':cls.includes('Term')?'#7B2D42':'#B91C1C';
+        const clsBg=cls.includes('2nde')?'#FBEAEA':cls.includes('Term')?'#F9E8EE':'#FBEAEA';
         const activeStyle=classeFiltre===cls?`background:${clsColor};color:#fff;border-color:${clsColor}`:`border-color:${clsColor};color:${clsColor}`;
         return`<div class="cls-tab${classeFiltre===cls?' on':''}" onclick="filtrerClasse('${cls}',this)" style="${activeStyle}">${cls} <span style="font-size:9px;background:${classeFiltre===cls?'rgba(255,255,255,.25)':clsBg};color:${classeFiltre===cls?'#fff':clsColor};padding:1px 5px;border-radius:8px">${n}</span>${att>0?` <span style="font-size:9px;background:var(--am);color:#fff;padding:1px 5px;border-radius:8px">${att}⚡</span>`:''}</div>`;
       }).join('')}`;
@@ -230,7 +230,7 @@ function renderClasse(){
   const titreEl=document.getElementById('cl-titre');
   if(titreEl)titreEl.textContent=classeFiltre?`Classe : ${classeFiltre} — ${users.length} élève(s)`:'Toutes les classes — cliquer sur un élève pour sa fiche';
 
-  const lc=['var(--gb)','#85B7EB','var(--bl)','var(--vt)','#27500A'];
+  const lc=['var(--gb)','#E59090','var(--bl)','var(--vt)','#27500A'];
   const tb=document.getElementById('cl-tbody');
   if(!users.length){
     tb.innerHTML=`<tr><td colspan="9" style="padding:16px;color:var(--gm);font-size:12px">${classeFiltre?'Aucun élève dans cette classe pour le moment.':'Aucun élève connecté pour le moment.'}</td></tr>`;
@@ -288,7 +288,7 @@ function showFicheEleve(mail){
   const sc2=Object.values(u.missions).filter(m=>m.score).map(m=>m.score);
   const avg=sc2.length?(sc2.reduce((a,b)=>a+b,0)/sc2.length).toFixed(1):'—';
   const sc=calcScore(u);
-  const lc=['var(--gb)','#85B7EB','var(--bl)','var(--vt)','#27500A'];
+  const lc=['var(--gb)','#E59090','var(--bl)','var(--vt)','#27500A'];
   const ll=['Non démarré','Découverte','En progression','Acquis','Maîtrisé'];
   const ini=nom.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
   const savedObs=s[mail]?.obs_ens||'';
@@ -336,7 +336,7 @@ function renderIndicateursPedago(){
   const reussi = scores.filter(function(s){ return s>=11; }).length;
   const tauxReussite = scores.length ? Math.round(reussi/scores.length*100) : 0;
   const bestScore = scores.length ? Math.max.apply(null, scores) : 0;
-  const palierColors = ['','#B91C1C','#7F1414','#185FA5','#7B2FBE'];
+  const palierColors = ['','#B91C1C','#7F1414','#B91C1C','#7B2FBE'];
   const palierLabels = ['','Débutant','Apprenti','Pro compétent','Pro performant'];
   const maxByPalier = Math.max.apply(null, byPalier.slice(1)) || 1;
 
@@ -350,7 +350,7 @@ function renderIndicateursPedago(){
       }).join('')
     + '</div></div>'
     + '<div class="card"><div class="ct">🎯 Ma performance</div><div class="u-grid-2">'
-    + '<div style="background:#F0FFF4;border-radius:10px;padding:12px;text-align:center"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:4px">Taux de réussite</div><div style="font-size:24px;font-weight:900;color:'+(tauxReussite>=80?'#185FA5':tauxReussite>=60?'#D97706':'#C53030')+'">'+tauxReussite+'%</div><div class="u-label">note ≥ 11/20</div></div>'
+    + '<div style="background:#F0FFF4;border-radius:10px;padding:12px;text-align:center"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:4px">Taux de réussite</div><div style="font-size:24px;font-weight:900;color:'+(tauxReussite>=80?'#B91C1C':tauxReussite>=60?'#D97706':'#C53030')+'">'+tauxReussite+'%</div><div class="u-label">note ≥ 11/20</div></div>'
     + '<div style="background:#FBEAEA;border-radius:10px;padding:12px;text-align:center"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:4px">Meilleur score</div><div style="font-size:24px;font-weight:900;color:#7F1414">'+(bestScore>0?bestScore+'/20':'—')+'</div><div class="u-label">sur toutes les missions</div></div>'
     + '<div style="background:#FFF7ED;border-radius:10px;padding:12px;text-align:center"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:4px">Missions terminées</div><div style="font-size:24px;font-weight:900;color:#D97706">'+done.length+'/'+allMissions.length+'</div><div class="u-label">'+Math.round(done.length/allMissions.length*100)+'% complété</div></div>'
     + '<div style="background:#FAF5FF;border-radius:10px;padding:12px;text-align:center"><div style="font-size:9px;font-weight:700;color:#6B7280;text-transform:uppercase;margin-bottom:4px">Moyenne générale</div><div style="font-size:24px;font-weight:900;color:#7B2FBE">'+(avg>0?avg.toFixed(1)+'/20':'—')+'</div><div class="u-label">sur missions notées</div></div>'
@@ -360,7 +360,7 @@ function renderIndicateursPedago(){
         const compAcquis = COMP.filter(function(c){ return calcNiveauComp(c.code,ud)>=3; }).length;
         const pct = Math.round(compAcquis/COMP.length*100);
         const nextMilestone = pct<25?25:pct<50?50:pct<75?75:100;
-        return '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span class="u-subtitle">'+compAcquis+'/'+COMP.length+' compétences acquises ('+pct+'%)</span><span class="u-muted">Prochain palier : '+nextMilestone+'%</span></div><div style="position:relative;background:#E2E8F0;border-radius:10px;height:14px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#185FA5,#0A2540);border-radius:10px;transition:width .6s"></div>'
+        return '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span class="u-subtitle">'+compAcquis+'/'+COMP.length+' compétences acquises ('+pct+'%)</span><span class="u-muted">Prochain palier : '+nextMilestone+'%</span></div><div style="position:relative;background:#E2E8F0;border-radius:10px;height:14px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,#B91C1C,#1C1C1E);border-radius:10px;transition:width .6s"></div>'
           +[25,50,75].map(function(mark){ return '<div style="position:absolute;top:0;left:'+mark+'%;width:2px;height:100%;background:#fff;opacity:.6"></div>'; }).join('')
           +'</div><div style="display:flex;justify-content:space-between;font-size:9px;color:#9CA3AF;margin-top:3px"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div>';
       })()
