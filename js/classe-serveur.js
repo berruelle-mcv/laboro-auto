@@ -1,127 +1,112 @@
-// ================================================
-//   LABORO — Vue classe (lecture serveur) + actions élève
-//   Chargé APRÈS teacher.js dans index.html.
-// ================================================
+cat > ajout_routes.js << 'EOF'
+const fs = require('fs');
+const chemin = 'server.js';
+let contenu = fs.readFileSync(chemin, 'utf8');
 
-let ELEVES_SERVEUR = [];
+const marqueur = 'app.listen(PORT';
+if (!contenu.includes(marqueur)) {
+  console.error('Marqueur "app.listen(PORT" introuvable — rien n\'a ete modifie.');
+  process.exit(1);
+}
+if (contenu.includes("/api/eleves/supprimer")) {
+  console.log('Les routes existent deja — rien a faire.');
+  process.exit(0);
+}
 
-async function renderClasse(){
-  const token = localStorage.getItem('laboro_token');
-  const tb = document.getElementById('cl-tbody');
-
-  if(!token){
-    if(tb) tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--gm);font-size:12px">'
-      + 'Connecte-toi via le serveur (adresse mail + mot de passe) pour afficher la liste des élèves.'
-      + '</td></tr>';
-    if(typeof renderMDJListe === 'function') renderMDJListe();
-    return;
+const nouvellesRoutes = `
+// ═══════════════════════════════════════════════════════════
+//   Gestion complete d'un eleve : changer de classe / reinitialiser / supprimer
+// ═══════════════════════════════════════════════════════════
+app.post('/api/eleves/changer-classe', verifierToken, (req, res) => {
+  if (req.utilisateur.role !== 'enseignant') {
+    return res.status(403).json({ ok: false, erreur: 'Reserve aux enseignants.' });
   }
-
-  try{
-    const rep = await fetch(LABORO_API + '/api/eleves', {
-      headers: { 'Authorization': 'Bearer ' + token }
+  const { eleve_id, classeCode } = req.body;
+  if (!eleve_id || !classeCode) {
+    return res.status(400).json({ ok: false, erreur: 'eleve_id et classeCode requis.' });
+  }
+  const MAP_CLASSES = { '1ere-PVOC': 'CLS_2026_MCVB' };
+  const classe_id = MAP_CLASSES[classeCode];
+  if (!classe_id) {
+    return res.status(400).json({ ok: false, erreur: 'Classe inconnue : ' + classeCode });
+  }
+  const classe = db.prepare('SELECT id FROM classes WHERE id = ?').get(classe_id);
+  if (!classe) {
+    return res.status(400).json({ ok: false, erreur: "La classe n'existe pas encore en base." });
+  }
+  const eleve = db.prepare('SELECT id FROM eleves WHERE id = ?').get(eleve_id);
+  if (!eleve) {
+    return res.status(404).json({ ok: false, erreur: 'Eleve introuvable.' });
+  }
+  try {
+    const tx = db.transaction(() => {
+      db.prepare('DELETE FROM classe_eleves WHERE eleve_id = ?').run(eleve_id);
+      db.prepare('INSERT INTO classe_eleves (classe_id, eleve_id) VALUES (?, ?)').run(classe_id, eleve_id);
     });
-    const data = await rep.json();
-    if(!data.ok){
-      if(tb) tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--rg);font-size:12px">'
-        + 'Erreur : ' + (data.erreur || 'chargement impossible') + '</td></tr>';
-      return;
-    }
-    ELEVES_SERVEUR = data.eleves || [];
-  }catch(e){
-    if(tb) tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--rg);font-size:12px">'
-      + 'Impossible de joindre le serveur LABORO.</td></tr>';
-    console.error('renderClasse (serveur) :', e);
-    return;
+    tx();
+    return res.json({ ok: true, classe: classeCode });
+  } catch (e) {
+    console.error('Erreur changer-classe:', e);
+    return res.status(500).json({ ok: false, erreur: 'Impossible de changer la classe.' });
   }
+});
 
-  afficherClasse();
-}
-
-function afficherClasse(){
-  const eleves = ELEVES_SERVEUR;
-
-  const classes = [...new Set(eleves.map(e => e.classe || 'Sans classe'))].sort();
-  const tabsEl = document.getElementById('classe-tabs');
-  if(tabsEl){
-    tabsEl.innerHTML =
-      '<div style="font-size:11px;font-weight:700;color:var(--gm);margin-right:4px">Filtrer :</div>'
-      + '<div class="cls-tab' + (classeFiltre===''?' on':'') + '" onclick="filtrerClasse(\'\')">Toutes '
-      + '<span class="cls-count">' + eleves.length + '</span></div>'
-      + classes.map(function(cls){
-          const n = eleves.filter(e => (e.classe||'Sans classe')===cls).length;
-          const clsColor = cls.indexOf('2nde')>=0 ? '#2E7D5E' : cls.indexOf('Term')>=0 ? '#7B2D42' : '#B5651D';
-          const activeStyle = classeFiltre===cls ? ('background:'+clsColor+';color:#fff;border-color:'+clsColor) : ('border-color:'+clsColor+';color:'+clsColor);
-          return '<div class="cls-tab' + (classeFiltre===cls?' on':'') + '" onclick="filtrerClasse(\'' + cls + '\')" style="' + activeStyle + '">'
-            + cls + ' <span style="font-size:9px;background:#F5E6D8;color:#B5651D;padding:1px 5px;border-radius:8px">' + n + '</span></div>';
-        }).join('');
+app.post('/api/eleves/reinitialiser', verifierToken, (req, res) => {
+  if (req.utilisateur.role !== 'enseignant') {
+    return res.status(403).json({ ok: false, erreur: 'Reserve aux enseignants.' });
   }
-
-  const liste = classeFiltre ? eleves.filter(e => (e.classe||'Sans classe')===classeFiltre) : eleves;
-
-  const statsEl = document.getElementById('classe-stats');
-  if(statsEl){
-    statsEl.innerHTML =
-      '<div style="background:var(--bc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--bl)">' + liste.length + '</div><div class="u-label-up">Élèves</div></div>'
-      + '<div style="background:var(--vc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--vt)">' + classes.length + '</div><div class="u-label-up">Classe(s)</div></div>'
-      + '<div style="background:var(--gc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--gr)">—</div><div class="u-label-up">Missions validées</div></div>'
-      + '<div style="background:var(--gc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--gr)">—</div><div class="u-label-up">Moyenne classe</div></div>';
+  const { eleve_id } = req.body;
+  if (!eleve_id) {
+    return res.status(400).json({ ok: false, erreur: 'eleve_id requis.' });
   }
-
-  const titreEl = document.getElementById('cl-titre');
-  if(titreEl) titreEl.textContent = classeFiltre
-    ? ('Classe : ' + classeFiltre + ' — ' + liste.length + ' élève(s)')
-    : ('Tous les élèves — ' + liste.length);
-
-  const tb = document.getElementById('cl-tbody');
-  if(!tb){ if(typeof renderMDJListe === 'function') renderMDJListe(); return; }
-
-  if(!liste.length){
-    tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--gm);font-size:12px">'
-      + (classeFiltre ? 'Aucun élève dans cette classe.' : 'Aucun élève pour le moment. Ajoute des élèves avec le formulaire ci-dessus.')
-      + '</td></tr>';
-    if(typeof renderMDJListe === 'function') renderMDJListe();
-    return;
+  const eleve = db.prepare('SELECT id FROM eleves WHERE id = ?').get(eleve_id);
+  if (!eleve) {
+    return res.status(404).json({ ok: false, erreur: 'Eleve introuvable.' });
   }
-
-  tb.innerHTML = liste.map(function(e){
-    const nomAff = ((e.prenom ? e.prenom + ' ' : '') + (e.nom || '')).trim() || e.email;
-    const cls = e.classe || '—';
-    const btnReset = '<button onclick="resetMdpEleve(\'' + e.id + '\',\'' + (nomAff.replace(/'/g,"")) + '\')" '
-      + 'title="Réinitialiser le mot de passe" '
-      + 'style="background:none;border:.5px solid var(--gb);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px">🔑</button>';
-    return '<tr>'
-      + '<td style="font-weight:700">' + nomAff + '</td>'
-      + '<td class="u-label-sm">' + cls + '</td>'
-      + '<td colspan="5" style="font-size:11px;color:var(--gm)">' + e.email + '</td>'
-      + '<td style="font-size:10px;color:var(--vt);font-weight:700">' + (e.statut || 'actif') + '</td>'
-      + '<td style="text-align:center">' + btnReset + '</td>'
-      + '</tr>';
-  }).join('');
-
-  if(typeof renderMDJListe === 'function') renderMDJListe();
-}
-
-function filtrerClasse(cls){
-  classeFiltre = cls || '';
-  afficherClasse();
-}
-
-async function resetMdpEleve(eleveId, nomAff){
-  if(!confirm('Réinitialiser le mot de passe de ' + nomAff + ' ?\n\nSon mot de passe redeviendra "Laboro2025" et il devra en choisir un nouveau à sa prochaine connexion.')) return;
-  const token = localStorage.getItem('laboro_token');
-  if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
-  try{
-    const rep = await fetch(LABORO_API + '/api/eleves/reset-mdp', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({ eleve_id: eleveId })
+  try {
+    const tx = db.transaction(() => {
+      db.prepare('DELETE FROM progression_criteres WHERE progression_id IN (SELECT id FROM progressions WHERE eleve_id = ?)').run(eleve_id);
+      db.prepare('DELETE FROM progressions WHERE eleve_id = ?').run(eleve_id);
     });
-    const d = await rep.json();
-    if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
-    alert('✅ Mot de passe réinitialisé pour ' + d.prenom + ' ' + d.nom + '.\n\nNouveau mot de passe : ' + d.motDePasse + '\n(il devra le changer à sa prochaine connexion)');
-  }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
-    console.error('resetMdpEleve :', e);
+    tx();
+    return res.json({ ok: true });
+  } catch (e) {
+    console.error('Erreur reinitialiser:', e);
+    return res.status(500).json({ ok: false, erreur: 'Impossible de reinitialiser.' });
   }
-}
+});
+
+app.post('/api/eleves/supprimer', verifierToken, (req, res) => {
+  if (req.utilisateur.role !== 'enseignant') {
+    return res.status(403).json({ ok: false, erreur: 'Reserve aux enseignants.' });
+  }
+  const { eleve_id } = req.body;
+  if (!eleve_id) {
+    return res.status(400).json({ ok: false, erreur: 'eleve_id requis.' });
+  }
+  const eleve = db.prepare('SELECT id FROM eleves WHERE id = ?').get(eleve_id);
+  if (!eleve) {
+    return res.status(404).json({ ok: false, erreur: 'Eleve introuvable.' });
+  }
+  try {
+    const tx = db.transaction(() => {
+      db.prepare('DELETE FROM portfolio_tokens WHERE eleve_id = ?').run(eleve_id);
+      db.prepare('DELETE FROM progression_criteres WHERE progression_id IN (SELECT id FROM progressions WHERE eleve_id = ?)').run(eleve_id);
+      db.prepare('DELETE FROM progressions WHERE eleve_id = ?').run(eleve_id);
+      db.prepare('DELETE FROM classe_eleves WHERE eleve_id = ?').run(eleve_id);
+      db.prepare('DELETE FROM eleves WHERE id = ?').run(eleve_id);
+    });
+    tx();
+    return res.json({ ok: true });
+  } catch (e) {
+    console.error('Erreur supprimer eleve:', e);
+    return res.status(500).json({ ok: false, erreur: "Impossible de supprimer l'eleve." });
+  }
+});
+
+`;
+
+contenu = contenu.replace(marqueur, nouvellesRoutes + marqueur);
+fs.writeFileSync(chemin, contenu, 'utf8');
+console.log('OK — 3 routes ajoutees dans server.js, juste avant app.listen.');
+EOF
