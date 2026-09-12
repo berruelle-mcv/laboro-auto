@@ -12,65 +12,73 @@
 // ================================================
 var LABORO_CONFIG = null;
 
+// Applique LABORO_CONFIG au DOM (marque, ville, responsable, couleurs…).
+// Appelée à la fois en cas de succès et en cas d'échec du chargement de
+// config.json, pour garantir que les éléments masqués par .cfg-pending
+// sont TOUJOURS révélés, quoi qu'il arrive — jamais de texte figé caché.
+function applyConfig() {
+  document.title = LABORO_CONFIG.nom_plateforme || 'LABORO';
+  const vEls = document.querySelectorAll('#app-version, #tb-version');
+  vEls.forEach(el => { if(el) el.textContent = 'v' + LABORO_CONFIG.version; });
+  const ent = LABORO_CONFIG.entreprise || {};
+  const perso = LABORO_CONFIG.personnages || {};
+  const resp = perso.responsable || {};
+  const nomEnt = ent.nom || 'LABORO';
+  const villeEnt = ent.ville || 'Essonne';
+  const secteur = ent.secteur || 'Plateforme pédagogique';
+  const nomResp = (resp.prenom || 'Votre') + ' ' + (resp.nom || 'responsable');
+  const posteResp = resp.poste || 'Responsable';
+  const setTxt = (id, txt) => { const el = document.getElementById(id); if(el) { el.textContent = txt; el.classList.remove('cfg-pending'); } };
+  setTxt('cfg-brand', nomEnt);
+  setTxt('cfg-brand-sub', villeEnt + ' · Essonne (91)');
+  setTxt('cfg-lv', secteur + ' · ' + villeEnt);
+  setTxt('cfg-entreprise-sub', secteur + ' · ' + villeEnt + ' (91)');
+  setTxt('msg-f', nomResp + ' — ' + posteResp);
+  setTxt('mo-m', nomEnt);
+  const nomPlateforme = LABORO_CONFIG.nom_plateforme || 'LABORO';
+  const nomPlateformeHtml = (() => {
+    const parts = nomPlateforme.split(' ');
+    if(parts.length < 2) return nomPlateforme;
+    const base = parts[0];
+    const suffixe = parts.slice(1).join(' ');
+    return base + ' <i style="font-style:italic;text-transform:uppercase">' + suffixe + '</i>';
+  })();
+  window.applyNomPlateforme = function() {
+    ['cfg-nom-plateforme','cfg-nom-plateforme-2','cfg-nom-plateforme-3','cfg-nom-plateforme-4'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.innerHTML = nomPlateformeHtml;
+    });
+    document.querySelectorAll('.btn-li').forEach(el => {
+      if(el.textContent.includes('LABORO') || el.textContent.includes('Se connecter')) el.textContent = 'Se connecter à ' + nomPlateforme + ' →';
+    });
+  };
+  if(document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(window.applyNomPlateforme, 100);
+  } else {
+    window.addEventListener('load', window.applyNomPlateforme);
+  }
+  if (LABORO_CONFIG.couleurs) {
+    document.documentElement.style.setProperty('--laboro-primary', LABORO_CONFIG.couleurs.primaire);
+    document.documentElement.style.setProperty('--laboro-secondary', LABORO_CONFIG.couleurs.secondaire);
+  }
+}
+
 async function loadConfig() {
   try {
     const response = await fetch('config.json');
     LABORO_CONFIG = await response.json();
     console.log('[LABORO] Config chargée :', LABORO_CONFIG.filiere, 'v' + LABORO_CONFIG.version);
-    document.title = LABORO_CONFIG.nom_plateforme || 'LABORO';
-    const vEls = document.querySelectorAll('#app-version, #tb-version');
-    vEls.forEach(el => { if(el) el.textContent = 'v' + LABORO_CONFIG.version; });
-    const ent = LABORO_CONFIG.entreprise || {};
-    const perso = LABORO_CONFIG.personnages || {};
-    const resp = perso.responsable || {};
-    const nomEnt = ent.nom || 'LABORO Sport & Outdoor';
-    const villeEnt = ent.ville || 'Évry-Courcouronnes';
-    const secteur = ent.secteur || 'Sport & Outdoor';
-    const nomResp = (resp.prenom || 'Romain') + ' ' + (resp.nom || 'Sauzet');
-    const posteResp = resp.poste || 'Resp. Commerce';
-    const setTxt = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
-    setTxt('cfg-brand', nomEnt);
-    setTxt('cfg-brand-sub', villeEnt + ' · Essonne (91)');
-    setTxt('cfg-lv', secteur + ' · ' + villeEnt);
-    setTxt('cfg-entreprise-sub', secteur + ' · ' + villeEnt + ' (91)');
-    setTxt('msg-f', nomResp + ' — ' + posteResp);
-    setTxt('mo-m', nomEnt);
-    const nomPlateforme = LABORO_CONFIG.nom_plateforme || 'LABORO';
-    const nomPlateformeHtml = (() => {
-      const parts = nomPlateforme.split(' ');
-      if(parts.length < 2) return nomPlateforme;
-      const base = parts[0];
-      const suffixe = parts.slice(1).join(' ');
-      return base + ' <i style="font-style:italic;text-transform:uppercase">' + suffixe + '</i>';
-    })();
-    window.applyNomPlateforme = function() {
-      ['cfg-nom-plateforme','cfg-nom-plateforme-2','cfg-nom-plateforme-3','cfg-nom-plateforme-4'].forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.innerHTML = nomPlateformeHtml;
-      });
-      document.querySelectorAll('.btn-li').forEach(el => {
-        if(el.textContent.includes('LABORO') || el.textContent.includes('Se connecter')) el.textContent = 'Se connecter à ' + nomPlateforme + ' →';
-      });
-    };
-    if(document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(window.applyNomPlateforme, 100);
-    } else {
-      window.addEventListener('load', window.applyNomPlateforme);
-    }
-    if (LABORO_CONFIG.couleurs) {
-      document.documentElement.style.setProperty('--laboro-primary', LABORO_CONFIG.couleurs.primaire);
-      document.documentElement.style.setProperty('--laboro-secondary', LABORO_CONFIG.couleurs.secondaire);
-    }
   } catch(e) {
     console.warn('[LABORO] config.json non trouvé — valeurs par défaut utilisées');
     LABORO_CONFIG = {
       filiere: 'mcv',
       version: '1.0.0',
       nom_plateforme: 'LABORO',
-      entreprise: { nom: 'LABORO Sport & Outdoor', ville: 'Évry-Courcouronnes' },
+      entreprise: { nom: 'LABORO', ville: 'Essonne' },
       couleurs: { primaire: '#2B2B2E', secondaire: '#B5651D' }
     };
   }
+  applyConfig();
 }
 
 window.addEventListener('error', function(e) {
@@ -107,7 +115,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
         <div class="lc"><svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M7 11l1.1-3.3a1 1 0 0 1 .95-.7h7.9a1 1 0 0 1 .95.7L19 11h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1a2.5 2.5 0 0 1-5 0H10a2.5 2.5 0 0 1-5 0H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h3zm1.65-2.3L7.9 11h8.2l-.75-2.3a.3.3 0 0 0-.3-.2H8.95a.3.3 0 0 0-.3.2zM7 16.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm10 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z"/></svg></div>
         <div>
           <div class="ln" id="cfg-nom-plateforme">LABORO</div>
-          <div class="lv" id="cfg-lv">Sport & Outdoor · Évry-Courcouronnes (91)</div>
+          <div class="lv cfg-pending" id="cfg-lv">—</div>
         </div>
       </div>
     </div>
@@ -146,7 +154,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
       <div class="lr-top">
         <div class="lr-logo-big"><svg viewBox="0 0 24 24" width="56" height="56" fill="currentColor"><path d="M7 11l1.1-3.3a1 1 0 0 1 .95-.7h7.9a1 1 0 0 1 .95.7L19 11h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1a2.5 2.5 0 0 1-5 0H10a2.5 2.5 0 0 1-5 0H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h3zm1.65-2.3L7.9 11h8.2l-.75-2.3a.3.3 0 0 0-.3-.2H8.95a.3.3 0 0 0-.3.2zM7 16.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm10 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z"/></svg></div>
         <div>
-          <div class="lr-brand" id="cfg-brand">LABORO Sport & Outdoor</div>
+          <div class="lr-brand cfg-pending" id="cfg-brand">LABORO</div>
           <div class="lr-brand-sub" id="cfg-brand-sub">Évry-Courcouronnes · Essonne (91)</div>
         </div>
       </div>
@@ -410,7 +418,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
       <div class="lb-entete">
         <div>
           <div class="lb-entete-logo" id="cfg-nom-plateforme-3">LABORO</div>
-          <div class="lb-entete-sub" id="cfg-entreprise-sub">Sport &amp; Outdoor · Évry-Courcouronnes (91)</div>
+          <div class="lb-entete-sub cfg-pending" id="cfg-entreprise-sub">—</div>
         </div>
         <div class="lb-entete-date">Évry-Courcouronnes, le 6 mai 2026<br><span style="font-size:10px;color:#F0DFC8;margin-top:2px;display:block">Lettre de bienvenue — Confidentiel</span></div>
       </div>
@@ -863,7 +871,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
 
     <div id="mo" class="mo">
       <div class="modal">
-        <div class="mo-h"><div style="flex:1;min-width:0"><h2 id="mo-t" style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</h2><p id="mo-m" style="font-size:11px;opacity:.75;margin-top:2px">LABORO Sport & Outdoor</p><div id="mo-palier-desc" style="display:none;margin-top:6px;padding:6px 12px;border-radius:6px;font-size:11.5px;line-height:1.5;border-left:3px solid var(--ac1)"></div></div><div id="mo-timer" style="font-size:12px;font-weight:700;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 10px;margin-right:8px;display:none;align-items:center;gap:5px"><span>⏱</span><span id="mo-timer-val">55:00</span></div><div class="mo-controls"><button class="mo-ctrl-btn" onclick="moMinimize()" title="Minimiser">─</button><button class="mo-ctrl-btn" onclick="moFullscreen()" id="mo-fs-btn" title="Plein écran">⛶</button><button class="mo-ctrl-btn mo-ctrl-close" onclick="closeMo()" title="Fermer">✕</button></div></div>
+        <div class="mo-h"><div style="flex:1;min-width:0"><h2 id="mo-t" style="font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</h2><p id="mo-m" class="cfg-pending" style="font-size:11px;opacity:.75;margin-top:2px">—</p><div id="mo-palier-desc" style="display:none;margin-top:6px;padding:6px 12px;border-radius:6px;font-size:11.5px;line-height:1.5;border-left:3px solid var(--ac1)"></div></div><div id="mo-timer" style="font-size:12px;font-weight:700;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:4px 10px;margin-right:8px;display:none;align-items:center;gap:5px"><span>⏱</span><span id="mo-timer-val">55:00</span></div><div class="mo-controls"><button class="mo-ctrl-btn" onclick="moMinimize()" title="Minimiser">─</button><button class="mo-ctrl-btn" onclick="moFullscreen()" id="mo-fs-btn" title="Plein écran">⛶</button><button class="mo-ctrl-btn mo-ctrl-close" onclick="closeMo()" title="Fermer">✕</button></div></div>
         <div class="mo-tabs"><div class="mo-tab on" onclick="moTab(0,this)">Apprendre d'abord</div><div class="mo-tab" onclick="moTab(1,this)">La mission</div><div class="mo-tab" id="tab-fb" style="display:none" onclick="moTab(2,this)">Feedback IA</div></div>
         <div class="mo-body"><div class="mo-tp on" id="mo-learn"></div><div class="mo-tp" id="mo-mission"></div><div class="mo-tp" id="mo-fb"></div></div>
         <div class="mo-act">
