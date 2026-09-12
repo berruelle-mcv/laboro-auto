@@ -609,3 +609,9 @@ img { max-width: 100%; height: auto; }
   /* Texte un peu réduit pour les écrans étroits */
   body { font-size: 14px; }
 }
+
+/* ── Anti-FOUC : masque les textes dépendants de config.json tant qu'elle
+     n'est pas chargée, pour éviter le flash de la marque d'une autre
+     filière (ex: "Sport & Outdoor" visible une frame avant "Auto").
+     Retiré en JS par loadConfig() une fois le texte réel injecté. ── */
+.cfg-pending { visibility: hidden; }
