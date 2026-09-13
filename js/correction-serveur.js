@@ -3,6 +3,56 @@
 //   Chargé APRÈS missions.js dans index.html.
 // ================================================
 
+// ═══════════════════════════════════════════════════════════
+//   Synchronisation des progressions depuis le serveur
+//   Le tableau de bord élève lit sa progression depuis une copie
+//   locale (localStorage), mise à jour au moment de chaque
+//   soumission. Si l'enseignant valide/ajuste une note derrière
+//   (Vue classe), cette copie locale ne le sait jamais toute
+//   seule — d'où ce rattrapage, appelé à chaque connexion, qui
+//   réaligne le local sur le serveur (source de vérité).
+// ═══════════════════════════════════════════════════════════
+async function synchroniserProgressionsServeur(){
+  if(!CU || CU.classe === 'enseignant') return;
+  const token = localStorage.getItem('laboro_token');
+  if(!token) return;
+  try{
+    const rep = await fetch(LABORO_API + '/api/progressions', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok || !Array.isArray(d.progressions)) return;
+
+    const ud = gUD();
+    let changed = false;
+    d.progressions.forEach(function(p){
+      const local = ud.missions[p.mission_id];
+      const statutServeur = p.statut === 'valide' ? 'done' : 'att';
+      const noteServeur = p.note_finale != null ? p.note_finale : p.note_ia;
+      const dejaAJour = local && local.status === statutServeur && (statutServeur !== 'done' || local.score === noteServeur);
+      if(!dejaAJour){
+        ud.missions[p.mission_id] = {
+          ...local,
+          id: p.mission_id,
+          status: statutServeur,
+          note_ia: p.note_ia,
+          score: statutServeur === 'done' ? noteServeur : (local ? local.score : undefined),
+          date_validation: p.validated_at || (local ? local.date_validation : undefined)
+        };
+        changed = true;
+      }
+    });
+
+    if(changed){
+      sUD(ud);
+      if(typeof renderDashboard === 'function') renderDashboard();
+      if(typeof renderMissions === 'function') renderMissions();
+    }
+  }catch(e){
+    console.error('synchroniserProgressionsServeur :', e);
+  }
+}
+
 async function soumettreReponses(){
   if(!CM) return;
 
