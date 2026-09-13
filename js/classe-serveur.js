@@ -110,6 +110,151 @@ function selectionnerEleve(id, nomAff){
   const zone = document.getElementById('eleve-selectionne-nom');
   if(zone) zone.textContent = 'Sélectionné : ' + nomAff;
   afficherClasse();
+  const eleve = ELEVES_SERVEUR.find(function(e){ return e.id === id; });
+  if(eleve) afficherFicheEleve(eleve);
+}
+
+// ═══════════════════════════════════════════════════════════
+//   Fiche élève détaillée (missions, compétences, observations)
+//   Reconstruite sur les vraies données serveur (table progressions),
+//   en réutilisant calcScore()/calcNiveauComp() déjà éprouvées côté
+//   élève — seule la source de données change (serveur au lieu de
+//   localStorage).
+// ═══════════════════════════════════════════════════════════
+async function afficherFicheEleve(eleve){
+  const token = localStorage.getItem('laboro_token');
+  const wrap = document.getElementById('fe-wrap');
+  if(!wrap) return;
+  wrap.innerHTML = '<div style="padding:16px;color:var(--gm);font-size:12px">Chargement de la fiche…</div>';
+
+  let progs = [];
+  try{
+    const rep = await fetch(LABORO_API + '/api/eleves/' + eleve.id + '/progressions', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok){
+      wrap.innerHTML = '<div style="padding:16px;color:var(--rg);font-size:12px">Erreur : ' + (d.erreur || 'chargement impossible') + '</div>';
+      return;
+    }
+    progs = d.progressions || [];
+  }catch(e){
+    wrap.innerHTML = '<div style="padding:16px;color:var(--rg);font-size:12px">Impossible de joindre le serveur LABORO.</div>';
+    console.error('afficherFicheEleve :', e);
+    return;
+  }
+
+  // Reconstruit un objet "ud" compatible avec calcScore()/calcNiveauComp(),
+  // qui attendent ud.missions[mid] = { status:'done'|'att', score, note_ia }
+  const ud = { missions: {} };
+  progs.forEach(function(p){
+    if(p.statut === 'valide'){
+      ud.missions[p.mission_id] = { id: p.mission_id, status: 'done', score: (p.note_finale != null ? p.note_finale : p.note_ia), submitted_at: p.submitted_at };
+    } else {
+      ud.missions[p.mission_id] = { id: p.mission_id, status: 'att', note_ia: p.note_ia, submitted_at: p.submitted_at };
+    }
+  });
+
+  const nom = ((eleve.prenom ? eleve.prenom + ' ' : '') + (eleve.nom || '')).trim() || eleve.email;
+  const doneList = Object.values(ud.missions).filter(function(m){ return m.status==='done'; });
+  const attList = Object.entries(ud.missions).filter(function(e){ return e[1].status==='att'; });
+  const scores = doneList.filter(function(m){ return m.score; }).map(function(m){ return m.score; });
+  const avg = scores.length ? (scores.reduce(function(a,b){return a+b;},0)/scores.length).toFixed(1) : '—';
+  const sc = calcScore(ud);
+  const lc = ['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
+  const ll = ['Non démarré','Découverte','En progression','Acquis','Maîtrisé'];
+  const ini = nom.split(' ').map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase();
+  const savedObs = eleve.observations || '';
+  const totalMissions = MISSIONS.length;
+
+  const alerts = [];
+  COMP.forEach(function(c){
+    const lv = calcNiveauComp(c.code, ud);
+    if(lv===0 && (c.g==='G1'||c.g==='G4A'||c.g==='G4B')) alerts.push({type:'warn', txt: c.code+' — '+c.label+' : non démarrée'});
+    if(lv>=3) alerts.push({type:'ok', txt: c.code+' — Point fort : '+ll[lv]});
+  });
+  attList.forEach(function(entry){
+    const mid = entry[0], mv = entry[1];
+    const m = MISSIONS.find(function(x){ return x.id===mid; });
+    if(m) alerts.push({type:'warn', txt: m.titre+' — soumise, note IA '+mv.note_ia+'/20 — en attente de validation'});
+  });
+
+  const fmtDate = function(iso){
+    if(!iso) return '—';
+    const dt = new Date(iso);
+    return dt.getDate().toString().padStart(2,'0') + '/' + (dt.getMonth()+1).toString().padStart(2,'0');
+  };
+
+  wrap.innerHTML = '<div class="fe">'
+    + '<div class="fe-hd"><div style="display:flex;align-items:center;gap:12px"><div class="avu" style="width:44px;height:44px;font-size:16px">'+ini+'</div><div><div style="font-size:16px;font-weight:700">'+nom+'</div><div style="font-size:11px;opacity:.8;margin-top:2px">'+eleve.email+'</div></div></div><div style="text-align:right"><div style="font-size:28px;font-weight:900">'+sc+'</div><div style="font-size:10px;opacity:.8">Score LABORO /100</div></div></div>'
+    + '<div class="fe-kpis"><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'</div><div class="fe-kl">Validées</div></div><div class="fe-kpi"><div class="fe-kv">'+avg+'</div><div class="fe-kl">Moyenne /20</div></div><div class="fe-kpi"><div class="fe-kv">'+attList.length+'</div><div class="fe-kl">À valider</div></div><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'/'+totalMissions+'</div><div class="fe-kl">Missions faites</div></div></div>'
+    + (alerts.length ? '<div class="fe-sec"><div class="fe-st">Points d\'attention</div>'+alerts.slice(0,4).map(function(a){ return '<div class="al-row al-'+a.type+'"><div class="al-dot" style="background:'+(a.type==='warn'?'var(--am)':'var(--vt)')+'"></div>'+a.txt+'</div>'; }).join('')+'</div>' : '')
+    + '<div class="fe-sec"><div class="fe-st">Progression par compétence</div>'+COMP.map(function(c){
+        const lv = calcNiveauComp(c.code, ud);
+        return '<div class="cr"><span class="cr-code">'+c.code+'</span><span class="cr-label">'+c.label+'</span><div class="cr-bar"><div class="cr-fill" style="width:'+(lv*25)+'%;background:'+lc[lv]+'"></div></div><span class="cr-txt" style="color:'+lc[lv]+'">'+ll[lv]+'</span></div>';
+      }).join('')+'</div>'
+    + '<div class="fe-sec"><div class="fe-st">Missions</div><div class="mr hdr"><span>Mission</span><span>Comp.</span><span>Soumis</span><span>Note</span><span>Statut</span></div>'
+    + Object.entries(ud.missions).map(function(entry){
+        const mid = entry[0], mv = entry[1];
+        const m = MISSIONS.find(function(x){ return x.id===mid; });
+        if(!m) return '';
+        const nc = mv.score>=17 ? 'nb-h' : mv.score>=11 ? 'nb-m' : 'nb-l';
+        const statutHtml = mv.status==='done'
+          ? '<span style="color:var(--vt);font-size:11px;font-weight:700">✓ Validée</span>'
+          : '<button onclick="validerMissionServeur(\''+eleve.id+'\',\''+mid+'\','+mv.note_ia+')" style="padding:3px 8px;background:var(--bl);color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:11px">Valider '+mv.note_ia+'/20</button>';
+        return '<div class="mr"><span style="font-size:11px">'+m.titre+'</span><span class="u-label-sm">'+m.comp+' P'+m.palier+'</span><span style="font-size:11px;text-align:center">'+fmtDate(mv.submitted_at)+'</span><span><div class="nb2 '+(mv.score?nc:'')+'">'+(mv.score ? mv.score+'/20' : (mv.note_ia ? 'IA:'+mv.note_ia : '-'))+'</div></span><span>'+statutHtml+'</span></div>';
+      }).join('')
+    + '</div>'
+    + '<div class="fe-sec"><div class="fe-st">Observations enseignant</div><textarea class="obs-area" id="obs-'+eleve.id+'" placeholder="Observations, points forts, axes de progression…">'+savedObs+'</textarea><button class="btn-obs-s" onclick="saveObsServeur(\''+eleve.id+'\')">Enregistrer</button></div>'
+    + '</div>';
+
+  wrap.scrollIntoView({behavior:'smooth'});
+}
+
+async function validerMissionServeur(eleveId, missionId, noteIA){
+  const saisie = prompt('Note finale pour cette mission (/20) :', noteIA);
+  if(saisie === null) return;
+  const note = parseInt(saisie, 10);
+  if(isNaN(note) || note < 0 || note > 20){ alert('Merci de saisir une note entière entre 0 et 20.'); return; }
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
+  try{
+    const rep = await fetch(LABORO_API + '/api/eleves/valider-mission', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ eleve_id: eleveId, mission_id: missionId, note_finale: note })
+    });
+    const d = await rep.json();
+    if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
+    alert('✅ Mission validée avec la note ' + d.note_finale + '/20.');
+    const eleve = ELEVES_SERVEUR.find(function(e){ return e.id === eleveId; });
+    if(eleve) afficherFicheEleve(eleve);
+  }catch(e){
+    alert('Impossible de joindre le serveur LABORO.');
+    console.error('validerMissionServeur :', e);
+  }
+}
+
+async function saveObsServeur(eleveId){
+  const el = document.getElementById('obs-' + eleveId);
+  if(!el) return;
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
+  try{
+    const rep = await fetch(LABORO_API + '/api/eleves/observations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ eleve_id: eleveId, observations: el.value })
+    });
+    const d = await rep.json();
+    if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
+    const eleve = ELEVES_SERVEUR.find(function(e){ return e.id === eleveId; });
+    if(eleve) eleve.observations = el.value;
+    alert('✅ Observations enregistrées.');
+  }catch(e){
+    alert('Impossible de joindre le serveur LABORO.');
+    console.error('saveObsServeur :', e);
+  }
 }
 
 function verifierSelection(){
