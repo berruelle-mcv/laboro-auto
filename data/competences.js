@@ -41,7 +41,7 @@ const RES = {
 </ul>
 <p>Un prospect qualifié = on connaît ces 4 éléments, même approximativement. Un prospect non qualifié doit être relancé avec des questions ciblées avant toute proposition commerciale.</p>
 <p><strong>Cas pratique — un exemple chez Vasseur :</strong></p>
-<p>Mme Diallo remplit le formulaire "Essai citadine électrique" avec le message : <em>"Je fais 15 km par jour pour aller au travail, je voudrais éviter de payer trop cher en carburant."</em></p>
+<p>Mme Kaci remplit le formulaire "Essai citadine électrique" avec le message : <em>"Je fais 15 km par jour pour aller au travail, je voudrais éviter de payer trop cher en carburant."</em></p>
 <ul>
 <li><strong>Need</strong> — clairement exprimé : trajets courts + volonté de réduire le coût du carburant → une électrique ou hybride est cohérente</li>
 <li><strong>Budget</strong> — pas mentionné → à demander (fourchette envisagée ? financement ou comptant ?)</li>
