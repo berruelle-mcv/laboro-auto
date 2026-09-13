@@ -44,7 +44,7 @@
   },
 
   "niveaux": [
-    { "id": "1ere-PVOC", "label": "1ère PVOC", "couleur": "#1565C0", "ordre": 1 }
+    { "id": "1ere-PVOC", "label": "1ère PVOC", "couleur": "#7A4614", "ordre": 1 }
   ],
 
   "options": [
