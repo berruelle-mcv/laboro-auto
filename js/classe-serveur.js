@@ -151,7 +151,7 @@ async function afficherFicheEleve(eleve){
     if(p.statut === 'valide'){
       ud.missions[p.mission_id] = { id: p.mission_id, status: 'done', score: (p.note_finale != null ? p.note_finale : p.note_ia), submitted_at: p.submitted_at };
     } else {
-      ud.missions[p.mission_id] = { id: p.mission_id, status: 'att', note_ia: p.note_ia, submitted_at: p.submitted_at };
+      ud.missions[p.mission_id] = { id: p.mission_id, status: 'att', note_ia: p.note_ia, submitted_at: p.submitted_at, reponses: p.reponses, feedback: p.feedback };
     }
   });
 
@@ -185,6 +185,24 @@ async function afficherFicheEleve(eleve){
     return dt.getDate().toString().padStart(2,'0') + '/' + (dt.getMonth()+1).toString().padStart(2,'0');
   };
 
+  const escapeHtml = function(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  };
+
+  // Formate les réponses de l'élève (stockées en JSON, tableau OU objet
+  // selon l'ancienneté de la mission) en blocs question/réponse lisibles.
+  const formatReponses = function(reponses){
+    if(!reponses) return '<div style="font-size:12px;color:var(--gm);font-style:italic">Réponses non disponibles.</div>';
+    const entries = Array.isArray(reponses)
+      ? reponses.map(function(r,i){ return ['Réponse '+(i+1), r]; })
+      : Object.entries(reponses);
+    return entries.map(function(entry){
+      return '<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:var(--gm);text-transform:uppercase;margin-bottom:2px">'+escapeHtml(entry[0])+'</div>'
+        + '<div style="font-size:12px;white-space:pre-wrap;background:var(--gc,#F3F4F6);border-radius:6px;padding:8px 10px">'+escapeHtml(entry[1])+'</div></div>';
+    }).join('');
+  };
+
   wrap.innerHTML = '<div class="fe">'
     + '<div class="fe-hd"><div style="display:flex;align-items:center;gap:12px"><div class="avu" style="width:44px;height:44px;font-size:16px">'+ini+'</div><div><div style="font-size:16px;font-weight:700">'+nom+'</div><div style="font-size:11px;opacity:.8;margin-top:2px">'+eleve.email+'</div></div></div><div style="text-align:right"><div style="font-size:28px;font-weight:900">'+sc+'</div><div style="font-size:10px;opacity:.8">Score LABORO /100</div></div></div>'
     + '<div class="fe-kpis"><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'</div><div class="fe-kl">Validées</div></div><div class="fe-kpi"><div class="fe-kv">'+avg+'</div><div class="fe-kl">Moyenne /20</div></div><div class="fe-kpi"><div class="fe-kv">'+attList.length+'</div><div class="fe-kl">À valider</div></div><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'/'+totalMissions+'</div><div class="fe-kl">Missions faites</div></div></div>'
@@ -201,10 +219,26 @@ async function afficherFicheEleve(eleve){
         const nc = mv.score>=17 ? 'nb-h' : mv.score>=11 ? 'nb-m' : 'nb-l';
         const statutHtml = mv.status==='done'
           ? '<span style="color:var(--vt);font-size:11px;font-weight:700">✓ Validée</span>'
-          : '<button onclick="validerMissionServeur(\''+eleve.id+'\',\''+mid+'\','+mv.note_ia+')" style="padding:3px 8px;background:var(--bl);color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:11px">Valider '+mv.note_ia+'/20</button>';
+          : '<a href="#correction-'+mid+'" style="font-size:11px;font-weight:700;color:var(--am,#D97706)">Voir la copie ↓</a>';
         return '<div class="mr"><span style="font-size:11px">'+m.titre+'</span><span class="u-label-sm">'+m.comp+' P'+m.palier+'</span><span style="font-size:11px;text-align:center">'+fmtDate(mv.submitted_at)+'</span><span><div class="nb2 '+(mv.score?nc:'')+'">'+(mv.score ? mv.score+'/20' : (mv.note_ia ? 'IA:'+mv.note_ia : '-'))+'</div></span><span>'+statutHtml+'</span></div>';
       }).join('')
     + '</div>'
+    + (attList.length ? '<div class="fe-sec"><div class="fe-st">📝 Copies à corriger ('+attList.length+')</div>'
+        + attList.map(function(entry){
+            const mid = entry[0], mv = entry[1];
+            const m = MISSIONS.find(function(x){ return x.id===mid; });
+            if(!m) return '';
+            const fbTexte = mv.feedback && mv.feedback.texte ? mv.feedback.texte : '';
+            return '<div id="correction-'+mid+'" style="border:1px solid var(--gb);border-radius:8px;padding:12px 14px;margin-bottom:12px;background:#FFFBEA">'
+              + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:13px;font-weight:700">'+m.titre+'</div><div style="font-size:10px;color:var(--gm)">Soumis le '+fmtDate(mv.submitted_at)+' · Note IA proposée : '+mv.note_ia+'/20</div></div>'
+              + '<div style="font-size:10px;font-weight:700;color:var(--gm);text-transform:uppercase;margin-bottom:6px">Réponses de l\'élève</div>'
+              + formatReponses(mv.reponses)
+              + (fbTexte ? '<div style="font-size:10px;font-weight:700;color:var(--gm);text-transform:uppercase;margin:10px 0 4px">Feedback IA</div><div style="font-size:12px;white-space:pre-wrap;color:#4B5563">'+escapeHtml(fbTexte)+'</div>' : '')
+              + '<div style="margin-top:10px"><button onclick="validerMissionServeur(\''+eleve.id+'\',\''+mid+'\','+mv.note_ia+')" style="padding:5px 12px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">Valider '+mv.note_ia+'/20</button></div>'
+              + '</div>';
+          }).join('')
+        + '</div>'
+      : '')
     + '<div class="fe-sec"><div class="fe-st">Observations enseignant</div><textarea class="obs-area" id="obs-'+eleve.id+'" placeholder="Observations, points forts, axes de progression…">'+savedObs+'</textarea><button class="btn-obs-s" onclick="saveObsServeur(\''+eleve.id+'\')">Enregistrer</button></div>'
     + '</div>';
 
