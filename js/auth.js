@@ -179,6 +179,7 @@ function finishLogin(mail,cls,poste,nomParam){
   else{
     setTimeout(function(){
       if(typeof checkCharte === 'function') checkCharte();
+      if(typeof synchroniserProgressionsServeur === 'function') synchroniserProgressionsServeur();
       showApp();
     }, 100);
   }
