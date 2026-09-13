@@ -353,8 +353,6 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:var(--g
 .btn-gen{padding:10px 22px;background:var(--bl);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700}
 .btn-gen:hover{background:var(--bf)}
 .gen-res{background:var(--gc);border-radius:8px;padding:14px;margin-top:12px;font-size:12px;line-height:1.7;white-space:pre-wrap;min-height:80px}
-.api-row{display:flex;gap:8px;margin-bottom:6px}
-.api-row input{flex:1;padding:8px 12px;border:.5px solid var(--gb);border-radius:7px;font-size:13px}
 .btn-sm{padding:8px 14px;background:var(--bl);color:#fff;border:none;border-radius:7px;cursor:pointer;font-size:13px;font-weight:700}
 
 /* COUP DE POUCE */
