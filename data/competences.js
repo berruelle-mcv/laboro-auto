@@ -203,6 +203,133 @@ const RES = {
 </ul>
 </div>`},
 
+  'C2.2':{t:"Traiter les réclamations client",c:`<div class="res-section res-debutant">
+<p><strong>C2.2 — Gérer une réclamation chez Vasseur.</strong> Une réclamation n'est pas une agression : c'est un client qui donne une seconde chance à la relation avant de la rompre. La méthode de base : écouter sans couper la parole, reformuler pour montrer qu'on a compris, investiguer les faits avant de conclure, puis proposer une solution concrète.</p>
+<p><strong>Les 4 étapes d'une réclamation bien traitée :</strong></p>
+<ol>
+<li><strong>Écouter et reformuler</strong> — même si le client est énervé, jamais l'interrompre ni se justifier immédiatement</li>
+<li><strong>Vérifier les faits</strong> — consulter le dossier, l'atelier, l'historique avant de répondre quoi que ce soit de définitif</li>
+<li><strong>Proposer une solution</strong> — adaptée à la gravité réelle du problème, pas systématiquement la plus généreuse possible</li>
+<li><strong>Assurer le suivi</strong> — vérifier que la solution a bien été appliquée, pas seulement promise</li>
+</ol>
+<p><strong>Cas pratique — une réclamation chez Vasseur :</strong></p>
+<p>Un client appelle furieux : sa Clio 6 livrée la veille a une rayure sur la portière avant droite, non signalée lors de la remise des clés.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — répondre immédiatement "c'est impossible, on contrôle toujours avant livraison" : ça nie l'expérience du client avant même de vérifier</li>
+<li><strong>✅ À privilégier</strong> — reformuler ("je comprends, vous découvrez une rayure qui n'était pas là lors de la remise"), proposer de vérifier le dossier de contrôle qualité et de rappeler sous 24h avec une réponse concrète</li>
+</ul>
+<p>La règle d'or : ne jamais promettre une solution avant d'avoir vérifié les faits — un engagement qu'on doit ensuite retirer abîme la confiance bien plus qu'un léger délai de réponse.</p>
+<p><strong>En résumé, avant de répondre à une réclamation, je vérifie que je :</strong></p>
+<ul>
+<li>✓ N'ai pas coupé la parole ni minimisé ce que dit le client</li>
+<li>✓ Ai vérifié les faits avant de m'engager sur une solution</li>
+<li>✓ Propose une solution proportionnée, pas automatiquement maximale</li>
+<li>✓ Prévois un suivi pour m'assurer que la solution a bien été appliquée</li>
+</ul>
+</div>`},
+
+  'C2.3':{t:"Évaluer la satisfaction client",c:`<div class="res-section res-debutant">
+<p><strong>C2.3 — Mesurer et exploiter la satisfaction chez Vasseur.</strong> On ne devine pas si un client est satisfait, on le mesure. Le principal outil est le NPS (Net Promoter Score) : sur une note de 0 à 10 ("recommanderiez-vous Vasseur ?"), on distingue Promoteurs (9-10), Passifs (7-8) et Détracteurs (0-6).</p>
+<p><strong>Ce qu'on fait de ces données :</strong> un NPS élevé ne veut rien dire s'il n'est suivi d'aucune action ; un NPS bas mal exploité fait perdre le client une seconde fois. La vraie compétence n'est pas de lire le chiffre, mais d'en tirer une action commerciale concrète.</p>
+<p><strong>Cas pratique — un client Détracteur chez Vasseur :</strong></p>
+<p>Un client donne 4/10 après l'achat d'un Trafic, avec le commentaire : <em>"Le véhicule est bien mais j'ai attendu 3 semaines de plus que prévu sans nouvelles."</em></p>
+<ul>
+<li><strong>❌ À éviter</strong> — se contenter d'enregistrer la note sans réagir, ou répondre uniquement "merci pour votre retour"</li>
+<li><strong>✅ À privilégier</strong> — identifier la vraie cause (pas le véhicule, le manque de communication pendant le retard), et proposer une action ciblée sur CE point précis (par exemple, un geste + un engagement de suivi renforcé sur sa prochaine commande)</li>
+</ul>
+<p>Un avis en ligne fonctionne pareil : la réponse publique compte autant pour les futurs clients qui la liront que pour le client lui-même — elle doit rester factuelle, jamais défensive.</p>
+<p><strong>En résumé, avant d'exploiter un résultat de satisfaction, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Identifie la cause précise derrière la note, pas seulement le chiffre</li>
+<li>✓ Propose une action qui répond à cette cause précise</li>
+<li>✓ Reste factuel et jamais sur la défensive dans une réponse publique</li>
+</ul>
+</div>`},
+
+  'C3.1':{t:"Assurer l'information et le contact avec la clientèle",c:`<div class="res-section res-debutant">
+<p><strong>C3.1 — Garder le contact avec la clientèle Vasseur.</strong> Fidéliser commence bien avant qu'un client ait besoin de racheter : c'est un contact régulier, utile, jamais uniquement commercial. Un client qui n'entend parler de Vasseur qu'au moment où on veut lui vendre quelque chose se sent instrumentalisé.</p>
+<p><strong>Les bons prétextes de contact :</strong> une information générale utile (rappel constructeur, actualité), un moment personnel (anniversaire d'achat), une nouveauté pertinente pour son profil. Le mauvais prétexte : "on n'a pas eu de nouvelles de vous depuis un moment" — recentré sur Vasseur, pas sur le client.</p>
+<p><strong>Cas pratique — un rappel constructeur chez Vasseur :</strong></p>
+<p>Renault lance un rappel technique sur un composant électronique de la génération de Captur vendue il y a 2 ans.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — un message anxiogène ("Votre véhicule présente un défaut") ou au contraire trop rassurant au point de minimiser ("c'est rien du tout, pas besoin de venir")</li>
+<li><strong>✅ À privilégier</strong> — un message factuel et rassurant : ce qui se passe, pourquoi ce n'est pas urgent-danger mais à traiter, comment prendre rendez-vous simplement</li>
+</ul>
+<p><strong>En résumé, avant d'envoyer un contact d'information, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Ai un vrai motif utile pour le client, pas seulement pour Vasseur</li>
+<li>✓ Reste factuel, sans dramatiser ni minimiser</li>
+<li>✓ Termine par une action simple et claire, si une action est nécessaire</li>
+</ul>
+</div>`},
+
+  'C3.2':{t:"Mettre en œuvre des actions de fidélisation",c:`<div class="res-section res-debutant">
+<p><strong>C3.2 — Fidéliser concrètement chez Vasseur.</strong> Une action de fidélisation efficace récompense un comportement réel du client (ancienneté, fréquence, recommandation), pas un geste générique offert à tout le monde sans distinction — sinon ça devient une simple remise, pas de la fidélisation.</p>
+<p><strong>Les leviers classiques :</strong> offre réservée aux clients existants, programme de parrainage (le client recommande, les deux y gagnent), événement dédié (portes ouvertes clients), geste personnalisé suite à un problème résolu.</p>
+<p><strong>Cas pratique — un programme de parrainage chez Vasseur :</strong></p>
+<p>Michel veut lancer un parrainage : un client Vasseur qui amène un nouveau client obtient un avantage, le filleul aussi.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — un avantage trop symbolique (qui ne motive personne à recommander) ou au contraire disproportionné (qui rogne la marge sans réel retour)</li>
+<li><strong>✅ À privilégier</strong> — un avantage calibré sur la valeur réelle d'un nouveau client (par exemple un forfait entretien offert), gagnant pour les deux parties, facile à comprendre en une phrase</li>
+</ul>
+<p><strong>En résumé, avant de proposer une action de fidélisation, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Récompense un comportement réel (fidélité, recommandation), pas juste "être client"</li>
+<li>✓ Propose un avantage ni symbolique ni disproportionné</li>
+<li>✓ Peux expliquer l'action en une phrase simple au client</li>
+</ul>
+</div>`},
+
+  'C3.3':{t:"Évaluer les actions de fidélisation",c:`<div class="res-section res-debutant">
+<p><strong>C3.3 — Mesurer l'efficacité d'une action de fidélisation chez Vasseur.</strong> Une action de fidélisation qui n'est jamais évaluée peut coûter cher pour rien. On mesure généralement : le taux de participation (combien de clients ont utilisé l'offre), le taux de conversion (combien ont effectivement racheté), et le retour net (le gain généré compense-t-il le coût de l'action).</p>
+<p><strong>Cas pratique — bilan d'une campagne chez Vasseur :</strong></p>
+<p>Une offre de reprise majorée envoyée à 100 clients anciens a généré 8 ventes. Le coût de la majoration de reprise était de 400 € par vente.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — juger uniquement sur "ça a marché, on a vendu 8 voitures" sans regarder le coût ni comparer à d'autres actions</li>
+<li><strong>✅ À privilégier</strong> — calculer le taux de conversion (8/100 = 8%), comparer ce taux et ce coût à d'autres actions similaires menées par Vasseur, et formuler une recommandation (reconduire, ajuster le montant, cibler différemment)</li>
+</ul>
+<p><strong>En résumé, avant de conclure sur une action de fidélisation, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Calcule un taux (participation ou conversion), pas seulement un nombre brut</li>
+<li>✓ Mets ce résultat en perspective (coût, comparaison) avant de juger</li>
+<li>✓ Formule une recommandation claire pour la suite, pas juste un constat</li>
+</ul>
+</div>`},
+
+  'B4.4':{t:"Suivre et évaluer l'action de prospection",c:`<div class="res-section res-debutant">
+<p><strong>B4.4 — Faire le bilan d'une prospection chez Vasseur.</strong> Une campagne de prospection ne s'arrête pas à l'envoi des messages : il faut suivre les résultats (taux de réponse, taux de transformation en rendez-vous, taux de transformation en vente) et ajuster si besoin, y compris en cours de campagne.</p>
+<p><strong>Les indicateurs clés :</strong> nombre de contacts touchés, taux de réponse (combien ont réagi), taux de transformation (combien ont acheté). Un faible taux de réponse peut venir du message, du canal, ou du mauvais ciblage — il faut identifier lequel avant d'ajuster.</p>
+<p><strong>Cas pratique — bilan d'une session de phoning chez Vasseur :</strong></p>
+<p>Sur 40 appels de prospection B2B passés cette semaine, 6 rendez-vous ont été pris, et 1 vente a été conclue à ce jour.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — conclure "ça n'a pas marché" en ne regardant que la vente finale (1 sur 40), sans distinguer les étapes</li>
+<li><strong>✅ À privilégier</strong> — calculer chaque taux séparément (15% de taux de rendez-vous, encore trop tôt pour juger le taux de transformation en vente), et identifier à quelle étape se situe la vraie marge de progression</li>
+</ul>
+<p><strong>En résumé, avant de juger une action de prospection, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Distingue les différentes étapes (contact → rendez-vous → vente), pas un seul taux global</li>
+<li>✓ Identifie à quelle étape se situe le vrai problème avant de proposer un ajustement</li>
+<li>✓ Propose un ajustement concret, pas juste "faire plus d'appels"</li>
+</ul>
+</div>`},
+
+  'B4.5':{t:"Valoriser les produits et services face à la concurrence",c:`<div class="res-section res-debutant">
+<p><strong>B4.5 — Valoriser l'offre Vasseur.</strong> Valoriser, ce n'est pas décrire un produit, c'est expliquer pourquoi il répond mieux au besoin du client que les alternatives (autre modèle, occasion, concurrent). Une bonne valorisation combine une caractéristique du véhicule ou du service, l'avantage qu'elle procure, et le bénéfice concret pour ce client précis.</p>
+<p><strong>Attention à un piège fréquent :</strong> valoriser uniquement le produit alors que le service (garantie, SAV, accompagnement) est parfois le vrai argument différenciant, notamment face à un mandataire en ligne moins-disant sur le prix.</p>
+<p><strong>Cas pratique — valoriser un service chez Vasseur :</strong></p>
+<p>Un client hésite entre acheter chez Vasseur (prix un peu plus élevé) et un mandataire en ligne (prix plus bas, aucun service après-vente local).</p>
+<ul>
+<li><strong>❌ À éviter</strong> — se contenter d'un argument vague ("chez nous c'est mieux") sans rien de concret</li>
+<li><strong>✅ À privilégier</strong> — valoriser précisément le SAV local (caractéristique : atelier Bruno Faucher à 10 minutes ; avantage : intervention rapide en cas de souci ; bénéfice pour ce client : pas de véhicule immobilisé loin de chez lui)</li>
+</ul>
+<p><strong>En résumé, avant de valoriser une offre, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Relie une caractéristique précise à un avantage, puis à un bénéfice pour CE client</li>
+<li>✓ Pense aussi au service, pas seulement au produit</li>
+<li>✓ Reste factuel et vérifiable, jamais dans l'argument vague</li>
+</ul>
+</div>`},
+
 };
 
 if (typeof module !== 'undefined') module.exports = { COMP, RES };
