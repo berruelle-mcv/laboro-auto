@@ -330,6 +330,231 @@ const RES = {
 </ul>
 </div>`},
 
+  'B4.1-P2':{t:"Qualifier un prospect — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>B4.1 Palier 2 — Aller au-delà de la grille BANT.</strong> Tu connais déjà la méthode BANT (Budget, Autorité, Need, Timeline). Au palier 2, la difficulté n'est plus de connaître la méthode, mais de l'appliquer quand la situation est moins nette : plusieurs prospects à traiter en même temps, des informations contradictoires, un profil qui ne rentre pas dans une case évidente.</p>
+<p><strong>Ce qui change concrètement :</strong> tu devras souvent <em>prioriser</em> (tous les prospects ne se valent pas également) et <em>combiner</em> plusieurs sources d'information, sans qu'on te les serve déjà croisées dans un même tableau.</p>
+<p><strong>Cas pratique — deux prospects, un seul créneau libre :</strong></p>
+<p>En fin de journée, deux demandes arrivent : l'une d'un particulier qui dit vouloir "changer de voiture un jour", l'autre d'une entreprise qui a un besoin déclaré mais reste vague sur le budget.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — traiter les deux dans l'ordre d'arrivée, sans réfléchir à qui a le plus de chances d'aboutir vite</li>
+<li><strong>✅ À privilégier</strong> — évaluer rapidement le niveau de qualification de chacun (le B2B a un Need clair, il manque "juste" le Budget ; le particulier n'a presque rien de qualifié) et prioriser celui qui a le plus d'éléments déjà réunis</li>
+</ul>
+<p><strong>En résumé, au palier 2, avant de qualifier, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Priorise quand plusieurs prospects se présentent en même temps, au lieu de traiter au hasard</li>
+<li>✓ Sais dire explicitement ce qui manque encore, même dans un profil qui semble déjà avancé</li>
+<li>✓ Ne me contente pas d'une seule source d'information quand une autre est disponible</li>
+</ul>
+</div>`},
+
+  'B4.2-P2':{t:"Concevoir un plan de prospection — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>B4.2 Palier 2 — Arbitrer, pas seulement planifier.</strong> Au palier 1, tu construisais un plan de prospection à partir d'une cible déjà identifiée. Au palier 2, tu dois aussi savoir arbitrer entre plusieurs options (canaux, budgets, cibles) quand les ressources sont limitées — ce qui est la réalité de toute concession.</p>
+<p><strong>Cas pratique — un budget qui ne permet pas tout :</strong></p>
+<p>Karim a un budget de campagne réduit ce trimestre. Deux options s'offrent : une campagne mail large mais peu coûteuse, ou une opération salon plus chère mais plus qualitative.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — choisir par habitude ou par facilité, sans comparer objectivement le rapport entre coût et résultat attendu</li>
+<li><strong>✅ À privilégier</strong> — comparer explicitement les deux options sur les mêmes critères (coût, portée, taux de conversion attendu) avant de trancher</li>
+</ul>
+<p><strong>En résumé, au palier 2, avant de valider un plan, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Compare plusieurs options sur les mêmes critères avant de choisir</li>
+<li>✓ Justifie un arbitrage budgétaire, pas seulement un choix de canal</li>
+<li>✓ Garde en tête que prospecter "plus" n'est pas toujours prospecter "mieux"</li>
+</ul>
+</div>`},
+
+  'B4.3-P2':{t:"Mettre en œuvre la prospection — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>B4.3 Palier 2 — Gérer l'imprévu du contact réel.</strong> Au palier 1, tu traitais une objection isolée. Au palier 2, un contact de prospection peut enchaîner plusieurs objections, changer de sujet, ou être compliqué à cerner. La compétence n'est plus de connaître une réponse toute faite, mais de rester maître du fil de la conversation.</p>
+<p><strong>Cas pratique — un enchaînement d'objections :</strong></p>
+<p>Un prospect B2B répond d'abord "on vient de renouveler", puis enchaîne "et de toute façon vos délais sont trop longs".</p>
+<ul>
+<li><strong>❌ À éviter</strong> — répondre à la deuxième objection en ignorant la première, comme si elle n'avait pas été dite</li>
+<li><strong>✅ À privilégier</strong> — reconnaître les deux objections successivement, sans se précipiter sur une réponse toute faite pour la seconde</li>
+</ul>
+<p><strong>En résumé, au palier 2, en situation de contact, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Garde trace de toutes les objections exprimées, pas seulement la dernière</li>
+<li>✓ Ne me laisse pas déstabiliser par un enchaînement rapide</li>
+<li>✓ Reste concentré sur l'objectif du contact, même si la conversation dévie</li>
+</ul>
+</div>`},
+
+  'B4.4-P2':{t:"Suivre et évaluer la prospection — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>B4.4 Palier 2 — Comparer, pas seulement mesurer.</strong> Au palier 1, tu calculais un taux pour UNE action. Au palier 2, tu dois savoir comparer plusieurs actions entre elles, ou une même action dans le temps, pour en tirer un vrai diagnostic — pas juste un chiffre isolé.</p>
+<p><strong>Cas pratique — une performance en baisse :</strong></p>
+<p>Une campagne mail récurrente, qui obtenait habituellement 10% de taux de réponse, tombe à 4% ce mois-ci.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — se contenter de constater la baisse sans chercher ce qui a changé entre les deux périodes</li>
+<li><strong>✅ À privilégier</strong> — comparer ce qui a changé (message, période, cible, contexte) entre le moment où ça marchait et maintenant, avant de conclure</li>
+</ul>
+<p><strong>En résumé, au palier 2, avant de conclure sur une performance, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Compare dans le temps ou entre actions, pas seulement un chiffre isolé</li>
+<li>✓ Cherche ce qui a changé avant de proposer un ajustement</li>
+<li>✓ Distingue une vraie tendance d'une simple fluctuation ponctuelle</li>
+</ul>
+</div>`},
+
+  'B4.5-P2':{t:"Valoriser l'offre — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>B4.5 Palier 2 — Valoriser face à un client déjà informé.</strong> Au palier 1, tu construisais un argumentaire simple. Au palier 2, le client en face de toi a souvent déjà comparé plusieurs critères tout seul (en ligne, avec un concurrent) — ton argumentaire doit répondre à une comparaison déjà construite, pas juste présenter un produit.</p>
+<p><strong>Cas pratique — un client déjà convaincu ailleurs :</strong></p>
+<p>Un client arrive en disant avoir déjà comparé 3 modèles en ligne et penche clairement pour un concurrent, sur plusieurs critères à la fois (prix, consommation, image).</p>
+<ul>
+<li><strong>❌ À éviter</strong> — répondre par un argumentaire générique déjà préparé, sans tenir compte de sa comparaison précise</li>
+<li><strong>✅ À privilégier</strong> — reprendre ses critères un par un, et ne répondre que sur ceux où Vasseur a un vrai avantage, sans forcer sur les autres</li>
+</ul>
+<p><strong>En résumé, au palier 2, face à un client informé, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Pars de SA comparaison, pas d'un argumentaire générique</li>
+<li>✓ Ne force pas un avantage sur un critère où Vasseur n'en a pas vraiment</li>
+<li>✓ Reste crédible plutôt que de tout vouloir défendre à tout prix</li>
+</ul>
+</div>`},
+
+  'C1.1-P2':{t:"Veille commerciale — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C1.1 Palier 2 — Croiser les sources, pas juste les lire.</strong> Au palier 1, tu utilisais une source de veille à la fois. Au palier 2, deux sources peuvent se contredire ou donner des informations incomplètes séparément — la compétence est de les confronter avant de conclure.</p>
+<p><strong>Cas pratique — deux sources contradictoires :</strong></p>
+<p>Un article évoque une baisse du marché électrique, tandis que les chiffres internes Vasseur montrent une hausse des ventes électriques ce trimestre.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — privilégier automatiquement une source parce qu'elle est externe (plus "objective" en apparence) ou interne (plus familière)</li>
+<li><strong>✅ À privilégier</strong> — chercher ce qui explique l'écart (marché national vs zone Vasseur, période exacte) avant de trancher</li>
+</ul>
+<p><strong>En résumé, au palier 2, avant de conclure sur une veille, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Confronte plusieurs sources avant de conclure, sans en écarter une par principe</li>
+<li>✓ Cherche à expliquer un écart plutôt qu'à choisir une source "au hasard"</li>
+<li>✓ Distingue une tendance générale d'une situation locale à Vasseur</li>
+</ul>
+</div>`},
+
+  'C1.2-P2':{t:"Vente omnicanale — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C1.2 Palier 2 — Gérer la continuité entre canaux.</strong> Au palier 1, tu répondais sur UN canal à la fois. Au palier 2, un même client peut basculer d'un canal à l'autre en cours d'échange (commence par chat, termine par mail) — la compétence est d'assurer la continuité de l'information, sans jamais se répéter ni se contredire.</p>
+<p><strong>Cas pratique — un client qui change de canal :</strong></p>
+<p>Un client démarre un échange sur le chat du site, puis écrit un mail le lendemain pour poursuivre — sans reprendre tout le contexte.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — répondre comme si c'était une toute nouvelle demande, en redemandant des informations déjà données sur le chat</li>
+<li><strong>✅ À privilégier</strong> — retrouver l'historique de l'échange précédent et poursuivre directement, sans faire répéter le client</li>
+</ul>
+<p><strong>En résumé, au palier 2, en situation multi-canal, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Retrouve et utilise l'historique avant de répondre</li>
+<li>✓ Ne fais jamais répéter au client une information déjà donnée</li>
+<li>✓ Garde une information cohérente d'un canal à l'autre</li>
+</ul>
+</div>`},
+
+  'C1.3-P2':{t:"Exécution de la vente — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C1.3 Palier 2 — Gérer un dossier à plusieurs paramètres.</strong> Au palier 1, un dossier de vente avait un seul mode de financement. Au palier 2, plusieurs éléments peuvent se combiner (reprise + financement + options), et plusieurs interlocuteurs peuvent être impliqués (couple, entreprise) — la compétence est de garder un dossier cohérent malgré cette complexité.</p>
+<p><strong>Cas pratique — plusieurs interlocuteurs :</strong></p>
+<p>Un couple vient acheter ensemble ; l'un privilégie le prix, l'autre les options de sécurité.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — s'adresser uniquement à celui qui parle le plus, en ignorant les priorités de l'autre</li>
+<li><strong>✅ À privilégier</strong> — reformuler les deux priorités exprimées et proposer une solution qui tient compte des deux, avant de figer le dossier</li>
+</ul>
+<p><strong>En résumé, au palier 2, sur un dossier complexe, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Prends en compte tous les interlocuteurs impliqués, pas un seul</li>
+<li>✓ Garde une vision d'ensemble du dossier malgré plusieurs paramètres combinés</li>
+<li>✓ Ne fige rien avant d'avoir vérifié la cohérence globale</li>
+</ul>
+</div>`},
+
+  'C2.1-P2':{t:"Suivi de la commande — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C2.1 Palier 2 — Anticiper plutôt que réagir.</strong> Au palier 1, tu annonçais un retard déjà survenu. Au palier 2, la compétence se déplace vers l'anticipation : repérer un risque avant qu'il ne devienne un vrai problème pour le client, et coordonner plusieurs services si nécessaire.</p>
+<p><strong>Cas pratique — un risque détecté à temps :</strong></p>
+<p>Tu apprends, via l'atelier, qu'une pièce nécessaire à la livraison d'un véhicule commandé est en tension chez le fournisseur — le client n'a encore aucune raison de s'inquiéter.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — ne rien dire tant que le retard n'est pas confirmé à 100%, au risque de prévenir au dernier moment</li>
+<li><strong>✅ À privilégier</strong> — informer le client d'un risque possible dès qu'il est identifié, sans dramatiser, pour qu'il ne soit jamais pris de court</li>
+</ul>
+<p><strong>En résumé, au palier 2, sur le suivi de commande, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Agis dès qu'un risque est identifié, sans attendre la certitude totale</li>
+<li>✓ Coordonne les services concernés plutôt que d'agir seul</li>
+<li>✓ Informe sans dramatiser un risque encore incertain</li>
+</ul>
+</div>`},
+
+  'C2.2-P2':{t:"Réclamations — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C2.2 Palier 2 — Quand la responsabilité n'est pas évidente.</strong> Au palier 1, la cause d'une réclamation était assez claire. Au palier 2, la responsabilité peut être partagée, ou une réclamation peut se répéter chez un même client — la compétence est de gérer cette ambiguïté sans se braquer ni tout accepter par facilité.</p>
+<p><strong>Cas pratique — une responsabilité partagée :</strong></p>
+<p>Un client se plaint d'un délai dépassé, mais le dossier montre qu'il a lui-même tardé à valider une option, ce qui a décalé la commande.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — rejeter toute la faute sur le client (même si les faits le permettent), ou au contraire s'excuser sans nuance</li>
+<li><strong>✅ À privilégier</strong> — reconnaître la part de Vasseur s'il y en a une, expliquer factuellement la part du client sans lui faire de reproche direct, et avancer sur une solution</li>
+</ul>
+<p><strong>En résumé, au palier 2, face à une réclamation ambiguë, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Distingue les responsabilités sans accuser ni tout endosser à la légère</li>
+<li>✓ Reste factuel même quand le client a sa part de responsabilité</li>
+<li>✓ Avance vers une solution plutôt que de m'arrêter sur "qui a raison"</li>
+</ul>
+</div>`},
+
+  'C2.3-P2':{t:"Satisfaction client — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C2.3 Palier 2 — Lire une tendance, pas un chiffre isolé.</strong> Au palier 1, tu réagissais à UNE note. Au palier 2, la compétence est de suivre plusieurs résultats dans le temps pour repérer une vraie tendance, et de savoir traiter un avis "entre deux" (ni très positif ni très négatif), souvent plus riche d'enseignement qu'un avis extrême.</p>
+<p><strong>Cas pratique — un avis mitigé :</strong></p>
+<p>Un client donne 7/10 (Passif) avec le commentaire : "Rien de grave, mais ça manquait un peu de chaleur dans l'accueil."</p>
+<ul>
+<li><strong>❌ À éviter</strong> — ignorer ce retour parce qu'il n'est "ni bon ni mauvais", ou le traiter avec la même urgence qu'un Détracteur</li>
+<li><strong>✅ À privilégier</strong> — reconnaître ce que ce retour révèle (un point d'amélioration réel, même sans urgence), et le capitaliser pour l'équipe</li>
+</ul>
+<p><strong>En résumé, au palier 2, sur la satisfaction, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Regarde une évolution dans le temps, pas un seul résultat isolé</li>
+<li>✓ Prends au sérieux un avis mitigé, pas seulement les avis extrêmes</li>
+<li>✓ En tire un enseignement exploitable, même sans urgence</li>
+</ul>
+</div>`},
+
+  'C3.1-P2':{t:"Information et contact client — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C3.1 Palier 2 — Adapter le contact à des profils variés.</strong> Au palier 1, tu envoyais un message à un profil homogène. Au palier 2, une même information peut devoir toucher des clients très différents (âge, usage, ancienneté) — la compétence est d'adapter le ton et le contenu sans multiplier les versions à l'infini.</p>
+<p><strong>Cas pratique — un client resté silencieux longtemps :</strong></p>
+<p>Un client n'a eu aucun contact avec Vasseur depuis 3 ans, sans raison connue (ni réclamation, ni départ signalé).</p>
+<ul>
+<li><strong>❌ À éviter</strong> — le relancer avec un message commercial classique, comme n'importe quel autre client</li>
+<li><strong>✅ À privilégier</strong> — un message qui reconnaît l'absence de contact sans la dramatiser, et qui cherche à comprendre plutôt qu'à vendre immédiatement</li>
+</ul>
+<p><strong>En résumé, au palier 2, sur le contact client, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Adapte le ton à la situation réelle du client, pas un message uniforme</li>
+<li>✓ Cherche à comprendre un silence avant de vendre à nouveau</li>
+<li>✓ Reste sobre sur un contact délicat, sans sur-communiquer</li>
+</ul>
+</div>`},
+
+  'C3.2-P2':{t:"Fidélisation — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C3.2 Palier 2 — Combiner les leviers, anticiper les effets pervers.</strong> Au palier 1, tu construisais UNE action de fidélisation. Au palier 2, la compétence est de savoir combiner plusieurs leviers pour un même objectif, et d'anticiper les effets pervers possibles (un client qui se sent lésé par rapport à un autre, par exemple).</p>
+<p><strong>Cas pratique — un effet pervers à anticiper :</strong></p>
+<p>Une offre de fidélité est réservée aux clients à 2 achats ou plus. Un client à un seul achat, mais très ancien et très actif sur les réseaux sociaux Vasseur, pourrait mal le vivre.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — ignorer ce cas particulier au nom de la règle générale, sans anticiper la réaction possible</li>
+<li><strong>✅ À privilégier</strong> — anticiper ce cas et préparer une réponse cohérente si la question se pose, sans casser la règle pour autant</li>
+</ul>
+<p><strong>En résumé, au palier 2, en construisant une action de fidélisation, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Anticipe les cas limites, pas seulement le cas général</li>
+<li>✓ Combine plusieurs leviers quand c'est pertinent, sans les empiler sans raison</li>
+<li>✓ Garde une règle cohérente, même face à une exception qui semble légitime</li>
+</ul>
+</div>`},
+
+  'C3.3-P2':{t:"Évaluation de la fidélisation — approfondissement",c:`<div class="res-section res-apprenti">
+<p><strong>C3.3 Palier 2 — Repérer les biais d'évaluation.</strong> Au palier 1, tu calculais un taux et tirais une conclusion. Au palier 2, la compétence est de repérer si une évaluation est biaisée (échantillon trop petit, période inhabituelle, comparaison injuste) avant de faire confiance au résultat chiffré.</p>
+<p><strong>Cas pratique — un résultat trompeur :</strong></p>
+<p>Une action de fidélisation testée sur seulement 10 clients affiche un taux de conversion de 40% — un chiffre qui semble excellent.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — généraliser immédiatement ce résultat à toute la base clients sans questionner la taille de l'échantillon</li>
+<li><strong>✅ À privilégier</strong> — reconnaître que 10 clients est un échantillon trop petit pour conclure, et proposer un test à plus grande échelle avant de généraliser</li>
+</ul>
+<p><strong>En résumé, au palier 2, avant de valider une évaluation, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Questionne la taille de l'échantillon avant de faire confiance à un pourcentage</li>
+<li>✓ Repère si la période ou le contexte de test était particulier</li>
+<li>✓ Ne généralise jamais un résultat obtenu sur un trop petit nombre de cas</li>
+</ul>
+</div>`},
+
 };
 
 if (typeof module !== 'undefined') module.exports = { COMP, RES };
