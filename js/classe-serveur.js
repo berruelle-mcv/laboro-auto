@@ -121,6 +121,12 @@ function selectionnerEleve(id, nomAff){
 //   élève — seule la source de données change (serveur au lieu de
 //   localStorage).
 // ═══════════════════════════════════════════════════════════
+function genererPortfolioFicheEleve(){
+  const f = window.FICHE_ELEVE_COURANTE;
+  if(!f){ alert('Ouvre d\'abord la fiche d\'un élève.'); return; }
+  if(typeof genererPortfolioEleve === 'function') genererPortfolioEleve(f.mail, f.ud);
+}
+
 async function afficherFicheEleve(eleve){
   const token = localStorage.getItem('laboro_token');
   const wrap = document.getElementById('fe-wrap');
@@ -149,7 +155,7 @@ async function afficherFicheEleve(eleve){
   const ud = { missions: {} };
   progs.forEach(function(p){
     if(p.statut === 'valide'){
-      ud.missions[p.mission_id] = { id: p.mission_id, status: 'done', score: (p.note_finale != null ? p.note_finale : p.note_ia), submitted_at: p.submitted_at };
+      ud.missions[p.mission_id] = { id: p.mission_id, status: 'done', score: (p.note_finale != null ? p.note_finale : p.note_ia), submitted_at: p.submitted_at, date_validation: p.validated_at };
     } else {
       ud.missions[p.mission_id] = { id: p.mission_id, status: 'att', note_ia: p.note_ia, submitted_at: p.submitted_at, reponses: p.reponses, feedback: p.feedback };
     }
@@ -203,8 +209,12 @@ async function afficherFicheEleve(eleve){
     }).join('');
   };
 
+  ud.nom = nom;
+  ud.classe = eleve.classe;
+  window.FICHE_ELEVE_COURANTE = { mail: eleve.email, ud: ud };
+
   wrap.innerHTML = '<div class="fe">'
-    + '<div class="fe-hd"><div style="display:flex;align-items:center;gap:12px"><div class="avu" style="width:44px;height:44px;font-size:16px">'+ini+'</div><div><div style="font-size:16px;font-weight:700">'+nom+'</div><div style="font-size:11px;opacity:.8;margin-top:2px">'+eleve.email+'</div></div></div><div style="text-align:right"><div style="font-size:28px;font-weight:900">'+sc+'</div><div style="font-size:10px;opacity:.8">Score LABORO /100</div></div></div>'
+    + '<div class="fe-hd"><div style="display:flex;align-items:center;gap:12px"><div class="avu" style="width:44px;height:44px;font-size:16px">'+ini+'</div><div><div style="font-size:16px;font-weight:700">'+nom+'</div><div style="font-size:11px;opacity:.8;margin-top:2px">'+eleve.email+'</div></div></div><div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px"><div style="font-size:28px;font-weight:900">'+sc+'</div><div style="font-size:10px;opacity:.8">Score LABORO /100</div><button onclick="genererPortfolioFicheEleve()" style="padding:6px 12px;background:rgba(255,255,255,.2);color:#fff;border:.5px solid rgba(255,255,255,.4);border-radius:6px;cursor:pointer;font-size:11px;font-weight:700">📄 Portfolio</button></div></div>'
     + '<div class="fe-kpis"><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'</div><div class="fe-kl">Validées</div></div><div class="fe-kpi"><div class="fe-kv">'+avg+'</div><div class="fe-kl">Moyenne /20</div></div><div class="fe-kpi"><div class="fe-kv">'+attList.length+'</div><div class="fe-kl">À valider</div></div><div class="fe-kpi"><div class="fe-kv">'+doneList.length+'/'+totalMissions+'</div><div class="fe-kl">Missions faites</div></div></div>'
     + (alerts.length ? '<div class="fe-sec"><div class="fe-st">Points d\'attention</div>'+alerts.slice(0,4).map(function(a){ return '<div class="al-row al-'+a.type+'"><div class="al-dot" style="background:'+(a.type==='warn'?'var(--am)':'var(--vt)')+'"></div>'+a.txt+'</div>'; }).join('')+'</div>' : '')
     + '<div class="fe-sec"><div class="fe-st">Progression par compétence</div>'+COMP.map(function(c){
