@@ -349,7 +349,9 @@ function showApp(){
   const msgCfg=getMsg(CU.classe,CU.poste);
   document.getElementById('msg-f').textContent=msgCfg.from;
   document.getElementById('msg-t').textContent=msgCfg.txt;
-  if(ens)populateMDJSelect();
+  // populateMDJSelect() retirée avec la reconstruction de "Mission du jour" —
+  // initMissionDuJour() (js/classe-serveur.js) s'en charge désormais, déclenchée
+  // à la navigation vers ce panneau (voir goP()), pas au moment de la connexion.
   // Visibilité nav E2 AGEC -- visible pour élèves AGEC et 2nde (tous sauf PVOC pur)
   const niE2 = document.getElementById('ni-e2agec');
   const niE2Pvoc = document.getElementById('ni-e2pvoc');
