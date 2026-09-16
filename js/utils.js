@@ -18,15 +18,8 @@ function voirMissionsLiees(cat){
 }
 
 // addClient() définie dans clients.js
-
-function populateMDJSelect(){
-  const sel = document.getElementById('mdj-select');
-  if(!sel) return;
-  sel.innerHTML = '<option value="">-- Choisir une mission du jour --</option>'
-    + MISSIONS.map(function(m){
-        return '<option value="'+m.id+'">'+m.titre+' (P'+m.palier+' — '+m.comp+')</option>';
-      }).join('');
-}
+// populateMDJSelect() retirée — remplacée par initMissionDuJour() (js/classe-serveur.js),
+// qui alimente aussi le sélecteur d'élève pour l'assignation individuelle.
 
 // ═══════════════════════════════════════════════════════
 // ESPACE PRÉPARATION E2 AGEC — LABORO Sport & Outdoor
