@@ -816,7 +816,20 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     <div id="panel-e2pvoc" class="panel"><div id="e2pvoc-home"></div></div>
 
     <div id="panel-missiondujour" class="panel">
-      <div class="mdj-cfg"><div class="ct">Assigner la mission du jour</div><div style="background:var(--gc);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--gm);line-height:1.6">🚧 Fonctionnalité en cours de reconstruction — bientôt disponible, avec assignation collective (classe) et individuelle (élève précis).</div></div>
+      <div class="mdj-cfg">
+        <div class="ct">Assigner la mission du jour</div>
+        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:12px">
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="radio" name="mdj-cible" value="classe" checked onchange="mdjToggleCible()"> Toute la classe</label>
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="radio" name="mdj-cible" value="eleve" onchange="mdjToggleCible()"> Un élève précis</label>
+        </div>
+        <div class="mdj-sel" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <select id="mdj-cl"><option value="1ere-PVOC">1ère PVOC</option></select>
+          <select id="mdj-el" style="display:none"><option value="">— Élève —</option></select>
+          <select id="mdj-ms"><option value="">— Mission —</option></select>
+          <button class="btn-mdj" onclick="assignerMDJ()">Assigner</button>
+        </div>
+        <div id="mdj-st" style="font-size:12px;color:var(--gm);margin-top:8px"></div>
+      </div>
       <div class="card"><div class="ct">Missions du jour assignées</div><div id="mdj-liste"></div></div>
     </div>
 
