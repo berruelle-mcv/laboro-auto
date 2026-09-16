@@ -401,3 +401,111 @@ async function resetMdpEleve(eleveId, nomAff){
     console.error('resetMdpEleve :', e);
   }
 }
+
+// ═══════════════════════════════════════════════════════════
+//   Mission du jour — assignation collective (classe) ou
+//   individuelle (élève précis)
+// ═══════════════════════════════════════════════════════════
+
+function mdjToggleCible(){
+  const radio = document.querySelector('input[name="mdj-cible"]:checked');
+  if(!radio) return;
+  const selCl = document.getElementById('mdj-cl');
+  const selEl = document.getElementById('mdj-el');
+  if(!selCl || !selEl) return;
+  selCl.style.display = radio.value === 'classe' ? '' : 'none';
+  selEl.style.display = radio.value === 'eleve' ? '' : 'none';
+}
+
+function initMissionDuJour(){
+  const selMs = document.getElementById('mdj-ms');
+  if(selMs && typeof MISSIONS !== 'undefined'){
+    const current = selMs.value;
+    selMs.innerHTML = '<option value="">— Mission —</option>' +
+      MISSIONS.map(function(m){ return '<option value="'+m.id+'">'+m.titre+' ('+m.comp+' · P'+m.palier+')</option>'; }).join('');
+    if(current) selMs.value = current;
+  }
+  const selEl = document.getElementById('mdj-el');
+  if(selEl && typeof ELEVES_SERVEUR !== 'undefined' && ELEVES_SERVEUR.length){
+    selEl.innerHTML = '<option value="">— Élève —</option>' +
+      ELEVES_SERVEUR.map(function(e){ return '<option value="'+e.id+'">'+e.prenom+' '+e.nom+'</option>'; }).join('');
+  }
+  renderMDJListe();
+}
+
+async function assignerMDJ(){
+  const radio = document.querySelector('input[name="mdj-cible"]:checked');
+  const cible = radio ? radio.value : 'classe';
+  const missionId = document.getElementById('mdj-ms').value;
+  const st = document.getElementById('mdj-st');
+  if(!missionId){ if(st) st.textContent = 'Choisis une mission avant d\'assigner.'; return; }
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
+
+  const body = { mission_id: missionId, cible: cible };
+  if(cible === 'classe'){
+    body.classeCode = document.getElementById('mdj-cl').value;
+  } else {
+    const eleveId = document.getElementById('mdj-el').value;
+    if(!eleveId){ if(st) st.textContent = 'Choisis un élève avant d\'assigner.'; return; }
+    body.eleve_id = eleveId;
+  }
+
+  try{
+    const rep = await fetch(LABORO_API + '/api/mission-du-jour', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify(body)
+    });
+    const d = await rep.json();
+    if(!d.ok){ if(st) st.textContent = 'Échec : ' + (d.erreur || 'erreur inconnue'); return; }
+    if(st) st.textContent = '✅ Mission assignée avec succès.';
+    renderMDJListe();
+  }catch(e){
+    if(st) st.textContent = 'Impossible de joindre le serveur LABORO.';
+    console.error('assignerMDJ :', e);
+  }
+}
+
+async function renderMDJListe(){
+  const el = document.getElementById('mdj-liste');
+  if(!el) return;
+  const token = localStorage.getItem('laboro_token');
+  if(!token) return;
+  try{
+    const rep = await fetch(LABORO_API + '/api/mission-du-jour/liste', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok || !d.assignations.length){
+      el.innerHTML = '<div style="padding:14px 16px;background:var(--gc,#F3F4F6);border-radius:8px;font-size:12px;color:var(--gm,#6B7280);text-align:center">Aucune mission du jour assignée pour le moment.</div>';
+      return;
+    }
+    el.innerHTML = d.assignations.map(function(a){
+      const cible = a.eleve_id ? '👤 ' + a.eleve_prenom + ' ' + a.eleve_nom : '👥 ' + (a.classe_libelle || 'Classe entière');
+      const date = a.assigne_le ? new Date(a.assigne_le).toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit'}) : '';
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:.5px solid var(--gc);font-size:12px">'
+        + '<div><strong>'+a.mission_titre+'</strong><div style="color:var(--gm);font-size:11px">'+cible+' · assignée le '+date+'</div></div>'
+        + '<button onclick="supprimerMDJ(\''+a.id+'\')" style="padding:4px 8px;background:none;border:.5px solid var(--rg);border-radius:5px;cursor:pointer;color:var(--rg);font-size:11px">Retirer</button>'
+        + '</div>';
+    }).join('');
+  }catch(e){
+    console.error('renderMDJListe :', e);
+  }
+}
+
+async function supprimerMDJ(id){
+  if(!confirm('Retirer cette assignation ?')) return;
+  const token = localStorage.getItem('laboro_token');
+  if(!token) return;
+  try{
+    const rep = await fetch(LABORO_API + '/api/mission-du-jour/' + id, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(d.ok) renderMDJListe();
+  }catch(e){
+    console.error('supprimerMDJ :', e);
+  }
+}
