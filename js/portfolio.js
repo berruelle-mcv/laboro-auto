@@ -19,10 +19,13 @@ function genererPortfolio(){
 
 // Portfolio d'un élève donné (bouton "Portfolio" de la fiche élève côté enseignant,
 // et réutilisé par genererPortfolio() pour l'élève courant).
-function genererPortfolioEleve(mail){
+// udOverride (optionnel) : objet {missions, nom, classe} déjà construit à partir
+// des vraies données serveur — utilisé par la fiche élève enseignant (classe-serveur.js),
+// qui ne peut pas compter sur le localStorage d'un autre navigateur que celui de l'élève.
+function genererPortfolioEleve(mail, udOverride){
   const s = (typeof gS==='function') ? gS() : {};
-  // Données de l'élève : depuis le store, ou l'utilisateur courant
-  const ud = s[mail] || (CU && CU.mail===mail ? {missions:CU.missions, competences:CU.competences} : null) || {missions:{}, competences:{}};
+  // Données de l'élève : override serveur en priorité, sinon store local, sinon utilisateur courant
+  const ud = udOverride || s[mail] || (CU && CU.mail===mail ? {missions:CU.missions, competences:CU.competences, nom:CU.nom, classe:CU.classe} : null) || {missions:{}, competences:{}};
   if(!ud.missions) ud.missions = {};
   if(!ud.competences) ud.competences = {};
 
