@@ -167,6 +167,34 @@ async function chargerClassementServeur(){
   }
 }
 
+// ═══════════════════════════════════════════════════════════
+//   Mission du jour — bandeau sur le tableau de bord élève
+//   (n'affiche rien pour un enseignant : le serveur renvoie
+//   mission:null pour ce rôle)
+// ═══════════════════════════════════════════════════════════
+async function chargerMissionDuJourServeur(){
+  const wrap = document.getElementById('mdj-wrap');
+  if(!wrap) return;
+  const token = localStorage.getItem('laboro_token');
+  if(!token) return;
+  try{
+    const rep = await fetch(LABORO_API + '/api/mission-du-jour', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok || !d.mission){ wrap.innerHTML = ''; return; }
+    const m = d.mission;
+    wrap.innerHTML = '<div class="card" style="background:linear-gradient(135deg,#2B2B2E,#7A4614);color:#fff;margin-bottom:14px">'
+      + '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.7;margin-bottom:6px">⭐ Mission du jour'+(m.portee==='individuelle'?' — pour toi spécifiquement':'')+'</div>'
+      + '<div style="font-size:15px;font-weight:800;margin-bottom:4px">'+m.titre+'</div>'
+      + '<div style="font-size:12px;opacity:.85;margin-bottom:10px">'+m.comp_id+' · Palier '+m.palier+'</div>'
+      + '<button onclick="openMission(\''+m.id+'\')" style="padding:8px 16px;background:#fff;color:#2B2B2E;border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700">Ouvrir cette mission →</button>'
+      + '</div>';
+  }catch(e){
+    console.error('chargerMissionDuJourServeur :', e);
+  }
+}
+
 function renderDashboard(){
   if(!CU)return;
   const ud=gUD();
@@ -243,6 +271,7 @@ function renderDashboard(){
   }
   // Rang, employé du mois et podium : chargés depuis le serveur (voir chargerClassementServeur)
   if(CU.classe !== 'enseignant' && typeof chargerClassementServeur === 'function') chargerClassementServeur();
+  if(CU.classe !== 'enseignant' && typeof chargerMissionDuJourServeur === 'function') chargerMissionDuJourServeur();
   // Progression
   const lc=['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
   const niveauLabels2=['—','Découverte','En cours','Acquis','Maîtrisé'];
