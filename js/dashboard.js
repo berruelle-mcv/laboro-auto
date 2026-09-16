@@ -92,6 +92,81 @@ function renderCCFDashboard(){
     + '</div>';
 }
 
+// ═══════════════════════════════════════════════════════════
+//   Classement top 3 (podium) — chargé depuis le serveur
+//   Remplace l'ancien getClassement() basé sur localStorage, qui
+//   ne pouvait voir que les élèves ayant utilisé le même navigateur.
+//   Top 3 uniquement (choix pédagogique de Pascal) : jamais de liste
+//   étendue, jamais le dernier de la classe visible par personne.
+// ═══════════════════════════════════════════════════════════
+async function chargerClassementServeur(){
+  const token = localStorage.getItem('laboro_token');
+  if(!token) return;
+  const cltDash = document.getElementById('clt-dash');
+  const empW = document.getElementById('emp-wrap');
+  const rankEl = document.getElementById('wb-rank');
+  try{
+    const rep = await fetch(LABORO_API + '/api/classement', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok) return;
+
+    if(rankEl && d.monRang && d.totalClasse > 1){
+      rankEl.textContent = '#' + d.monRang + ' sur ' + d.totalClasse + ' dans ta classe';
+    }
+
+    const now = new Date();
+    if(empW){
+      if(d.podium.length > 0 && now.getDate() <= 7){
+        const emp = d.podium[0];
+        empW.innerHTML = '<div class="emp-mois"><div class="emp-ico">🏆</div><div><div class="emp-t">Employé du mois — '+now.toLocaleString('fr-FR',{month:'long'})+'</div><div class="emp-n">'+emp.prenom+' '+emp.nom+'</div><div class="emp-s">Score LABORO : '+emp.score+'/100</div></div></div>';
+      } else empW.innerHTML = '';
+    }
+
+    if(cltDash){
+      if(d.podium.length === 0){
+        cltDash.innerHTML = '<div style="text-align:center;padding:20px 12px">'
+          + '<div style="font-size:24px;margin-bottom:8px">🏆</div>'
+          + '<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Le classement se construit au fil des missions</div>'
+          + '<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Complète ta première mission pour apparaître ici.</div>'
+          + '<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#2B2B2E,#B5651D);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
+          + '</div>';
+        return;
+      }
+      const top3 = d.podium;
+      const podOrder = top3.length >= 3 ? [top3[1], top3[0], top3[2]] : top3.length === 2 ? [top3[1], top3[0]] : [top3[0]];
+      const podStyles = top3.length >= 3 ? [
+        {medal:'🥈', height:'70px', bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)', border:'#90A4AE'},
+        {medal:'🥇', height:'90px', bg:'linear-gradient(135deg,#FFF9C4,#FFF176)', border:'#F9A825'},
+        {medal:'🥉', height:'56px', bg:'linear-gradient(135deg,#FFE0B2,#FFCC80)', border:'#FF8F00'}
+      ] : [{medal:'🥇', height:'80px', bg:'linear-gradient(135deg,#FFF9C4,#FFF176)', border:'#F9A825'}];
+      let podHtml = '<div class="podium" style="display:flex;gap:8px;justify-content:center;margin-bottom:12px">';
+      podOrder.forEach(function(u, i){
+        if(!u) return;
+        const ps = podStyles[i] || podStyles[0];
+        const isMe = d.monRang === u.rang;
+        podHtml += '<div style="text-align:center;flex:1;max-width:90px">'
+          + '<div style="font-size:11px;font-weight:700;color:#2B2B2E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(isMe?'<strong>'+u.prenom+'</strong>':u.prenom)+'</div>'
+          + '<div style="background:'+ps.bg+';border:1.5px solid '+ps.border+';border-radius:10px;height:'+ps.height+';display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px'+(isMe?';box-shadow:0 0 0 2px var(--bl)':'')+';">'
+          + '<div style="font-size:20px">'+ps.medal+'</div>'
+          + '<div style="font-size:14px;font-weight:900;color:#2B2B2E">'+u.score+'</div>'
+          + '<div style="font-size:8px;color:#6B7280">pts</div>'
+          + '</div></div>';
+      });
+      podHtml += '</div>';
+      // Ton rang, uniquement visible par toi-même — jamais le reste de la classe
+      let rangHtml = '';
+      if(d.monRang && d.monRang > 3){
+        rangHtml = '<div style="font-size:10px;color:var(--gm);text-align:center;margin-top:6px;padding-top:6px;border-top:1px solid var(--gb)">Ton rang : #'+d.monRang+' · '+d.monScore+' pts</div>';
+      }
+      cltDash.innerHTML = podHtml + rangHtml;
+    }
+  }catch(e){
+    console.error('chargerClassementServeur :', e);
+  }
+}
+
 function renderDashboard(){
   if(!CU)return;
   const ud=gUD();
@@ -166,77 +241,8 @@ function renderDashboard(){
     if(CU.classe !== 'enseignant') palierEl.textContent=palier.emoji+' '+palier.label;
     else palierEl.style.display='none';
   }
-  // Afficher le rang dans la classe
-  const rankEl=document.getElementById('wb-rank');
-  if(rankEl){
-    const cltRank=getClassement(CU.classe);
-    const myIdx=cltRank.findIndex(function(u){ return u.mail===CU.mail; });
-    if(myIdx>=0&&cltRank.length>1){
-      rankEl.textContent='#'+(myIdx+1)+' sur '+cltRank.length+' dans ta classe';
-    }
-  }
-  // Employé du mois
-  const empW=document.getElementById('emp-wrap');
-  const clt=getClassement(CU.classe);
-  const now=new Date();
-  if(clt.length>0&&now.getDate()<=7){
-    const emp=clt[0];
-    empW.innerHTML=`<div class="emp-mois"><div class="emp-ico">🏆</div><div><div class="emp-t">Employé du mois — ${now.toLocaleString('fr-FR',{month:'long'})}</div><div class="emp-n">${emp.nom}</div><div class="emp-s">Score LABORO : ${emp.score}/100</div></div></div>`;
-  }else empW.innerHTML='';
-  // Classement dans le dashboard
-  const cltDash=document.getElementById('clt-dash');
-  if(cltDash && clt.length>0){
-    const medals=['🥇','🥈','🥉'];
-    const myIdx=clt.findIndex(function(u){ return u.mail===CU.mail; });
-    const myRank=myIdx>=0?myIdx+1:null;
-    const top3=clt.slice(0,3);
-    // Podium
-    let podHtml='<div class="podium" style="display:flex;gap:8px;justify-content:center;margin-bottom:12px">';
-    // Ordre podium : 2ème, 1er, 3ème
-    const podOrder = top3.length>=3 ? [top3[1],top3[0],top3[2]] : top3.length===2 ? [top3[1],top3[0]] : [top3[0]];
-    const podStyles = top3.length>=3 ? [
-      {rank:2,medal:'🥈',height:'70px',bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)',border:'#90A4AE'},
-      {rank:1,medal:'🥇',height:'90px',bg:'linear-gradient(135deg,#FFF9C4,#FFF176)',border:'#F9A825'},
-      {rank:3,medal:'🥉',height:'56px',bg:'linear-gradient(135deg,#FFE0B2,#FFCC80)',border:'#FF8F00'}
-    ] : [{rank:1,medal:'🥇',height:'80px',bg:'linear-gradient(135deg,#FFF9C4,#FFF176)',border:'#F9A825'}];
-    podOrder.forEach(function(u,i){
-      if(!u) return;
-      const ps=podStyles[i]||podStyles[0];
-      const isMe=u.mail===CU.mail;
-      podHtml+='<div style="text-align:center;flex:1;max-width:90px">'
-        +'<div style="font-size:11px;font-weight:700;color:#2B2B2E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+(isMe?'<strong>'+u.nom.split(' ')[0]+'</strong>':u.nom.split(' ')[0])+'</div>'
-        +'<div style="background:'+ps.bg+';border:1.5px solid '+ps.border+';border-radius:10px;height:'+ps.height+';display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px'+(isMe?';box-shadow:0 0 0 2px var(--bl)':'')+';">'
-        +'<div style="font-size:20px">'+ps.medal+'</div>'
-        +'<div style="font-size:14px;font-weight:900;color:#2B2B2E">'+u.score+'</div>'
-        +'<div style="font-size:8px;color:#6B7280">pts</div>'
-        +'</div></div>';
-    });
-    podHtml+='</div>';
-    // Liste complète (max 8)
-    let listHtml='<div style="display:flex;flex-direction:column;gap:4px">';
-    clt.slice(0,8).forEach(function(u,i){
-      const isMe=u.mail===CU.mail;
-      const rankMedal=i<3?medals[i]:(i+1)+'';
-      listHtml+='<div style="display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;'+(isMe?'background:var(--ac1b,#F5E6D8);font-weight:700':'background:transparent')+'">'
-        +'<span style="width:22px;text-align:center;font-size:'+(i<3?'14':'11')+'px;flex-shrink:0">'+rankMedal+'</span>'
-        +'<span style="flex:1;font-size:12px;color:#2B2B2E;'+(isMe?'font-weight:800':'')+'white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+u.nom.split(' ')[0]+'</span>'
-        +'<span style="font-size:11px;font-weight:800;color:var(--bl)">'+u.score+'</span>'
-        +'</div>';
-    });
-    listHtml+='</div>';
-    // Mon rang si hors top 8
-    if(myRank && myRank>8){
-      listHtml+='<div style="font-size:10px;color:var(--gm);text-align:center;margin-top:6px;padding-top:6px;border-top:1px solid var(--gb)">Ton rang : #'+myRank+' · '+clt[myIdx].score+' pts</div>';
-    }
-    cltDash.innerHTML=podHtml+listHtml;
-  } else if(cltDash){
-    cltDash.innerHTML='<div style="text-align:center;padding:20px 12px">'
-      +'<div style="font-size:24px;margin-bottom:8px">🏆</div>'
-      +'<div style="font-size:12px;font-weight:700;color:var(--gr);margin-bottom:4px">Le classement se construit au fil des missions</div>'
-      +'<div style="font-size:11px;color:var(--gm);margin-bottom:12px">Complète ta première mission pour apparaître ici.</div>'
-      +'<button onclick="goP(&quot;missions&quot;,null)" style="padding:8px 18px;background:linear-gradient(135deg,#2B2B2E,#B5651D);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700">Voir mes missions →</button>'
-      +'</div>';
-  }
+  // Rang, employé du mois et podium : chargés depuis le serveur (voir chargerClassementServeur)
+  if(CU.classe !== 'enseignant' && typeof chargerClassementServeur === 'function') chargerClassementServeur();
   // Progression
   const lc=['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
   const niveauLabels2=['—','Découverte','En cours','Acquis','Maîtrisé'];
