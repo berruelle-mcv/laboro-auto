@@ -575,3 +575,94 @@ async function exporterClasse(ev){
     if(btn){ btn.textContent = btnTxtOrig; btn.disabled = false; }
   }
 }
+
+// ================================================
+//   Analyse de classe — vue d'ensemble pédagogique
+// ================================================
+async function openAnalyse(){
+  const overlay = document.getElementById('ana-overlay');
+  const body = document.getElementById('ana-body');
+  const titre = document.getElementById('ana-titre');
+  const sous = document.getElementById('ana-sous');
+  if(!overlay || !body) return;
+  overlay.classList.add('open');
+  if(titre) titre.textContent = 'Analyse de classe';
+  if(sous) sous.textContent = 'Chargement…';
+  body.innerHTML = '<div style="padding:24px;text-align:center;color:var(--gm);font-size:13px">Chargement de l\'analyse…</div>';
+
+  const token = localStorage.getItem('laboro_token');
+  if(!token){
+    body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">Connecte-toi via le serveur pour voir l\'analyse.</div>';
+    return;
+  }
+
+  try{
+    const rep = await fetch(LABORO_API + '/api/analyse-classe', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok){
+      body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">Erreur : ' + (d.erreur || 'chargement impossible') + '</div>';
+      return;
+    }
+    if(sous) sous.textContent = d.nbEleves + ' élève(s) analysé(s)';
+    body.innerHTML = renderAnalyse(d);
+  }catch(e){
+    body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">Impossible de joindre le serveur LABORO.</div>';
+    console.error('openAnalyse :', e);
+  }
+}
+
+function closeAnalyse(){
+  const overlay = document.getElementById('ana-overlay');
+  if(overlay) overlay.classList.remove('open');
+}
+
+function renderAnalyse(d){
+  if(!d.nbEleves){
+    return '<div style="padding:24px;color:var(--gm);font-size:13px">Aucun élève à analyser pour le moment.</div>';
+  }
+
+  const lc = ['var(--gb)', '#DCAE78', 'var(--bl)', 'var(--vt)', '#27500A'];
+
+  const compHtml = d.competences.slice(0, 5).map(function(c){
+    const lv = Math.min(4, Math.max(0, Math.round(c.niveauMoyen)));
+    return '<div class="cr"><span class="cr-code">' + c.code + '</span><span class="cr-label">' + c.label + '</span>'
+      + '<div class="cr-bar"><div class="cr-fill" style="width:' + (c.niveauMoyen * 25) + '%;background:' + lc[lv] + '"></div></div>'
+      + '<span class="cr-txt" style="width:auto;color:' + lc[lv] + '">' + c.niveauMoyen.toFixed(1) + '/4 · ' + c.pctNonDemarre + '% pas commencé</span></div>';
+  }).join('');
+
+  const missionsHtml = d.missions.length
+    ? d.missions.map(function(m){
+        return '<div class="al-row al-warn"><div class="al-dot" style="background:var(--am)"></div>'
+          + m.titre + ' — moyenne ' + m.moyenne + '/20 (' + m.nb + ' copie(s))</div>';
+      }).join('')
+    : '<div style="padding:10px;font-size:12px;color:var(--gm)">Pas encore assez de données (au moins 2 copies par mission nécessaires pour être significatif).</div>';
+
+  const decrocheHtml = (d.decrochageAucune.length || d.decrochageInactif.length)
+    ? (d.decrochageAucune.length
+        ? '<div class="al-row al-warn" style="align-items:flex-start"><div class="al-dot" style="background:var(--am);margin-top:4px"></div><div><strong>Aucune mission validée :</strong> ' + d.decrochageAucune.join(', ') + '</div></div>'
+        : '')
+      + (d.decrochageInactif.length
+        ? '<div class="al-row al-warn" style="align-items:flex-start"><div class="al-dot" style="background:var(--am);margin-top:4px"></div><div><strong>Inactifs depuis 14 jours ou plus :</strong> ' + d.decrochageInactif.join(', ') + '</div></div>'
+        : '')
+    : '<div class="al-row al-ok"><div class="al-dot" style="background:var(--vt)"></div>Aucun élève en décrochage détecté.</div>';
+
+  const maxDist = Math.max.apply(null, d.distribution.concat([1]));
+  const labelsDist = ['0-20', '20-40', '40-60', '60-80', '80-100'];
+  const distHtml = '<div style="display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:6px">'
+    + d.distribution.map(function(n, i){
+        const h = Math.round((n / maxDist) * 70) + 10;
+        return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">'
+          + '<div style="font-size:11px;font-weight:700;margin-bottom:2px">' + n + '</div>'
+          + '<div style="width:100%;height:' + h + 'px;background:var(--bl);border-radius:4px 4px 0 0"></div>'
+          + '<div style="font-size:10px;color:var(--gm);margin-top:4px">' + labelsDist[i] + '</div>'
+          + '</div>';
+      }).join('')
+    + '</div>';
+
+  return '<div class="fe-sec"><div class="fe-st">📉 Compétences les plus fragiles</div>' + compHtml + '</div>'
+    + '<div class="fe-sec"><div class="fe-st">📝 Missions les plus difficiles</div>' + missionsHtml + '</div>'
+    + '<div class="fe-sec"><div class="fe-st">⚠️ Élèves à suivre</div>' + decrocheHtml + '</div>'
+    + '<div class="fe-sec"><div class="fe-st">📊 Répartition des scores LABORO</div>' + distHtml + '</div>';
+}
