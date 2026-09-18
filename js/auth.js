@@ -421,6 +421,7 @@ function goP(id,el){
   if(id==='e2agec' && typeof renderE2AGEC==='function') renderE2AGEC();
   if(id==='e2pvoc' && typeof renderE2PVOC==='function') renderE2PVOC();
   if(id==='missiondujour' && typeof initMissionDuJour==='function') initMissionDuJour();
+  if(id==='generation' && typeof initGenerationMission==='function') initGenerationMission();
 }
 function renderAll(){
   const safe = function(fn, name){
