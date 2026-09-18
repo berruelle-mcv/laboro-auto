@@ -509,3 +509,69 @@ async function supprimerMDJ(id){
     console.error('supprimerMDJ :', e);
   }
 }
+
+// ================================================
+//   Export CSV — vue d'ensemble de la classe
+// ================================================
+async function exporterClasse(ev){
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ alert('Connecte-toi via le serveur pour exporter la liste.'); return; }
+
+  const btn = ev && ev.target;
+  const btnTxtOrig = btn ? btn.textContent : null;
+  if(btn){ btn.textContent = '⏳ Export en cours...'; btn.disabled = true; }
+
+  try{
+    const rep = await fetch(LABORO_API + '/api/export-classe', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const d = await rep.json();
+    if(!d.ok){
+      alert('Erreur export : ' + (d.erreur || 'impossible'));
+      return;
+    }
+
+    const niveauLabels = ['Non démarré', 'Découverte', 'En progression', 'Acquis', 'Maîtrisé'];
+    const compCols = d.colonnes_competences || [];
+
+    const entetes = ['Nom', 'Prénom', 'Email', 'Classe', 'Missions validées', 'Moyenne /20', 'Score LABORO /100']
+      .concat(compCols.map(function(c){ return 'Comp. ' + c; }))
+      .concat(['Dernière activité']);
+
+    function fmtDate(iso){
+      if(!iso) return '';
+      const dt = new Date(iso);
+      if(isNaN(dt.getTime())) return '';
+      return dt.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    function csvEsc(val){
+      const s = (val === null || val === undefined) ? '' : String(val);
+      if(/[;"\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }
+
+    const lignes = (d.eleves || []).map(function(e){
+      const base = [e.nom, e.prenom, e.email, e.classe, e.missionsValidees, e.moyenne, e.score];
+      const comps = compCols.map(function(c){ return niveauLabels[e.niveaux[c] || 0]; });
+      return base.concat(comps).concat([fmtDate(e.derniereActivite)]).map(csvEsc).join(';');
+    });
+
+    const csv = entetes.map(csvEsc).join(';') + '\n' + lignes.join('\n');
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dateFichier = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = 'laboro-auto-export-classe-' + dateFichier + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }catch(e){
+    console.error('exporterClasse :', e);
+    alert('Impossible de joindre le serveur LABORO.');
+  }finally{
+    if(btn){ btn.textContent = btnTxtOrig; btn.disabled = false; }
+  }
+}
