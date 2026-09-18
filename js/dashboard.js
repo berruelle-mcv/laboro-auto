@@ -69,11 +69,159 @@ function setAccentColor(classe){
 
 
 function renderPosteCard(){
-  const el = document.getElementById('poste-card');
-  if(!el || !CU) return;
-  el.innerHTML = '<div style="font-size:11px;font-weight:700;color:var(--gm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Mon poste</div>'
+  const wrap = document.getElementById('poste-card-wrap');
+  if(!wrap || !CU) return;
+  if(CU.classe === 'enseignant'){ wrap.innerHTML = ''; return; }
+  wrap.innerHTML = '<div class="card" id="poste-card" onclick="openOrg()" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">'
+    + '<div><div style="font-size:11px;font-weight:700;color:var(--gm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Mon poste</div>'
     + '<div style="font-size:14px;font-weight:800;color:var(--t1)">' + (CU.poste||'Collaborateur') + '</div>'
-    + '<div style="font-size:11px;color:var(--gm);margin-top:2px">' + (CU.classe||'') + '</div>';
+    + '<div style="font-size:11px;color:var(--gm);margin-top:2px">' + (CU.classe||'') + '</div></div>'
+    + '<div style="font-size:11px;color:var(--bl);font-weight:700;white-space:nowrap">🏢 Voir l\'organigramme →</div>'
+    + '</div>';
+}
+
+// ═══════════════════════════════════════════════════════════
+//   Organigramme & fiche de poste — univers LABORO Auto
+//   Contenu statique (Groupe Vasseur), pas d'appel serveur.
+// ═══════════════════════════════════════════════════════════
+function openOrg(){
+  const overlay = document.getElementById('org-overlay');
+  if(!overlay || !CU) return;
+  const titre = document.getElementById('org-titre');
+  const sous = document.getElementById('org-sous');
+  if(titre) titre.textContent = 'Mon poste chez LABORO';
+  if(sous) sous.textContent = getNomEntreprise() + ' — ' + getVille();
+  renderOrganigramme();
+  renderFicheDePoste();
+  const premierTab = document.querySelector('.org-tab');
+  orgTab(0, premierTab);
+  overlay.classList.add('open');
+}
+
+function closeOrg(){
+  const overlay = document.getElementById('org-overlay');
+  if(overlay) overlay.classList.remove('open');
+}
+
+function orgTab(i, el){
+  document.querySelectorAll('.org-tab').forEach(function(t){ t.classList.remove('on'); });
+  if(el) el.classList.add('on');
+  const content = document.getElementById('org-content');
+  const fp = document.getElementById('org-fp');
+  if(content) content.style.display = (i === 0) ? '' : 'none';
+  if(fp) fp.style.display = (i === 1) ? '' : 'none';
+}
+
+function renderOrganigramme(){
+  const el = document.getElementById('org-content');
+  if(!el || !CU) return;
+
+  const estPVOC = (CU.classe || '').includes('PVOC');
+  const initiales = function(nom){
+    return nom.split(' ').map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase();
+  };
+  const monNom = (CU.nom || 'Toi').split(' ')[0];
+
+  el.innerHTML = '<div class="org-tree">'
+    + '<div class="org-level">'
+      + '<div class="org-node top">'
+        + '<div class="org-node-ava" style="background:#2B2B2E">MV</div>'
+        + '<div class="org-node-nom">Michel Vasseur</div>'
+        + '<div class="org-node-role">Fondateur et dirigeant du groupe</div>'
+      + '</div>'
+    + '</div>'
+    + '<div class="org-connector"></div>'
+    + '<div class="org-level">'
+      + '<div class="org-node ' + (estPVOC ? 'peer' : 'manager') + '">'
+        + '<div class="org-node-ava" style="background:#6B4FA0">IF</div>'
+        + '<div class="org-node-nom">Isabelle Ferrand</div>'
+        + '<div class="org-node-role">Responsable du pôle occasion</div>'
+      + '</div>'
+      + '<div class="org-node ' + (estPVOC ? 'manager' : 'peer') + '">'
+        + '<div class="org-node-ava" style="background:#B5651D">KY</div>'
+        + '<div class="org-node-nom">Karim Yildiz</div>'
+        + '<div class="org-node-role">Responsable des ventes VN</div>'
+      + '</div>'
+      + '<div class="org-node peer">'
+        + '<div class="org-node-ava" style="background:#4B5563">BF</div>'
+        + '<div class="org-node-nom">Bruno Faucher</div>'
+        + '<div class="org-node-role">Chef d\'atelier</div>'
+      + '</div>'
+    + '</div>'
+    + '<div class="org-connector"></div>'
+    + '<div class="org-level">'
+      + '<div class="org-node me">'
+        + '<div class="org-node-ava" style="background:var(--vt)">' + initiales(CU.nom || 'Toi') + '</div>'
+        + '<div class="org-node-nom">' + monNom + '</div>'
+        + '<div class="org-node-role">' + (CU.poste || 'Collaborateur') + '</div>'
+        + '<div class="org-node-badge">Ton poste</div>'
+      + '</div>'
+    + '</div>'
+    + '</div>'
+    + '<div style="margin-top:20px;padding-top:16px;border-top:.5px solid var(--gb);font-size:11px;color:var(--gm);text-align:center">'
+    + '👋 Tes formateurs LABORO : Pascal &amp; Sandrine Berruelle — en dehors de l\'univers Vasseur, ce sont eux qui pilotent la plateforme.'
+    + '</div>';
+}
+
+function getFicheDePoste(){
+  const classe = (CU && CU.classe) || '';
+  if(classe.includes('PVOC')){
+    return {
+      titre: 'Commercial terrain — Prospection & Vente B2B',
+      rattachement: 'Karim Yildiz, Responsable des ventes VN',
+      mission: "Développer le portefeuille clients du Groupe Vasseur — particuliers et professionnels — de la prospection jusqu'à la fidélisation, en valorisant l'offre face à la concurrence.",
+      activites: [
+        'Rechercher et qualifier des prospects (particuliers et professionnels — flottes utilitaires)',
+        'Concevoir et mettre en œuvre des actions de prospection (mail, téléphone, salon, réseaux sociaux)',
+        'Conseiller et vendre les véhicules neufs et d\'occasion du Groupe Vasseur',
+        'Assurer le suivi des commandes, devis et services associés',
+        'Fidéliser la clientèle et traiter les réclamations'
+      ],
+      competences: [
+        'Bloc 4 (B4.1 à B4.5) — Prospecter et valoriser l\'offre commerciale',
+        'Bloc 1 (C1.1 à C1.3) — Conseiller et vendre',
+        'Bloc 2 (C2.1 à C2.3) — Suivre les ventes',
+        'Bloc 3 (C3.1 à C3.3) — Fidéliser la relation client'
+      ],
+      qualites: ['Sens du contact', 'Rigueur', 'Organisation', 'Autonomie', 'Esprit d\'équipe']
+    };
+  }
+  // Autres parcours (2nde, AGEC, Terminale) — non ouverts cette année, contenu générique de repli
+  return {
+    titre: (CU && CU.poste) || 'Collaborateur LABORO',
+    rattachement: 'Isabelle Ferrand, Responsable du pôle occasion',
+    mission: "Découvrir et exercer les métiers de la vente et de la relation client au sein du Groupe Vasseur.",
+    activites: [
+      'Accueillir et conseiller la clientèle en showroom',
+      'Participer aux ventes et au suivi des dossiers clients',
+      'Contribuer à la satisfaction et à la fidélisation client'
+    ],
+    competences: [
+      'Bloc 1 — Conseiller et vendre',
+      'Bloc 2 — Suivre les ventes',
+      'Bloc 3 — Fidéliser la relation client'
+    ],
+    qualites: ['Sens du contact', 'Curiosité', 'Sérieux']
+  };
+}
+
+function renderFicheDePoste(){
+  const el = document.getElementById('org-fp');
+  if(!el || !CU) return;
+  const fp = getFicheDePoste();
+
+  el.innerHTML = '<div style="font-size:15px;font-weight:800;color:var(--t1);margin-bottom:2px">' + fp.titre + '</div>'
+    + '<div style="font-size:12px;color:var(--gm);margin-bottom:16px">Rattaché(e) à ' + fp.rattachement + ' — ' + getNomEntreprise() + ', ' + getVille() + '</div>'
+    + '<div class="fe-sec" style="padding:0 0 14px 0;border:none"><div class="fe-st">Mission principale</div><div style="font-size:13px;line-height:1.6">' + fp.mission + '</div></div>'
+    + '<div class="fe-sec" style="padding:0 0 14px 0;border:none"><div class="fe-st">Activités confiées</div>'
+      + fp.activites.map(function(a){ return '<div class="al-row al-ok"><div class="al-dot" style="background:var(--vt)"></div>' + a + '</div>'; }).join('')
+    + '</div>'
+    + '<div class="fe-sec" style="padding:0 0 14px 0;border:none"><div class="fe-st">Compétences mobilisées (référentiel MCV-PVOC)</div>'
+      + fp.competences.map(function(c){ return '<div style="font-size:12px;padding:5px 0;color:var(--gr)">• ' + c + '</div>'; }).join('')
+    + '</div>'
+    + '<div class="fe-sec" style="padding:0;border:none"><div class="fe-st">Qualités attendues</div>'
+      + '<div style="display:flex;gap:6px;flex-wrap:wrap">' + fp.qualites.map(function(q){ return '<span style="font-size:11px;font-weight:600;background:var(--bc);color:var(--bl);padding:4px 10px;border-radius:12px">' + q + '</span>'; }).join('') + '</div>'
+    + '</div>';
 }
 
 function renderCCFDashboard(){
