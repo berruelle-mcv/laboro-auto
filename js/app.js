@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — État global, score, classement, utilitaires
+//   LABORO Auto — État global, score, classement, utilitaires
 //   Version 1.0 — Architecture modulaire
 // ================================================
 
@@ -97,7 +97,7 @@ function getMsg(classe,poste){
 let CU=null,CM=null,obStep=0,repBuffer={},classeFiltre='';
 // ── Accès config filière (depuis config.json chargé au démarrage)
 const getCfg = () => LABORO_CONFIG || {};
-const getNomEntreprise = () => (getCfg().entreprise || {}).nom || 'LABORO Sport & Outdoor';
+const getNomEntreprise = () => (getCfg().entreprise || {}).nom || 'Groupe Vasseur';
 const getVille = () => (getCfg().entreprise || {}).ville || 'Évry-Courcouronnes';
 const getResp = () => {
   const r = (getCfg().personnages || {}).responsable || {};
