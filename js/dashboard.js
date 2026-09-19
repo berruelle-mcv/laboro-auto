@@ -180,7 +180,7 @@ function getFicheDePoste(){
       competences: [
         'Bloc 4 (B4.1 à B4.5) — Prospecter et valoriser l\'offre commerciale',
         'Bloc 1 (C1.1 à C1.3) — Conseiller et vendre',
-        'Bloc 2 (C2.1 à C2.3) — Suivre les ventes',
+        'Bloc 2 (C2.1 à C2.4) — Suivre les ventes',
         'Bloc 3 (C3.1 à C3.3) — Fidéliser la relation client'
       ],
       qualites: ['Sens du contact', 'Rigueur', 'Organisation', 'Autonomie', 'Esprit d\'équipe']
@@ -586,7 +586,7 @@ function isPalierUnlocked(m,ud){
 function compBadge(code){
   const colors = {
     'C1.1':'#B5651D','C1.2':'#B5651D','C1.3':'#B5651D',
-    'C2.1':'#E87722','C2.1b':'#E87722','C2.2':'#E87722','C2.3':'#E87722',
+    'C2.1':'#E87722','C2.2':'#E87722','C2.3':'#E87722','C2.4':'#E87722',
     'C3.1':'#0096C7','C3.2':'#0096C7','C3.3':'#0096C7','C3.3b':'#0096C7',
     'G4A':'#7A4614','C4A.1':'#7A4614','C4A.2':'#7A4614','C4A.3':'#7A4614','G4B':'#7B2FBE',
     'B4.1':'#7B2FBE','B4.2':'#7B2FBE','B4.3':'#7B2FBE','B4.4':'#7B2FBE','B4.5':'#7B2FBE',

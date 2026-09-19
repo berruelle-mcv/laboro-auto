@@ -55,18 +55,18 @@ function startDemo(){
   const missionsDemo = {
     'M023': { id:'M023', status:'done', score:16, comp:'C1.1', progression:2, date_validation:'2025-09-18T10:00:00.000Z' },
     'M024': { id:'M024', status:'done', score:15, comp:'C1.2', progression:1, date_validation:'2025-10-07T10:00:00.000Z' },
-    'M025': { id:'M025', status:'done', score:14, comp:'C2.2', progression:0, date_validation:'2025-10-21T10:00:00.000Z' },
+    'M025': { id:'M025', status:'done', score:14, comp:'C2.3', progression:0, date_validation:'2025-10-21T10:00:00.000Z' },
     'M026': { id:'M026', status:'done', score:17, comp:'C1.3', progression:2, date_validation:'2025-11-12T10:00:00.000Z' },
-    'M028': { id:'M028', status:'done', score:13, comp:'C2.3', progression:0, date_validation:'2025-12-03T10:00:00.000Z' },
+    'M028': { id:'M028', status:'done', score:13, comp:'C2.4', progression:0, date_validation:'2025-12-03T10:00:00.000Z' },
     'M029': { id:'M029', status:'done', score:16, comp:'C3.2', progression:1, date_validation:'2026-01-15T10:00:00.000Z' },
     'M030': { id:'M030', status:'done', score:15, comp:'C3.3', progression:0, date_validation:'2026-02-05T10:00:00.000Z' },
     'M031': { id:'M031', status:'done', score:14, comp:'C3.1', progression:1, date_validation:'2026-03-12T10:00:00.000Z' },
     'M032': { id:'M032', status:'done', score:18, comp:'C4A.3', progression:2, date_validation:'2026-04-02T10:00:00.000Z' },
-    'M027': { id:'M027', status:'att',  score:0,  comp:'C2.2', progression:0 }, // une en attente de correction
+    'M027': { id:'M027', status:'att',  score:0,  comp:'C2.3', progression:0 }, // une en attente de correction
   };
   // Niveaux de compétences cohérents (0 à 4)
   const compDemo = {
-    'C1.1':3,'C1.2':3,'C1.3':3, 'C2.1':2,'C2.2':2,'C2.3':2,
+    'C1.1':3,'C1.2':3,'C1.3':3, 'C2.1':2,'C2.2':2,'C2.3':2,'C2.4':2,
     'C3.1':3,'C3.2':3,'C3.3':3, 'C4A.1':4,'C4A.2':4,'C4A.3':4
   };
 
@@ -77,7 +77,7 @@ function startDemo(){
     s['camille.demo@laboro-demo.fr'] = { classe:'Term-AGEC', nom:'Camille Bernard', competences:{}, notes:{}, __ob_done:true,
       missions:{ 'M023':{id:'M023',status:'done',score:18,comp:'C1.1',progression:2}, 'M024':{id:'M024',status:'done',score:17,comp:'C1.2',progression:1}, 'M026':{id:'M026',status:'done',score:16,comp:'C1.3',progression:1}, 'M029':{id:'M029',status:'done',score:15,comp:'C3.2',progression:0}, 'M032':{id:'M032',status:'done',score:17,comp:'C4A.3',progression:2} } };
     s['hugo.demo@laboro-demo.fr'] = { classe:'Term-AGEC', nom:'Hugo Lefèvre', competences:{}, notes:{}, __ob_done:true,
-      missions:{ 'M023':{id:'M023',status:'done',score:12,comp:'C1.1',progression:0}, 'M024':{id:'M024',status:'done',score:13,comp:'C1.2',progression:1}, 'M025':{id:'M025',status:'done',score:11,comp:'C2.2',progression:0} } };
+      missions:{ 'M023':{id:'M023',status:'done',score:12,comp:'C1.1',progression:0}, 'M024':{id:'M024',status:'done',score:13,comp:'C1.2',progression:1}, 'M025':{id:'M025',status:'done',score:11,comp:'C2.3',progression:0} } };
     localStorage.setItem('laboro_s', JSON.stringify(s));
     localStorage.setItem('laboro_charte_'+MAIL_DEMO, '1');
   } catch(e){ console.warn('Démo: init données', e); }
