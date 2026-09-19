@@ -7,9 +7,10 @@ const COMP = [
   {code:'C1.1', label:'Veille commerciale', g:'G1'},
   {code:'C1.2', label:'Vente omnicanale', g:'G1'},
   {code:'C1.3', label:'Exécution de la vente', g:'G1'},
-  {code:'C2.1', label:'Suivi commande & services associés', g:'G2'},
-  {code:'C2.2', label:'Réclamations client', g:'G2'},
-  {code:'C2.3', label:'Satisfaction client', g:'G2'},
+  {code:'C2.1', label:'Suivi de la commande', g:'G2'},
+  {code:'C2.2', label:'Services associés', g:'G2'},
+  {code:'C2.3', label:'Réclamations client', g:'G2'},
+  {code:'C2.4', label:'Satisfaction client', g:'G2'},
   {code:'C3.1', label:'Info & contact client', g:'G3'},
   {code:'C3.2', label:'Actions de fidélisation', g:'G3'},
   {code:'C3.3', label:'Évaluation fidélisation', g:'G3'},
@@ -17,7 +18,7 @@ const COMP = [
   {code:'B4.2', label:"Concevoir un plan et des supports de prospection", g:'G4'},
   {code:'B4.3', label:'Mettre en œuvre la prospection commerciale', g:'G4'},
   {code:'B4.4', label:'Assurer le suivi de la prospection et des devis', g:'G4'},
-  {code:'B4.5', label:"Valoriser l'offre face à la concurrence", g:'G4'},
+  {code:'B4.5', label:"Valoriser les produits et/ou les services", g:'G4'},
 ];
 
 const RES = {
@@ -115,7 +116,7 @@ const RES = {
 </div>`},
 
   'C1.1':{t:'La veille commerciale',c:`<div class="res-section res-debutant">
-<p><strong>C1.1 — Assurer la veille commerciale chez Vasseur.</strong> La veille, c'est suivre en permanence ce qui se passe autour de soi : les offres concurrentes (autres concessions, mandataires en ligne), les tendances du marché (électrique en hausse, ZFE), et les dispositifs d'aide à l'achat en vigueur.</p>
+<p><strong>C1.1 — Assurer la veille commerciale chez Vasseur.</strong> La veille, c'est suivre en permanence ce qui se passe autour de soi : les offres concurrentes (autres concessions, mandataires en ligne), les tendances du marché (électrique en hausse, développement des zones à faibles émissions — ZFE, qui restreignent progressivement l'accès des centres-villes aux véhicules les plus polluants), et les dispositifs d'aide à l'achat en vigueur.</p>
 <p><strong>À quoi ça sert concrètement ?</strong> À pouvoir répondre à un client qui compare une offre Vasseur à une offre concurrente, sans dénigrer le concurrent mais en mettant en avant les vrais avantages Vasseur (garantie, SAV, essai possible, accompagnement).</p>
 <p><strong>Cas pratique — un client hésitant chez Vasseur :</strong></p>
 <p>Un client compare le Captur Vasseur (prix légèrement supérieur) à un Peugeot 2008 vu chez un concurrent (prix légèrement inférieur, équipements de base uniquement).</p>
@@ -160,7 +161,14 @@ const RES = {
 </div>`},
 
   'C1.3':{t:"L'exécution de la vente",c:`<div class="res-section res-debutant">
-<p><strong>C1.3 — Finaliser une vente chez Vasseur.</strong> Une fois l'accord de principe du client obtenu, il faut monter un dossier complet : identité, véhicule choisi (avec options), prix, mode de paiement (comptant, crédit, LOA), et le cas échéant reprise du véhicule précédent.</p>
+<p><strong>C1.3 — Finaliser une vente chez Vasseur.</strong> Une fois l'accord de principe du client obtenu, il faut monter un dossier complet : identité, véhicule choisi (avec options), prix, mode de paiement, et le cas échéant reprise du véhicule précédent.</p>
+<p><strong>Les 3 modes de paiement possibles chez Vasseur :</strong></p>
+<ul>
+<li><strong>Comptant</strong> — le client paie la totalité du prix, en une ou plusieurs fois, et devient immédiatement propriétaire du véhicule</li>
+<li><strong>Crédit classique</strong> — un organisme de financement avance l'argent, le client rembourse en mensualités sur une durée fixée, et devient propriétaire dès la signature (comme pour un comptant, mais payé progressivement)</li>
+<li><strong>LOA (Location avec Option d'Achat)</strong> — le client ne devient PAS propriétaire tout de suite : il loue le véhicule pendant une durée fixée (souvent 2 à 4 ans) en payant une mensualité généralement plus faible qu'un crédit classique, puis choisit à la fin soit de racheter le véhicule à un prix fixé à l'avance (la "valeur résiduelle"), soit de le rendre et d'en changer</li>
+</ul>
+<p>La différence essentielle à retenir : en LOA, le client paie pour <em>l'usage</em> du véhicule, pas pour le posséder — c'est pour ça que la mensualité est plus légère, mais le client doit accepter de ne pas être propriétaire avant la fin du contrat (et parfois jamais, s'il rend le véhicule).</p>
 <p><strong>Points de vigilance :</strong> ne jamais sortir du cadrage de négociation autorisé (marge de remise maximale fixée par Karim/Isabelle) ; en cas de demande excessive, proposer une contrepartie alternative (garantie étendue plutôt qu'une remise supplémentaire).</p>
 <p><strong>Cas pratique — un dossier avec reprise :</strong></p>
 <p>Un client achète un véhicule occasion à 22 000 € et reprend son ancien véhicule, estimé à 6 000 €.</p>
@@ -203,8 +211,41 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.2':{t:"Traiter les réclamations client",c:`<div class="res-section res-debutant">
-<p><strong>C2.2 — Gérer une réclamation chez Vasseur.</strong> Une réclamation n'est pas une agression : c'est un client qui donne une seconde chance à la relation avant de la rompre. La méthode de base : écouter sans couper la parole, reformuler pour montrer qu'on a compris, investiguer les faits avant de conclure, puis proposer une solution concrète.</p>
+  'C2.2':{t:"Mettre en œuvre les services associés",c:`<div class="res-section res-debutant">
+<p><strong>C2.2 — Mettre en œuvre un service associé chez Vasseur.</strong> Un service associé, c'est toute prestation qui accompagne la vente sans être le véhicule lui-même. Chez Vasseur, les principaux sont :</p>
+<ul>
+<li><strong>La garantie étendue</strong> — prolonge la garantie constructeur au-delà de sa durée initiale</li>
+<li><strong>Le contrat d'entretien</strong> — révisions programmées à prix fixé à l'avance</li>
+<li><strong>La pose d'accessoires</strong> — attelage, barres de toit, protection de coffre… posés par l'atelier de Bruno Faucher ou un carrossier partenaire</li>
+<li><strong>La carte grise / l'immatriculation</strong> — démarche administrative que Vasseur peut réaliser pour le compte du client</li>
+<li><strong>Le financement et l'assurance</strong> — proposés via des organismes partenaires de Vasseur, pas produits en interne</li>
+</ul>
+<p><strong>Mettre en œuvre un service associé, ce n'est pas juste le vendre — c'est le faire exister concrètement, en 4 étapes :</strong></p>
+<ol>
+<li><strong>Sélectionner le bon prestataire</strong> — en interne (Bruno pour une pose simple) ou un partenaire externe (carrossier, organisme de financement) selon la prestation</li>
+<li><strong>Transmettre les informations utiles</strong> — au prestataire choisi : ce qui doit être fait, sur quel véhicule, pour quand</li>
+<li><strong>Suivre l'exécution</strong> — vérifier que la prestation est bien en cours, pas juste "commandée"</li>
+<li><strong>Relancer si besoin et rendre compte</strong> — au client si un délai évolue, en interne si un prestataire ne répond pas</li>
+</ol>
+<p><strong>Cas pratique — un attelage à poser chez Vasseur :</strong></p>
+<p>M. Dembélé achète un Kangoo Van et demande la pose d'un attelage (450 €) avant la livraison prévue dans 8 jours. L'atelier de Bruno Faucher réalise ce type de pose en 3 jours, mais son planning est déjà chargé cette semaine.</p>
+<ul>
+<li>❌ <strong>À éviter</strong> — se contenter de noter "attelage demandé" dans le dossier sans vérifier la disponibilité réelle de l'atelier avant la date de livraison</li>
+<li>✅ <strong>À privilégier</strong> — contacter Bruno dès la vente conclue pour vérifier qu'un créneau de pose est possible avant la date prévue, et caler la pose dans le planning avant de confirmer la date de livraison au client</li>
+</ul>
+<p>Si Bruno annonce que son planning ne permet pas de tenir le délai, il vaut mieux le savoir tout de suite (et proposer une date de livraison ajustée) que de laisser le client découvrir un retard à la dernière minute.</p>
+<p><strong>⚠️ Erreur fréquente à éviter :</strong> confondre "vendre le service" et "le mettre en œuvre". Une fois le client d'accord sur la prestation, le travail ne fait que commencer — il faut encore la transmettre au bon prestataire et suivre qu'elle est bien réalisée.</p>
+<p><strong>En résumé, avant de considérer un service associé comme mis en œuvre, je vérifie que j'ai :</strong></p>
+<ul>
+<li>✓ Choisi le bon prestataire (interne ou partenaire) pour cette prestation précise</li>
+<li>✓ Transmis toutes les informations nécessaires à ce prestataire</li>
+<li>✓ Vérifié que la prestation est réellement en cours, pas seulement enregistrée</li>
+<li>✓ Prévu une relance si un délai n'est pas respecté</li>
+</ul>
+</div>`},
+
+  'C2.3':{t:"Traiter les réclamations client",c:`<div class="res-section res-debutant">
+<p><strong>C2.3 — Gérer une réclamation chez Vasseur.</strong> Une réclamation n'est pas une agression : c'est un client qui donne une seconde chance à la relation avant de la rompre. La méthode de base : écouter sans couper la parole, reformuler pour montrer qu'on a compris, investiguer les faits avant de conclure, puis proposer une solution concrète.</p>
 <p><strong>Les 4 étapes d'une réclamation bien traitée :</strong></p>
 <ol>
 <li><strong>Écouter et reformuler</strong> — même si le client est énervé, jamais l'interrompre ni se justifier immédiatement</li>
@@ -228,8 +269,8 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.3':{t:"Évaluer la satisfaction client",c:`<div class="res-section res-debutant">
-<p><strong>C2.3 — Mesurer et exploiter la satisfaction chez Vasseur.</strong> On ne devine pas si un client est satisfait, on le mesure. Le principal outil est le NPS (Net Promoter Score) : sur une note de 0 à 10 ("recommanderiez-vous Vasseur ?"), on distingue Promoteurs (9-10), Passifs (7-8) et Détracteurs (0-6).</p>
+  'C2.4':{t:"Évaluer la satisfaction client",c:`<div class="res-section res-debutant">
+<p><strong>C2.4 — Mesurer et exploiter la satisfaction chez Vasseur.</strong> On ne devine pas si un client est satisfait, on le mesure. Le principal outil est le NPS (Net Promoter Score) : sur une note de 0 à 10 ("recommanderiez-vous Vasseur ?"), on distingue Promoteurs (9-10), Passifs (7-8) et Détracteurs (0-6).</p>
 <p><strong>Ce qu'on fait de ces données :</strong> un NPS élevé ne veut rien dire s'il n'est suivi d'aucune action ; un NPS bas mal exploité fait perdre le client une seconde fois. La vraie compétence n'est pas de lire le chiffre, mais d'en tirer une action commerciale concrète.</p>
 <p><strong>Cas pratique — un client Détracteur chez Vasseur :</strong></p>
 <p>Un client donne 4/10 après l'achat d'un Trafic, avec le commentaire : <em>"Le véhicule est bien mais j'ai attendu 3 semaines de plus que prévu sans nouvelles."</em></p>
@@ -445,6 +486,7 @@ const RES = {
 
   'C1.3-P2':{t:"Gérer un dossier à plusieurs paramètres",c:`<div class="res-section res-apprenti">
 <p><strong>C1.3 — Gérer un dossier à plusieurs paramètres.</strong> Tu sais monter un dossier avec un seul mode de financement. Plusieurs éléments peuvent se combiner (reprise + financement + options), et plusieurs interlocuteurs peuvent être impliqués (couple, entreprise) — la compétence est de garder un dossier cohérent malgré cette complexité.</p>
+<p><strong>Petit rappel LOA :</strong> en LOA (Location avec Option d'Achat), le client loue le véhicule et paie pour son usage, sans en être propriétaire pendant la durée du contrat — c'est ce qui explique une mensualité plus légère qu'un crédit classique. Une mission de ce palier peut te demander de l'expliquer simplement à un client qui ne connaît pas ce mécanisme.</p>
 <p><strong>Cas pratique — plusieurs interlocuteurs :</strong></p>
 <p>Un couple vient acheter ensemble ; l'un privilégie le prix, l'autre les options de sécurité.</p>
 <ul>
@@ -475,8 +517,25 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.2-P2':{t:"Quand la responsabilité n'est pas évidente",c:`<div class="res-section res-apprenti">
-<p><strong>C2.2 — Quand la responsabilité n'est pas évidente.</strong> Tu sais traiter une réclamation dont la cause est assez claire. Sur le terrain, la responsabilité peut être partagée, ou une réclamation peut se répéter chez un même client — la compétence est de gérer cette ambiguïté sans se braquer ni tout accepter par facilité.</p>
+  'C2.2-P2':{t:"Coordonner plusieurs services, plusieurs prestataires",c:`<div class="res-section res-apprenti">
+<p><strong>C2.2 — Coordonner plusieurs services, plusieurs prestataires.</strong> Tu sais mettre en œuvre un service unique avec un seul prestataire. Sur le terrain, un même dossier combine souvent plusieurs services (accessoire + garantie étendue + financement), parfois avec des prestataires différents dont les délais ne dépendent pas les uns des autres — la compétence est de garder une vue d'ensemble cohérente malgré cette complexité.</p>
+<p><strong>Cas pratique — trois services, trois délais différents :</strong></p>
+<p>Un client B2B commande 3 Kangoo Van avec, pour chacun : pose d'un attelage (atelier Vasseur, 3 jours), immatriculation en flotte (administratif, 5 jours), et financement via un organisme partenaire (validation sous 4 à 7 jours selon le dossier).</p>
+<ul>
+<li>❌ <strong>À éviter</strong> — suivre chaque service séparément sans les recouper, au risque d'annoncer une date de livraison basée sur le service le plus rapide en oubliant les deux autres</li>
+<li>✅ <strong>À privilégier</strong> — construire une vue d'ensemble avec les 3 délais côte à côte, identifier lequel est le plus long (ici le financement), et baser la date de livraison annoncée sur ce délai le plus contraignant — pas sur le plus rapide</li>
+</ul>
+<p>Un dossier avec plusieurs services n'est jamais plus rapide que son service le plus lent. C'est ce délai-là qu'il faut avoir en tête en premier.</p>
+<p><strong>En résumé, sur un dossier à plusieurs services, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Liste tous les services engagés, pas seulement le premier ou le plus simple</li>
+<li>✓ Identifie le délai le plus contraignant avant d'annoncer une date au client</li>
+<li>✓ Garde un suivi coordonné, même quand les prestataires sont indépendants les uns des autres</li>
+</ul>
+</div>`},
+
+  'C2.3-P2':{t:"Quand la responsabilité n'est pas évidente",c:`<div class="res-section res-apprenti">
+<p><strong>C2.3 — Quand la responsabilité n'est pas évidente.</strong> Tu sais traiter une réclamation dont la cause est assez claire. Sur le terrain, la responsabilité peut être partagée, ou une réclamation peut se répéter chez un même client — la compétence est de gérer cette ambiguïté sans se braquer ni tout accepter par facilité.</p>
 <p><strong>Cas pratique — une responsabilité partagée :</strong></p>
 <p>Un client se plaint d'un délai dépassé, mais le dossier montre qu'il a lui-même tardé à valider une option, ce qui a décalé la commande.</p>
 <ul>
@@ -491,8 +550,8 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.3-P2':{t:"Lire une tendance, pas un chiffre isolé",c:`<div class="res-section res-apprenti">
-<p><strong>C2.3 — Lire une tendance, pas un chiffre isolé.</strong> Tu sais réagir à une note isolée. La compétence est maintenant de suivre plusieurs résultats dans le temps pour repérer une vraie tendance, et de savoir traiter un avis "entre deux" (ni très positif ni très négatif), souvent plus riche d'enseignement qu'un avis extrême.</p>
+  'C2.4-P2':{t:"Lire une tendance, pas un chiffre isolé",c:`<div class="res-section res-apprenti">
+<p><strong>C2.4 — Lire une tendance, pas un chiffre isolé.</strong> Tu sais réagir à une note isolée. La compétence est maintenant de suivre plusieurs résultats dans le temps pour repérer une vraie tendance, et de savoir traiter un avis "entre deux" (ni très positif ni très négatif), souvent plus riche d'enseignement qu'un avis extrême.</p>
 <p><strong>Cas pratique — un avis mitigé :</strong></p>
 <p>Un client donne 7/10 (Passif) avec le commentaire : "Rien de grave, mais ça manquait un peu de chaleur dans l'accueil."</p>
 <ul>
