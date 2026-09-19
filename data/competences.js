@@ -292,6 +292,7 @@ const RES = {
 
   'C3.1':{t:"Assurer l'information et le contact avec la clientèle",c:`<div class="res-section res-debutant">
 <p><strong>C3.1 — Garder le contact avec la clientèle Vasseur.</strong> Fidéliser commence bien avant qu'un client ait besoin de racheter : c'est un contact régulier, utile, jamais uniquement commercial. Un client qui n'entend parler de Vasseur qu'au moment où on veut lui vendre quelque chose se sent instrumentalisé.</p>
+<p><strong>Avant de contacter, je consulte le CRM :</strong> le CRM Vasseur (partie du SIC — Système d'Information Commercial) garde l'historique de chaque client (achats, contacts précédents, réclamations). Un bon contact tient compte de ce que le CRM indique déjà, pour ne pas recontacter un client qui vient tout juste d'échanger avec un collègue, ni ignorer une réclamation en cours.</p>
 <p><strong>Les bons prétextes de contact :</strong> une information générale utile (rappel constructeur, actualité), un moment personnel (anniversaire d'achat), une nouveauté pertinente pour son profil. Le mauvais prétexte : "on n'a pas eu de nouvelles de vous depuis un moment" — recentré sur Vasseur, pas sur le client.</p>
 <p><strong>Cas pratique — un rappel constructeur chez Vasseur :</strong></p>
 <p>Renault lance un rappel technique sur un composant électronique de la génération de Captur vendue il y a 2 ans.</p>
@@ -301,6 +302,7 @@ const RES = {
 </ul>
 <p><strong>En résumé, avant d'envoyer un contact d'information, je vérifie que je :</strong></p>
 <ul>
+<li>✓ Ai consulté le CRM pour ne pas ignorer un contact ou une réclamation récente</li>
 <li>✓ Ai un vrai motif utile pour le client, pas seulement pour Vasseur</li>
 <li>✓ Reste factuel, sans dramatiser ni minimiser</li>
 <li>✓ Termine par une action simple et claire, si une action est nécessaire</li>
@@ -598,6 +600,7 @@ const RES = {
 
   'C3.1-P2':{t:"Adapter le contact à des profils variés",c:`<div class="res-section res-apprenti">
 <p><strong>C3.1 — Adapter le contact à des profils variés.</strong> Tu sais envoyer un message à un profil homogène. Une même information peut devoir toucher des clients très différents (âge, usage, ancienneté) — la compétence est d'adapter le ton et le contenu sans multiplier les versions à l'infini.</p>
+<p><strong>Rappel — le CRM :</strong> l'historique enregistré dans le CRM (ancienneté, fréquence de contact, réclamations passées) est justement ce qui permet de repérer qu'un profil est différent d'un autre. Adapter un message sans avoir regardé ce que le CRM indique sur ce client précis, c'est adapter au hasard.</p>
 <p><strong>Cas pratique — un client resté silencieux longtemps :</strong></p>
 <p>Un client n'a eu aucun contact avec Vasseur depuis 3 ans, sans raison connue (ni réclamation, ni départ signalé).</p>
 <ul>
@@ -614,6 +617,7 @@ const RES = {
 
   'C3.2-P2':{t:"Combiner les leviers, anticiper les effets pervers",c:`<div class="res-section res-apprenti">
 <p><strong>C3.2 — Combiner les leviers, anticiper les effets pervers.</strong> Tu sais construire une action de fidélisation. La compétence est maintenant de savoir combiner plusieurs leviers pour un même objectif, adapter une action à un public différent, et anticiper les effets pervers possibles (un client qui se sent lésé par rapport à un autre, par exemple).</p>
+<p><strong>Rappel — le CRM :</strong> avant de combiner des leviers pour un client, un rapide passage par le CRM évite de lui proposer une action à laquelle il a déjà eu droit récemment, ou de créer justement l'un des effets pervers à anticiper.</p>
 <p><strong>Cas pratique — un effet pervers à anticiper :</strong></p>
 <p>Une offre de fidélité est réservée aux clients à 2 achats ou plus. Un client à un seul achat, mais très ancien et très actif sur les réseaux sociaux Vasseur, pourrait mal le vivre.</p>
 <ul>
