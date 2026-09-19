@@ -33,6 +33,7 @@ const RES = {
 <li>Base clients existante (relance d'un client déjà connu, pas un vrai "inconnu" mais qui reste à requalifier)</li>
 <li>Réseaux professionnels locaux (chambres de commerce, annuaires d'artisans) — surtout utile en B2B</li>
 </ul>
+<p><strong>Que devient cette information une fois collectée ?</strong> Chaque prospect repéré doit être enregistré dans le <strong>SIC</strong> (Système d'Information Commercial) — l'ensemble des outils et bases de données de l'entreprise qui centralisent toute l'information client et prospect (fiches, historique des contacts, stocks, argumentaires...). Chez Vasseur, le SIC prend concrètement la forme du CRM (le logiciel utilisé au quotidien) et du fichier clients. <strong>Créer la fiche du prospect dans le SIC dès le premier contact</strong> (nom, coordonnées, canal d'entrée, besoin repéré) est un geste professionnel systématique — pas une option, ni quelque chose à faire "plus tard si on a le temps". Une information non enregistrée est une information perdue pour le collègue qui reprendra le dossier.</p>
 <p><strong>Qualifier un prospect (méthode BANT) :</strong></p>
 <ul>
 <li><strong>B</strong>udget — le prospect a-t-il les moyens ou le financement envisagé ?</li>
@@ -57,6 +58,7 @@ const RES = {
 <li>✓ S'il a une idée de budget ou de mode de financement (Budget)</li>
 <li>✓ Si c'est lui qui décide seul (Autorité)</li>
 <li>✓ Dans quel délai il compte agir (Timeline)</li>
+<li>✓ Ai créé ou mis à jour la fiche du prospect dans le SIC avec ce que je sais déjà</li>
 </ul>
 <p>Si un de ces éléments manque, ma mission n'est pas de deviner — c'est de poser la bonne question pour l'obtenir.</p>
 </div>`},
@@ -324,6 +326,7 @@ const RES = {
 
   'C3.3':{t:"Évaluer les actions de fidélisation",c:`<div class="res-section res-debutant">
 <p><strong>C3.3 — Mesurer l'efficacité d'une action de fidélisation chez Vasseur.</strong> Une action de fidélisation qui n'est jamais évaluée peut coûter cher pour rien. On mesure généralement : le taux de participation (combien de clients ont utilisé l'offre), le taux de conversion (combien ont effectivement racheté), et le retour net (le gain généré compense-t-il le coût de l'action).</p>
+<p><strong>Un geste indissociable de l'évaluation — enrichir le SIC :</strong> le SIC (Système d'Information Commercial, ex. le CRM Vasseur et le fichier clients) centralise toute l'information sur chaque client. Évaluer une action de fidélisation, c'est aussi mettre à jour, pour chaque client concerné, ce que l'action a changé : a-t-il participé ? a-t-il racheté ? faut-il noter une réaction (positive ou négative) pour le prochain collègue qui consultera sa fiche ? Un bilan chiffré qui ne se traduit pas par des fiches clients actualisées est un travail à moitié fait — l'information doit rester exploitable après coup, pas seulement au moment du calcul.</p>
 <p><strong>Cas pratique — bilan d'une campagne chez Vasseur :</strong></p>
 <p>Une offre de reprise majorée envoyée à 100 clients anciens a généré 8 ventes. Le coût de la majoration de reprise était de 400 € par vente.</p>
 <ul>
@@ -335,6 +338,7 @@ const RES = {
 <li>✓ Calcule un taux (participation ou conversion), pas seulement un nombre brut</li>
 <li>✓ Mets ce résultat en perspective (coût, comparaison) avant de juger</li>
 <li>✓ Formule une recommandation claire pour la suite, pas juste un constat</li>
+<li>✓ Enrichis le SIC (fiche de chaque client concerné) avec ce que l'action a changé</li>
 </ul>
 </div>`},
 
@@ -383,6 +387,7 @@ const RES = {
   'B4.1-P2':{t:"Qualifier un prospect en situation réelle",c:`<div class="res-section res-apprenti">
 <p><strong>B4.1 — Qualifier un prospect en situation réelle.</strong> Tu maîtrises la méthode BANT (Budget, Autorité, Need, Timeline). La vraie difficulté, sur le terrain, n'est plus de connaître la méthode, mais de l'appliquer quand la situation est moins nette : plusieurs prospects à traiter en même temps, des informations contradictoires, un profil qui ne rentre pas dans une case évidente.</p>
 <p><strong>Ce qui change concrètement :</strong> tu devras souvent <em>prioriser</em> (tous les prospects ne se valent pas également) et <em>combiner</em> plusieurs sources d'information, sans qu'on te les serve déjà croisées dans un même tableau.</p>
+<p><strong>Rappel — le SIC :</strong> chaque prospect a une fiche dans le SIC (Système d'Information Commercial, ex. le CRM Vasseur), créée dès le premier contact. Au palier 2, la difficulté n'est plus de créer une fiche vide, mais de l'<strong>enrichir correctement</strong> après un nouvel échange : ajouter l'information nouvelle sans effacer ce qu'un collègue avait déjà noté, et signaler clairement quand une information change (plutôt que de la remplacer silencieusement).</p>
 <p><strong>Cas pratique — deux prospects, un seul créneau libre :</strong></p>
 <p>En fin de journée, deux demandes arrivent : l'une d'un particulier qui dit vouloir "changer de voiture un jour", l'autre d'une entreprise qui a un besoin déclaré mais reste vague sur le budget.</p>
 <ul>
@@ -394,6 +399,7 @@ const RES = {
 <li>✓ Priorise quand plusieurs prospects se présentent en même temps, au lieu de traiter au hasard</li>
 <li>✓ Sais dire explicitement ce qui manque encore, même dans un profil qui semble déjà avancé</li>
 <li>✓ Ne me contente pas d'une seule source d'information quand une autre est disponible</li>
+<li>✓ Enrichis la fiche SIC du prospect sans écraser une information déjà notée par un collègue</li>
 </ul>
 </div>`},
 
@@ -626,6 +632,7 @@ const RES = {
 
   'C3.3-P2':{t:"Repérer les biais d'évaluation",c:`<div class="res-section res-apprenti">
 <p><strong>C3.3 — Repérer les biais d'évaluation.</strong> Tu sais calculer un taux et tirer une conclusion. La compétence est maintenant de repérer si une évaluation est biaisée (échantillon trop petit, période inhabituelle, comparaison injuste, biais de sélection) avant de faire confiance au résultat chiffré — et de savoir regarder au-delà du seul taux de conversion.</p>
+<p><strong>Rappel — le SIC :</strong> évaluer une action, c'est aussi enrichir le SIC (Système d'Information Commercial, ex. le CRM Vasseur) pour chaque client concerné. Au palier 2, cet enrichissement doit rester cohérent avec l'analyse : si un résultat semble excellent mais repose sur un biais, la fiche client actualisée ne doit pas laisser croire à une fidélisation acquise qui n'est pas encore prouvée.</p>
 <p><strong>Cas pratique — un résultat trompeur :</strong></p>
 <p>Une action de fidélisation testée sur seulement 10 clients affiche un taux de conversion de 40% — un chiffre qui semble excellent.</p>
 <ul>
@@ -640,6 +647,7 @@ const RES = {
 <li>✓ Repère si la période ou le contexte de test était particulier</li>
 <li>✓ Envisage qu'un groupe comparé soit déjà différent au départ (biais de sélection)</li>
 <li>✓ Ne me limite pas au seul taux de conversion pour juger de l'efficacité réelle</li>
+<li>✓ Actualise le SIC de façon cohérente avec ce que l'analyse a réellement montré, sans survendre un résultat biaisé</li>
 </ul>
 </div>`},
 
@@ -823,29 +831,32 @@ const RES = {
 </ul>
 <p><strong>Quand deux indicateurs se contredisent :</strong> une action peut voir son taux de conversion progresser tout en voyant son NPS reculer chez les clients touchés — signe que l’action fait vendre, mais dégrade la relation. Ne retenir que l’indicateur qui arrange la conclusion est une erreur professionnelle grave.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> conclure « on ne peut rien dire, les données sont trop imparfaites ». Un professionnel formule une recommandation prudente et argumentée avec les données disponibles ; il ne se réfugie pas derrière leur imperfection.</p>
+<p><strong>Fiabiliser le SIC, pas seulement le bilan :</strong> une fois l'écart entre le CRM et la comptabilité tranché, le SIC doit être corrigé en conséquence — sinon le même écart réapparaîtra au prochain bilan, et un collègue qui consultera une fiche client concernée gardera une information fausse. Au niveau professionnel compétent, fiabiliser une donnée pour un rapport ponctuel sans la corriger à la source dans le SIC est un travail incomplet.</p>
 <p><strong>En résumé, avant de présenter un bilan, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Explique un écart entre deux sources avant de choisir un chiffre à retenir</li>
 <li>✓ Ne retiens pas seulement l’indicateur qui m’arrange si un autre le contredit</li>
 <li>✓ Formule une recommandation malgré des données imparfaites, sans m’y dérober</li>
+<li>✓ Corrige le SIC à la source une fois l'écart tranché, pas seulement le chiffre du rapport</li>
 </ul>
 </div>`},
 
 'B4.1-P3':{t:"Qualifier un prospect quand les sources se contredisent",c:`<div class="res-section res-pro">
 <p><strong>B4.1 — Qualifier un prospect quand les sources se contredisent.</strong> Tu sais croiser deux sources pour enrichir un profil (palier 2). En poste, la difficulté n'est plus seulement de croiser des informations complémentaires : c'est de gérer des informations qui se contredisent frontalement. Un commercial compétent ne choisit pas la source qui l'arrange ni n'ignore la contradiction — il cherche à la lever par une question précise, et s'il ne peut pas la lever tout de suite, il construit une réponse prudente qui n'engage rien de trop risqué.</p>
-<p><strong>Rappel express :</strong> BANT = Budget, Autorité, Need (besoin), Timeline (délai) — les 4 éléments à connaître pour qualifier un prospect. B2B = vente à une entreprise, B2C = vente à un particulier.</p>
+<p><strong>Rappel express :</strong> BANT = Budget, Autorité, Need (besoin), Timeline (délai) — les 4 éléments à connaître pour qualifier un prospect. B2B = vente à une entreprise, B2C = vente à un particulier. Le SIC (Système d'Information Commercial, ex. le CRM Vasseur) centralise la fiche de chaque prospect — au palier 3, une contradiction entre deux sources est très souvent une contradiction entre deux versions du SIC : une fiche pas encore mise à jour contre une information plus récente non encore enregistrée. Fiabiliser le SIC, c'est trancher laquelle des deux versions doit devenir la référence, puis l'y inscrire.</p>
 <p><strong>Cas pratique chiffré chez Vasseur :</strong> le Groupe Bréard (entreprise de BTP, plusieurs chantiers) veut renouveler une flotte de 8 utilitaires. Deux sources existent dans le dossier : la fiche client remplie lors d'un premier échange indique un budget global d'environ 180 000 €, valable pour l'ensemble de la flotte ; mais un compte-rendu de réunion plus récent, rédigé par Isabelle après un second contact, note que le dirigeant a évoqué un budget "plus serré que prévu" à cause d'un investissement immobilier en cours, sans donner de chiffre précis.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — construire une proposition sur 180 000 € parce que c'est le seul chiffre écrit noir sur blanc, en ignorant la remarque plus récente ; ou au contraire supposer un budget bien inférieur sans aucune base chiffrée</li>
 <li>✅ <strong>À privilégier</strong> — repérer que l'information la plus récente (le second échange) doit primer sur la première tant qu'elle n'est pas confirmée, poser une question directe et non intrusive pour lever le doute ("pour bien calibrer notre proposition, quelle enveloppe globale envisagez-vous pour cette flotte ?"), et en attendant la réponse, préparer une offre modulable plutôt qu'un chiffre figé</li>
 </ul>
-<p><strong>⚠️ Erreur fréquente à éviter :</strong> considérer qu'une contradiction entre deux sources est un problème à résoudre seul, en devinant. Ce n'est presque jamais le cas : la bonne réponse professionnelle est very souvent de poser la question qui lève le doute, formulée de façon à ne pas donner l'impression de douter de la parole du client.</p>
+<p><strong>⚠️ Erreur fréquente à éviter :</strong> considérer qu'une contradiction entre deux sources est un problème à résoudre seul, en devinant. Ce n'est presque jamais le cas : la bonne réponse professionnelle est très souvent de poser la question qui lève le doute, formulée de façon à ne pas donner l'impression de douter de la parole du client.</p>
 <p><strong>En résumé, avant de qualifier un prospect à partir de plusieurs sources, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Repère une contradiction entre deux sources avant de construire quoi que ce soit dessus</li>
 <li>✓ Donne la priorité à l'information la plus récente tant qu'elle n'est pas confirmée par le contraire</li>
 <li>✓ Pose une question ciblée pour lever le doute plutôt que de trancher moi-même à sa place</li>
 <li>✓ Prépare une réponse prudente (modulable) tant que la contradiction n'est pas levée</li>
+<li>✓ Mets à jour le SIC avec la version fiabilisée dès qu'elle est confirmée, pour qu'un collègue ne retombe pas dans le même doute</li>
 </ul>
 </div>`},
 
