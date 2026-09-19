@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — Vue enseignant
+//   LABORO Auto — Vue enseignant
 //   Vue compétences, vue classe, indicateurs pédagogiques
 //   Version 2.0 — Catalogue 176 produits
 // ================================================
@@ -202,98 +202,16 @@ function openProduit(id){
   fiche.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function renderClasse(){
-  const allUsers=allU().filter(u=>u.mail&&!u.mail.includes('berruelle'));
-  const classes=[...new Set(allUsers.map(u=>u.classe||'Inconnue'))].sort();
-  const tabsEl=document.getElementById('classe-tabs');
-  if(tabsEl){
-    tabsEl.innerHTML=`<div style="font-size:11px;font-weight:700;color:var(--gm);margin-right:4px">Filtrer :</div>
-      <div class="cls-tab${classeFiltre===''?' on':''}" onclick="filtrerClasse('',this)">Toutes <span class="${classeFiltre===''?'cls-count':'cls-count-off'}">${allUsers.length}</span></div>
-      ${classes.map(cls=>{
-        const n=allUsers.filter(u=>(u.classe||'Inconnue')===cls).length;
-        const att=allUsers.filter(u=>(u.classe||'Inconnue')===cls&&Object.values(u.missions||{}).some(m=>m.status==='att')).length;
-        const clsColor=cls.includes('2nde')?'#2E7D5E':cls.includes('Term')?'#7B2D42':'#B5651D';
-        const clsBg=cls.includes('2nde')?'#F5E6D8':cls.includes('Term')?'#F9E8EE':'#F5E6D8';
-        const activeStyle=classeFiltre===cls?`background:${clsColor};color:#fff;border-color:${clsColor}`:`border-color:${clsColor};color:${clsColor}`;
-        return`<div class="cls-tab${classeFiltre===cls?' on':''}" onclick="filtrerClasse('${cls}',this)" style="${activeStyle}">${cls} <span style="font-size:9px;background:${classeFiltre===cls?'rgba(255,255,255,.25)':clsBg};color:${classeFiltre===cls?'#fff':clsColor};padding:1px 5px;border-radius:8px">${n}</span>${att>0?` <span style="font-size:9px;background:var(--am);color:#fff;padding:1px 5px;border-radius:8px">${att}⚡</span>`:''}</div>`;
-      }).join('')}`;
-  }
+// renderClasse() et renderMDJListe() : gérées par js/classe-serveur.js
+// (chargé après ce fichier, données serveur — voir renderClasse()/renderMDJListe() dans classe-serveur.js)
 
-  const users=classeFiltre?allUsers.filter(u=>(u.classe||'Inconnue')===classeFiltre):allUsers;
-  const statsEl=document.getElementById('classe-stats');
-  if(statsEl&&users.length){
-    const totalDone=users.reduce((a,u)=>a+Object.values(u.missions||{}).filter(m=>m.status==='done').length,0);
-    const totalAtt=users.reduce((a,u)=>a+Object.values(u.missions||{}).filter(m=>m.status==='att').length,0);
-    const allScores=users.flatMap(u=>Object.values(u.missions||{}).filter(m=>m.score).map(m=>m.score));
-    const avgGlobal=allScores.length?(allScores.reduce((a,b)=>a+b,0)/allScores.length).toFixed(1):'—';
-    statsEl.innerHTML=`
-      <div style="background:var(--bc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--bl)">${users.length}</div><div class="u-label-up">Élèves</div></div>
-      <div style="background:var(--vc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--vt)">${totalDone}</div><div class="u-label-up">Missions validées</div></div>
-      <div style="background:var(--ac);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--am)">${totalAtt}</div><div class="u-label-up">En attente</div></div>
-      <div style="background:var(--gc);border-radius:8px;padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--gr)">${avgGlobal}/20</div><div class="u-label-up">Moyenne classe</div></div>`;
-  } else if(statsEl){
-    statsEl.innerHTML='';
-  }
-
-  const titreEl=document.getElementById('cl-titre');
-  if(titreEl)titreEl.textContent=classeFiltre?`Classe : ${classeFiltre} — ${users.length} élève(s)`:'Toutes les classes — cliquer sur un élève pour sa fiche';
-
-  const lc=['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
-  const tb=document.getElementById('cl-tbody');
-  if(!users.length){
-    tb.innerHTML=`<tr><td colspan="9" style="padding:16px;color:var(--gm);font-size:12px">${classeFiltre?'Aucun élève dans cette classe pour le moment.':'Aucun élève connecté pour le moment.'}</td></tr>`;
-    renderMDJListe();return;
-  }
-  tb.innerHTML=users.map(u=>{
-    const done=Object.values(u.missions||{}).filter(m=>m.status==='done').length;
-    const att=Object.values(u.missions||{}).filter(m=>m.status==='att').length;
-    const totalCDP=Object.values(u.missions||{}).reduce((s,m)=>s+(m.coup_de_pouce||0),0);
-    const sc2=Object.values(u.missions||{}).filter(m=>m.score).map(m=>m.score);
-    const avg=sc2.length?(sc2.reduce((a,b)=>a+b,0)/sc2.length).toFixed(1):'—';
-    const sc=calcScore(u);
-    const cls=u.classe||'—';
-    const c1=Math.max(...COMP.filter(c=>c.g==='G1').map(c=>u.competences?.[c.code]||0),0);
-    const c2=Math.max(...COMP.filter(c=>c.g==='G2').map(c=>u.competences?.[c.code]||0),0);
-    const c3=Math.max(...COMP.filter(c=>c.g==='G3').map(c=>u.competences?.[c.code]||0),0);
-    const c4=Math.max(...COMP.filter(c=>c.g==='G4A'||c.g==='G4B').map(c=>u.competences?.[c.code]||0),0);
-    return`<tr data-mail="${u.mail}" onclick="selectEleve('${u.mail}');showFicheEleve('${u.mail}')" style="cursor:pointer;${att>0?'background:var(--ac)':''}">
-      <td style="font-weight:700">${u.nom||u.mail}</td>
-      <td class="u-label-sm">${cls}</td>
-      <td><span class="dl" style="background:${lc[c1]}"></span></td>
-      <td><span class="dl" style="background:${lc[c2]}"></span></td>
-      <td><span class="dl" style="background:${lc[c3]}"></span></td>
-      <td><span class="dl" style="background:${lc[c4]}"></span></td>
-      <td style="font-weight:700;color:var(--bl)">${sc}/100</td>
-      <td>${(()=>{const pp=calcPosturePro(u);const pl=getPostureLabel(pp);return '<span style="background:'+pl.bg+';color:'+pl.color+';padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700">'+pp+'%</span>';})()}</td>
-      <td>${done}${att>0?` <span style="font-size:10px;background:var(--am);color:#fff;padding:1px 5px;border-radius:4px">${att}⚡</span>`:''}</td>
-      <td style="font-weight:700;color:${parseFloat(avg)>=11?'var(--vt)':'var(--rg)'}">${avg}</td>
-    </tr>`;
-  }).join('');
-  renderMDJListe();
-}
-
-// ═══════════════════════════════════════════════════════════
-//   Affichage des missions du jour assignées (vue enseignant)
-//   État actuel : le backend "missions du jour" n'est pas encore
-//   construit. Affiche proprement l'état vide et reste le point
-//   d'entrée pour brancher l'appel serveur plus tard.
-// ═══════════════════════════════════════════════════════════
-function renderMDJListe(){
-  const el = document.getElementById('mdj-liste');
-  if(!el) return;
-  el.innerHTML =
-    '<div style="padding:14px 16px;background:var(--gc,#F3F4F6);border-radius:8px;'
-    + 'font-size:12px;color:var(--gm,#6B7280);text-align:center">'
-    + 'Aucune mission du jour assignée pour le moment.'
-    + '</div>';
-}
 
 function showFicheEleve(mail){
   const s=gS();const u={mail,...(s[mail]||{missions:{},competences:{}})};
   const nom=u.nom||mail;
   const done=Object.values(u.missions).filter(m=>m.status==='done').length;
   const att=Object.entries(u.missions).filter(([,m])=>m.status==='att');
-  const sc2=Object.values(u.missions).filter(m=>m.score).map(m=>m.score);
+  const sc2=Object.values(u.missions).filter(m=>m.score!=null).map(m=>m.score);
   const avg=sc2.length?(sc2.reduce((a,b)=>a+b,0)/sc2.length).toFixed(1):'—';
   const sc=calcScore(u);
   const lc=['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
