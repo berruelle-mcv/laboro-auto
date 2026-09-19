@@ -6,6 +6,36 @@
 let ELEVES_SERVEUR = [];
 let ELEVE_SELECTIONNE = null; // { id, nomAff }
 
+// Fetch JSON en distinguant clairement trois cas d'échec, pour ne plus afficher
+// "serveur injoignable" quand le serveur a en fait répondu (avec une erreur HTTP
+// ou un JSON invalide) :
+//  - réseau : le fetch lui-même échoue (DNS, connexion refusée, hors-ligne…)
+//  - http   : le serveur répond mais avec un statut HTTP en erreur (401, 500…)
+//  - parse  : le serveur répond 200 mais le corps n'est pas du JSON exploitable
+async function fetchJSON(url, options){
+  let rep;
+  try{
+    rep = await fetch(url, options);
+  }catch(e){
+    const err = new Error('Impossible de joindre le serveur LABORO (connexion impossible).');
+    err.kind = 'network';
+    throw err;
+  }
+  if(!rep.ok){
+    const err = new Error('Le serveur LABORO a répondu avec une erreur (HTTP ' + rep.status + ').');
+    err.kind = 'http';
+    err.status = rep.status;
+    throw err;
+  }
+  try{
+    return await rep.json();
+  }catch(e){
+    const err = new Error('Réponse du serveur LABORO invalide (JSON illisible).');
+    err.kind = 'parse';
+    throw err;
+  }
+}
+
 async function renderClasse(){
   const token = localStorage.getItem('laboro_token');
   const tb = document.getElementById('cl-tbody');
@@ -19,10 +49,9 @@ async function renderClasse(){
   }
 
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves', {
+    const data = await fetchJSON(LABORO_API + '/api/eleves', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const data = await rep.json();
     if(!data.ok){
       if(tb) tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--rg);font-size:12px">'
         + 'Erreur : ' + (data.erreur || 'chargement impossible') + '</td></tr>';
@@ -31,7 +60,7 @@ async function renderClasse(){
     ELEVES_SERVEUR = data.eleves || [];
   }catch(e){
     if(tb) tb.innerHTML = '<tr><td colspan="10" style="padding:16px;color:var(--rg);font-size:12px">'
-      + 'Impossible de joindre le serveur LABORO.</td></tr>';
+      + e.message + '</td></tr>';
     console.error('renderClasse (serveur) :', e);
     return;
   }
@@ -135,17 +164,16 @@ async function afficherFicheEleve(eleve){
 
   let progs = [];
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/' + eleve.id + '/progressions', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/' + eleve.id + '/progressions', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const d = await rep.json();
     if(!d.ok){
       wrap.innerHTML = '<div style="padding:16px;color:var(--rg);font-size:12px">Erreur : ' + (d.erreur || 'chargement impossible') + '</div>';
       return;
     }
     progs = d.progressions || [];
   }catch(e){
-    wrap.innerHTML = '<div style="padding:16px;color:var(--rg);font-size:12px">Impossible de joindre le serveur LABORO.</div>';
+    wrap.innerHTML = '<div style="padding:16px;color:var(--rg);font-size:12px">' + e.message + '</div>';
     console.error('afficherFicheEleve :', e);
     return;
   }
@@ -164,7 +192,7 @@ async function afficherFicheEleve(eleve){
   const nom = ((eleve.prenom ? eleve.prenom + ' ' : '') + (eleve.nom || '')).trim() || eleve.email;
   const doneList = Object.values(ud.missions).filter(function(m){ return m.status==='done'; });
   const attList = Object.entries(ud.missions).filter(function(e){ return e[1].status==='att'; });
-  const scores = doneList.filter(function(m){ return m.score; }).map(function(m){ return m.score; });
+  const scores = doneList.filter(function(m){ return m.score != null; }).map(function(m){ return m.score; });
   const avg = scores.length ? (scores.reduce(function(a,b){return a+b;},0)/scores.length).toFixed(1) : '—';
   const sc = calcScore(ud);
   const lc = ['var(--gb)','#DCAE78','var(--bl)','var(--vt)','#27500A'];
@@ -230,7 +258,7 @@ async function afficherFicheEleve(eleve){
         const statutHtml = mv.status==='done'
           ? '<span style="color:var(--vt);font-size:11px;font-weight:700">✓ Validée</span>'
           : '<a href="#correction-'+mid+'" style="font-size:11px;font-weight:700;color:var(--am,#D97706)">Voir la copie ↓</a>';
-        return '<div class="mr"><span style="font-size:11px">'+m.titre+'</span><span class="u-label-sm">'+m.comp+' P'+m.palier+'</span><span style="font-size:11px;text-align:center">'+fmtDate(mv.submitted_at)+'</span><span><div class="nb2 '+(mv.score?nc:'')+'">'+(mv.score ? mv.score+'/20' : (mv.note_ia ? 'IA:'+mv.note_ia : '-'))+'</div></span><span>'+statutHtml+'</span></div>';
+        return '<div class="mr"><span style="font-size:11px">'+m.titre+'</span><span class="u-label-sm">'+m.comp+' P'+m.palier+'</span><span style="font-size:11px;text-align:center">'+fmtDate(mv.submitted_at)+'</span><span><div class="nb2 '+(mv.score!=null?nc:'')+'">'+(mv.score!=null ? mv.score+'/20' : (mv.note_ia ? 'IA:'+mv.note_ia : '-'))+'</div></span><span>'+statutHtml+'</span></div>';
       }).join('')
     + '</div>'
     + (attList.length ? '<div class="fe-sec"><div class="fe-st">📝 Copies à corriger ('+attList.length+')</div>'
@@ -263,18 +291,17 @@ async function validerMissionServeur(eleveId, missionId, noteIA){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/valider-mission', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/valider-mission', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: eleveId, mission_id: missionId, note_finale: note })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     alert('✅ Mission validée avec la note ' + d.note_finale + '/20.');
     const eleve = ELEVES_SERVEUR.find(function(e){ return e.id === eleveId; });
     if(eleve) afficherFicheEleve(eleve);
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('validerMissionServeur :', e);
   }
 }
@@ -285,18 +312,17 @@ async function saveObsServeur(eleveId){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/observations', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/observations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: eleveId, observations: el.value })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     const eleve = ELEVES_SERVEUR.find(function(e){ return e.id === eleveId; });
     if(eleve) eleve.observations = el.value;
     alert('✅ Observations enregistrées.');
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('saveObsServeur :', e);
   }
 }
@@ -316,12 +342,11 @@ async function changerClasseEleve(){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/changer-classe', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/changer-classe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: ELEVE_SELECTIONNE.id, classeCode: nouvelleClasse.trim() })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     alert('✅ ' + ELEVE_SELECTIONNE.nomAff + ' est maintenant en ' + d.classe + '.');
     ELEVE_SELECTIONNE = null;
@@ -329,7 +354,7 @@ async function changerClasseEleve(){
     if(zone) zone.textContent = '';
     renderClasse();
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('changerClasseEleve :', e);
   }
 }
@@ -340,16 +365,15 @@ async function reinitialiserEleve(){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/reinitialiser', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/reinitialiser', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: ELEVE_SELECTIONNE.id })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     alert('✅ Progression de ' + ELEVE_SELECTIONNE.nomAff + ' réinitialisée.');
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('reinitialiserEleve :', e);
   }
 }
@@ -360,12 +384,11 @@ async function supprimerEleve(){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/supprimer', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/supprimer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: ELEVE_SELECTIONNE.id })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     alert('✅ ' + ELEVE_SELECTIONNE.nomAff + ' a été supprimé(e).');
     ELEVE_SELECTIONNE = null;
@@ -373,7 +396,7 @@ async function supprimerEleve(){
     if(zone) zone.textContent = '';
     renderClasse();
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('supprimerEleve :', e);
   }
 }
@@ -388,16 +411,15 @@ async function resetMdpEleve(eleveId, nomAff){
   const token = localStorage.getItem('laboro_token');
   if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
   try{
-    const rep = await fetch(LABORO_API + '/api/eleves/reset-mdp', {
+    const d = await fetchJSON(LABORO_API + '/api/eleves/reset-mdp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ eleve_id: eleveId })
     });
-    const d = await rep.json();
     if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
     alert('✅ Mot de passe réinitialisé pour ' + d.prenom + ' ' + d.nom + '.\n\nNouveau mot de passe : ' + d.motDePasse + '\n(il devra le changer à sa prochaine connexion)');
   }catch(e){
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
     console.error('resetMdpEleve :', e);
   }
 }
@@ -452,17 +474,16 @@ async function assignerMDJ(){
   }
 
   try{
-    const rep = await fetch(LABORO_API + '/api/mission-du-jour', {
+    const d = await fetchJSON(LABORO_API + '/api/mission-du-jour', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify(body)
     });
-    const d = await rep.json();
     if(!d.ok){ if(st) st.textContent = 'Échec : ' + (d.erreur || 'erreur inconnue'); return; }
     if(st) st.textContent = '✅ Mission assignée avec succès.';
     renderMDJListe();
   }catch(e){
-    if(st) st.textContent = 'Impossible de joindre le serveur LABORO.';
+    if(st) st.textContent = e.message;
     console.error('assignerMDJ :', e);
   }
 }
@@ -473,10 +494,9 @@ async function renderMDJListe(){
   const token = localStorage.getItem('laboro_token');
   if(!token) return;
   try{
-    const rep = await fetch(LABORO_API + '/api/mission-du-jour/liste', {
+    const d = await fetchJSON(LABORO_API + '/api/mission-du-jour/liste', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const d = await rep.json();
     if(!d.ok || !d.assignations.length){
       el.innerHTML = '<div style="padding:14px 16px;background:var(--gc,#F3F4F6);border-radius:8px;font-size:12px;color:var(--gm,#6B7280);text-align:center">Aucune mission du jour assignée pour le moment.</div>';
       return;
@@ -499,11 +519,10 @@ async function supprimerMDJ(id){
   const token = localStorage.getItem('laboro_token');
   if(!token) return;
   try{
-    const rep = await fetch(LABORO_API + '/api/mission-du-jour/' + id, {
+    const d = await fetchJSON(LABORO_API + '/api/mission-du-jour/' + id, {
       method: 'DELETE',
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const d = await rep.json();
     if(d.ok) renderMDJListe();
   }catch(e){
     console.error('supprimerMDJ :', e);
@@ -522,10 +541,9 @@ async function exporterClasse(ev){
   if(btn){ btn.textContent = '⏳ Export en cours...'; btn.disabled = true; }
 
   try{
-    const rep = await fetch(LABORO_API + '/api/export-classe', {
+    const d = await fetchJSON(LABORO_API + '/api/export-classe', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const d = await rep.json();
     if(!d.ok){
       alert('Erreur export : ' + (d.erreur || 'impossible'));
       return;
@@ -570,7 +588,7 @@ async function exporterClasse(ev){
     URL.revokeObjectURL(url);
   }catch(e){
     console.error('exporterClasse :', e);
-    alert('Impossible de joindre le serveur LABORO.');
+    alert(e.message);
   }finally{
     if(btn){ btn.textContent = btnTxtOrig; btn.disabled = false; }
   }
@@ -597,10 +615,9 @@ async function openAnalyse(){
   }
 
   try{
-    const rep = await fetch(LABORO_API + '/api/analyse-classe', {
+    const d = await fetchJSON(LABORO_API + '/api/analyse-classe', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const d = await rep.json();
     if(!d.ok){
       body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">Erreur : ' + (d.erreur || 'chargement impossible') + '</div>';
       return;
@@ -608,7 +625,7 @@ async function openAnalyse(){
     if(sous) sous.textContent = d.nbEleves + ' élève(s) analysé(s)';
     body.innerHTML = renderAnalyse(d);
   }catch(e){
-    body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">Impossible de joindre le serveur LABORO.</div>';
+    body.innerHTML = '<div style="padding:24px;color:var(--rg);font-size:13px">' + e.message + '</div>';
     console.error('openAnalyse :', e);
   }
 }
@@ -705,12 +722,11 @@ async function genMission(){
   res.textContent = "L'IA rédige la mission…";
 
   try{
-    const rep = await fetch(LABORO_API + '/api/generer-mission', {
+    const d = await fetchJSON(LABORO_API + '/api/generer-mission', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ comp_code: comp, palier: parseInt(palier, 10), client_type: clientType })
     });
-    const d = await rep.json();
     if(!d.ok){
       res.style.color = 'var(--rg)';
       res.textContent = 'Erreur : ' + (d.erreur || 'génération impossible');
@@ -720,7 +736,7 @@ async function genMission(){
     res.innerHTML = renderBrouillonMission(d.brouillon);
   }catch(e){
     res.style.color = 'var(--rg)';
-    res.textContent = 'Impossible de joindre le serveur LABORO.';
+    res.textContent = e.message;
     console.error('genMission :', e);
   }finally{
     if(btn){ btn.textContent = btnTxtOrig; btn.disabled = false; }
