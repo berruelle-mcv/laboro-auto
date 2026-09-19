@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — Utilitaires
+//   LABORO Auto — Utilitaires
 //   Fonctions utilitaires globales
 //   Version 1.0 — Architecture modulaire
 // ================================================
@@ -22,7 +22,7 @@ function voirMissionsLiees(cat){
 // qui alimente aussi le sélecteur d'élève pour l'assignation individuelle.
 
 // ═══════════════════════════════════════════════════════
-// ESPACE PRÉPARATION E2 AGEC — LABORO Sport & Outdoor
+// ESPACE PRÉPARATION E2 AGEC — LABORO Auto
 // ═══════════════════════════════════════════════════════
 
 // Données et rendus E2 chargés depuis les fichiers externes :
