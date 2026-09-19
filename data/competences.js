@@ -24,7 +24,7 @@ const COMP = [
 const RES = {
 
   'B4.1':{t:"Rechercher et qualifier les informations de prospection",c:`<div class="res-section res-debutant">
-<p><strong>B4.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique) et les professionnels (artisans, PME — utilitaires). Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
+<p><strong>B4.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique), souvent désignés par le sigle <strong>B2C</strong> (business to consumer, « d'entreprise à particulier »), et les professionnels (artisans, PME — utilitaires), désignés par le sigle <strong>B2B</strong> (business to business, « d'entreprise à entreprise ») que tu retrouveras souvent dans les missions. Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
 <p><strong>D'où viennent les prospects chez Vasseur ?</strong></p>
 <ul>
 <li>Formulaires du site laboro-edu (demande de devis, essai, information)</li>
@@ -63,6 +63,7 @@ const RES = {
 
   'B4.2':{t:"Concevoir un plan et des supports de prospection",c:`<div class="res-section res-debutant">
 <p><strong>B4.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
+<p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise qui achète un véhicule professionnel avant la fin de son exercice comptable (souvent le 31 décembre) peut en déduire une partie du coût de ses impôts sur cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
 <p><strong>Un bon plan de prospection contient toujours :</strong></p>
 <ul>
 <li>Une cible définie avec des critères précis (pas "tout le monde")</li>
@@ -346,11 +347,19 @@ const RES = {
 <li><strong>❌ À éviter</strong> — conclure "ça n'a pas marché" en ne regardant que la vente finale (1 sur 40), sans distinguer les étapes</li>
 <li><strong>✅ À privilégier</strong> — calculer chaque taux séparément (15% de taux de rendez-vous, encore trop tôt pour juger le taux de transformation en vente), et identifier à quelle étape se situe la vraie marge de progression</li>
 </ul>
-<p><strong>En résumé, avant de juger une action de prospection, je vérifie que je :</strong></p>
+<p><strong>Suivre aussi les devis, pas seulement les campagnes.</strong> Un devis, c'est une proposition chiffrée envoyée à un prospect (un véhicule précis, un prix, des conditions), avec une date de validité au-delà de laquelle il n'engage plus Vasseur. Un devis envoyé n'est pas une vente : sans relance, un prospect qui hésite finit souvent par ne pas donner suite, ou par acheter ailleurs. Suivre un devis, c'est noter sa date d'envoi et sa date de validité, et relancer avant l'expiration plutôt qu'après.</p>
+<p><strong>Cas pratique — un devis resté sans réponse :</strong></p>
+<p>Un devis pour un Kangoo Van a été envoyé à un artisan il y a 8 jours, sans réponse. La validité du devis est de 15 jours.</p>
+<ul>
+<li><strong>❌ À éviter</strong> — attendre passivement l'expiration du devis avant de réagir, ou relancer trop tôt (dès le lendemain), ce qui peut sembler pressant</li>
+<li><strong>✅ À privilégier</strong> — relancer avec quelques jours de marge avant l'expiration, avec un message qui rouvre la discussion sans donner l'impression de "forcer" une réponse (ex. une question ouverte sur un point du devis, plutôt qu'un simple rappel de délai)</li>
+</ul>
+<p><strong>En résumé, avant de juger une action de prospection ou de suivre un devis, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Distingue les différentes étapes (contact → rendez-vous → vente), pas un seul taux global</li>
 <li>✓ Identifie à quelle étape se situe le vrai problème avant de proposer un ajustement</li>
 <li>✓ Propose un ajustement concret, pas juste "faire plus d'appels"</li>
+<li>✓ Note et surveille la date de validité de chaque devis envoyé, pour relancer à temps</li>
 </ul>
 </div>`},
 
@@ -421,33 +430,48 @@ const RES = {
 </div>`},
 
   'B4.4-P2':{t:"Comparer pour mieux piloter",c:`<div class="res-section res-apprenti">
-<p><strong>B4.4 — Comparer pour mieux piloter.</strong> Tu sais calculer un taux pour une action. Il faut maintenant savoir comparer plusieurs actions entre elles, ou une même action dans le temps, pour en tirer un vrai diagnostic — pas juste un chiffre isolé.</p>
+<p><strong>B4.4 — Comparer pour mieux piloter.</strong> Tu sais calculer un taux pour une action, et suivre un devis isolé. Il faut maintenant savoir comparer plusieurs actions (ou plusieurs devis) entre eux pour prioriser, et en tirer un vrai diagnostic — pas juste un chiffre ou un dossier isolé.</p>
 <p><strong>Cas pratique — une performance en baisse :</strong></p>
 <p>Une campagne mail récurrente, qui obtenait habituellement 10% de taux de réponse, tombe à 4% ce mois-ci.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter de constater la baisse sans chercher ce qui a changé entre les deux périodes</li>
 <li><strong>✅ À privilégier</strong> — comparer ce qui a changé (message, période, cible, contexte) entre le moment où ça marchait et maintenant, avant de conclure</li>
 </ul>
-<p><strong>En résumé, avant de conclure sur une performance, je vérifie que je :</strong></p>
+<p><strong>Cas pratique — plusieurs devis à relancer en même temps :</strong></p>
+<p>Trois devis sont en attente : un pour un Kangoo Van (validité expirant dans 2 jours), un pour une Clio (validité expirant dans 10 jours), un pour une flotte de 3 Trafic (validité expirant dans 5 jours, montant nettement plus élevé que les deux autres).</p>
+<ul>
+<li><strong>❌ À éviter</strong> — relancer les trois dans l'ordre où ils ont été envoyés, sans tenir compte ni de l'urgence ni de l'enjeu</li>
+<li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Kangoo Van expire dans 2 jours) tout en gardant à l'esprit l'enjeu (la flotte de Trafic, plus importante en valeur, mérite une relance soignée même si elle expire un peu plus tard)</li>
+</ul>
+<p><strong>En résumé, avant de conclure sur une performance ou de prioriser des relances, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Compare dans le temps ou entre actions, pas seulement un chiffre isolé</li>
 <li>✓ Cherche ce qui a changé avant de proposer un ajustement</li>
 <li>✓ Distingue une vraie tendance d'une simple fluctuation ponctuelle</li>
+<li>✓ Priorise mes relances de devis selon l'urgence ET l'enjeu, pas seulement l'ordre d'arrivée</li>
 </ul>
 </div>`},
 
   'B4.5-P2':{t:"Valoriser face à un client déjà informé",c:`<div class="res-section res-apprenti">
-<p><strong>B4.5 — Valoriser face à un client déjà informé.</strong> Tu sais construire un argumentaire simple. Le client en face de toi a souvent déjà comparé plusieurs critères tout seul (en ligne, avec un concurrent) — ton argumentaire doit répondre à une comparaison déjà construite, pas juste présenter un produit.</p>
+<p><strong>B4.5 — Valoriser face à un client déjà informé.</strong> Tu sais construire un argumentaire simple. Le client en face de toi a souvent déjà comparé plusieurs critères tout seul (en ligne, avec un concurrent), ou en sait parfois plus que la moyenne sur un plan technique — ton argumentaire doit s'adapter à ce niveau réel, pas juste présenter un produit.</p>
 <p><strong>Cas pratique — un client déjà convaincu ailleurs :</strong></p>
 <p>Un client arrive en disant avoir déjà comparé 3 modèles en ligne et penche clairement pour un concurrent, sur plusieurs critères à la fois (prix, consommation, image).</p>
 <ul>
 <li><strong>❌ À éviter</strong> — répondre par un argumentaire générique déjà préparé, sans tenir compte de sa comparaison précise</li>
 <li><strong>✅ À privilégier</strong> — reprendre ses critères un par un, et ne répondre que sur ceux où Vasseur a un vrai avantage, sans forcer sur les autres</li>
 </ul>
-<p><strong>En résumé, face à un client informé, je vérifie que je :</strong></p>
+<p><strong>Cas pratique — un client au niveau technique supérieur au tien :</strong></p>
+<p>Un client mécanicien de métier pose des questions très précises sur une motorisation, bien au-delà de l'argumentaire commercial standard.</p>
 <ul>
-<li>✓ Pars de SA comparaison, pas d'un argumentaire générique</li>
+<li><strong>❌ À éviter</strong> — bluffer une réponse technique que tu ne maîtrises pas vraiment, au risque de te tromper devant quelqu'un qui le remarquera</li>
+<li><strong>✅ À privilégier</strong> — reconnaître honnêtement les limites de tes connaissances sur le point précis posé, et orienter vers un expert de l'atelier (Bruno Faucher) plutôt que d'improviser une réponse fragile</li>
+</ul>
+<p>Face à ce profil, la crédibilité ne vient pas du fait de tout savoir, mais de savoir dire "je vérifie et je reviens vers vous" plutôt que d'inventer une réponse.</p>
+<p><strong>En résumé, face à un client informé ou expert, je vérifie que je :</strong></p>
+<ul>
+<li>✓ Pars de SA comparaison ou de SON niveau, pas d'un argumentaire générique</li>
 <li>✓ Ne force pas un avantage sur un critère où Vasseur n'en a pas vraiment</li>
+<li>✓ Reconnais mes limites plutôt que de bluffer sur un point technique</li>
 <li>✓ Reste crédible plutôt que de tout vouloir défendre à tout prix</li>
 </ul>
 </div>`},
@@ -583,34 +607,39 @@ const RES = {
 </div>`},
 
   'C3.2-P2':{t:"Combiner les leviers, anticiper les effets pervers",c:`<div class="res-section res-apprenti">
-<p><strong>C3.2 — Combiner les leviers, anticiper les effets pervers.</strong> Tu sais construire une action de fidélisation. La compétence est maintenant de savoir combiner plusieurs leviers pour un même objectif, et d'anticiper les effets pervers possibles (un client qui se sent lésé par rapport à un autre, par exemple).</p>
+<p><strong>C3.2 — Combiner les leviers, anticiper les effets pervers.</strong> Tu sais construire une action de fidélisation. La compétence est maintenant de savoir combiner plusieurs leviers pour un même objectif, adapter une action à un public différent, et anticiper les effets pervers possibles (un client qui se sent lésé par rapport à un autre, par exemple).</p>
 <p><strong>Cas pratique — un effet pervers à anticiper :</strong></p>
 <p>Une offre de fidélité est réservée aux clients à 2 achats ou plus. Un client à un seul achat, mais très ancien et très actif sur les réseaux sociaux Vasseur, pourrait mal le vivre.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — ignorer ce cas particulier au nom de la règle générale, sans anticiper la réaction possible</li>
 <li><strong>✅ À privilégier</strong> — anticiper ce cas et préparer une réponse cohérente si la question se pose, sans casser la règle pour autant</li>
 </ul>
+<p><strong>Adapter un levier à un public professionnel (B2B) :</strong> un avantage pensé pour un particulier (ex. un forfait entretien offert) n'a pas forcément le même attrait pour une entreprise, qui raisonne surtout en <strong>coût d'exploitation</strong> — c'est-à-dire l'ensemble des dépenses régulières liées à l'usage de ses véhicules (carburant, entretien, assurance, immobilisation en cas de panne). Pour un client B2B avec une flotte de véhicules, un levier qui réduit ce coût d'exploitation sur la durée (ex. tarif préférentiel sur l'entretien de toute la flotte) parle souvent plus qu'un avantage ponctuel à l'achat.</p>
 <p><strong>En résumé, en construisant une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Anticipe les cas limites, pas seulement le cas général</li>
 <li>✓ Combine plusieurs leviers quand c'est pertinent, sans les empiler sans raison</li>
+<li>✓ Adapte l'avantage proposé à ce qui motive réellement le public visé (particulier ou B2B)</li>
 <li>✓ Garde une règle cohérente, même face à une exception qui semble légitime</li>
 </ul>
 </div>`},
 
   'C3.3-P2':{t:"Repérer les biais d'évaluation",c:`<div class="res-section res-apprenti">
-<p><strong>C3.3 — Repérer les biais d'évaluation.</strong> Tu sais calculer un taux et tirer une conclusion. La compétence est maintenant de repérer si une évaluation est biaisée (échantillon trop petit, période inhabituelle, comparaison injuste) avant de faire confiance au résultat chiffré.</p>
+<p><strong>C3.3 — Repérer les biais d'évaluation.</strong> Tu sais calculer un taux et tirer une conclusion. La compétence est maintenant de repérer si une évaluation est biaisée (échantillon trop petit, période inhabituelle, comparaison injuste, biais de sélection) avant de faire confiance au résultat chiffré — et de savoir regarder au-delà du seul taux de conversion.</p>
 <p><strong>Cas pratique — un résultat trompeur :</strong></p>
 <p>Une action de fidélisation testée sur seulement 10 clients affiche un taux de conversion de 40% — un chiffre qui semble excellent.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — généraliser immédiatement ce résultat à toute la base clients sans questionner la taille de l'échantillon</li>
 <li><strong>✅ À privilégier</strong> — reconnaître que 10 clients est un échantillon trop petit pour conclure, et proposer un test à plus grande échelle avant de généraliser</li>
 </ul>
+<p><strong>Un biais plus subtil — le biais de sélection :</strong> quand on compare les clients ayant participé à une offre à ceux n'y ayant pas participé, il faut se méfier d'une explication trompeuse : les clients qui participent sont peut-être déjà, au départ, plus fidèles ou plus engagés que les autres — indépendamment de l'offre elle-même. Une bonne évaluation dans la durée doit envisager cette explication alternative avant de conclure que l'offre est seule responsable du résultat.</p>
+<p><strong>Regarder au-delà du taux de conversion :</strong> le taux de conversion (combien de clients rachètent) ne capture pas tout. D'autres indicateurs peuvent révéler un effet que le taux de conversion seul sous-estime, par exemple le <strong>taux de recommandation</strong> (des clients satisfaits qui parlent de Vasseur sans forcément racheter tout de suite) ou l'<strong>ancienneté moyenne</strong> des clients fidélisés.</p>
 <p><strong>En résumé, avant de valider une évaluation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Questionne la taille de l'échantillon avant de faire confiance à un pourcentage</li>
 <li>✓ Repère si la période ou le contexte de test était particulier</li>
-<li>✓ Ne généralise jamais un résultat obtenu sur un trop petit nombre de cas</li>
+<li>✓ Envisage qu'un groupe comparé soit déjà différent au départ (biais de sélection)</li>
+<li>✓ Ne me limite pas au seul taux de conversion pour juger de l'efficacité réelle</li>
 </ul>
 </div>`},
 
