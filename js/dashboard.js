@@ -568,7 +568,7 @@ function getMissions(){
   if(cls==='enseignant')return MISSIONS;
   if(cls==='2nde')return MISSIONS.filter(m=>MISSIONS_2NDE.includes(m.id)).sort((a,b)=>a.palier-b.palier||MISSIONS_2NDE.indexOf(a.id)-MISSIONS_2NDE.indexOf(b.id));
   if(cls==='1ere-AGEC')return MISSIONS.filter(m=>MISSIONS_AGEC_1.includes(m.id));
-  if(cls==='1ere-PVOC'){const listeComplete=MISSIONS_PVOC_1.concat(MISSIONS_PVOC_2);return MISSIONS.filter(m=>listeComplete.includes(m.id)).sort((a,b)=>a.palier-b.palier||listeComplete.indexOf(a.id)-listeComplete.indexOf(b.id));}
+  if(cls==='1ere-PVOC'){const listeComplete=MISSIONS_PVOC_1.concat(MISSIONS_PVOC_2).concat(typeof MISSIONS_PVOC_3!=='undefined'?MISSIONS_PVOC_3:[]);return MISSIONS.filter(m=>listeComplete.includes(m.id)).sort((a,b)=>a.palier-b.palier||listeComplete.indexOf(a.id)-listeComplete.indexOf(b.id));}
   if(cls==='Term-AGEC')return MISSIONS.filter(m=>MISSIONS_AGEC_T.includes(m.id));
   if(cls==='Term-PVOC')return MISSIONS.filter(m=>MISSIONS_PVOC_T.includes(m.id));
   return MISSIONS;
