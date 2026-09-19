@@ -193,19 +193,19 @@ function showNotifEleve(message, type){
 
 const RAPPELS_TYPES = [
   {id:'tenue', label:'Tenue vestimentaire', icon:'👔',
-   msg:'Rappel professionnel : la tenue vestimentaire chez LABORO doit etre soignee et adaptee au poste. Merci de vous y conformer.'},
+   msg:'Rappel professionnel : la tenue vestimentaire chez Vasseur doit etre soignee et adaptee au poste. Merci de vous y conformer.'},
   {id:'telephone', label:'Telephone portable', icon:'📱',
    msg:'Votre responsable vous demande de ranger votre telephone personnel. Pendant les heures de travail, seul LABORO Connect est autorise.'},
   {id:'materiel', label:'Materiel de travail', icon:'🖊️',
-   msg:'Un collaborateur LABORO arrive toujours equipe : stylo, carnet, materiel necessaire. Pensez-y pour votre prochaine session.'},
+   msg:'Un collaborateur Vasseur arrive toujours equipe : stylo, carnet, materiel necessaire. Pensez-y pour votre prochaine session.'},
   {id:'posture', label:'Posture et attitude', icon:'💺',
-   msg:"Rappel : la posture physique fait partie de l'image professionnelle chez LABORO. Tenez-vous droit et restez concentre(e)."},
+   msg:"Rappel : la posture physique fait partie de l'image professionnelle chez Vasseur. Tenez-vous droit et restez concentre(e)."},
   {id:'concentration', label:'Concentration', icon:'🎯',
-   msg:'Votre responsable note un manque de concentration. Chez LABORO, chaque mission compte. Reprenez votre travail avec serieux.'},
+   msg:'Votre responsable note un manque de concentration. Chez Vasseur, chaque mission compte. Reprenez votre travail avec serieux.'},
   {id:'ponctualite', label:'Ponctualite', icon:'⏰',
-   msg:"La ponctualite est une valeur fondamentale chez LABORO. Merci d'etre a l'heure et de respecter les delais."},
+   msg:"La ponctualite est une valeur fondamentale chez Vasseur. Merci d'etre a l'heure et de respecter les delais."},
   {id:'respect', label:"Respect et esprit d'equipe", icon:'🤝',
-   msg:"Rappel : le respect mutuel est au coeur des valeurs LABORO. Adoptez un comportement professionnel en toutes circonstances."},
+   msg:"Rappel : le respect mutuel est au coeur des valeurs Vasseur. Adoptez un comportement professionnel en toutes circonstances."},
   {id:'libre', label:'Message personnalise...', icon:'✏️', msg:''}
 ];
 
