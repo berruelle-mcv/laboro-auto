@@ -1,7 +1,7 @@
 function addClient(){ ouvrirFormulaireProspect(null); }
 
 // ================================================
-//   LABORO Sport & Outdoor — Clients & Prospects
+//   LABORO Auto — Clients & Prospects
 //   Gestion fichier clients, prospects, charte LABORO
 //   Version 1.1 — Fiches clients enrichies
 // ================================================
@@ -50,7 +50,7 @@ function calcPosturePro(ud){
   score -= Math.min(rappels * 8, 40);
   if(done.length >= 5) score += 5;
   if(done.length >= 10) score += 5;
-  const scores = done.filter(function(m){ return m.score; }).map(function(m){ return m.score; });
+  const scores = done.filter(function(m){ return m.score != null; }).map(function(m){ return m.score; });
   const avg = scores.length ? scores.reduce(function(a,b){ return a+b; },0)/scores.length : 0;
   if(avg >= 14) score += 10;
   else if(avg >= 11) score += 5;
@@ -545,26 +545,6 @@ function ouvrirFicheClient(id){
   modal.onclick=function(e){ if(e.target===modal) modal.remove(); };
 }
 
-function validerMission(mail,mid){
-  const s=gS();if(!s[mail])return;
-  const mv=s[mail].missions[mid];if(!mv)return;
-  const note=mv.note_ia||10;
-  const noteFinale=prompt(`Valider la mission pour ${s[mail].nom||mail}.\nNote IA : ${note}/20. Note finale :`,note);
-  if(noteFinale===null)return;
-  const nf=Math.min(20,Math.max(0,parseFloat(noteFinale)||note));
-  mv.status='done';mv.score=nf;
-  // Datation : on n'écrase PAS la date de soumission si elle existe (c'est la date où
-  // l'élève a produit le travail, plus juste pédagogiquement). On comble seulement le
-  // trou pour les missions anciennes / cas limites validées manuellement par l'enseignant.
-  if(!mv.date_validation){ mv.date_validation=new Date().toISOString(); }
-  if(nf>=11){
-    const m=MISSIONS.find(x=>x.id===mid);
-    if(m){
-      const compKey=m.comp.startsWith('A4')?'G4A':m.comp.startsWith('B4')?'G4B':m.comp.startsWith('ACC')?'ACC':m.comp;
-      const niveauIA=mv.niveau_ia||1;
-      if(!s[mail].competences)s[mail].competences={};
-      s[mail].competences[compKey]=Math.max(s[mail].competences[compKey]||0,Math.min(niveauIA,m.palier));
-    }
-  }
-  sS(s);renderClasse();showFicheEleve(mail);
-}
+// validerMission(mail,mid) : ancienne validation manuelle en localStorage, supprimée
+// (code mort — la validation des missions passe désormais par validerMissionServeur()
+// dans js/classe-serveur.js, qui écrit sur le serveur).
