@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — Génération du Portfolio CCF
+//   LABORO Auto — Génération du Portfolio CCF
 //   Portfolio d'activités professionnelles imprimable
 //   Recréé en juin 2026 (fonction perdue lors d'un remplacement de fichier)
 // ================================================
