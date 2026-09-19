@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — Modal mission, paliers, compétences
+//   LABORO Auto — Modal mission, paliers, compétences
 //   Version 1.0 — Architecture modulaire
 // ================================================
 
