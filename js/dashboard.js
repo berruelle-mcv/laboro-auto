@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Sport & Outdoor — Dashboard élève/enseignant, actualités, indicateurs
+//   LABORO Auto — Dashboard élève/enseignant, actualités, indicateurs
 //   Version 1.0 — Architecture modulaire
 // ================================================
 
@@ -29,22 +29,9 @@ function getActusDuJour(){
   return filtered.length>0?filtered.slice(0,3):ACTUS_LABORO.slice(0,2);
 }
 
-function getIndicateursLive(ud){
-  const missions=Object.values(ud.missions||{});
-  const done=missions.filter(m=>m.status==='done').length;
-  const wip=missions.filter(m=>m.status==='wip').length;
-  const score=calcScore(ud);
-  // Stock critique simulé selon le jour
-  const stocks=[
-    {ref:'EasyRun LABORO T42',qty:2},
-    {ref:'Ballon football LABORO T5',qty:5},
-    {ref:'Tapis yoga 6mm',qty:3},
-  ];
-  const stockCritique=stocks[new Date().getDay()%stocks.length];
-  return {done,wip,score,stockCritique};
-}
-
-// ═══ ACTUALITÉS LABORO ═══
+// getIndicateursLive(ud) : ancien code mort (jamais appelé) contenant des données
+// de démo résiduelles de LABORO Sport & Outdoor (stock d'articles de sport) —
+// supprimé lors de l'audit général.
 
 
 function setAccentColor(classe){
@@ -566,11 +553,13 @@ function getMissions(){
   if(!CU)return[];
   const cls=CU.classe;
   if(cls==='enseignant')return MISSIONS;
-  if(cls==='2nde')return MISSIONS.filter(m=>MISSIONS_2NDE.includes(m.id)).sort((a,b)=>a.palier-b.palier||MISSIONS_2NDE.indexOf(a.id)-MISSIONS_2NDE.indexOf(b.id));
-  if(cls==='1ere-AGEC')return MISSIONS.filter(m=>MISSIONS_AGEC_1.includes(m.id));
+  // Filières pas encore construites cette année (pas de liste de missions dédiée) :
+  // on retombe sur un tableau vide plutôt que de planter sur une variable inexistante.
+  if(cls==='2nde'){const liste=typeof MISSIONS_2NDE!=='undefined'?MISSIONS_2NDE:[];return MISSIONS.filter(m=>liste.includes(m.id)).sort((a,b)=>a.palier-b.palier||liste.indexOf(a.id)-liste.indexOf(b.id));}
+  if(cls==='1ere-AGEC'){const liste=typeof MISSIONS_AGEC_1!=='undefined'?MISSIONS_AGEC_1:[];return MISSIONS.filter(m=>liste.includes(m.id));}
   if(cls==='1ere-PVOC'){const listeComplete=MISSIONS_PVOC_1.concat(MISSIONS_PVOC_2).concat(typeof MISSIONS_PVOC_3!=='undefined'?MISSIONS_PVOC_3:[]);return MISSIONS.filter(m=>listeComplete.includes(m.id)).sort((a,b)=>a.palier-b.palier||listeComplete.indexOf(a.id)-listeComplete.indexOf(b.id));}
-  if(cls==='Term-AGEC')return MISSIONS.filter(m=>MISSIONS_AGEC_T.includes(m.id));
-  if(cls==='Term-PVOC')return MISSIONS.filter(m=>MISSIONS_PVOC_T.includes(m.id));
+  if(cls==='Term-AGEC'){const liste=typeof MISSIONS_AGEC_T!=='undefined'?MISSIONS_AGEC_T:[];return MISSIONS.filter(m=>liste.includes(m.id));}
+  if(cls==='Term-PVOC'){const liste=typeof MISSIONS_PVOC_T!=='undefined'?MISSIONS_PVOC_T:[];return MISSIONS.filter(m=>liste.includes(m.id));}
   return MISSIONS;
 }
 function isPalierUnlocked(m,ud){
