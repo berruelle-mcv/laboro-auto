@@ -4,33 +4,47 @@
 //   Version 2.0 — Catalogue 176 produits
 // ================================================
 
-// ═══ VUE COMPÉTENCES ENSEIGNANT ═══
-function renderCompetencesEnseignant(){
+// ═══ VUE COMPÉTENCES ENSEIGNANT (données serveur réelles) ═══
+async function renderCompetencesEnseignant(){
   const legend = document.getElementById('comp-legend');
   const grid = document.getElementById('comp-grid');
-  const allUsers = allU().filter(function(u){ return u.mail && u.classe !== 'enseignant'; });
+  const token = localStorage.getItem('laboro_token');
+
+  if(grid) grid.innerHTML = '<div style="padding:24px;color:#9CA3AF;font-size:13px">Chargement…</div>';
+
+  let d;
+  try{
+    d = await fetchJSON(LABORO_API + '/api/analyse-classe', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+  }catch(e){
+    if(grid) grid.innerHTML = '<div style="padding:24px;color:#B91C1C;font-size:13px">' + e.message + '</div>';
+    return;
+  }
+  if(!d.ok){
+    if(grid) grid.innerHTML = '<div style="padding:24px;color:#B91C1C;font-size:13px">Erreur : ' + (d.erreur || 'chargement impossible') + '</div>';
+    return;
+  }
+
+  const total = d.nbEleves;
 
   if(legend){
-    const total = allUsers.length;
     legend.innerHTML = '<div style="background:#fff;border-radius:10px;padding:12px 16px;border:1px solid var(--gb);margin-bottom:4px">'
       + '<div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:4px">Vue référentiel — Progression de la classe</div>'
-      + '<div style="font-size:11px;color:#6B7280">'+(total>0?total+' élève(s) connecté(s)':'Aucun élève connecté pour le moment.')+'</div>'
+      + '<div style="font-size:11px;color:#6B7280">'+(total>0?total+' élève(s) dans la classe':'Aucun élève pour le moment.')+'</div>'
       + '</div>';
   }
 
   if(!grid) return;
 
-  const allS = gS();
+  // L'API renvoie les compétences triées "du plus fragile au plus solide" (utile pour
+  // l'analyse de classe) ; ici on réaffiche dans l'ordre du référentiel (G1 → G4).
+  const parCode = {};
+  d.competences.forEach(function(c){ parCode[c.code] = c; });
 
   grid.innerHTML = COMP.map(function(c){
-    const levels = allUsers.map(function(u){
-      const ud = allS[u.mail] || {missions:{}, competences:{}};
-      return calcNiveauComp(c.code, ud);
-    });
-
-    const counts = [0,0,0,0,0];
-    levels.forEach(function(l){ counts[l]++; });
-    const total = allUsers.length;
+    const dc = parCode[c.code];
+    const counts = dc ? dc.niveauCounts : [0,0,0,0,0];
     const acquis = counts[3] + counts[4];
     const enCours = counts[1] + counts[2];
     const pctAcquis = total > 0 ? Math.round(acquis/total*100) : 0;
@@ -66,7 +80,7 @@ function renderCompetencesEnseignant(){
             }).join('')
           + '</div>'
         : '<div style="height:10px;background:#E2E8F0;border-radius:8px;margin-bottom:8px"></div>'
-          + '<div style="font-size:11px;color:#9CA3AF;margin-bottom:8px">Aucun élève connecté</div>')
+          + '<div style="font-size:11px;color:#9CA3AF;margin-bottom:8px">Aucun élève dans la classe</div>')
       + '<div style="font-size:10px;color:#9CA3AF;border-top:1px solid #F3F4F6;padding-top:6px">'
       + (total > 0 ? acquis+'/'+total+' élèves ont acquis · '+enCours+' en cours' : 'En attente de données')
       + '</div>'
