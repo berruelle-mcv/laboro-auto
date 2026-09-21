@@ -317,14 +317,15 @@ async function chargerMissionDuJourServeur(){
       headers: { 'Authorization': 'Bearer ' + token }
     });
     const d = await rep.json();
-    if(!d.ok || !d.mission){ wrap.innerHTML = ''; return; }
-    const m = d.mission;
-    wrap.innerHTML = '<div class="card" style="background:linear-gradient(135deg,#2B2B2E,#7A4614);color:#fff;margin-bottom:14px">'
-      + '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.7;margin-bottom:6px">⭐ Mission du jour'+(m.portee==='individuelle'?' — pour toi spécifiquement':'')+'</div>'
-      + '<div style="font-size:15px;font-weight:800;margin-bottom:4px">'+m.titre+'</div>'
-      + '<div style="font-size:12px;opacity:.85;margin-bottom:10px">'+m.comp_id+' · Palier '+m.palier+'</div>'
-      + '<button onclick="openMission(\''+m.id+'\')" style="padding:8px 16px;background:#fff;color:#2B2B2E;border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700">Ouvrir cette mission →</button>'
-      + '</div>';
+    if(!d.ok || !d.missions || !d.missions.length){ wrap.innerHTML = ''; return; }
+    wrap.innerHTML = d.missions.map(function(m){
+      return '<div class="card" style="background:linear-gradient(135deg,#2B2B2E,#7A4614);color:#fff;margin-bottom:14px">'
+        + '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.7;margin-bottom:6px">⭐ Mission du jour'+(m.portee==='individuelle'?' — pour toi spécifiquement':'')+'</div>'
+        + '<div style="font-size:15px;font-weight:800;margin-bottom:4px">'+m.titre+'</div>'
+        + '<div style="font-size:12px;opacity:.85;margin-bottom:10px">'+m.comp_id+' · Palier '+m.palier+'</div>'
+        + '<button onclick="openMission(\''+m.id+'\')" style="padding:8px 16px;background:#fff;color:#2B2B2E;border:none;border-radius:7px;cursor:pointer;font-size:12px;font-weight:700">Ouvrir cette mission →</button>'
+        + '</div>';
+    }).join('');
   }catch(e){
     console.error('chargerMissionDuJourServeur :', e);
   }
