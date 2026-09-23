@@ -397,6 +397,9 @@ function showApp(){
 }
 function doLogout(){
   CU=null;localStorage.removeItem('laboro_u');
+  // Effacer aussi le jeton serveur : sur un poste partagé, l'élève suivant
+  // ne doit hériter d'aucune session.
+  localStorage.removeItem('laboro_token');
   // Remettre la couleur par défaut
   const r=document.documentElement;
   r.style.setProperty('--bl','#B5651D');r.style.setProperty('--bf','#5C3814');
