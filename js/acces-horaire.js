@@ -36,9 +36,19 @@
     if(blocageAffiche) return;
     blocageAffiche = true;
 
-    // Déconnexion propre : jeton et session locale effacés
-    try{ localStorage.removeItem('laboro_token'); localStorage.removeItem('laboro_u'); }catch(e){}
-    try{ if(typeof CU !== 'undefined') CU = null; }catch(e){}
+    // Déconnexion propre : jeton et session locale effacés — SAUF si la session
+    // enregistrée dans ce navigateur est celle d'un enseignant (cas d'un élève qui
+    // tente de se connecter dans le même navigateur qu'un enseignant) : on ne doit
+    // jamais déconnecter un enseignant à cause du blocage d'un élève.
+    let sessionEnseignant = false;
+    try{
+      const u = JSON.parse(localStorage.getItem('laboro_u') || 'null');
+      sessionEnseignant = !!(u && u.classe === 'enseignant');
+    }catch(e){}
+    if(!sessionEnseignant){
+      try{ localStorage.removeItem('laboro_token'); localStorage.removeItem('laboro_u'); }catch(e){}
+      try{ if(typeof CU !== 'undefined') CU = null; }catch(e){}
+    }
     try{ if(typeof closeMo === 'function') closeMo(); }catch(e){}
 
     const msg = message || "LABORO est fermé en dehors des horaires de cours.";
