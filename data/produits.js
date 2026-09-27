@@ -476,7 +476,7 @@ const CLIENTS = [
     "dernier": "10/09",
     "col": "#8E44AD",
     "hist": [],
-    "note": "Famille nombreuse, cherche un SUV 7 places, sensible à la sécurité.",
+    "note": "Famille avec 3 enfants, cherche un SUV spacieux, sensible à la sécurité.",
     "tags": [
       "Prospect",
       "Famille"
@@ -573,7 +573,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "240 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -608,7 +608,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "240 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -643,7 +643,7 @@ const PRODUITS = [
     "consommation": "5 l/100km",
     "co2": "120 g/km",
     "coffre": "390 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -681,7 +681,7 @@ const PRODUITS = [
     "consommation": "4 l/100km",
     "co2": "90 g/km",
     "coffre": "300 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -719,7 +719,7 @@ const PRODUITS = [
     "consommation": "6 l/100km",
     "co2": "135 g/km",
     "coffre": "535 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -757,7 +757,7 @@ const PRODUITS = [
     "consommation": "4,5 l/100km",
     "co2": "100 g/km",
     "coffre": "430 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -795,7 +795,7 @@ const PRODUITS = [
     "consommation": "4,5 l/100km",
     "co2": "105 g/km",
     "coffre": "490 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -833,7 +833,7 @@ const PRODUITS = [
     "consommation": "4,5 l/100km",
     "co2": "105 g/km",
     "coffre": "490 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -873,7 +873,7 @@ const PRODUITS = [
     "consommation": "4,5 l/100km",
     "co2": "100 g/km",
     "coffre": "575 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -911,7 +911,7 @@ const PRODUITS = [
     "consommation": "4,5 l/100km",
     "co2": "100 g/km",
     "coffre": "575 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -951,7 +951,7 @@ const PRODUITS = [
     "consommation": "5,5 l/100km",
     "co2": "125 g/km",
     "coffre": "535 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -989,7 +989,7 @@ const PRODUITS = [
     "consommation": "1,5 l/100km",
     "co2": "25 g/km",
     "coffre": "480 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1029,7 +1029,7 @@ const PRODUITS = [
     "consommation": "5,5 l/100km",
     "co2": "125 g/km",
     "coffre": "580 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1067,7 +1067,7 @@ const PRODUITS = [
     "consommation": "5,5 l/100km",
     "co2": "125 g/km",
     "coffre": "580 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1107,7 +1107,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "440 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1144,7 +1144,7 @@ const PRODUITS = [
     "consommation": "16 kWh/100km",
     "co2": "0 g/km",
     "coffre": "440 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1183,7 +1183,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "545 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1220,7 +1220,7 @@ const PRODUITS = [
     "consommation": "16 kWh/100km",
     "co2": "0 g/km",
     "coffre": "545 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1259,7 +1259,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "330 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1296,7 +1296,7 @@ const PRODUITS = [
     "consommation": "15 kWh/100km",
     "co2": "0 g/km",
     "coffre": "330 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1335,7 +1335,7 @@ const PRODUITS = [
     "consommation": "16 kWh/100km",
     "co2": "0 g/km",
     "coffre": "420 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1372,7 +1372,7 @@ const PRODUITS = [
     "consommation": "16 kWh/100km",
     "co2": "0 g/km",
     "coffre": "420 L",
-    "garantie": "5 ans / 100 000 km",
+    "garantie": "3 ans / 100 000 km",
     "equipements": [
       "Climatisation",
       "Régulateur de vitesse",
@@ -1635,7 +1635,7 @@ const PRODUITS = [
     "desc": "Dacia Sandero (2021, 45 000 km), Essence, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, janvier 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1670,7 +1670,7 @@ const PRODUITS = [
     "desc": "Citroën C3 (2020, 60 000 km), Essence, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, mars 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1705,7 +1705,7 @@ const PRODUITS = [
     "desc": "Toyota Yaris (2019, 70 000 km), Hybride (essence), véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, février 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1740,7 +1740,7 @@ const PRODUITS = [
     "desc": "Peugeot 308 (2021, 40 000 km), Diesel BlueHDi, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, entretien partiellement suivi",
     "controle_technique": "OK avec contre-visite mineure, avril 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1775,7 +1775,7 @@ const PRODUITS = [
     "desc": "Volkswagen Golf (2020, 55 000 km), Diesel TDI, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "3 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, mai 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1810,7 +1810,7 @@ const PRODUITS = [
     "desc": "Renault Mégane (2019, 65 000 km), Essence TCe, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, janvier 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1845,7 +1845,7 @@ const PRODUITS = [
     "desc": "Ford Focus (2018, 80 000 km), Diesel, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, entretien partiellement suivi",
     "controle_technique": "OK, mars 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1880,7 +1880,7 @@ const PRODUITS = [
     "desc": "Peugeot 3008 (2021, 50 000 km), Diesel BlueHDi, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, février 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1915,7 +1915,7 @@ const PRODUITS = [
     "desc": "Nissan Qashqai (2020, 60 000 km), Diesel dCi, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, avril 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1950,7 +1950,7 @@ const PRODUITS = [
     "desc": "Volkswagen Tiguan (2019, 70 000 km), Diesel TDI, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "3 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK avec contre-visite mineure, mai 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -1985,7 +1985,7 @@ const PRODUITS = [
     "desc": "Hyundai Tucson (2021, 45 000 km), Hybride (essence), véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, mars 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2020,7 +2020,7 @@ const PRODUITS = [
     "desc": "Audi A3 (2020, 50 000 km), Essence TFSI, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, janvier 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2055,7 +2055,7 @@ const PRODUITS = [
     "desc": "BMW Série 1 (2019, 55 000 km), Diesel, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, février 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2090,7 +2090,7 @@ const PRODUITS = [
     "desc": "Mercedes Classe A (2020, 48 000 km), Essence, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, avril 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2125,7 +2125,7 @@ const PRODUITS = [
     "desc": "Audi Q3 (2019, 60 000 km), Diesel TDI, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, entretien partiellement suivi",
     "controle_technique": "OK avec contre-visite mineure, mars 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2160,7 +2160,7 @@ const PRODUITS = [
     "desc": "Toyota Corolla (2021, 40 000 km), Hybride (essence), véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, mai 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2195,7 +2195,7 @@ const PRODUITS = [
     "desc": "Renault Zoé (2020, 35 000 km), Électrique, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "1 propriétaire, carnet d'entretien à jour",
     "controle_technique": "OK, janvier 2026",
-    "garantie_occasion": "6 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",
@@ -2229,7 +2229,7 @@ const PRODUITS = [
     "desc": "Peugeot Partner (2019, 75 000 km), Diesel, véhicule unique disponible chez Vasseur Sélection Occasion.",
     "historique": "2 propriétaires, carnet d'entretien à jour",
     "controle_technique": "OK, février 2026",
-    "garantie_occasion": "3 mois",
+    "garantie_occasion": "12 mois",
     "equipements": [
       "Climatisation",
       "Radio/Bluetooth",

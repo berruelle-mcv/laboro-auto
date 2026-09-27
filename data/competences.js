@@ -27,7 +27,7 @@ const RES = {
 <p><strong>B4.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique), souvent désignés par le sigle <strong>B2C</strong> (business to consumer, « d'entreprise à particulier »), et les professionnels (artisans, PME — utilitaires), désignés par le sigle <strong>B2B</strong> (business to business, « d'entreprise à entreprise ») que tu retrouveras souvent dans les missions. Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
 <p><strong>D'où viennent les prospects chez Vasseur ?</strong></p>
 <ul>
-<li>Formulaires du site laboro-edu (demande de devis, essai, information)</li>
+<li>Formulaires du site Vasseur (demande de devis, essai, information)</li>
 <li>Appels entrants directs à la concession</li>
 <li>Salons auto et événements locaux</li>
 <li>Base clients existante (relance d'un client déjà connu, pas un vrai "inconnu" mais qui reste à requalifier)</li>
@@ -65,7 +65,7 @@ const RES = {
 
   'B4.2':{t:"Concevoir un plan et des supports de prospection",c:`<div class="res-section res-debutant">
 <p><strong>B4.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
-<p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise qui achète un véhicule professionnel avant la fin de son exercice comptable (souvent le 31 décembre) peut en déduire une partie du coût de ses impôts sur cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
+<p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise qui achète un véhicule professionnel avant la fin de son exercice comptable (souvent le 31 décembre) commence à l'amortir dès cette année : une partie de son prix entre dans les charges de l'exercice et réduit le bénéfice imposable de cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
 <p><strong>Un bon plan de prospection contient toujours :</strong></p>
 <ul>
 <li>Une cible définie avec des critères précis (pas "tout le monde")</li>
@@ -74,12 +74,12 @@ const RES = {
 <li>Une relance planifiée (une seule tentative ne suffit presque jamais)</li>
 </ul>
 <p><strong>Cas pratique — une campagne chez Vasseur :</strong></p>
-<p>Karim veut vendre des Kangoo Van avant la fin de l'exercice fiscal (argument amortissement pour les pros). Voici comment construire le plan, élément par élément :</p>
+<p>Karim veut vendre des Master aux entreprises de travaux publics avant la fin de l'exercice fiscal (argument amortissement pour les pros). Voici comment construire le plan, élément par élément :</p>
 <ul>
-<li><strong>Cible</strong> — pas "tous les artisans", mais précisément : artisans du bâtiment de la zone, flotte de plus de 5 ans</li>
-<li><strong>Message clé</strong> — pas "nouveau Kangoo disponible" (ça n'intéresse personne), mais "amortissez votre renouvellement de flotte avant la fin de l'année" (un vrai bénéfice financier daté)</li>
-<li><strong>Canal</strong> — mail professionnel (les artisans consultent peu les réseaux sociaux en semaine, un appel à froid serait mal reçu sans premier contact)</li>
-<li><strong>Calendrier</strong> — envoi mi-novembre, relance téléphonique une semaine après si pas de réponse, date limite claire (31 décembre) pour créer un sentiment d'urgence légitime</li>
+<li><strong>Cible</strong> — pas "toutes les entreprises", mais précisément : entreprises de travaux publics de plus de 10 salariés dans l'Essonne, fourgons de plus de 6 ans</li>
+<li><strong>Message clé</strong> — pas "nouveau Master disponible" (ça n'intéresse personne), mais "renouvelez vos fourgons de chantier avant la clôture de votre exercice" (un vrai bénéfice financier daté)</li>
+<li><strong>Canal</strong> — appel au responsable de parc après un premier courrier (dans une entreprise de cette taille, c'est lui qui prépare la décision)</li>
+<li><strong>Calendrier</strong> — courrier début novembre, appel dix jours plus tard, rendez-vous avant le 10 décembre pour laisser le temps de livrer avant le 31 décembre</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> construire le message avant la cible. Si on ne sait pas précisément à qui on s'adresse, le message reste vague et ne convainc personne — toujours définir la cible en premier.</p>
 <p><strong>En résumé, avant de valider un plan de prospection, je vérifie que j'ai :</strong></p>
@@ -122,9 +122,9 @@ const RES = {
 <p><strong>C1.1 — Assurer la veille commerciale chez Vasseur.</strong> La veille, c'est suivre en permanence ce qui se passe autour de soi : les offres concurrentes (autres concessions, mandataires en ligne), les tendances du marché (électrique en hausse, développement des zones à faibles émissions — ZFE, qui restreignent progressivement l'accès des centres-villes aux véhicules les plus polluants), et les dispositifs d'aide à l'achat en vigueur.</p>
 <p><strong>À quoi ça sert concrètement ?</strong> À pouvoir répondre à un client qui compare une offre Vasseur à une offre concurrente, sans dénigrer le concurrent mais en mettant en avant les vrais avantages Vasseur (garantie, SAV, essai possible, accompagnement).</p>
 <p><strong>Cas pratique — un client hésitant chez Vasseur :</strong></p>
-<p>Un client compare le Captur Vasseur (prix légèrement supérieur) à un Peugeot 2008 vu chez un concurrent (prix légèrement inférieur, équipements de base uniquement).</p>
+<p>Une cliente compare la Clio 6 Evolution de Vasseur à une citadine d'une autre marque vue chez un concurrent, un peu moins chère mais moins équipée.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — dire que le 2008 "n'est pas terrible" ou dénigrer le concurrent : ça ne convainc jamais, et ça donne une image négative du vendeur</li>
+<li>❌ <strong>À éviter</strong> — dire que la voiture concurrente "n'est pas terrible" ou dénigrer le concurrent : ça ne convainc jamais, et ça donne une image négative du vendeur</li>
 <li>✅ <strong>À privilégier</strong> — reconnaître honnêtement le différentiel de prix, puis expliquer ce qu'il finance : équipements inclus dès la finition de base, garantie constructeur, SAV local</li>
 </ul>
 <p>La veille ne sert pas à "avoir raison contre le concurrent" — elle sert à connaître assez précisément l'offre en face pour construire un argumentaire honnête et factuel.</p>
@@ -147,10 +147,10 @@ const RES = {
 </ul>
 <p>Le contenu de l'information reste le même, seule la forme change selon le canal.</p>
 <p><strong>Cas pratique — la même question, trois canaux :</strong></p>
-<p>Un client demande le prix d'une Clio 6 Techno (25 000 €, délai 6-8 semaines) selon 3 canaux différents :</p>
+<p>Un client demande le prix d'un Captur Evolution (26 000 €, délai 4 à 6 semaines) selon 3 canaux différents :</p>
 <ul>
-<li><strong>Par mail</strong> — "Bonjour, merci pour votre message. La Clio 6 Techno est proposée à 25 000 €, avec un délai de livraison de 6 à 8 semaines. Je reste à votre disposition pour organiser un essai. Cordialement, [signature]"</li>
-<li><strong>Par chat</strong> — "Bonjour ! La Clio 6 Techno est à 25 000 €, livrée en 6-8 semaines 🙂 Vous voulez qu'on prévoie un essai ?"</li>
+<li><strong>Par mail</strong> — "Bonjour, merci pour votre message. Le Captur Evolution est proposé à 26 000 €, avec un délai de livraison de 4 à 6 semaines. Je reste à votre disposition pour organiser un essai. Cordialement, [signature]"</li>
+<li><strong>Par chat</strong> — "Bonjour ! Le Captur Evolution est à 26 000 €, livré en 4 à 6 semaines 🙂 Vous voulez qu'on prévoie un essai ?"</li>
 <li><strong>Sur réseau social (commentaire public)</strong> — "Bonjour, je vous envoie le détail en message privé !" (puis, en privé, la même information que par mail)</li>
 </ul>
 <p>Même information, trois formes différentes — c'est ça, l'omnicanal.</p>
@@ -174,16 +174,16 @@ const RES = {
 <p>La différence essentielle à retenir : en LOA, le client paie pour <em>l'usage</em> du véhicule, pas pour le posséder — c'est pour ça que la mensualité est plus légère, mais le client doit accepter de ne pas être propriétaire avant la fin du contrat (et parfois jamais, s'il rend le véhicule).</p>
 <p><strong>Points de vigilance :</strong> ne jamais sortir du cadrage de négociation autorisé (marge de remise maximale fixée par Karim/Isabelle) ; en cas de demande excessive, proposer une contrepartie alternative (garantie étendue plutôt qu'une remise supplémentaire).</p>
 <p><strong>Cas pratique — un dossier avec reprise :</strong></p>
-<p>Un client achète un véhicule occasion à 22 000 € et reprend son ancien véhicule, estimé à 6 000 €.</p>
+<p>Un client achète une Toyota Corolla d'occasion à 19 000 € et fait reprendre son ancien véhicule, estimé à 4 500 €.</p>
 <ul>
-<li><strong>Calcul du net à payer</strong> — 22 000 € (prix du véhicule) − 6 000 € (valeur de reprise) = <strong>16 000 € à payer par le client</strong></li>
+<li><strong>Calcul du net à payer</strong> — 19 000 € (prix du véhicule) − 4 500 € (valeur de reprise) = <strong>14 500 € à payer par le client</strong></li>
 <li><strong>Dans le dossier</strong>, les deux montants doivent apparaître séparément (prix de vente et valeur de reprise), pas seulement le résultat — pour que tout soit vérifiable</li>
 </ul>
 <p><strong>Cas pratique — une négociation qui dépasse le cadrage :</strong></p>
-<p>Un client demande 800 € de remise sur un véhicule où la marge maximale autorisée est de 300 €.</p>
+<p>Un client demande 1 000 € de remise sur un véhicule où la remise maximale autorisée est de 400 €.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — refuser sèchement, ou céder au-delà du cadrage sans en référer à un responsable</li>
-<li>✅ <strong>À privilégier</strong> — accorder les 300 € autorisés, puis proposer une contrepartie de valeur équivalente pour le client sans sortir du cadre : par exemple une garantie étendue offerte plutôt qu'une remise supplémentaire</li>
+<li>✅ <strong>À privilégier</strong> — accorder les 400 € autorisés, puis proposer une contrepartie de valeur équivalente pour le client sans sortir du cadre : par exemple une garantie étendue offerte plutôt qu'une remise supplémentaire</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> annoncer un montant net sans détailler le calcul. Le client (et l'atelier, et la compta) doivent pouvoir vérifier chaque ligne du dossier.</p>
 <p><strong>En résumé, avant de finaliser un dossier de vente, je vérifie que j'ai :</strong></p>
@@ -198,7 +198,7 @@ const RES = {
 <p><strong>C2.1 — Suivre une commande après la vente.</strong> Une fois la vente conclue, le client doit être tenu informé : confirmation des étapes (préparation, contrôle, livraison), et information immédiate en cas de retard ou d'imprévu — sans jamais cacher la cause, avec une tonalité toujours rassurante.</p>
 <p>Le dossier doit aussi être transmis correctement à l'atelier (Bruno Faucher) pour la préparation du véhicule, avec toutes les informations utiles (options, date souhaitée, contrôles à effectuer).</p>
 <p><strong>Cas pratique — annoncer un retard chez Vasseur :</strong></p>
-<p>Un retard fournisseur ajoute 2 semaines au délai de livraison d'un véhicule commandé il y a 5 semaines.</p>
+<p>Un retard fournisseur ajoute 10 jours au délai de livraison d'un Scénic E-Tech commandé il y a 3 semaines.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — rester vague ("il y a un peu de retard") ou attendre que le client s'inquiète et appelle lui-même</li>
 <li>✅ <strong>À privilégier</strong> — contacter le client avant qu'il ne s'inquiète, expliquer la cause réelle (retard fournisseur, pas une erreur Vasseur), donner un nouveau délai précis, et proposer un geste si pertinent (priorité sur le prochain rendez-vous d'entretien, par exemple)</li>
@@ -276,10 +276,10 @@ const RES = {
 <p><strong>C2.4 — Mesurer et exploiter la satisfaction chez Vasseur.</strong> On ne devine pas si un client est satisfait, on le mesure. Le principal outil est le NPS (Net Promoter Score) : sur une note de 0 à 10 ("recommanderiez-vous Vasseur ?"), on distingue Promoteurs (9-10), Passifs (7-8) et Détracteurs (0-6).</p>
 <p><strong>Ce qu'on fait de ces données :</strong> un NPS élevé ne veut rien dire s'il n'est suivi d'aucune action ; un NPS bas mal exploité fait perdre le client une seconde fois. La vraie compétence n'est pas de lire le chiffre, mais d'en tirer une action commerciale concrète.</p>
 <p><strong>Cas pratique — un client Détracteur chez Vasseur :</strong></p>
-<p>Un client donne 4/10 après l'achat d'un Trafic, avec le commentaire : <em>"Le véhicule est bien mais j'ai attendu 3 semaines de plus que prévu sans nouvelles."</em></p>
+<p>Un client donne 5/10 après la révision de sa Clio, avec le commentaire : <em>"Travail correct, mais on m'avait promis ma voiture pour 17h et je l'ai récupérée à 19h, sans avoir été prévenu."</em></p>
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter d'enregistrer la note sans réagir, ou répondre uniquement "merci pour votre retour"</li>
-<li><strong>✅ À privilégier</strong> — identifier la vraie cause (pas le véhicule, le manque de communication pendant le retard), et proposer une action ciblée sur CE point précis (par exemple, un geste + un engagement de suivi renforcé sur sa prochaine commande)</li>
+<li><strong>✅ À privilégier</strong> — identifier la vraie cause (pas la qualité de la révision, mais l'absence de prévenance sur l'heure), et proposer une action ciblée sur CE point précis (par exemple, un SMS systématique dès qu'un véhicule prend du retard à l'atelier)</li>
 </ul>
 <p>Un avis en ligne fonctionne pareil : la réponse publique compte autant pour les futurs clients qui la liront que pour le client lui-même — elle doit rester factuelle, jamais défensive.</p>
 <p><strong>En résumé, avant d'exploiter un résultat de satisfaction, je vérifie que je :</strong></p>
@@ -295,7 +295,7 @@ const RES = {
 <p><strong>Avant de contacter, je consulte le CRM :</strong> le CRM Vasseur (partie du SIC — Système d'Information Commercial) garde l'historique de chaque client (achats, contacts précédents, réclamations). Un bon contact tient compte de ce que le CRM indique déjà, pour ne pas recontacter un client qui vient tout juste d'échanger avec un collègue, ni ignorer une réclamation en cours.</p>
 <p><strong>Les bons prétextes de contact :</strong> une information générale utile (rappel constructeur, actualité), un moment personnel (anniversaire d'achat), une nouveauté pertinente pour son profil. Le mauvais prétexte : "on n'a pas eu de nouvelles de vous depuis un moment" — recentré sur Vasseur, pas sur le client.</p>
 <p><strong>Cas pratique — un rappel constructeur chez Vasseur :</strong></p>
-<p>Renault lance un rappel technique sur un composant électronique de la génération de Captur vendue il y a 2 ans.</p>
+<p>Vasseur doit prévenir les clients Mégane E-Tech qu'une mise à jour du logiciel de recharge est disponible et doit être faite à l'atelier.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — un message anxiogène ("Votre véhicule présente un défaut") ou au contraire trop rassurant au point de minimiser ("c'est rien du tout, pas besoin de venir")</li>
 <li><strong>✅ À privilégier</strong> — un message factuel et rassurant : ce qui se passe, pourquoi ce n'est pas urgent-danger mais à traiter, comment prendre rendez-vous simplement</li>
@@ -313,10 +313,10 @@ const RES = {
 <p><strong>C3.2 — Fidéliser concrètement chez Vasseur.</strong> Une action de fidélisation efficace récompense un comportement réel du client (ancienneté, fréquence, recommandation), pas un geste générique offert à tout le monde sans distinction — sinon ça devient une simple remise, pas de la fidélisation.</p>
 <p><strong>Les leviers classiques :</strong> offre réservée aux clients existants, programme de parrainage (le client recommande, les deux y gagnent), événement dédié (portes ouvertes clients), geste personnalisé suite à un problème résolu.</p>
 <p><strong>Cas pratique — un programme de parrainage chez Vasseur :</strong></p>
-<p>Michel veut lancer un parrainage : un client Vasseur qui amène un nouveau client obtient un avantage, le filleul aussi.</p>
+<p>Isabelle veut récompenser les clients de Vasseur Sélection qui laissent un avis après leur achat d'occasion.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — un avantage trop symbolique (qui ne motive personne à recommander) ou au contraire disproportionné (qui rogne la marge sans réel retour)</li>
-<li><strong>✅ À privilégier</strong> — un avantage calibré sur la valeur réelle d'un nouveau client (par exemple un forfait entretien offert), gagnant pour les deux parties, facile à comprendre en une phrase</li>
+<li><strong>✅ À privilégier</strong> — un avantage calibré sur ce que l'action rapporte réellement à Vasseur, simple, et compréhensible en une phrase</li>
 </ul>
 <p><strong>En résumé, avant de proposer une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
@@ -330,10 +330,10 @@ const RES = {
 <p><strong>C3.3 — Mesurer l'efficacité d'une action de fidélisation chez Vasseur.</strong> Une action de fidélisation qui n'est jamais évaluée peut coûter cher pour rien. On mesure généralement : le taux de participation (combien de clients ont utilisé l'offre), le taux de conversion (combien ont effectivement racheté), et le retour net (le gain généré compense-t-il le coût de l'action).</p>
 <p><strong>Un geste indissociable de l'évaluation — enrichir le SIC :</strong> le SIC (Système d'Information Commercial, ex. le CRM Vasseur et le fichier clients) centralise toute l'information sur chaque client. Évaluer une action de fidélisation, c'est aussi mettre à jour, pour chaque client concerné, ce que l'action a changé : a-t-il participé ? a-t-il racheté ? faut-il noter une réaction (positive ou négative) pour le prochain collègue qui consultera sa fiche ? Un bilan chiffré qui ne se traduit pas par des fiches clients actualisées est un travail à moitié fait — l'information doit rester exploitable après coup, pas seulement au moment du calcul.</p>
 <p><strong>Cas pratique — bilan d'une campagne chez Vasseur :</strong></p>
-<p>Une offre de reprise majorée envoyée à 100 clients anciens a généré 8 ventes. Le coût de la majoration de reprise était de 400 € par vente.</p>
+<p>Une invitation à une soirée essais envoyée à 150 clients a généré 6 ventes. L'opération a coûté 1 800 € au total.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — juger uniquement sur "ça a marché, on a vendu 8 voitures" sans regarder le coût ni comparer à d'autres actions</li>
-<li><strong>✅ À privilégier</strong> — calculer le taux de conversion (8/100 = 8%), comparer ce taux et ce coût à d'autres actions similaires menées par Vasseur, et formuler une recommandation (reconduire, ajuster le montant, cibler différemment)</li>
+<li><strong>❌ À éviter</strong> — juger uniquement sur "ça a marché, on a vendu 6 voitures" sans regarder le coût ni comparer à d'autres actions</li>
+<li><strong>✅ À privilégier</strong> — calculer le taux de conversion (6/150 = 4 %) et le coût par vente (1 800/6 = 300 €), comparer ce taux et ce coût à d'autres actions similaires menées par Vasseur, et formuler une recommandation (reconduire, ajuster le montant, cibler différemment)</li>
 </ul>
 <p><strong>En résumé, avant de conclure sur une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
@@ -348,14 +348,14 @@ const RES = {
 <p><strong>B4.4 — Faire le bilan d'une prospection chez Vasseur.</strong> Une campagne de prospection ne s'arrête pas à l'envoi des messages : il faut suivre les résultats (taux de réponse, taux de transformation en rendez-vous, taux de transformation en vente) et ajuster si besoin, y compris en cours de campagne.</p>
 <p><strong>Les indicateurs clés :</strong> nombre de contacts touchés, taux de réponse (combien ont réagi), taux de transformation (combien ont acheté). Un faible taux de réponse peut venir du message, du canal, ou du mauvais ciblage — il faut identifier lequel avant d'ajuster.</p>
 <p><strong>Cas pratique — bilan d'une session de phoning chez Vasseur :</strong></p>
-<p>Sur 40 appels de prospection B2B passés cette semaine, 6 rendez-vous ont été pris, et 1 vente a été conclue à ce jour.</p>
+<p>Sur 50 mails de prospection B2B envoyés ce mois-ci, 5 rendez-vous ont été pris, et aucune vente n'est encore conclue.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — conclure "ça n'a pas marché" en ne regardant que la vente finale (1 sur 40), sans distinguer les étapes</li>
-<li><strong>✅ À privilégier</strong> — calculer chaque taux séparément (15% de taux de rendez-vous, encore trop tôt pour juger le taux de transformation en vente), et identifier à quelle étape se situe la vraie marge de progression</li>
+<li><strong>❌ À éviter</strong> — conclure "ça n'a pas marché" en ne regardant que la vente finale (0 sur 50), sans distinguer les étapes</li>
+<li><strong>✅ À privilégier</strong> — calculer chaque taux séparément (10 % de taux de rendez-vous, encore trop tôt pour juger le taux de transformation en vente), et identifier à quelle étape se situe la vraie marge de progression</li>
 </ul>
 <p><strong>Suivre aussi les devis, pas seulement les campagnes.</strong> Un devis, c'est une proposition chiffrée envoyée à un prospect (un véhicule précis, un prix, des conditions), avec une date de validité au-delà de laquelle il n'engage plus Vasseur. Un devis envoyé n'est pas une vente : sans relance, un prospect qui hésite finit souvent par ne pas donner suite, ou par acheter ailleurs. Suivre un devis, c'est noter sa date d'envoi et sa date de validité, et relancer avant l'expiration plutôt qu'après.</p>
 <p><strong>Cas pratique — un devis resté sans réponse :</strong></p>
-<p>Un devis pour un Kangoo Van a été envoyé à un artisan il y a 8 jours, sans réponse. La validité du devis est de 15 jours.</p>
+<p>Un devis pour un Trafic a été envoyé à une PME il y a 12 jours, sans réponse. La validité du devis est de 30 jours.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — attendre passivement l'expiration du devis avant de réagir, ou relancer trop tôt (dès le lendemain), ce qui peut sembler pressant</li>
 <li><strong>✅ À privilégier</strong> — relancer avec quelques jours de marge avant l'expiration, avec un message qui rouvre la discussion sans donner l'impression de "forcer" une réponse (ex. une question ouverte sur un point du devis, plutôt qu'un simple rappel de délai)</li>
@@ -373,10 +373,10 @@ const RES = {
 <p><strong>B4.5 — Valoriser l'offre Vasseur.</strong> Valoriser, ce n'est pas décrire un produit, c'est expliquer pourquoi il répond mieux au besoin du client que les alternatives (autre modèle, occasion, concurrent). Une bonne valorisation combine une caractéristique du véhicule ou du service, l'avantage qu'elle procure, et le bénéfice concret pour ce client précis.</p>
 <p><strong>Attention à un piège fréquent :</strong> valoriser uniquement le produit alors que le service (garantie, SAV, accompagnement) est parfois le vrai argument différenciant, notamment face à un mandataire en ligne moins-disant sur le prix.</p>
 <p><strong>Cas pratique — valoriser un service chez Vasseur :</strong></p>
-<p>Un client hésite entre acheter chez Vasseur (prix un peu plus élevé) et un mandataire en ligne (prix plus bas, aucun service après-vente local).</p>
+<p>Une cliente hésite à confier l'entretien de sa Clio à Vasseur plutôt qu'à un centre auto discount un peu moins cher.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter d'un argument vague ("chez nous c'est mieux") sans rien de concret</li>
-<li><strong>✅ À privilégier</strong> — valoriser précisément le SAV local (caractéristique : atelier Bruno Faucher à 10 minutes ; avantage : intervention rapide en cas de souci ; bénéfice pour ce client : pas de véhicule immobilisé loin de chez lui)</li>
+<li><strong>✅ À privilégier</strong> — valoriser précisément un service (caractéristique : suivi de l'entretien dans le carnet constructeur ; avantage : historique complet et reconnu ; bénéfice pour cette cliente : une meilleure valeur de revente de sa Clio)</li>
 </ul>
 <p><strong>En résumé, avant de valoriser une offre, je vérifie que je :</strong></p>
 <ul>
@@ -424,7 +424,7 @@ const RES = {
   'B4.3-P2':{t:"Gérer l'imprévu d'un contact réel",c:`<div class="res-section res-apprenti">
 <p><strong>B4.3 — Gérer l'imprévu d'un contact réel.</strong> Tu sais traiter une objection isolée. Dans un vrai échange, un contact de prospection peut enchaîner plusieurs objections, changer de sujet, ou être compliqué à cerner. La compétence n'est plus de connaître une réponse toute faite, mais de rester maître du fil de la conversation.</p>
 <p><strong>Cas pratique — un enchaînement d'objections :</strong></p>
-<p>Un prospect B2B répond d'abord "on vient de renouveler", puis enchaîne "et de toute façon vos délais sont trop longs".</p>
+<p>Un artisan répond d'abord "je n'ai pas le temps en ce moment", puis enchaîne "et puis l'électrique, ça ne tient pas la route pour mon métier".</p>
 <ul>
 <li><strong>❌ À éviter</strong> — répondre à la deuxième objection en ignorant la première, comme si elle n'avait pas été dite</li>
 <li><strong>✅ À privilégier</strong> — reconnaître les deux objections successivement, sans se précipiter sur une réponse toute faite pour la seconde</li>
@@ -440,16 +440,16 @@ const RES = {
   'B4.4-P2':{t:"Comparer pour mieux piloter",c:`<div class="res-section res-apprenti">
 <p><strong>B4.4 — Comparer pour mieux piloter.</strong> Tu sais calculer un taux pour une action, et suivre un devis isolé. Il faut maintenant savoir comparer plusieurs actions (ou plusieurs devis) entre eux pour prioriser, et en tirer un vrai diagnostic — pas juste un chiffre ou un dossier isolé.</p>
 <p><strong>Cas pratique — une performance en baisse :</strong></p>
-<p>Une campagne mail récurrente, qui obtenait habituellement 10% de taux de réponse, tombe à 4% ce mois-ci.</p>
+<p>Une opération d'appels auprès des clients entretien, qui obtenait habituellement 1 rendez-vous pour 5 appels, n'en obtient plus que 1 pour 12 ce mois-ci.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter de constater la baisse sans chercher ce qui a changé entre les deux périodes</li>
 <li><strong>✅ À privilégier</strong> — comparer ce qui a changé (message, période, cible, contexte) entre le moment où ça marchait et maintenant, avant de conclure</li>
 </ul>
 <p><strong>Cas pratique — plusieurs devis à relancer en même temps :</strong></p>
-<p>Trois devis sont en attente : un pour un Kangoo Van (validité expirant dans 2 jours), un pour une Clio (validité expirant dans 10 jours), un pour une flotte de 3 Trafic (validité expirant dans 5 jours, montant nettement plus élevé que les deux autres).</p>
+<p>Trois devis sont en attente : un pour un Captur (validité expirant dans 3 jours), un pour une Renault 5 (validité expirant dans 8 jours), un pour 2 Master destinés à une entreprise de BTP (validité expirant dans 6 jours, montant nettement plus élevé que les deux autres).</p>
 <ul>
 <li><strong>❌ À éviter</strong> — relancer les trois dans l'ordre où ils ont été envoyés, sans tenir compte ni de l'urgence ni de l'enjeu</li>
-<li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Kangoo Van expire dans 2 jours) tout en gardant à l'esprit l'enjeu (la flotte de Trafic, plus importante en valeur, mérite une relance soignée même si elle expire un peu plus tard)</li>
+<li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Captur expire dans 3 jours) tout en gardant à l'esprit l'enjeu (les 2 Master, plus importants en valeur, mérite une relance soignée même si elle expire un peu plus tard)</li>
 </ul>
 <p><strong>En résumé, avant de conclure sur une performance ou de prioriser des relances, je vérifie que je :</strong></p>
 <ul>
@@ -469,7 +469,7 @@ const RES = {
 <li><strong>✅ À privilégier</strong> — reprendre ses critères un par un, et ne répondre que sur ceux où Vasseur a un vrai avantage, sans forcer sur les autres</li>
 </ul>
 <p><strong>Cas pratique — un client au niveau technique supérieur au tien :</strong></p>
-<p>Un client mécanicien de métier pose des questions très précises sur une motorisation, bien au-delà de l'argumentaire commercial standard.</p>
+<p>Une cliente ingénieure en électricité pose des questions très précises sur la recharge rapide d'une Mégane E-Tech, bien au-delà de l'argumentaire commercial standard.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — bluffer une réponse technique que tu ne maîtrises pas vraiment, au risque de te tromper devant quelqu'un qui le remarquera</li>
 <li><strong>✅ À privilégier</strong> — reconnaître honnêtement les limites de tes connaissances sur le point précis posé, et orienter vers un expert de l'atelier (Bruno Faucher) plutôt que d'improviser une réponse fragile</li>
@@ -487,7 +487,7 @@ const RES = {
   'C1.1-P2':{t:"Croiser les sources de veille",c:`<div class="res-section res-apprenti">
 <p><strong>C1.1 — Croiser les sources de veille.</strong> Tu sais utiliser une source de veille à la fois. Sur le terrain, deux sources peuvent se contredire ou donner des informations incomplètes séparément — la compétence est de les confronter avant de conclure.</p>
 <p><strong>Cas pratique — deux sources contradictoires :</strong></p>
-<p>Un article évoque une baisse du marché électrique, tandis que les chiffres internes Vasseur montrent une hausse des ventes électriques ce trimestre.</p>
+<p>Une étude nationale annonce que les utilitaires diesel reculent, tandis que les commandes de Master diesel chez Vasseur progressent ce semestre.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — privilégier automatiquement une source parce qu'elle est externe (plus "objective" en apparence) ou interne (plus familière)</li>
 <li><strong>✅ À privilégier</strong> — chercher ce qui explique l'écart (marché national vs zone Vasseur, période exacte) avant de trancher</li>
@@ -503,9 +503,9 @@ const RES = {
   'C1.2-P2':{t:"Assurer la continuité entre canaux",c:`<div class="res-section res-apprenti">
 <p><strong>C1.2 — Assurer la continuité entre canaux.</strong> Tu sais répondre sur un canal à la fois. Un même client peut basculer d'un canal à l'autre en cours d'échange (commence par chat, termine par mail) — la compétence est d'assurer la continuité de l'information, sans jamais se répéter ni se contredire.</p>
 <p><strong>Cas pratique — un client qui change de canal :</strong></p>
-<p>Un client démarre un échange sur le chat du site, puis écrit un mail le lendemain pour poursuivre — sans reprendre tout le contexte.</p>
+<p>Une cliente pose une question sur Instagram en message privé, puis appelle la concession deux jours plus tard — sans rappeler ce qu'elle avait écrit.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — répondre comme si c'était une toute nouvelle demande, en redemandant des informations déjà données sur le chat</li>
+<li><strong>❌ À éviter</strong> — répondre comme si c'était une toute nouvelle demande, en redemandant des informations déjà données par message</li>
 <li><strong>✅ À privilégier</strong> — retrouver l'historique de l'échange précédent et poursuivre directement, sans faire répéter le client</li>
 </ul>
 <p><strong>En résumé, en situation multi-canal, je vérifie que je :</strong></p>
@@ -520,7 +520,7 @@ const RES = {
 <p><strong>C1.3 — Gérer un dossier à plusieurs paramètres.</strong> Tu sais monter un dossier avec un seul mode de financement. Plusieurs éléments peuvent se combiner (reprise + financement + options), et plusieurs interlocuteurs peuvent être impliqués (couple, entreprise) — la compétence est de garder un dossier cohérent malgré cette complexité.</p>
 <p><strong>Petit rappel LOA :</strong> en LOA (Location avec Option d'Achat), le client loue le véhicule et paie pour son usage, sans en être propriétaire pendant la durée du contrat — c'est ce qui explique une mensualité plus légère qu'un crédit classique. Une mission de ce palier peut te demander de l'expliquer simplement à un client qui ne connaît pas ce mécanisme.</p>
 <p><strong>Cas pratique — plusieurs interlocuteurs :</strong></p>
-<p>Un couple vient acheter ensemble ; l'un privilégie le prix, l'autre les options de sécurité.</p>
+<p>Une mère et son fils étudiant viennent choisir sa première voiture ; elle regarde la sécurité, lui le style et le prix de l'assurance.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — s'adresser uniquement à celui qui parle le plus, en ignorant les priorités de l'autre</li>
 <li><strong>✅ À privilégier</strong> — reformuler les deux priorités exprimées et proposer une solution qui tient compte des deux, avant de figer le dossier</li>
@@ -536,7 +536,7 @@ const RES = {
   'C2.1-P2':{t:"Anticiper plutôt que réagir",c:`<div class="res-section res-apprenti">
 <p><strong>C2.1 — Anticiper plutôt que réagir.</strong> Tu sais annoncer un retard déjà survenu. La compétence se déplace maintenant vers l'anticipation : repérer un risque avant qu'il ne devienne un vrai problème pour le client, et coordonner plusieurs services si nécessaire.</p>
 <p><strong>Cas pratique — un risque détecté à temps :</strong></p>
-<p>Tu apprends, via l'atelier, qu'une pièce nécessaire à la livraison d'un véhicule commandé est en tension chez le fournisseur — le client n'a encore aucune raison de s'inquiéter.</p>
+<p>Tu apprends, par le service administratif, que la carte grise d'un véhicule vendu risque d'arriver après la date de livraison prévue, à cause d'un pic de demandes — le client n'a encore aucune raison de s'inquiéter.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — ne rien dire tant que le retard n'est pas confirmé à 100%, au risque de prévenir au dernier moment</li>
 <li><strong>✅ À privilégier</strong> — informer le client d'un risque possible dès qu'il est identifié, sans dramatiser, pour qu'il ne soit jamais pris de court</li>
@@ -552,10 +552,10 @@ const RES = {
   'C2.2-P2':{t:"Coordonner plusieurs services, plusieurs prestataires",c:`<div class="res-section res-apprenti">
 <p><strong>C2.2 — Coordonner plusieurs services, plusieurs prestataires.</strong> Tu sais mettre en œuvre un service unique avec un seul prestataire. Sur le terrain, un même dossier combine souvent plusieurs services (accessoire + garantie étendue + financement), parfois avec des prestataires différents dont les délais ne dépendent pas les uns des autres — la compétence est de garder une vue d'ensemble cohérente malgré cette complexité.</p>
 <p><strong>Cas pratique — trois services, trois délais différents :</strong></p>
-<p>Un client B2B commande 3 Kangoo Van avec, pour chacun : pose d'un attelage (atelier Vasseur, 3 jours), immatriculation en flotte (administratif, 5 jours), et financement via un organisme partenaire (validation sous 4 à 7 jours selon le dossier).</p>
+<p>Une entreprise commande 2 Master avec, pour chacun : aménagement intérieur en étagères (carrossier partenaire, 5 jours), marquage publicitaire (prestataire extérieur, 3 à 8 jours selon son planning) et immatriculation (administratif, 4 jours).</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — suivre chaque service séparément sans les recouper, au risque d'annoncer une date de livraison basée sur le service le plus rapide en oubliant les deux autres</li>
-<li>✅ <strong>À privilégier</strong> — construire une vue d'ensemble avec les 3 délais côte à côte, identifier lequel est le plus long (ici le financement), et baser la date de livraison annoncée sur ce délai le plus contraignant — pas sur le plus rapide</li>
+<li>✅ <strong>À privilégier</strong> — construire une vue d'ensemble avec les 3 délais côte à côte, identifier lequel est le plus long (ici le marquage, jusqu'à 8 jours), et baser la date de livraison annoncée sur ce délai le plus contraignant — pas sur le plus rapide</li>
 </ul>
 <p>Un dossier avec plusieurs services n'est jamais plus rapide que son service le plus lent. C'est ce délai-là qu'il faut avoir en tête en premier.</p>
 <p><strong>En résumé, sur un dossier à plusieurs services, je vérifie que je :</strong></p>
@@ -569,7 +569,7 @@ const RES = {
   'C2.3-P2':{t:"Quand la responsabilité n'est pas évidente",c:`<div class="res-section res-apprenti">
 <p><strong>C2.3 — Quand la responsabilité n'est pas évidente.</strong> Tu sais traiter une réclamation dont la cause est assez claire. Sur le terrain, la responsabilité peut être partagée, ou une réclamation peut se répéter chez un même client — la compétence est de gérer cette ambiguïté sans se braquer ni tout accepter par facilité.</p>
 <p><strong>Cas pratique — une responsabilité partagée :</strong></p>
-<p>Un client se plaint d'un délai dépassé, mais le dossier montre qu'il a lui-même tardé à valider une option, ce qui a décalé la commande.</p>
+<p>Une cliente se plaint d'une facture d'atelier plus élevée que le devis, mais le dossier montre qu'elle avait accepté par téléphone une réparation supplémentaire, sans que ce soit confirmé par écrit.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — rejeter toute la faute sur le client (même si les faits le permettent), ou au contraire s'excuser sans nuance</li>
 <li><strong>✅ À privilégier</strong> — reconnaître la part de Vasseur s'il y en a une, expliquer factuellement la part du client sans lui faire de reproche direct, et avancer sur une solution</li>
@@ -585,7 +585,7 @@ const RES = {
   'C2.4-P2':{t:"Lire une tendance, pas un chiffre isolé",c:`<div class="res-section res-apprenti">
 <p><strong>C2.4 — Lire une tendance, pas un chiffre isolé.</strong> Tu sais réagir à une note isolée. La compétence est maintenant de suivre plusieurs résultats dans le temps pour repérer une vraie tendance, et de savoir traiter un avis "entre deux" (ni très positif ni très négatif), souvent plus riche d'enseignement qu'un avis extrême.</p>
 <p><strong>Cas pratique — un avis mitigé :</strong></p>
-<p>Un client donne 7/10 (Passif) avec le commentaire : "Rien de grave, mais ça manquait un peu de chaleur dans l'accueil."</p>
+<p>Une cliente donne 8/10 (Passive) avec le commentaire : "Bonne livraison, mais on m'a un peu pressée pour signer les papiers."</p>
 <ul>
 <li><strong>❌ À éviter</strong> — ignorer ce retour parce qu'il n'est "ni bon ni mauvais", ou le traiter avec la même urgence qu'un Détracteur</li>
 <li><strong>✅ À privilégier</strong> — reconnaître ce que ce retour révèle (un point d'amélioration réel, même sans urgence), et le capitaliser pour l'équipe</li>
@@ -601,16 +601,16 @@ const RES = {
   'C3.1-P2':{t:"Adapter le contact à des profils variés",c:`<div class="res-section res-apprenti">
 <p><strong>C3.1 — Adapter le contact à des profils variés.</strong> Tu sais envoyer un message à un profil homogène. Une même information peut devoir toucher des clients très différents (âge, usage, ancienneté) — la compétence est d'adapter le ton et le contenu sans multiplier les versions à l'infini.</p>
 <p><strong>Rappel — le CRM :</strong> l'historique enregistré dans le CRM (ancienneté, fréquence de contact, réclamations passées) est justement ce qui permet de repérer qu'un profil est différent d'un autre. Adapter un message sans avoir regardé ce que le CRM indique sur ce client précis, c'est adapter au hasard.</p>
-<p><strong>Cas pratique — un client resté silencieux longtemps :</strong></p>
-<p>Un client n'a eu aucun contact avec Vasseur depuis 3 ans, sans raison connue (ni réclamation, ni départ signalé).</p>
+<p><strong>Cas pratique — une cliente avec un incident récent :</strong></p>
+<p>Une cliente fidèle depuis 10 ans vient d'être touchée par une erreur de facturation, corrigée depuis ; elle doit recevoir la même information que tous les clients sur la nouvelle offre d'entretien.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — le relancer avec un message commercial classique, comme n'importe quel autre client</li>
-<li><strong>✅ À privilégier</strong> — un message qui reconnaît l'absence de contact sans la dramatiser, et qui cherche à comprendre plutôt qu'à vendre immédiatement</li>
+<li><strong>❌ À éviter</strong> — lui envoyer le même message commercial qu'à tout le monde, comme si rien ne s'était passé</li>
+<li><strong>✅ À privilégier</strong> — un message qui tient compte de l'incident récent sans le rappeler lourdement, et qui privilégie la relation avant la vente</li>
 </ul>
 <p><strong>En résumé, sur le contact client, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Adapte le ton à la situation réelle du client, pas un message uniforme</li>
-<li>✓ Cherche à comprendre un silence avant de vendre à nouveau</li>
+<li>✓ Tiens compte de l'historique récent du client avant de lui écrire</li>
 <li>✓ Reste sobre sur un contact délicat, sans sur-communiquer</li>
 </ul>
 </div>`},
@@ -619,7 +619,7 @@ const RES = {
 <p><strong>C3.2 — Combiner les leviers, anticiper les effets pervers.</strong> Tu sais construire une action de fidélisation. La compétence est maintenant de savoir combiner plusieurs leviers pour un même objectif, adapter une action à un public différent, et anticiper les effets pervers possibles (un client qui se sent lésé par rapport à un autre, par exemple).</p>
 <p><strong>Rappel — le CRM :</strong> avant de combiner des leviers pour un client, un rapide passage par le CRM évite de lui proposer une action à laquelle il a déjà eu droit récemment, ou de créer justement l'un des effets pervers à anticiper.</p>
 <p><strong>Cas pratique — un effet pervers à anticiper :</strong></p>
-<p>Une offre de fidélité est réservée aux clients à 2 achats ou plus. Un client à un seul achat, mais très ancien et très actif sur les réseaux sociaux Vasseur, pourrait mal le vivre.</p>
+<p>Une offre « entretien offert » est réservée aux clients ayant acheté un véhicule neuf. Une cliente qui a acheté 3 véhicules d'occasion chez Vasseur Sélection pourrait se sentir exclue.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — ignorer ce cas particulier au nom de la règle générale, sans anticiper la réaction possible</li>
 <li><strong>✅ À privilégier</strong> — anticiper ce cas et préparer une réponse cohérente si la question se pose, sans casser la règle pour autant</li>
@@ -638,10 +638,10 @@ const RES = {
 <p><strong>C3.3 — Repérer les biais d'évaluation.</strong> Tu sais calculer un taux et tirer une conclusion. La compétence est maintenant de repérer si une évaluation est biaisée (échantillon trop petit, période inhabituelle, comparaison injuste, biais de sélection) avant de faire confiance au résultat chiffré — et de savoir regarder au-delà du seul taux de conversion.</p>
 <p><strong>Rappel — le SIC :</strong> évaluer une action, c'est aussi enrichir le SIC (Système d'Information Commercial, ex. le CRM Vasseur) pour chaque client concerné. Au palier 2, cet enrichissement doit rester cohérent avec l'analyse : si un résultat semble excellent mais repose sur un biais, la fiche client actualisée ne doit pas laisser croire à une fidélisation acquise qui n'est pas encore prouvée.</p>
 <p><strong>Cas pratique — un résultat trompeur :</strong></p>
-<p>Une action de fidélisation testée sur seulement 10 clients affiche un taux de conversion de 40% — un chiffre qui semble excellent.</p>
+<p>Une action de fidélisation testée sur seulement 8 clients affiche 3 ventes, soit 37,5 % de conversion — un chiffre qui semble excellent.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — généraliser immédiatement ce résultat à toute la base clients sans questionner la taille de l'échantillon</li>
-<li><strong>✅ À privilégier</strong> — reconnaître que 10 clients est un échantillon trop petit pour conclure, et proposer un test à plus grande échelle avant de généraliser</li>
+<li><strong>✅ À privilégier</strong> — reconnaître que 8 clients est un échantillon trop petit pour conclure, et proposer un test à plus grande échelle avant de généraliser</li>
 </ul>
 <p><strong>Un biais plus subtil — le biais de sélection :</strong> quand on compare les clients ayant participé à une offre à ceux n'y ayant pas participé, il faut se méfier d'une explication trompeuse : les clients qui participent sont peut-être déjà, au départ, plus fidèles ou plus engagés que les autres — indépendamment de l'offre elle-même. Une bonne évaluation dans la durée doit envisager cette explication alternative avant de conclure que l'offre est seule responsable du résultat.</p>
 <p><strong>Regarder au-delà du taux de conversion :</strong> le taux de conversion (combien de clients rachètent) ne capture pas tout. D'autres indicateurs peuvent révéler un effet que le taux de conversion seul sous-estime, par exemple le <strong>taux de recommandation</strong> (des clients satisfaits qui parlent de Vasseur sans forcément racheter tout de suite) ou l'<strong>ancienneté moyenne</strong> des clients fidélisés.</p>
@@ -661,8 +661,8 @@ const RES = {
 'C1.1-P3':{t:"Arbitrer une veille incertaine",c:`<div class="res-section res-pro">
 <p><strong>C1.1 — Arbitrer entre informations fiables et informations incertaines.</strong> Tu sais déjà croiser deux sources de veille qui se contredisent (palier 2). Au niveau professionnel, la difficulté augmente : tu reçois souvent plusieurs informations en même temps, de fiabilité inégale — certaines vérifiées (chiffres internes Vasseur), d'autres rapportées ou non confirmées (rumeur de marché, annonce pas encore officielle) — et tu dois décider, parfois avec un budget ou un délai limité, sans attendre une certitude totale.</p>
 <p><strong>La règle professionnelle : trier avant de décider.</strong> Une information non confirmée n'est pas forcément fausse — mais elle ne doit jamais peser autant qu'une information vérifiée dans une décision. Le bon réflexe : classer chaque information selon sa source (chiffre interne, article sourcé, propos rapportés, rumeur), puis décider en t'appuyant en priorité sur les informations les plus fiables, sans ignorer les autres mais sans leur donner trop de poids.</p>
-<p><strong>Cas pratique — un arbitrage de stock chez Vasseur :</strong></p>
-<p>Michel doit décider comment répartir un budget de réapprovisionnement limité entre deux segments. Il dispose de : des chiffres de vente Vasseur fiables (SUV hybrides en hausse localement), une tendance nationale contraire (SUV hybrides en baisse, source professionnelle sourcée), et une rumeur non confirmée sur une promotion concurrente.</p>
+<p><strong>Cas pratique — décider d'une offre avec des informations inégales :</strong></p>
+<p>Michel hésite à lancer une offre de reprise majorée sur les utilitaires diesel. Il dispose de : l'historique Vasseur des reprises (fiable, 40 reprises d'utilitaires l'an dernier), un article de presse spécialisée sur la baisse des prix des utilitaires d'occasion (sourcé), et le bruit qu'un concurrent préparerait la même offre (non confirmé).</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — trancher sur la première information reçue, ou sur celle qui va dans le sens de ce qu'on pensait déjà avant de regarder le dossier</li>
 <li>✅ <strong>À privilégier</strong> — classer chaque information par fiabilité, puis construire la décision sur les informations les plus solides, en signalant explicitement ce qui reste incertain</li>
@@ -679,11 +679,11 @@ const RES = {
 'C1.2-P3':{t:"Piloter l'omnicanal en situation d'enjeu",c:`<div class="res-section res-pro">
 <p><strong>C1.2 — Piloter l'omnicanal quand plusieurs canaux et plusieurs personnes sont impliqués.</strong> Tu sais assurer la continuité d'un échange qui bascule d'un canal à l'autre (palier 2). Au niveau professionnel, la difficulté s'ajoute : plusieurs interlocuteurs internes (toi, un collègue, la logistique) peuvent avoir donné des informations différentes au même client, sur des canaux différents, à des moments différents — et c'est toi qui dois réconcilier tout ça avant que le client ne le découvre seul.</p>
 <p><strong>La règle professionnelle : prévenir plutôt que découvrir ensemble.</strong> Dès que tu repères un écart entre deux informations données au client (deux prix, deux dates, deux promesses), le réflexe professionnel n'est jamais d'attendre que le client s'en aperçoive — c'est de vérifier, trancher en interne, puis informer le client de façon proactive, sur le canal le plus adapté à l'urgence de la situation.</p>
-<p><strong>Cas pratique — deux dates de livraison pour un même client :</strong></p>
-<p>Un client B2B a reçu une date de livraison par mail (6 semaines), puis une date différente confirmée en interne par la logistique (9 semaines), suite à un aléa fournisseur — sans que personne ne l'en ait encore informé, à quelques jours d'une signature.</p>
+<p><strong>Cas pratique — deux informations différentes pour une même cliente :</strong></p>
+<p>Une cliente a lu sur le site Vasseur « reprise estimée en 24 h », mais l'atelier indique qu'il faut 3 jours cette semaine faute d'expert disponible — sans que personne ne l'ait prévenue, alors qu'elle vient signer samedi en comptant sur cette estimation.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — laisser la situation en l'état en espérant que ça passe, ou attendre le rendez-vous de signature pour l'annoncer en direct</li>
-<li>✅ <strong>À privilégier</strong> — vérifier la date qui fait foi, puis contacter le client avant le rendez-vous, sur un canal adapté à l'urgence (téléphone plutôt que mail si le délai est court), avec une solution concrète si possible</li>
+<li>✅ <strong>À privilégier</strong> — vérifier l'information qui fait foi, puis contacter la cliente avant le rendez-vous, sur un canal adapté à l'urgence (téléphone plutôt que mail si le délai est court), avec une solution concrète si possible</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter cette situation comme un simple problème de communication interne à régler entre collègues, en oubliant que c'est d'abord le client qui doit être informé rapidement — pas en dernier.</p>
 <p><strong>En résumé, face à une incohérence d'information entre canaux ou interlocuteurs, je vérifie que je :</strong></p>
@@ -697,13 +697,13 @@ const RES = {
 'C1.3-P3':{t:"Exécuter une vente complexe sous pression",c:`<div class="res-section res-pro">
 <p><strong>C1.3 — Exécuter un dossier de vente quand plusieurs difficultés se combinent.</strong> Tu sais déjà monter un dossier avec plusieurs paramètres (reprise + financement + interlocuteurs multiples, palier 2). Au niveau professionnel, la difficulté n'est plus seulement de combiner plusieurs éléments — c'est de gérer plusieurs erreurs ou tensions en même temps (un cadrage de négociation contesté, plusieurs écarts découverts simultanément à la livraison), souvent avec le client présent ou une pression de temps.</p>
 <p><strong>La règle professionnelle : trier avant d'annoncer.</strong> Face à plusieurs problèmes détectés en même temps, le réflexe du professionnel n'est jamais de tout annoncer en vrac, ni de paniquer sur celui qui semble le plus grave en premier. Il faut d'abord classer les écarts selon leur impact réel pour le client, puis les traiter dans cet ordre, en gardant une communication honnête sur chacun.</p>
-<p><strong>Cas pratique — trois écarts découverts à la livraison :</strong></p>
-<p>Un client vient récupérer son véhicule : une option demandée manque au dossier, la valeur de reprise de son ancien véhicule est finalement inférieure à celle annoncée, et le mode de financement inscrit sur le contrat ne correspond pas à ce qu'il avait demandé.</p>
+<p><strong>Cas pratique — trois écarts découverts à la signature :</strong></p>
+<p>Une cliente vient signer son bon de commande : la couleur inscrite n'est pas celle choisie, la date de livraison a glissé d'une semaine, et le montant de la garantie étendue n'apparaît pas alors qu'elle l'avait prise.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — annoncer les trois problèmes en vrac dès l'arrivée du client, ou minimiser l'un d'eux pour "adoucir" la situation</li>
-<li>✅ <strong>À privilégier</strong> — identifier lequel de ces écarts a le plus d'impact concret pour le client (souvent le financement, car il engage sur plusieurs années), l'annoncer en premier avec une solution, puis traiter les autres dans l'ordre</li>
+<li>✅ <strong>À privilégier</strong> — identifier lequel de ces écarts a le plus d'impact concret pour la cliente (en général celui qui l'engage le plus, en argent ou dans la durée), l'annoncer en premier avec une solution, puis traiter les autres dans l'ordre</li>
 </ul>
-<p><strong>⚠️ Erreur fréquente à éviter :</strong> vouloir tout corriger seul et dans l'urgence sur place, au risque d'improviser une solution non validée. Certains écarts (comme un mode de financement erroné) demandent souvent une vérification ou une validation avant d'être corrigés définitivement.</p>
+<p><strong>⚠️ Erreur fréquente à éviter :</strong> vouloir tout corriger seul et dans l'urgence sur place, au risque d'improviser une solution non validée. Certains écarts (comme un montant absent du contrat) demandent souvent une vérification ou une validation avant d'être corrigés définitivement.</p>
 <p><strong>En résumé, face à plusieurs écarts découverts en même temps, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Classe les écarts par impact réel pour le client avant de les annoncer</li>
@@ -848,10 +848,10 @@ const RES = {
 'B4.1-P3':{t:"Qualifier un prospect quand les sources se contredisent",c:`<div class="res-section res-pro">
 <p><strong>B4.1 — Qualifier un prospect quand les sources se contredisent.</strong> Tu sais croiser deux sources pour enrichir un profil (palier 2). En poste, la difficulté n'est plus seulement de croiser des informations complémentaires : c'est de gérer des informations qui se contredisent frontalement. Un commercial compétent ne choisit pas la source qui l'arrange ni n'ignore la contradiction — il cherche à la lever par une question précise, et s'il ne peut pas la lever tout de suite, il construit une réponse prudente qui n'engage rien de trop risqué.</p>
 <p><strong>Rappel express :</strong> BANT = Budget, Autorité, Need (besoin), Timeline (délai) — les 4 éléments à connaître pour qualifier un prospect. B2B = vente à une entreprise, B2C = vente à un particulier. Le SIC (Système d'Information Commercial, ex. le CRM Vasseur) centralise la fiche de chaque prospect — au palier 3, une contradiction entre deux sources est très souvent une contradiction entre deux versions du SIC : une fiche pas encore mise à jour contre une information plus récente non encore enregistrée. Fiabiliser le SIC, c'est trancher laquelle des deux versions doit devenir la référence, puis l'y inscrire.</p>
-<p><strong>Cas pratique chiffré chez Vasseur :</strong> le Groupe Bréard (entreprise de BTP, plusieurs chantiers) veut renouveler une flotte de 8 utilitaires. Deux sources existent dans le dossier : la fiche client remplie lors d'un premier échange indique un budget global d'environ 180 000 €, valable pour l'ensemble de la flotte ; mais un compte-rendu de réunion plus récent, rédigé par Isabelle après un second contact, note que le dirigeant a évoqué un budget "plus serré que prévu" à cause d'un investissement immobilier en cours, sans donner de chiffre précis.</p>
+<p><strong>Cas pratique chiffré chez Vasseur :</strong> une clinique vétérinaire veut 3 véhicules pour ses visites à domicile. La fiche du premier contact indique « décision avant fin juin » ; un mail plus récent de la gérante parle d'attendre « l'arrivée d'un nouvel associé », sans date.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — construire une proposition sur 180 000 € parce que c'est le seul chiffre écrit noir sur blanc, en ignorant la remarque plus récente ; ou au contraire supposer un budget bien inférieur sans aucune base chiffrée</li>
-<li>✅ <strong>À privilégier</strong> — repérer que l'information la plus récente (le second échange) doit primer sur la première tant qu'elle n'est pas confirmée, poser une question directe et non intrusive pour lever le doute ("pour bien calibrer notre proposition, quelle enveloppe globale envisagez-vous pour cette flotte ?"), et en attendant la réponse, préparer une offre modulable plutôt qu'un chiffre figé</li>
+<li>❌ <strong>À éviter</strong> — construire le planning sur « fin juin » parce que c'est la seule date écrite, en ignorant le mail plus récent ; ou au contraire classer le dossier comme « sans suite » sans rien vérifier</li>
+<li>✅ <strong>À privilégier</strong> — repérer que l'information la plus récente (le second échange) doit primer sur la première tant qu'elle n'est pas confirmée, poser une question directe et non intrusive pour lever le doute, et en attendant la réponse, garder une proposition prête mais sans engagement de date</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> considérer qu'une contradiction entre deux sources est un problème à résoudre seul, en devinant. Ce n'est presque jamais le cas : la bonne réponse professionnelle est très souvent de poser la question qui lève le doute, formulée de façon à ne pas donner l'impression de douter de la parole du client.</p>
 <p><strong>En résumé, avant de qualifier un prospect à partir de plusieurs sources, je vérifie que je :</strong></p>
@@ -866,10 +866,10 @@ const RES = {
 
 'B4.2-P3':{t:"Répartir un budget de prospection entre plusieurs opérations",c:`<div class="res-section res-pro">
 <p><strong>B4.2 — Répartir un budget de prospection entre plusieurs opérations.</strong> Tu sais choisir entre deux options de campagne selon un budget réduit (palier 2). En poste, l'arbitrage porte rarement sur seulement deux options : il faut souvent répartir un budget unique entre plusieurs opérations qui visent des cibles différentes, sans pouvoir tout financer au niveau idéal. La compétence n'est plus de choisir A ou B, mais de construire une répartition argumentée entre plusieurs postes.</p>
-<p><strong>Cas pratique chiffré chez Vasseur :</strong> Karim dispose de 6 000 € pour ce trimestre et doit couvrir trois besoins : une campagne mail B2B ciblant les artisans (coût faible, ~500 €, portée large mais taux de conversion habituellement modeste), une présence au salon auto régional (coût élevé, ~4 000 €, portée plus restreinte mais taux de conversion nettement meilleur et bonne visibilité pour le pôle Vasseur Sélection occasion), et une campagne réseaux sociaux pour la Renault 5 E-Tech visant les jeunes actifs (coût modéré, ~1 500 €, portée moyenne, retour difficile à estimer précisément faute d'historique sur ce modèle).</p>
+<p><strong>Cas pratique chiffré chez Vasseur :</strong> Isabelle dispose de 3 000 € pour promouvoir le pôle occasion et hésite entre trois actions : des annonces payantes sur un site d'occasion (~1 800 €, résultats bien connus), des flyers en boîte aux lettres (~700 €, résultats faibles les années passées) et une journée « reprise express » en concession (~1 500 €, jamais testée).</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — répartir le budget à parts égales entre les trois (2 000 € chacun) par souci d'équité apparente, sans tenir compte du potentiel réel de chaque opération</li>
-<li>✅ <strong>À privilégier</strong> — comparer les trois options sur les mêmes critères (coût, portée, taux de conversion attendu ou incertain), financer en priorité le salon qui a le meilleur historique de conversion, garder un budget mail suffisant car son coût est faible pour son potentiel, et n'allouer qu'un budget test limité à la campagne réseaux sociaux tant que son retour reste incertain</li>
+<li>❌ <strong>À éviter</strong> — répartir le budget à parts égales entre les trois (1 000 € chacune) par souci d'équité apparente, sans tenir compte du potentiel réel de chaque opération</li>
+<li>✅ <strong>À privilégier</strong> — comparer les trois options sur les mêmes critères (coût, portée, taux de conversion attendu ou incertain), financer d'abord ce dont le résultat est connu, réduire ou supprimer ce qui a déjà montré de faibles résultats, et n'allouer qu'un budget test à l'action jamais essayée</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter chaque opération indépendamment, comme trois décisions séparées. Une répartition de budget est une seule décision globale : financer généreusement une opération a toujours un coût d'opportunité sur les deux autres, il faut le dire explicitement dans l'arbitrage.</p>
 <p><strong>En résumé, avant de répartir un budget de prospection entre plusieurs opérations, je vérifie que je :</strong></p>
@@ -883,10 +883,10 @@ const RES = {
 
 'B4.3-P3':{t:"Gérer un contact avec plusieurs interlocuteurs aux priorités opposées",c:`<div class="res-section res-pro">
 <p><strong>B4.3 — Gérer un contact avec plusieurs interlocuteurs aux priorités opposées.</strong> Tu sais enchaîner deux objections d'un même interlocuteur sans perdre le fil (palier 2). En B2B, une même opération de prospection implique souvent plusieurs personnes côté client, dont les priorités ne coïncident pas toujours. Rester maître de l'échange, ici, c'est aussi savoir concilier deux points de vue internes chez le client, pas seulement répondre à des objections successives.</p>
-<p><strong>Cas pratique chiffré chez Vasseur :</strong> lors d'un rendez-vous chez un client B2B (entreprise de nettoyage industriel, flotte de 5 véhicules), le responsable d'exploitation insiste sur le prix et penche pour 5 Kangoo Van (environ 24 000 € pièce), tandis que la dirigeante, présente en fin de rendez-vous, évoque l'image de l'entreprise auprès de ses clients et semble plus intéressée par des véhicules mieux équipés, quitte à en prendre un peu moins.</p>
+<p><strong>Cas pratique chiffré chez Vasseur :</strong> lors d'un rendez-vous dans une agence immobilière (4 véhicules pour ses conseillers), le comptable veut des véhicules électriques pour réduire les frais de carburant, tandis que le directeur d'agence craint que l'autonomie gêne les conseillers qui font beaucoup de kilomètres.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — répondre uniquement au responsable d'exploitation (premier interlocuteur, premier à parler) en ignorant ensuite la remarque de la dirigeante, ou inversement changer complètement de discours dès qu'elle intervient, au risque de contredire ce qui venait d'être dit</li>
-<li>✅ <strong>À privilégier</strong> — reformuler les deux priorités pour montrer qu'elles ont été entendues toutes les deux ("je comprends que le budget global compte, et que l'image compte aussi pour les véhicules les plus visibles"), puis proposer une piste qui articule les deux sans trancher à leur place (par exemple une flotte mixte : 3 Kangoo Van standard + 2 véhicules mieux équipés pour les interventions les plus visibles), et clarifier avec eux qui validera la décision finale</li>
+<li>❌ <strong>À éviter</strong> — répondre uniquement au premier qui a parlé en ignorant ensuite la remarque de l'autre, ou inversement changer complètement de discours dès que le second intervient, au risque de contredire ce qui venait d'être dit</li>
+<li>✅ <strong>À privilégier</strong> — reformuler les deux priorités pour montrer qu'elles ont été entendues toutes les deux, puis proposer une piste qui articule les deux sans trancher à leur place (par exemple en partant des kilométrages réels de chaque conseiller), et clarifier avec eux qui validera la décision finale</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> répondre trop vite au premier interlocuteur qui parle en pensant avoir conclu, alors qu'en B2B la décision finale implique souvent plusieurs personnes dont les priorités ne sont pas identiques. Il faut identifier qui décide réellement, ou si la décision est partagée, avant de considérer un accord comme acquis.</p>
 <p><strong>En résumé, face à plusieurs interlocuteurs aux priorités différentes, je vérifie que je :</strong></p>
@@ -901,15 +901,15 @@ const RES = {
 'B4.4-P3':{t:"Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause",c:`<div class="res-section res-pro">
 <p><strong>B4.4 — Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause.</strong> Tu sais comparer deux ou trois devis pour prioriser une relance (palier 2). En poste, un commercial actif a souvent plusieurs devis en attente en même temps, avec des échéances et des enjeux qui ne s'alignent jamais parfaitement — il faut arbitrer un vrai portefeuille, pas juste ranger 2-3 dossiers par date. De la même façon, une baisse de performance a rarement une seule cause évidente : plusieurs éléments changent souvent en même temps, et il faut une méthode pour ne pas conclure trop vite.</p>
 <p><strong>Rappel express :</strong> un devis est une proposition chiffrée à durée de validité limitée ; le relancer avant expiration, avec un élément nouveau plutôt qu'un simple rappel de délai, est la règle de base déjà vue en palier 1 et 2.</p>
-<p><strong>Cas pratique chiffré chez Vasseur — un portefeuille de devis à prioriser :</strong> un lundi matin, 5 devis sont en attente : un Kangoo Van (expire dans 2 jours, montant standard, client déjà fidèle), une Clio (expire dans 9 jours, montant standard, premier contact), une flotte de 3 Trafic pour une entreprise de transport (expire dans 4 jours, montant nettement plus élevé, client stratégique), un Austral occasion Vasseur Sélection (expire dans 3 jours, montant moyen, client hésitant qui a déjà demandé un délai une fois), et une Twingo E-Tech (expire dans 12 jours, montant faible, prospect peu qualifié). Le temps disponible ne permet de relancer sérieusement que 3 devis aujourd'hui.</p>
+<p><strong>Cas pratique chiffré chez Vasseur — un portefeuille de devis à prioriser :</strong> un jeudi, 4 devis sont en attente : un Scénic E-Tech (expire demain, client qui a déjà fait deux essais), un Master pour une mairie (expire dans 6 jours, montant élevé, décision en conseil municipal), une Dacia Sandero d'occasion (expire dans 2 jours, montant faible, jeune conducteur pressé) et un Espace (expire dans 10 jours, simple demande de prix). Tu ne peux en relancer sérieusement que 2 aujourd'hui.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — traiter uniquement par ordre d'expiration (Kangoo Van, Austral, Trafic) sans tenir compte de l'enjeu, ce qui laisserait de côté la flotte de Trafic un jour de plus alors qu'elle est le dossier le plus important</li>
-<li>✅ <strong>À privilégier</strong> — croiser urgence ET enjeu : la flotte de Trafic (enjeu majeur, échéance proche) et le Kangoo Van (échéance la plus proche) passent avant l'Austral Vasseur Sélection (le client a déjà montré une hésitation, une relance trop pressante pourrait être contre-productive) ; la Clio et la Twingo, moins urgentes et moins qualifiées, attendent demain sans risque réel</li>
+<li>❌ <strong>À éviter</strong> — traiter uniquement par ordre d'expiration sans tenir compte de l'enjeu ni du profil, ou au contraire uniquement par montant</li>
+<li>✅ <strong>À privilégier</strong> — croiser urgence, enjeu et profil : pour chaque devis, se demander ce qui serait perdu s'il attendait demain, et adapter le ton de la relance au client (un client déjà engagé ne se relance pas comme une simple demande de prix)</li>
 </ul>
-<p><strong>Cas pratique chiffré — diagnostiquer une baisse multi-cause :</strong> le taux de réponse des campagnes mail Vasseur chute de 10% à 3% ce mois-ci. Mais contrairement à une baisse isolée, trois éléments ont changé en même temps : un nouveau modèle de message a été testé, l'envoi a eu lieu une semaine plus tard que d'habitude (période de vacances scolaires), et le budget de relance téléphonique associé a été réduit de moitié.</p>
+<p><strong>Cas pratique chiffré — diagnostiquer une baisse multi-cause :</strong> les demandes d'essai reçues par le site Vasseur passent de 30 à 12 par mois. Au même moment, le formulaire du site a été modifié, un concurrent a lancé une grosse campagne locale et les prix affichés ont augmenté de 3 %.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — désigner une seule cause au hasard (souvent la plus visible, ici le nouveau message) et la corriger seule, en espérant que ça suffise</li>
-<li>✅ <strong>À privilégier</strong> — lister les 3 changements, estimer lequel est le plus probablement déterminant (la période de vacances scolaires affecte historiquement tous les indicateurs Vasseur, c'est donc une piste sérieuse), puis proposer un test qui isole une variable à la fois pour le mois suivant (revenir au calendrier habituel en gardant le nouveau message, par exemple) plutôt que de tout changer d'un coup</li>
+<li>❌ <strong>À éviter</strong> — désigner une seule cause au hasard (souvent la plus visible) et la corriger seule, en espérant que ça suffise</li>
+<li>✅ <strong>À privilégier</strong> — lister les changements, chercher dans l'historique ce qui a déjà produit ce genre d'effet, puis tester une seule variable à la fois (par exemple revenir à l'ancien formulaire sans rien changer d'autre) plutôt que de tout changer d'un coup</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> quand plusieurs causes sont possibles, changer plusieurs éléments en même temps pour "corriger" la baisse. On ne peut alors plus savoir lequel a réellement fait effet — un diagnostic sérieux teste une variable à la fois.</p>
 <p><strong>En résumé, avant de prioriser un portefeuille de devis ou de diagnostiquer une baisse, je vérifie que je :</strong></p>
@@ -923,12 +923,12 @@ const RES = {
 
 'B4.5-P3':{t:"Valoriser une offre en coût total plutôt qu'en prix d'achat",c:`<div class="res-section res-pro">
 <p><strong>B4.5 — Valoriser une offre en coût total plutôt qu'en prix d'achat.</strong> Tu sais construire un argumentaire caractéristique → avantage → bénéfice et l'adapter à un client déjà informé (palier 2). En poste, un des arguments professionnels les plus puissants — et les plus mal maîtrisés par les débutants — consiste à comparer non pas le prix d'achat affiché, mais le <strong>coût total de possession</strong> (souvent noté <strong>TCO</strong>, de l'anglais "Total Cost of Ownership") : c'est-à-dire le prix d'achat, additionné de l'entretien, de la consommation de carburant ou d'électricité, et diminué de la valeur de revente estimée. Un véhicule plus cher à l'achat peut coûter moins cher sur la durée — et inversement.</p>
-<p><strong>Cas pratique chiffré chez Vasseur — un client B2B qui ne regarde que le prix d'achat :</strong> une entreprise de transport de colis compare un Trafic Vasseur (32 000 €) à un utilitaire concurrent moins cher à l'achat (29 000 €), et penche pour le concurrent sur ce seul critère.</p>
+<p><strong>Cas pratique chiffré chez Vasseur — un client B2B qui ne regarde que le prix d'achat :</strong> une entreprise de dépannage informatique compare un Kangoo Van E-Tech (25 000 €) à un Kangoo Van diesel (22 000 €) et penche pour le diesel sur ce seul critère.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — se contenter de répéter que "le Trafic est un meilleur véhicule" sans rien de chiffré, ou proposer une remise pour aligner le prix d'achat, ce qui reviendrait à accepter que la comparaison du client (prix d'achat seul) était la bonne</li>
-<li>✅ <strong>À privilégier</strong> — reconstruire la comparaison sur 5 ans avec les postes qui manquent : consommation (le Trafic consommant en moyenne un peu moins sur ce type d'usage, soit environ 600 € d'économie annuelle estimée), entretien (contrat d'entretien Vasseur à coût fixe, plus prévisible), et valeur de revente (les Trafic Vasseur se revendent historiquement mieux, écart estimé à environ 1 500 € sur 5 ans) ; présenter un tableau simple : 3 000 € d'écart à l'achat, mais un coût total sur 5 ans en réalité favorable au Trafic</li>
+<li>❌ <strong>À éviter</strong> — se contenter de répéter que "l'électrique est plus économique" sans rien de chiffré, ou proposer une remise pour aligner le prix d'achat, ce qui reviendrait à accepter que la comparaison du client (prix d'achat seul) était la bonne</li>
+<li>✅ <strong>À privilégier</strong> — reconstruire la comparaison sur 4 ans avec les postes qui manquent : énergie (environ 900 € d'économie par an en électrique pour 20 000 km), entretien (moins de pièces d'usure en électrique) et valeur de revente (incertaine, à présenter prudemment) ; présenter un tableau simple : 3 000 € d'écart à l'achat, 3 600 € d'économie d'énergie sur 4 ans, puis le solde</li>
 </ul>
-<p><strong>Cas pratique — le même principe côté particulier :</strong> un client hésite entre un Captur neuf Vasseur (28 000 €) et un modèle équivalent en occasion Vasseur Sélection (21 000 €, garantie 12 mois incluse). Ici, valoriser honnêtement ne veut pas dire pousser systématiquement le neuf : il faut interroger le vrai besoin (kilométrage annuel, durée de détention envisagée, envie ou non d'un véhicule sous garantie constructeur complète) avant de recommander l'une ou l'autre offre — les deux existent chez Vasseur, et pousser la mauvaise pour une commission plus élevée abîme la confiance du client à long terme.</p>
+<p><strong>Cas pratique — le même principe côté particulier :</strong> une cliente hésite entre une Renault 5 E-Tech neuve et une Renault Zoé d'occasion Vasseur Sélection (13 000 €, garantie 12 mois incluse). Ici, valoriser honnêtement ne veut pas dire pousser systématiquement le neuf : il faut interroger le vrai besoin (kilométrage annuel, durée de détention envisagée, envie ou non d'un véhicule sous garantie constructeur complète) avant de recommander l'une ou l'autre offre — les deux existent chez Vasseur, et pousser la mauvaise pour une commission plus élevée abîme la confiance du client à long terme.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter un calcul de coût total flou ou approximatif ("sur la durée ça revient moins cher, croyez-moi") sans aucun chiffre. Un argument de coût total qui n'est pas chiffré n'est pas plus convaincant qu'un argument de prix — il doit être aussi précis et vérifiable que le prix d'achat qu'il vient nuancer.</p>
 <p><strong>En résumé, avant de valoriser une offre au-delà du seul prix d'achat, je vérifie que je :</strong></p>
 <ul>
