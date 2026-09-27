@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plateforme interne — Espace collaborateur</title>
-<link rel="stylesheet" href="style.css">
-<!-- Restriction horaire élèves : DOIT rester le premier script (intercepte tous les appels réseau) -->
-<script src="js/acces-horaire.js"></script>
+<link rel="stylesheet" href="style.css?v=20260927">
+<!-- Réglages et contenus de l'univers : DOIT rester le premier script -->
+<script src="data/univers.js?v=20260927"></script>
 <script>
 // ================================================
 //   LABORO — Chargement configuration filière
 //   Le moteur lit config.json avant tout démarrage
 // ================================================
-var LABORO_CONFIG = null;
+var LABORO_CONFIG = window.LABORO_CONFIG || null; // défini par data/univers.js
 
 // Applique LABORO_CONFIG au DOM (marque, ville, responsable, couleurs…).
 // Appelée à la fois en cas de succès et en cas d'échec du chargement de
@@ -66,6 +66,7 @@ function applyConfig() {
 }
 
 async function loadConfig() {
+  if (LABORO_CONFIG) { applyConfig(); return; } // réglages déjà chargés (data/univers.js)
   try {
     const response = await fetch('config.json');
     LABORO_CONFIG = await response.json();
@@ -188,6 +189,27 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     </div>
   </div>
 </div>
+</div>
+
+<!-- ÉCRAN DE BLOCAGE — restriction horaire d'accès élèves -->
+<div id="blocage" class="scr">
+  <div class="lw">
+    <div class="ll" style="justify-content:center;align-items:center;text-align:center">
+      <div class="lz" style="align-self:center">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;justify-content:center">
+          <div class="lc"><svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M7 11l1.1-3.3a1 1 0 0 1 .95-.7h7.9a1 1 0 0 1 .95.7L19 11h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1a2.5 2.5 0 0 1-5 0H10a2.5 2.5 0 0 1-5 0H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h3zm1.65-2.3L7.9 11h8.2l-.75-2.3a.3.3 0 0 0-.3-.2H8.95a.3.3 0 0 0-.3.2zM7 16.5a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zm10 0a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6z"/></svg></div>
+          <div>
+            <div class="ln">LABORO <i style="font-style:italic;text-transform:uppercase">Auto</i></div>
+            <div class="lv">Groupe Vasseur · Évry-Courcouronnes (91)</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:40px;margin:20px 0 8px">🌙</div>
+      <div class="lt">Accès hors horaires scolaires</div>
+      <div class="ls" id="blocage-msg" style="margin-bottom:20px">La plateforme LABORO n'est pas accessible pour le moment.</div>
+      <button class="btn-li" onclick="location.reload()" style="max-width:280px">Réessayer →</button>
+    </div>
+  </div>
 </div>
 
 <!-- VITRINE PRESCRIPTEURS -->
@@ -570,19 +592,6 @@ document.addEventListener('DOMContentLoaded', loadConfig);
       <button class="mo-taskbar-btn" onclick="event.stopPropagation();closeMo()" style="background:rgba(255,100,100,.3)">✕</button>
     </div>
 
-<div id="force-mdp-overlay" style="display:none;position:fixed;inset:0;background:rgba(43,43,46,.85);z-index:10000;align-items:center;justify-content:center">
-  <div style="background:#fff;border-radius:16px;padding:32px;max-width:420px;width:92%;box-shadow:0 8px 40px rgba(0,0,0,.25)">
-    <div style="font-size:11px;font-weight:700;color:#B5651D;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Sécurité du compte</div>
-    <div style="font-size:19px;font-weight:900;color:#2B2B2E;margin-bottom:8px">Choisis ton mot de passe</div>
-    <div style="font-size:13px;color:#6B7280;margin-bottom:20px">C'est ta première connexion. Pour la sécurité de ton compte, choisis un nouveau mot de passe (8 caractères minimum) avant de continuer.</div>
-    <label style="font-size:11px;font-weight:700;color:#374151;display:block;margin-bottom:4px">Nouveau mot de passe</label>
-    <input type="password" id="fmdp-new" style="width:100%;padding:10px 12px;border:1px solid #E5E7EB;border-radius:8px;font-size:14px;margin-bottom:14px;box-sizing:border-box" placeholder="8 caractères minimum">
-    <label style="font-size:11px;font-weight:700;color:#374151;display:block;margin-bottom:4px">Confirme le mot de passe</label>
-    <input type="password" id="fmdp-confirm" style="width:100%;padding:10px 12px;border:1px solid #E5E7EB;border-radius:8px;font-size:14px;margin-bottom:8px;box-sizing:border-box" placeholder="Retape le même mot de passe">
-    <div id="fmdp-error" style="font-size:12px;color:#C53030;min-height:16px;margin-bottom:10px"></div>
-    <button onclick="validerChangementMdpObligatoire()" style="width:100%;background:#2B2B2E;border:none;color:#fff;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Valider et continuer →</button>
-  </div>
-</div>
 <div class="cp-overlay" id="cp-overlay" onclick="if(event.target===this)closeCoupDePouce()">
   <div class="cp-modal">
     <div class="cp-modal-hd">
@@ -594,6 +603,45 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     </div>
     <div class="cp-modal-body" id="cp-content"></div>
     <div class="cp-footer">Cette aide est normale — les pros aussi consultent leurs ressources 💪</div>
+  </div>
+</div>
+
+<div class="ana-overlay" id="grp-overlay" onclick="if(event.target===this)closeRepartition()">
+  <div class="ana-modal" style="max-width:720px">
+    <div class="ana-hd" style="background:linear-gradient(135deg,#6B4EA8,#4C3480)">
+      <div>
+        <div class="ana-hd-t">Répartir en demi-groupes</div>
+        <div class="ana-hd-s" id="grp-sous">—</div>
+      </div>
+      <button class="ana-cl" onclick="closeRepartition()">✕</button>
+    </div>
+    <div class="ana-body" id="grp-body"></div>
+  </div>
+</div>
+
+<div class="ana-overlay" id="rel-overlay" onclick="if(event.target===this)closeReleve()">
+  <div class="ana-modal" style="max-width:1200px">
+    <div class="ana-hd" style="background:linear-gradient(135deg,#1B7F3B,#0F5A28)">
+      <div>
+        <div class="ana-hd-t" id="rel-titre">Relevé de notes par mission</div>
+        <div class="ana-hd-s" id="rel-sous">—</div>
+      </div>
+      <button class="ana-cl" onclick="closeReleve()">✕</button>
+    </div>
+    <div class="ana-body" id="rel-body"></div>
+  </div>
+</div>
+
+<div class="ana-overlay" id="copie-overlay" style="z-index:3100" onclick="if(event.target===this)closeCopie()">
+  <div class="ana-modal" style="max-width:900px">
+    <div class="ana-hd" style="background:linear-gradient(135deg,var(--th-principal),var(--th-profond))">
+      <div>
+        <div class="ana-hd-t" id="copie-titre">Copie</div>
+        <div class="ana-hd-s" id="copie-sous">—</div>
+      </div>
+      <button class="ana-cl" onclick="closeCopie()">✕</button>
+    </div>
+    <div class="ana-body" id="copie-body"></div>
   </div>
 </div>
 
@@ -730,9 +778,11 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     <div class="ni" id="ni-mdj" style="display:none" onclick="goP('missiondujour',this)"><div class="nd" style="background:var(--bl)"></div>Mission du jour</div>
     <div class="ni" id="ni-cl" style="display:none" onclick="goP('classe',this)"><div class="nd" style="background:#D4537E"></div>Vue classe</div>
     <div class="ni" id="ni-gn" style="display:none" onclick="goP('generation',this)"><div class="nd" style="background:var(--rg)"></div>Générer mission</div>
+    <div class="ni" id="ni-classes-admin" style="display:none" onclick="goP('classesadmin',this)"><div class="nd" style="background:#6B4EA8"></div>Gestion des classes</div>
+    <div class="ni" id="ni-acces-eleves" style="display:none" onclick="goP('acceseleves',this)"><div class="nd" style="background:#B45309"></div>Accès élèves</div>
   </div>
   <div class="sb-bt">
-    <button class="btn-guide" id="btn-guide-ens" style="display:none;width:100%;padding:8px 12px;background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.2);border-radius:8px;color:rgba(255,255,255,.8);font-size:11px;font-weight:600;cursor:pointer;margin-bottom:8px;text-align:left" onclick="revoirObEns()">📖 Guide de démarrage</button>
+    <button class="btn-guide" id="btn-guide-ens" style="display:none;width:100%;padding:8px 12px;background:var(--gc);border:.5px solid var(--gb);border-radius:8px;color:var(--gr);font-size:11px;font-weight:600;cursor:pointer;margin-bottom:8px;text-align:left" onclick="revoirObEns()">📖 Guide de démarrage</button>
     <button class="btn-out" onclick="doLogout()">Se déconnecter</button>
   </div>
 </div>
@@ -740,6 +790,8 @@ document.addEventListener('DOMContentLoaded', loadConfig);
   <div class="topbar"><div class="tb-t" id="tb-t">Tableau de bord</div><div class="tb-r"><span class="badge" id="tb-lvl" style="font-size:10px;padding:3px 9px;border-radius:10px;font-weight:700;margin-right:4px">—</span><span class="badge bb" id="tb-c" style="display:none">—</span><span style="font-size:11px;color:var(--gm)" id="tb-d"></span></div></div>
   <div class="content">
     <div id="panel-dashboard" class="panel on">
+      <div id="dash-ens" style="display:none"></div>
+      <div id="dash-eleve">
       <div class="wb">
         <div class="wb-l">
           <h2 id="wb-b">Bonjour !</h2>
@@ -775,6 +827,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
         <div class="ct">📊 Mes indicateurs</div>
         <div id="dash-indic"></div>
       </div>
+      </div><!-- /dash-eleve -->
     </div>
 
     <div id="panel-missions" class="panel">
@@ -823,21 +876,9 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     <div id="panel-e2pvoc" class="panel"><div id="e2pvoc-home"></div></div>
 
     <div id="panel-missiondujour" class="panel">
-      <div class="mdj-cfg">
-        <div class="ct">Assigner la mission du jour</div>
-        <div style="display:flex;gap:16px;margin-bottom:10px;font-size:12px">
-          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="radio" name="mdj-cible" value="classe" checked onchange="mdjToggleCible()"> Toute la classe</label>
-          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="radio" name="mdj-cible" value="eleve" onchange="mdjToggleCible()"> Un élève précis</label>
-        </div>
-        <div class="mdj-sel" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-          <select id="mdj-cl"><option value="1ere-PVOC">1ère PVOC</option></select>
-          <select id="mdj-el" style="display:none"><option value="">— Élève —</option></select>
-          <select id="mdj-ms"><option value="">— Mission —</option></select>
-          <button class="btn-mdj" onclick="assignerMDJ()">Assigner</button>
-        </div>
-        <div id="mdj-st" style="font-size:12px;color:var(--gm);margin-top:8px"></div>
-      </div>
-      <div class="card"><div class="ct">Missions du jour assignées</div><div id="mdj-liste"></div></div>
+      <div class="mdj-cfg"><div class="ct">Assigner une mission</div><div class="mdj-sel"><select id="mdj-cible" onchange="toggleMDJCible()"><option value="classe">À toute une classe</option><option value="groupe">À un demi-groupe (G1 / G2)</option><option value="eleve">À un élève précis</option></select><select id="mdj-cl"><option value="">— Classe —</option></select><select id="mdj-grp" style="display:none"><option value="G1">Groupe G1</option><option value="G2">Groupe G2</option></select><select id="mdj-el" style="display:none"><option value="">— Élève —</option></select><select id="mdj-ms"><option value="">— Mission —</option></select><button class="btn-mdj" onclick="assignerMDJ()">Assigner</button></div><div id="mdj-st" style="font-size:12px;color:var(--gm);margin-top:8px"></div></div>
+      <div class="card"><div class="ct">Missions en cours</div><div id="mdj-liste"></div></div>
+      <div class="card"><div class="ct" style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">Historique des missions assignées <select id="mdj-hist-filtre" onchange="renderMDJHistorique()" style="font-size:12px;padding:4px 8px;border:.5px solid var(--gb);border-radius:6px"><option value="">Toutes les classes</option></select></div><div id="mdj-historique"></div></div>
     </div>
 
     <div id="panel-classe" class="panel">
@@ -849,7 +890,12 @@ document.addEventListener('DOMContentLoaded', loadConfig);
             <input id="add-nom" placeholder="Nom Prénom" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:6px;box-sizing:border-box"/>
             <input id="add-mail" placeholder="prenom.nom@monlycee.net" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:6px;box-sizing:border-box"/>
             <select id="add-cls" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:8px;box-sizing:border-box">
-              <option value="1ere-PVOC">1ère PVOC</option>
+              <option value="">— Classe —</option>
+            </select>
+            <select id="add-grp" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;margin-bottom:8px;box-sizing:border-box">
+              <option value="">— Demi-groupe : pas encore réparti —</option>
+              <option value="G1">Groupe G1</option>
+              <option value="G2">Groupe G2</option>
             </select>
             <button onclick="ajouterEleve()" style="width:100%;padding:8px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">+ Ajouter cet élève</button>
             <div id="add-msg" style="font-size:11px;margin-top:6px;min-height:16px"></div>
@@ -860,6 +906,42 @@ document.addEventListener('DOMContentLoaded', loadConfig);
             <div id="eleve-selectionne-nom" style="font-size:12px;font-weight:700;color:var(--bf);margin-bottom:8px;min-height:18px"></div>
             <div style="display:flex;flex-direction:column;gap:6px">
               <button onclick="changerClasseEleve()" style="padding:8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600;text-align:left">✏️ Changer de classe</button>
+              <div id="chcl-panel" style="display:none;gap:6px;align-items:center;padding:6px;background:var(--gc);border-radius:6px">
+                <select id="chcl-select" style="flex:1;padding:6px 8px;border:.5px solid var(--gb);border-radius:6px;font-size:12px">
+                  <option value="">— Classe —</option>
+                </select>
+                <button onclick="validerChangementClasse()" style="padding:6px 10px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">OK</button>
+                <button onclick="document.getElementById('chcl-panel').style.display='none'" style="padding:6px 8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px">✕</button>
+              </div>
+              <button onclick="openCopiesEleve()" style="padding:8px;background:#EBF4FF;border:.5px solid #B5D4F4;border-radius:6px;cursor:pointer;font-size:12px;color:#185FA5;font-weight:700;text-align:left">📂 Voir ses copies et ses notes</button>
+              <button onclick="changerGroupeEleve()" style="padding:8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600;text-align:left">👥 Changer de demi-groupe</button>
+              <div id="chgrp-panel" style="display:none;gap:6px;align-items:center;padding:6px;background:var(--gc);border-radius:6px;flex-wrap:wrap">
+                <span id="chgrp-actuel" style="font-size:11px;color:var(--gm);flex:1;min-width:110px"></span>
+                <button onclick="validerGroupeEleve('G1')" style="padding:6px 12px;background:#3730A3;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:800">G1</button>
+                <button onclick="validerGroupeEleve('G2')" style="padding:6px 12px;background:#9D174D;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:800">G2</button>
+                <button onclick="validerGroupeEleve(null)" title="Retirer du groupe" style="padding:6px 10px;background:#fff;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px">Sans groupe</button>
+                <button onclick="document.getElementById('chgrp-panel').style.display='none'" style="padding:6px 8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px">✕</button>
+              </div>
+              <button onclick="modifierEleve()" style="padding:8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600;text-align:left">📝 Modifier nom / prénom / email</button>
+              <div id="mod-panel" style="display:none;flex-direction:column;gap:6px;padding:6px;background:var(--gc);border-radius:6px">
+                <input id="mod-nom" placeholder="Nom" style="width:100%;padding:6px 8px;border:.5px solid var(--gb);border-radius:6px;font-size:12px;box-sizing:border-box"/>
+                <input id="mod-prenom" placeholder="Prénom" style="width:100%;padding:6px 8px;border:.5px solid var(--gb);border-radius:6px;font-size:12px;box-sizing:border-box"/>
+                <input id="mod-email" placeholder="Email" style="width:100%;padding:6px 8px;border:.5px solid var(--gb);border-radius:6px;font-size:12px;box-sizing:border-box"/>
+                <div style="display:flex;gap:6px">
+                  <button onclick="validerModificationEleve()" style="flex:1;padding:6px 10px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">Enregistrer</button>
+                  <button onclick="document.getElementById('mod-panel').style.display='none'" style="padding:6px 8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px">✕</button>
+                </div>
+                <div id="mod-msg" style="font-size:11px;min-height:14px"></div>
+              </div>
+              <button onclick="ouvrirObservations()" style="padding:8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600;text-align:left">🗒 Observations (visibles des enseignants)</button>
+              <div id="obs-panel" style="display:none;flex-direction:column;gap:6px;padding:6px;background:var(--gc);border-radius:6px">
+                <textarea id="obs-texte" rows="4" placeholder="Points forts, axes de progression, suivi…" style="width:100%;padding:6px 8px;border:.5px solid var(--gb);border-radius:6px;font-size:12px;box-sizing:border-box;font-family:inherit"></textarea>
+                <div style="display:flex;gap:6px">
+                  <button onclick="enregistrerObservations()" style="flex:1;padding:6px 10px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700">Enregistrer</button>
+                  <button onclick="document.getElementById('obs-panel').style.display='none'" style="padding:6px 8px;background:none;border:.5px solid var(--gb);border-radius:6px;cursor:pointer;font-size:12px">✕</button>
+                </div>
+                <div id="obs-msg" style="font-size:11px;min-height:14px"></div>
+              </div>
               <button onclick="reinitialiserEleve()" style="padding:8px;background:none;border:.5px solid var(--am);border-radius:6px;cursor:pointer;font-size:12px;color:var(--am);font-weight:600;text-align:left">🔄 Réinitialiser les missions</button>
               <button onclick="supprimerEleve()" style="padding:8px;background:none;border:.5px solid var(--rg);border-radius:6px;cursor:pointer;font-size:12px;color:var(--rg);font-weight:600;text-align:left">🗑 Supprimer cet élève</button>
             </div>
@@ -870,21 +952,106 @@ document.addEventListener('DOMContentLoaded', loadConfig);
         <div style="font-size:11px;font-weight:700;color:var(--gm);margin-right:4px">Filtrer :</div>
         <div class="cls-tab on" onclick="filtrerClasse('',this)">Toutes les classes</div>
       </div>
+      <div id="groupe-tabs" style="display:none;gap:6px;flex-wrap:wrap;margin:-4px 0 12px;align-items:center"></div>
       <div id="classe-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px"></div>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <button class="btn-val-all" onclick="validerAll()" style="margin-bottom:0">Valider notes IA ≥ 12/20</button>
-        <button onclick="exporterClasse(event)" style="padding:8px 16px;background:none;border:.5px solid var(--gb);border-radius:7px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600">📊 Exporter la liste</button>
+        <button class="btn-val-all" onclick="openAExaminer()" style="margin-bottom:0">📋 À examiner</button>
+        <button onclick="exporterClasse()" style="padding:8px 16px;background:none;border:.5px solid var(--gb);border-radius:7px;cursor:pointer;font-size:12px;color:var(--gm);font-weight:600">📊 Exporter la liste</button>
         <button class="ana-btn" onclick="openAnalyse()">📈 Analyse de classe</button>
+        <button class="ana-btn" onclick="openReleve()" style="background:linear-gradient(135deg,#1B7F3B,#0F5A28)">📝 Relevé de notes (Pronote)</button>
+        <button class="ana-btn" onclick="openRepartition()" style="background:linear-gradient(135deg,#6B4EA8,#4C3480)">👥 Répartir en groupes G1 / G2</button>
       </div>
       <div class="card" style="overflow-x:auto;margin-bottom:12px">
-        <div class="ct" id="cl-titre">Vue classe — cliquer sur un élève pour sa fiche</div>
-        <table class="ctl"><thead><tr><th>Élève</th><th>Classe</th><th>C1</th><th>C2</th><th>C3</th><th>G4</th><th>Score</th><th>Posture</th><th>Missions</th><th>Moy.</th></tr></thead><tbody id="cl-tbody"></tbody></table>
+        <div class="ct" id="cl-titre">Vue classe — cliquer sur un élève pour le sélectionner</div>
+        <table class="ctl"><thead><tr><th>Élève</th><th>Classe</th><th>C1</th><th>C2</th><th>C3</th><th>G4</th><th>Score</th><th>Posture</th><th>Missions</th><th>Moy.</th><th>Actions</th></tr></thead><tbody id="cl-tbody"></tbody></table>
       </div>
-      <div id="fe-wrap"></div>
+      <div id="archives-wrap"></div>
     </div>
 
     <div id="panel-generation" class="panel">
       <div class="card"><div class="ct">Générer une nouvelle mission</div><div class="gen-grid"><select id="g-opt"><option value="PVOC">PVOC</option></select><select id="g-pal"><option value="1">Palier 1 — Débutant</option><option value="2">Palier 2 — Apprenti</option><option value="3">Palier 3 — Professionnel compétent</option><option value="4">Palier 4 — Expert</option></select><select id="g-comp"><option value="C1.1">C1.1 Veille commerciale</option><option value="C1.2">C1.2 Vente omnicanale</option><option value="C1.3">C1.3 Exécution vente</option><option value="C2.1">C2.1 Suivi commande</option><option value="C2.1b">C2.1b Services associés</option><option value="C2.2">C2.2 Réclamations</option><option value="C2.3">C2.3 Satisfaction client</option><option value="C3.1">C3.1 Contact client</option><option value="C3.2">C3.2 Fidélisation</option><option value="C3.3">C3.3 Évaluation FDRC</option><option value="B4.1">B4.1 Infos prospection</option><option value="B4.2">B4.2 Conception prospection</option><option value="B4.3">B4.3 Mise en oeuvre</option><option value="B4.4">B4.4 Suivi prospection</option><option value="B4.5">B4.5 Valorisation offre</option></select><select id="g-cli"><option value="B2C particulier VN">B2C — Particulier (neuf)</option><option value="B2C particulier VO">B2C — Particulier (occasion)</option><option value="B2B artisan">B2B — Artisan</option><option value="B2B PME">B2B — PME</option><option value="B2B collectivité">B2B — Collectivité</option></select></div><button class="btn-gen" onclick="genMission()">Générer la mission →</button><div class="gen-res" id="gen-res" style="color:var(--gm);font-style:italic">La mission générée apparaîtra ici…</div></div>
+    </div>
+
+    <div id="panel-classesadmin" class="panel">
+      <div class="card" style="margin-bottom:12px">
+        <div class="ct">Créer une classe</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Parcours (niveau/option)</div>
+            <select id="ca-parcours" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"><option value="">— Parcours —</option></select>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Libellé de la classe</div>
+            <input id="ca-libelle" placeholder="ex : 1ère MCVB" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Année scolaire</div>
+            <input id="ca-annee" value="2026-2027" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"/>
+          </div>
+          <button onclick="creerClasse()" style="padding:9px 16px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap">+ Créer la classe</button>
+        </div>
+        <div id="ca-msg" style="font-size:11px;margin-top:8px;min-height:16px"></div>
+      </div>
+      <div class="card">
+        <div class="ct">Classes existantes et attribution aux enseignants</div>
+        <div id="ca-liste">Chargement…</div>
+      </div>
+    </div>
+
+    <div id="panel-acceseleves" class="panel">
+      <div class="card" style="margin-bottom:12px">
+        <div class="ct">Restriction horaire d'accès élèves</div>
+        <div style="font-size:12px;color:var(--gm);margin-bottom:14px">Empêche les élèves de se connecter (et coupe leur session en cours) en dehors des horaires scolaires — utile pour éviter qu'ils complètent leurs missions chez eux, sans supervision, notamment avec l'aide d'une IA externe.</div>
+        <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
+          <input type="checkbox" id="acc-actif" style="width:16px;height:16px;cursor:pointer"/>
+          <span style="font-size:13px;font-weight:700">Restreindre l'accès élèves en dehors des horaires scolaires</span>
+        </label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;margin-bottom:6px">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Accès autorisé à partir de</div>
+            <input type="time" id="acc-debut" value="08:00" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Jusqu'à</div>
+            <input type="time" id="acc-fin" value="18:00" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"/>
+          </div>
+          <div>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;padding-bottom:8px">
+              <input type="checkbox" id="acc-weekend" style="width:15px;height:15px;cursor:pointer"/>
+              <span style="font-size:12px;font-weight:600">Bloquer aussi le week-end</span>
+            </label>
+          </div>
+          <button onclick="sauvegarderReglagesAcces()" style="padding:9px 16px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap">Enregistrer</button>
+        </div>
+        <div id="acc-msg" style="font-size:11px;min-height:16px"></div>
+      </div>
+
+      <div class="card">
+        <div class="ct">Débloquer exceptionnellement</div>
+        <div style="font-size:12px;color:var(--gm);margin-bottom:14px">Lève le blocage un jour précis pour une classe entière ou un élève donné (rattrapage, devoir maison exceptionnel…), sans toucher au réglage général ci-dessus.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;margin-bottom:6px">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Pour</div>
+            <select id="acc-cible" onchange="toggleAccesCible()" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box">
+              <option value="classe">Toute une classe</option>
+              <option value="eleve">Un élève précis</option>
+            </select>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Classe / élève</div>
+            <select id="acc-cl" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"><option value="">— Classe —</option></select>
+            <select id="acc-el" style="display:none;width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"><option value="">— Élève —</option></select>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gm);margin-bottom:6px;text-transform:uppercase">Date</div>
+            <input type="date" id="acc-date" style="width:100%;padding:8px 10px;border:.5px solid var(--gb);border-radius:6px;font-size:13px;box-sizing:border-box"/>
+          </div>
+          <button onclick="ajouterExceptionAcces()" style="padding:9px 16px;background:var(--bl);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap">+ Débloquer ce jour</button>
+        </div>
+        <div id="acc-exc-msg" style="font-size:11px;margin-bottom:10px;min-height:16px"></div>
+        <div style="font-size:11px;font-weight:700;color:var(--gm);text-transform:uppercase;margin-bottom:8px">Déblocages en cours</div>
+        <div id="acc-exc-liste">Chargement…</div>
+      </div>
     </div>
 
     <div id="mo" class="mo">
@@ -897,7 +1064,7 @@ document.addEventListener('DOMContentLoaded', loadConfig);
           <button class="btn-p" id="btn-submit" onclick="soumettreReponses()">Soumettre mes réponses</button>
           <button class="btn-cont" id="btn-cont" onclick="sauvegarderEtFermer()">Continuer la prochaine fois</button>
           <button class="btn-s2" onclick="closeMo()">Fermer</button>
-          <button class="btn-s2" style="color:var(--rg);border-color:var(--rg)" onclick="resetMission()">↺ Recommencer</button>
+          <button class="btn-s2" id="btn-reset" style="color:var(--rg);border-color:var(--rg)" onclick="resetMission()" title="Efface tes réponses en cours (brouillon) pour repartir de zéro">↺ Effacer mes réponses</button>
         </div>
       </div>
     </div>
@@ -905,22 +1072,31 @@ document.addEventListener('DOMContentLoaded', loadConfig);
   </div>
 </div>
 </div>
-<script src="data/competences.js"></script>
-<script src="data/missions.js"></script>
-<script src="data/produits.js"></script>
-<script src="js/app.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/missions.js"></script>
-<script src="js/correction-serveur.js"></script>
-<script src="js/catalogue.js"></script>
-<script src="js/clients.js"></script>
-<script src="js/teacher.js"></script>
-<script src="js/classe-serveur.js"></script>
-<script src="js/portfolio.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/brouillons-serveur.js"></script>
-<script src="js/sante-ia.js"></script>
+<script src="data/competences.js?v=20260927"></script>
+<script src="data/missions.js?v=20260927"></script>
+<script src="data/produits.js?v=20260927"></script>
+<script src="data/catalogue-visuels.js?v=20260927"></script>
+<script src="js/app.js?v=20260927"></script>
+<script src="js/auth.js?v=20260927"></script>
+<script src="js/dashboard.js?v=20260927"></script>
+<script src="js/missions.js?v=20260927"></script>
+<script src="js/correction-serveur.js?v=20260927"></script>
+<script src="js/catalogue.js?v=20260927"></script>
+<script src="js/clients.js?v=20260927"></script>
+<script src="js/teacher.js?v=20260927"></script>
+<script src="js/classe-serveur.js?v=20260927"></script>
+<script src="js/releve-notes.js?v=20260927"></script>
+<script src="js/groupes.js?v=20260927"></script>
+<script src="js/dashboard-enseignant.js?v=20260927"></script>
+<script src="js/copie.js?v=20260927"></script>
+<script src="js/portfolio.js?v=20260927"></script>
+<script src="js/admin-classes.js?v=20260927"></script>
+<script src="js/admin-acces.js?v=20260927"></script>
+<script src="js/generation-mission.js?v=20260927"></script>
+<script src="js/utils.js?v=20260927"></script>
+<script src="js/mot-de-passe.js?v=20260927"></script>
+<script src="js/brouillons-serveur.js?v=20260927"></script>
+<script src="js/sante-ia.js?v=20260927"></script>
 
 <div id="charte-laboro" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2B2B2E 0%,#7A4614 100%);z-index:9999;overflow-y:auto;padding:40px 20px">
   <div style="max-width:680px;margin:0 auto">
@@ -945,6 +1121,18 @@ document.addEventListener('DOMContentLoaded', loadConfig);
     <div style="text-align:center">
       <button onclick="accepterCharte()" style="background:#fff;color:#2B2B2E;border:none;padding:16px 48px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.2)">✓ Je m'engage à respecter cette charte</button>
     </div>
+  </div>
+</div>
+
+<div id="modal-changer-mdp" style="display:none;position:fixed;inset:0;background:rgba(43,43,46,.85);z-index:10001;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:16px;padding:32px;max-width:420px;width:92%;box-shadow:0 8px 40px rgba(0,0,0,.25)">
+    <div style="font-size:11px;font-weight:700;color:var(--th-principal);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Sécurité du compte</div>
+    <div style="font-size:19px;font-weight:900;color:var(--th-fonce);margin-bottom:8px">Choisis ton nouveau mot de passe</div>
+    <div style="font-size:13px;color:#6B7280;margin-bottom:20px">Pour la sécurité de ton compte, tu dois définir un nouveau mot de passe avant de continuer.</div>
+    <input type="password" id="new-mdp-1" placeholder="Nouveau mot de passe" style="width:100%;padding:10px 12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:10px;font-size:14px;box-sizing:border-box">
+    <input type="password" id="new-mdp-2" placeholder="Confirme le mot de passe" style="width:100%;padding:10px 12px;border:1px solid #E5E7EB;border-radius:8px;margin-bottom:10px;font-size:14px;box-sizing:border-box">
+    <div id="new-mdp-msg" style="font-size:12px;margin-bottom:10px;min-height:14px"></div>
+    <button onclick="soumettreNouveauMdp()" style="width:100%;background:var(--th-fonce);border:none;color:#fff;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Valider et continuer →</button>
   </div>
 </div>
 

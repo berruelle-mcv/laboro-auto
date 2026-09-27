@@ -1,41 +1,89 @@
 // ================================================
-//   LABORO Auto — Génération du Portfolio CCF
+//   LABORO Sport & Outdoor — Génération du Portfolio CCF
 //   Portfolio d'activités professionnelles imprimable
 //   Recréé en juin 2026 (fonction perdue lors d'un remplacement de fichier)
 // ================================================
 
 // Portfolio de l'ÉLÈVE COURANT (bouton "Générer mon portfolio" côté élève)
-function genererPortfolio(){
+async function genererPortfolio(){
   if(!CU || !CU.mail){ if(typeof showLoginError==='function') showLoginError('Connecte-toi d\'abord.'); return; }
   // Côté élève, le portfolio CCF n'est pas proposé en 2nde (année transversale
   // de découverte : AGEC + PVOC + Accueil, sans logique d'épreuve CCF).
-  // L'enseignant, lui, garde l'accès via la fiche élève (genererPortfolioEleve).
+  // L'enseignant, lui, garde l'accès via la Vue classe (genererPortfolioEleveServeur).
   if(CU.classe && CU.classe.toUpperCase()==='2NDE' && CU.classe!=='enseignant'){
     alert('Le portfolio CCF sera disponible à partir de la 1ère. En 2nde, tu découvres les trois univers (accueil, vente, prospection) : ta progression est enregistrée et nourrira ton portfolio plus tard.');
     return;
   }
+  const token = localStorage.getItem('laboro_token');
+  if(token){
+    // Compte serveur : la progression réelle vient de la base (fiable, multi-appareil)
+    const r = await fetchJSON(LABORO_API + '/api/progressions', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if(r.ok && r.data.ok){
+      const ud = { missions:{}, competences:{} };
+      (r.data.progressions||[]).forEach(function(p){
+        ud.missions[p.mission_id] = {
+          id: p.mission_id, // requis par calcScore() pour retrouver la mission (comp, coefficient) dans MISSIONS
+          status: p.statut === 'valide' ? 'done' : (p.statut === 'a_examiner' || p.statut === 'soumis' ? 'att' : 'wip'),
+          score: p.note_finale,
+          date_validation: p.validated_at || p.submitted_at
+        };
+      });
+      afficherPortfolioDoc(ud, CU.nom, CU.classe);
+      return;
+    }
+    // En cas d'échec serveur, on retombe sur les données locales ci-dessous
+  }
   genererPortfolioEleve(CU.mail);
 }
 
-// Portfolio d'un élève donné (bouton "Portfolio" de la fiche élève côté enseignant,
-// et réutilisé par genererPortfolio() pour l'élève courant).
-// udOverride (optionnel) : objet {missions, nom, classe} déjà construit à partir
-// des vraies données serveur — utilisé par la fiche élève enseignant (classe-serveur.js),
-// qui ne peut pas compter sur le localStorage d'un autre navigateur que celui de l'élève.
-function genererPortfolioEleve(mail, udOverride){
+// Portfolio d'un élève donné à partir de son identifiant serveur (bouton "📄 Portfolio"
+// dans la Vue classe côté enseignant — données réelles issues de la base).
+async function genererPortfolioEleveServeur(eleveId, nomAff, classeCode){
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ alert('Session expirée — reconnecte-toi en tant qu\'enseignant.'); return; }
+  const r = await fetchJSON(LABORO_API + '/api/eleves/' + eleveId + '/progressions', {
+    headers: { 'Authorization': 'Bearer ' + token }
+  });
+  if(!r.ok){ alert(r.erreur); return; }
+  const d = r.data;
+  if(!d.ok){ alert('Échec : ' + (d.erreur || 'erreur inconnue')); return; }
+  const ud = { missions:{}, competences:{} };
+  (d.progressions||[]).forEach(function(p){
+    ud.missions[p.mission_id] = {
+      id: p.mission_id, // requis par calcScore() pour retrouver la mission (comp, coefficient) dans MISSIONS
+      status: p.statut === 'valide' ? 'done' : (p.statut === 'a_examiner' || p.statut === 'soumis' ? 'att' : 'wip'),
+      score: p.note_finale,
+      date_validation: p.validated_at || p.submitted_at
+    };
+  });
+  const nom = nomAff || (d.eleve.prenom + ' ' + d.eleve.nom);
+  afficherPortfolioDoc(ud, nom, classeCode || '');
+}
+
+// Portfolio d'un élève donné (ancienne fiche élève locale, conservée pour compatibilité).
+function genererPortfolioEleve(mail){
   const s = (typeof gS==='function') ? gS() : {};
-  // Données de l'élève : override serveur en priorité, sinon store local, sinon utilisateur courant
-  const ud = udOverride || s[mail] || (CU && CU.mail===mail ? {missions:CU.missions, competences:CU.competences, nom:CU.nom, classe:CU.classe} : null) || {missions:{}, competences:{}};
+  // Données de l'élève : depuis le store, ou l'utilisateur courant
+  const ud = s[mail] || (CU && CU.mail===mail ? {missions:CU.missions, competences:CU.competences} : null) || {missions:{}, competences:{}};
   if(!ud.missions) ud.missions = {};
   if(!ud.competences) ud.competences = {};
 
   const nom = ud.nom || (CU && CU.mail===mail ? CU.nom : null) || mail.split('@')[0];
   const classe = ud.classe || (CU && CU.mail===mail ? CU.classe : '') || '';
+  afficherPortfolioDoc(ud, nom, classe);
+}
+
+// Construit et affiche le document de portfolio à partir d'un objet ud
+// {missions:{id:{status,score,date_validation}}, competences:{}} déjà prêt
+// (source locale ou serveur — la logique de rendu est identique dans les deux cas).
+function afficherPortfolioDoc(ud, nom, classe){
   const score = (typeof calcScore==='function') ? calcScore(ud) : 0;
 
   // Labels de niveau (0 à 4)
   const niveauLabels = ['Non démarré','Découverte','En progression','Acquis','Maîtrisé'];
-  const niveauCols   = ['#9CA3AF','#E0A868','#B5651D','#B5651D','#2B2B2E'];
+  const niveauCols   = ['#9CA3AF','var(--th-vif)','var(--th-second)','var(--th-principal)','var(--th-nuit)'];
 
   // Positionnement global LABORO selon le score
   const posGlobal = score>=75 ? 'Professionnel performant'
@@ -66,12 +114,13 @@ function genererPortfolioEleve(mail, udOverride){
   const nbValidees = missionsValidees.length;
   const moyenne = nbValidees ? (missionsValidees.reduce(function(a,m){return a+m.score;},0)/nbValidees).toFixed(1) : '—';
 
-  // Regrouper les compétences par épreuve CCF (G1→E31, G2→E32, G3→E33, G4A/G4B→E2)
+  // Regrouper les compétences par épreuve (G1→E31, G2→E32, G3→E33 en CCF ; G4/G4A/G4B→E2, épreuve écrite ponctuelle)
   // Bloc E2 adapté à l'option de l'élève : AGEC → G4A (espace commercial),
   // PVOC → G4B (prospection B2B). Si indéterminé (ex. enseignant), afficher les deux.
   const estAGEC = (classe || '').toUpperCase().includes('AGEC');
   const estPVOC = (classe || '').toUpperCase().includes('PVOC');
-  const groupesE2 = estAGEC ? ['G4A'] : estPVOC ? ['G4B'] : ['G4A','G4B'];
+  // (« G4 » = bloc 4 sans distinction d'option, utilisé par les univers à option unique)
+  const groupesE2 = (estAGEC ? ['G4A'] : estPVOC ? ['G4B'] : ['G4A','G4B']).concat(['G4']);
   const titreE2 = estAGEC ? 'Gérer l\'espace commercial'
                 : estPVOC ? 'Prospecter et vendre (B2B)'
                 : 'Gérer l\'espace / Prospecter';
@@ -80,7 +129,7 @@ function genererPortfolioEleve(mail, udOverride){
     { code:'E31', titre:'Conseiller et vendre',           coef:'Coef. 3', groupes:['G1'] },
     { code:'E32', titre:'Suivre les ventes',              coef:'Coef. 2', groupes:['G2'] },
     { code:'E33', titre:'Développer la relation client',  coef:'Coef. 3', groupes:['G3'] },
-    { code:'E2',  titre:titreE2,                          coef:'Bloc 4',  groupes:groupesE2 },
+    { code:'E2',  titre:titreE2,                          coef:'Bloc 4 · coef. 4 · épreuve écrite ponctuelle (hors CCF)',  groupes:groupesE2 },
   ];
 
   // Construire les cartes de compétences par épreuve
@@ -101,7 +150,7 @@ function genererPortfolioEleve(mail, udOverride){
     const comps = COMP.filter(function(c){ return ep.groupes.indexOf(c.g) >= 0; });
     if(!comps.length) return '';
     return '<div style="margin-bottom:16px">'
-      + '<div style="font-size:11px;font-weight:800;color:#7A4614;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">'
+      + '<div style="font-size:11px;font-weight:800;color:var(--th-accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">'
       + ep.code+' — '+ep.titre+' <span style="font-size:9px;opacity:.6;font-weight:600">'+ep.coef+'</span></div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">'
       + comps.map(carteComp).join('')
@@ -111,7 +160,7 @@ function genererPortfolioEleve(mail, udOverride){
   // Liste des missions validées (les 8 meilleures pour rester lisible)
   const missionsHtml = nbValidees
     ? missionsValidees.slice(0,8).map(function(m){
-        const col = m.score>=14 ? '#B5651D' : m.score>=11 ? '#D97706' : '#C53030';
+        const col = m.score>=12 ? 'var(--th-principal)' : m.score>=8 ? '#D97706' : '#C53030'; // barème de maîtrise (26/09/2026)
         const dateTxt = m.date ? new Date(m.date).toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric'}) : '—';
         return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F3F4F6;font-size:11px">'
           + '<span style="color:#374151;flex:1">'+m.titre+'</span>'
@@ -149,15 +198,15 @@ function genererPortfolioEleve(mail, udOverride){
   overlay.innerHTML =
     '<div id="portfolio-doc" style="max-width:780px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 50px rgba(0,0,0,.3)">'
     // En-tête
-    + '<div style="background:linear-gradient(135deg,#2B2B2E,#7A4614);padding:22px 26px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start">'
+    + '<div style="background:linear-gradient(135deg,var(--th-fonce),var(--th-accent));padding:22px 26px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start">'
     + '<div>'
     + '<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Portfolio d\'activités professionnelles</div>'
     + '<div style="font-size:20px;font-weight:900">'+nom+'</div>'
-    + '<div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:3px">'+(classe||'Bac Pro MCV')+' · Groupe Vasseur · '+dateJour+'</div>'
+    + '<div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:3px">'+(classe||'Bac Pro MCV')+' · '+String(getNomEntreprise()).replace(/&/g,'&amp;')+' · '+dateJour+'</div>'
     + '</div>'
     + '<div style="text-align:right">'
     + '<div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px">Score LABORO</div>'
-    + '<div style="font-size:30px;font-weight:900;color:#E8C9A0">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
+    + '<div style="font-size:30px;font-weight:900;color:var(--th-pastel)">'+score+'<span style="font-size:13px;opacity:.6">/100</span></div>'
     + '</div>'
     + '</div>'
     // Corps
@@ -171,12 +220,12 @@ function genererPortfolioEleve(mail, udOverride){
     + '</div>'
     // Appréciation
     + '<div style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Appréciation motivée — générée automatiquement</div>'
-    + '<div style="background:#F0F4FF;border-left:3px solid #7A4614;border-radius:0 8px 8px 0;padding:12px 16px;font-size:12px;color:#2B2B2E;line-height:1.7">'+appreciation+'</div>'
+    + '<div style="background:var(--th-fond2);border-left:3px solid var(--th-accent);border-radius:0 8px 8px 0;padding:12px 16px;font-size:12px;color:var(--th-fonce);line-height:1.7">'+appreciation+'</div>'
     + '<div style="font-size:10px;color:#9CA3AF;font-style:italic;margin-top:10px;text-align:right">Généré par LABORO · '+nbValidees+' missions validées'+(classe?' · '+classe:'')+'</div>'
     + '</div>'
     // Barre d'actions (non imprimée)
     + '<div class="portfolio-actions" style="padding:14px 26px;background:#F8FAFF;border-top:1px solid #F3F4F6;display:flex;gap:10px;justify-content:flex-end">'
-    + '<button onclick="window.print()" style="background:#7A4614;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">🖨 Imprimer / PDF</button>'
+    + '<button onclick="window.print()" style="background:var(--th-accent);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">🖨 Imprimer / PDF</button>'
     + '<button onclick="fermerPortfolio()" style="background:#fff;color:#4B5563;border:1px solid #E5E7EB;padding:9px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">Fermer</button>'
     + '</div>'
     + '</div>';

@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Auto — Brouillons des élèves sauvegardés sur le serveur
+//   LABORO — Moteur commun : brouillons des élèves sauvegardés sur le serveur
 //   Chargé après missions.js, correction-serveur.js et auth.js.
 //
 //   Avant : les réponses en cours n'étaient gardées que dans le navigateur
@@ -20,7 +20,7 @@
   const versions = {};     // mission_id -> compteur de modifications (évite d'effacer un "à envoyer" trop tôt)
 
   function jeton(){ try{ return localStorage.getItem('laboro_token'); }catch(e){ return null; } }
-  function apiBase(){ return (typeof LABORO_API !== 'undefined') ? LABORO_API : 'https://auto-api.laboro-edu.fr'; }
+  function apiBase(){ return LABORO_API; }
   function estEleve(){ return typeof CU !== 'undefined' && CU && CU.classe !== 'enseignant' && !!jeton(); }
 
   // ─── Petit indicateur dans la fenêtre de mission ──────────────
@@ -220,10 +220,8 @@
       orig.apply(this, arguments);
       if(!estEleve()) return;
       recupererBrouillons();
-      // Sur un navigateur jamais utilisé, la connexion passe par la charte/l'accueil
-      // sans lancer la synchronisation des progressions : on la lance ici aussi
-      // (sans effet si elle a déjà eu lieu).
-      if(typeof synchroniserProgressionsServeur === 'function') synchroniserProgressionsServeur();
+      // (La synchronisation des progressions est déjà lancée à chaque showApp()
+      //  par correction-serveur.js.)
     };
   }
 })();

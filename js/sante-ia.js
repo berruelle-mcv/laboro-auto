@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Auto — Voyant "santé de la correction IA" (espace enseignant)
+//   LABORO — Moteur commun : voyant "santé de la correction IA" (enseignants)
 //   Chargé après auth.js (dernier script de index.html).
 //   Affiche dans la barre du haut, pour les enseignants uniquement :
 //     vert   = la correction IA fonctionne
@@ -21,7 +21,7 @@
   };
 
   function jeton(){ try{ return localStorage.getItem('laboro_token'); }catch(e){ return null; } }
-  function apiBase(){ return (typeof LABORO_API !== 'undefined') ? LABORO_API : 'https://auto-api.laboro-edu.fr'; }
+  function apiBase(){ return LABORO_API; }
   function estEnseignant(){ return typeof CU !== 'undefined' && CU && CU.classe === 'enseignant' && !!jeton(); }
 
   function heure(iso){

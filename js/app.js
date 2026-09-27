@@ -1,9 +1,46 @@
 // ================================================
-//   LABORO Auto — État global, score, classement, utilitaires
-//   Version 1.0 — Architecture modulaire
+//   LABORO — Moteur commun : état global, score, classement, utilitaires
+//   (identique pour tous les univers ; ce qui change d'un univers à l'autre
+//    est lu dans LABORO_CONFIG, défini par data/univers.js)
 // ================================================
 
 
+
+// ═══ APPEL SERVEUR AVEC GESTION D'ERREUR FINE ═══
+// Distingue proprement 3 cas d'échec, chacun avec un message utilisateur
+// adapté, au lieu d'un unique catch générique :
+//   - panne réseau (serveur injoignable, pas de connexion)
+//   - erreur HTTP (le serveur a répondu mais avec un statut d'erreur)
+//   - JSON invalide (le serveur a répondu 200 mais le corps n'est pas
+//     du JSON exploitable — cas rare mais qui existait sans diagnostic clair)
+// Utilisation : const {ok, data, erreur} = await fetchJSON(url, options);
+// - ok===true  → data contient la réponse JSON du serveur
+// - ok===false → erreur contient un message prêt à afficher à l'utilisateur
+async function fetchJSON(url, options){
+  let reponse;
+  try{
+    reponse = await fetch(url, options);
+  }catch(e){
+    console.error('fetchJSON — panne réseau :', url, e);
+    return { ok:false, type:'reseau', erreur:'Impossible de joindre le serveur LABORO. Vérifie ta connexion internet.' };
+  }
+  let data;
+  try{
+    data = await reponse.json();
+  }catch(e){
+    console.error('fetchJSON — JSON invalide :', url, reponse.status, e);
+    return { ok:false, type:'json', erreur:'Réponse inattendue du serveur LABORO (données invalides). Réessaie dans un instant.', status:reponse.status };
+  }
+  if(!reponse.ok){
+    console.error('fetchJSON — erreur HTTP :', url, reponse.status, data);
+    // Restriction horaire d'accès élèves : coupe l'accès partout, quel que soit l'appel en cours.
+    if(reponse.status === 403 && data && data.erreur === 'ACCES_HORAIRE_BLOQUE' && typeof afficherBlocageHoraire === 'function'){
+      afficherBlocageHoraire(data.message);
+    }
+    return { ok:false, type:'http', erreur:(data && data.erreur) || ('Erreur serveur (code '+reponse.status+').'), status:reponse.status, data };
+  }
+  return { ok:true, data, status:reponse.status };
+}
 
 // ═══ DONNÉES ═══
 // Données chargées depuis les fichiers externes :
@@ -17,16 +54,16 @@ function getMsg(classe,poste){
   const missions=Object.values(ud.missions||{});
   const done=missions.filter(x=>x.status==='done').length;
   const att=missions.filter(x=>x.status==='att').length;
-  const moy=done>0?Math.round(missions.filter(x=>x.status==='done'&&x.score).reduce((s,x)=>s+x.score,0)/done*10)/10:0;
+  const moy=done>0?Math.round(missions.filter(x=>x.status==='done'&&x.score!=null).reduce((s,x)=>s+x.score,0)/done*10)/10:0;
   const isTerminale=classe.includes('Term');
   const sprintFinal=isTerminale&&m>=2; // mars à décembre en Terminale
 
   // ── Messages dynamiques selon progression ──
   // 1. Première connexion (aucune mission)
   if(done===0&&att===0){
-    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue dans l'équipe Vasseur ! Je suis "+getResp().nom+", "+getResp().poste+". Ta première mission t'attend — lis bien la ressource avant de te lancer. C'est comme ça qu'on progresse ici."};
-    if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:"Bienvenue chez Vasseur ! Je suis "+getTutrice().nom+", "+getTutrice().poste+". Ta première mission de terrain t'attend. Prends le temps de lire la ressource — sur le terrain, on n'a pas de filet !"};
-    if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue chez Vasseur ! Je suis "+getResp().nom+", "+getResp().poste+". Cette année tu vas découvrir nos métiers — la vente, la relation client, la gestion commerciale. Commence par explorer — lis bien la ressource avant chaque mission."};
+    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue dans l'équipe "+getNomCourt()+" ! Je suis "+getResp().nom+", "+getResp().poste+". Ta première mission t'attend — lis bien la ressource avant de te lancer. C'est comme ça qu'on progresse ici."};
+    if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:"Bienvenue chez "+getNomCourt()+" ! Je suis "+getTutrice().nom+", "+getTutrice().poste+". Ta première mission de terrain t'attend. Prends le temps de lire la ressource — sur le terrain, on n'a pas de filet !"};
+    if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:"Bienvenue chez "+getNomCourt()+" ! Je suis "+getResp().nom+", "+getResp().poste+". Cette année tu vas découvrir nos métiers — la vente, la relation client, la gestion commerciale. Commence par explorer — lis bien la ressource avant chaque mission."};
   }
 
   // 2. Missions en attente de correction — encourager la patience
@@ -44,7 +81,7 @@ function getMsg(classe,poste){
 
   // 4. Très bonne moyenne — féliciter
   if(done>=3&&moy>=15){
-    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:`Excellente moyenne à ${moy}/20 ! C'est exactement le niveau qu'on attend d'un(e) conseiller(ère) de vente chez Vasseur. Continue comme ça — les meilleures opportunités vont aux meilleurs. Bravo.`};
+    if(classe.includes('AGEC')) return{from:getResp().nom+' — '+getResp().poste,txt:`Excellente moyenne à ${moy}/20 ! C'est exactement le niveau qu'on attend d'un(e) conseiller(ère) de vente chez ${getNomCourt()}. Continue comme ça — les meilleures opportunités vont aux meilleurs. Bravo.`};
     if(classe.includes('PVOC')) return{from:getTutrice().nom+' — '+getTutrice().poste,txt:`${moy}/20 de moyenne — impressionnant ! Un commercial avec ces résultats chez nous, on le garde. Tu prouves que travail et méthode paient. Continue sur cette lancée.`};
     if(classe==='2nde') return{from:getResp().nom+' — '+getResp().poste,txt:`Moyenne à ${moy}/20 — félicitations ! Tu montres déjà de vraies qualités professionnelles. Continue à t'investir comme ça.`};
   }
@@ -58,7 +95,7 @@ function getMsg(classe,poste){
   // 6. Messages par défaut selon période de l'année
   const msgs={
     '2nde':{from:getResp().nom+' — '+getResp().poste,textes:[
-      {debut:0,fin:1,txt:"Bienvenue chez LABORO ! Commence par explorer — lis bien la ressource avant chaque mission."},
+      {debut:0,fin:1,txt:"Bienvenue chez "+getNomCourt()+" ! Commence par explorer — lis bien la ressource avant chaque mission."},
       {debut:2,fin:4,txt:"Tu pars bientôt en stage. Sois curieux(se), observe comment l'entreprise fonctionne. Compare avec ce qu'on fait ici."},
       {debut:5,fin:7,txt:"Bienvenue de retour ! Reprends LABORO avec ton nouveau regard professionnel."},
       {debut:8,fin:11,txt:"Belle première année ! Tu repars avec de vraies bases professionnelles. Bonnes vacances !"},
@@ -79,7 +116,7 @@ function getMsg(classe,poste){
       {debut:0,fin:11,txt:`${done} missions validées. Maintenant c'est la régularité qui fait la différence. Continue à avancer.`},
     ]},
     'ens':{from:'LABORO — Plateforme pédagogique',textes:[
-      {debut:0,fin:11,txt:"Bienvenue M. Berruelle. Consultez la vue classe pour suivre vos élèves, valider les missions en attente et générer les analyses de classe."},
+      {debut:0,fin:11,txt:"Bienvenue"+((CU&&CU.nom)?" "+CU.nom:"")+". Consultez la vue classe pour suivre vos élèves, valider les missions en attente et générer les analyses de classe."},
     ]},
   };
 
@@ -89,15 +126,28 @@ function getMsg(classe,poste){
   else if(classe.includes('AGEC'))key='AGEC';
   else if(classe.includes('PVOC'))key='PVOC';
   const cfg=msgs[key];
-  const txt=cfg.textes.find(t=>m>=t.debut&&m<=t.fin)||cfg.textes[cfg.textes.length-1];
+  // Les périodes ci-dessus sont comptées en mois de l'ANNÉE SCOLAIRE (0 = septembre),
+  // pas en mois civils : sinon un élève lisait « Bon retour de stage » à la rentrée.
+  const mScolaire=(m+4)%12;
+  const txt=cfg.textes.find(t=>mScolaire>=t.debut&&mScolaire<=t.fin)||cfg.textes[cfg.textes.length-1];
   return{from:cfg.from,txt:txt.txt};
 }
 
 // ═══ ÉTAT ═══
 let CU=null,CM=null,obStep=0,repBuffer={},classeFiltre='';
-// ── Accès config filière (depuis config.json chargé au démarrage)
-const getCfg = () => LABORO_CONFIG || {};
-const getNomEntreprise = () => (getCfg().entreprise || {}).nom || 'Groupe Vasseur';
+// ── Accès aux réglages de l'univers (data/univers.js, ou config.json à défaut)
+const getCfg = () => (typeof LABORO_CONFIG !== 'undefined' && LABORO_CONFIG) || {};
+const getNomEntreprise = () => (getCfg().entreprise || {}).nom || 'LABORO Sport & Outdoor';
+// Couleur réelle (#RRGGBB) d'une couleur de thème « var(--th-…) » : nécessaire quand
+// on lui ajoute une transparence en suffixe (ex. couleur + '22').
+function hexTheme(c){
+  const m = /^var\((--[\w-]+)\)$/.exec(c || '');
+  if(!m) return c;
+  const v = getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim();
+  return /^#[0-9A-Fa-f]{6}$/.test(v) ? v : '#6B7280';
+}
+// Nom court de l'entreprise dans les phrases : « chez Vasseur », « l'équipe LABORO »…
+const getNomCourt = () => (getCfg().entreprise || {}).nom_court || 'LABORO';
 const getVille = () => (getCfg().entreprise || {}).ville || 'Évry-Courcouronnes';
 const getResp = () => {
   const r = (getCfg().personnages || {}).responsable || {};
@@ -152,34 +202,88 @@ const allU=()=>{
 const getMDJ=()=>{try{return JSON.parse(localStorage.getItem('laboro_mdj')||'{}')}catch{return{}}};
 const setMDJ=d=>localStorage.setItem('laboro_mdj',JSON.stringify(d));
 
-// ═══ SCORE LABORO (60/20/20) ═══
-function calcScore(ud){
-  const ms=Object.values(ud.missions||{});
-  const done=ms.filter(m=>m.status==='done'&&m.score);
-  if(!done.length)return 0;
-  // Composante 1 — moyenne pondérée 60%
+// ═══ SCORE LABORO (70 qualité / 30 engagement) — validé par Pascal le 25/09/2026 ═══
+// Calculé UNIQUEMENT à partir des missions validées et de leur note, pour que
+// l'élève et la Vue classe (données serveur) affichent toujours le même chiffre.
+//   • Qualité  /70 : moyenne des notes, pondérée par bloc de compétences, ramenée sur 70
+//   • Engagement /30 : 3 pts par mission validée, plafonné à 10 missions
+// (L'ancien bonus "progression" est supprimé : il n'existait que dans le navigateur
+//  de l'élève et valait +10 dès la 1re soumission — cause de l'écart élève / Vue classe.)
+const SCORE_PTS_PAR_MISSION = 3, SCORE_MISSIONS_MAX = 10;
+function calcScoreDetail(ud){
+  const ms=Object.values((ud&&ud.missions)||{});
+  const done=ms.filter(m=>m.status==='done'&&m.score!=null);
   const coefs={'C1':3,'C2':2,'C3':3,'G4':4,'ACC':1};
-  let sw=0,wt=0;
+  let sw=0,wt=0,nb=0;
   done.forEach(m=>{
     const mis=MISSIONS.find(x=>x.id===m.id);
     if(!mis)return;
     const g=mis.comp.startsWith('C1')?'C1':mis.comp.startsWith('C2')?'C2':mis.comp.startsWith('C3')?'C3':mis.comp.startsWith('ACC')?'ACC':'G4';
     const c=coefs[g]||1;
-    sw+=m.score*c;wt+=c*20;
+    sw+=m.score*c;wt+=c;nb++;
   });
-  const moyP=wt?sw/wt*60:0;
-  // Composante 2 — régularité 20% (simulé : 2pts par mission soumise cette semaine, max 20)
-  const reg=Math.min(done.length*2,20);
-  // Composante 3 — progression 20% (amélioration entre tentatives, max 10)
-  const prog=Math.min(ms.filter(m=>m.progression&&m.progression>0).reduce((a,m)=>a+m.progression,0),10);
-  return Math.round(moyP+reg+prog);
+  const moyenne=wt?sw/wt:0;                                   // moyenne pondérée /20
+  const qualite=Math.round(moyenne/20*70);                    // /70
+  const engagement=Math.min(nb,SCORE_MISSIONS_MAX)*SCORE_PTS_PAR_MISSION; // /30
+  return {total:qualite+engagement, qualite, engagement, moyenne, nb};
 }
+function calcScore(ud){ return calcScoreDetail(ud).total; }
 
 // ═══ CLASSEMENT ═══
 // Classement filtré PAR CLASSE : un élève ne voit que les élèves de sa propre classe.
 // La classe de chaque user est lue depuis ses données stockées (u.classe).
 // L'utilisateur courant (CU) est toujours rattaché à CU.classe.
+// ═══ CLASSEMENT SERVEUR (comptes connectés au backend) ═══
+// Le calcul du score reste 100% client (calcScore), seules les données brutes
+// des progressions de chaque élève de la classe viennent du serveur — évite
+// de dupliquer la logique de notation côté backend.
+let CLASSEMENT_CACHE = {};
+let CLASSEMENT_META = {};
+
+async function refreshClassementServeur(classe){
+  const token = localStorage.getItem('laboro_token');
+  if(!token || !classe || classe==='enseignant') return;
+  const meta = CLASSEMENT_META[classe] || (CLASSEMENT_META[classe] = {lastFetch:0, fetching:false});
+  if(meta.fetching) return;
+  if(Date.now() - meta.lastFetch < 15000) return; // évite de spammer le serveur
+  meta.fetching = true;
+  // Le serveur détermine la classe réelle de l'élève connecté à partir de son jeton
+  // (et non du code générique niveau-option) : évite toute ambiguïté si 2 classes
+  // partagent le même niveau/option (ex: 2 groupes de 2nde attribués à 2 enseignants).
+  const r = await fetchJSON(LABORO_API + '/api/classement/moi', {
+    headers: { 'Authorization': 'Bearer ' + token }
+  });
+  meta.fetching = false;
+  meta.lastFetch = Date.now();
+  if(!r.ok || !r.data.ok) return;
+  const list = (r.data.eleves||[]).map(function(e){
+    const missions = {};
+    Object.entries(e.missions || {}).forEach(function(entry){
+      const mid = entry[0], p = entry[1];
+      missions[mid] = {
+        id: mid, // requis par calcScore() pour retrouver la mission (comp, coefficient) dans MISSIONS
+        status: p.statut === 'valide' ? 'done' : (p.statut === 'a_examiner' || p.statut === 'soumis' ? 'att' : 'wip'),
+        score: p.score
+      };
+    });
+    const ud = { missions: missions };
+    return { nom: ((e.prenom?e.prenom+' ':'')+e.nom).trim(), mail: e.email, score: calcScore(ud), classe: classe };
+  }).sort(function(a,b){ return b.score - a.score; });
+  const changed = JSON.stringify(list) !== JSON.stringify(CLASSEMENT_CACHE[classe]);
+  CLASSEMENT_CACHE[classe] = list;
+  if(changed && typeof renderDashboard==='function'){
+    const dp = document.getElementById('panel-dashboard');
+    if(dp && dp.classList.contains('on')) renderDashboard();
+  }
+}
+
 function getClassement(classe){
+  const token = localStorage.getItem('laboro_token');
+  if(token && classe && classe!=='enseignant'){
+    refreshClassementServeur(classe); // rafraîchit en arrière-plan (throttlé)
+    return CLASSEMENT_CACHE[classe] || [];
+  }
+  // Ancien comportement local (comptes de test non connectés au serveur)
   const users = allU().filter(u => u.mail && !u.mail.includes('berruelle'));
   return users
     .map(u => {

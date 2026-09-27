@@ -1,5 +1,5 @@
 // ================================================
-//   LABORO Auto — Catalogue, clients, indicateurs, vue enseignant
+//   LABORO Sport & Outdoor — Catalogue, clients, indicateurs, vue enseignant
 //   Version 1.0 — Architecture modulaire
 // ================================================
 
@@ -11,5 +11,7 @@
 // selectRappel() → voir clients.js
 
 // showNotifEleve() → voir clients.js
+
+// validerMission() → voir clients.js
 
 // voirMissionsLiees() → voir utils.js

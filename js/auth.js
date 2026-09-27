@@ -1,10 +1,25 @@
+// ── Restriction horaire d'accès élèves : coupe l'accès et affiche l'écran de blocage ──
+function afficherBlocageHoraire(message){
+  // Évite les doubles affichages si plusieurs requêtes échouent en même temps
+  if(document.getElementById('blocage') && document.getElementById('blocage').classList.contains('on')) return;
+  localStorage.removeItem('laboro_token');
+  localStorage.removeItem('laboro_u');
+  localStorage.removeItem('laboro_est_admin');
+  if(typeof CU !== 'undefined') CU = null;
+  document.querySelectorAll('.scr').forEach(function(s){ s.classList.remove('on'); });
+  const blocageMsg = document.getElementById('blocage-msg');
+  if(blocageMsg) blocageMsg.textContent = message || "La plateforme LABORO n'est pas accessible pour le moment.";
+  const blocage = document.getElementById('blocage');
+  if(blocage) blocage.classList.add('on');
+}
+
 // ── Affichage erreur inline (remplace les alert() natifs) ──
 function showLoginError(msg){
   let el = document.getElementById('login-error');
   if(!el){
     el = document.createElement('div');
     el.id = 'login-error';
-    el.style.cssText = 'margin-top:10px;padding:10px 14px;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:8px;font-size:12px;color:#B5651D;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease';
+    el.style.cssText = 'margin-top:10px;padding:10px 14px;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:8px;font-size:12px;color:#B91C1C;font-weight:600;display:flex;align-items:center;gap:8px;animation:fadeIn .2s ease';
     el.innerHTML = '<span style="flex-shrink:0">⚠️</span><span id="login-error-txt"></span>';
     const btn = document.getElementById('btn-li') || document.querySelector('.btn-li');
     if(btn && btn.parentNode) btn.parentNode.insertBefore(el, btn.nextSibling);
@@ -16,7 +31,7 @@ function showLoginError(msg){
 }
 
 // ================================================
-//   LABORO Auto — Authentification, login, logout, onboarding
+//   LABORO — Moteur commun : authentification, login, logout, onboarding
 //   Version 1.0 — Architecture modulaire
 // ================================================
 
@@ -37,18 +52,19 @@ function updatePoste(){
     if(hint) hint.style.display='none';
   } else if(cls==='2nde'){
     sel.value='Découverte de la famille des métiers MCV';
-    if(hint){hint.style.display='block';hint.textContent="Tu découvres les métiers du commerce et de la vente chez LABORO.";}
+    if(hint){hint.style.display='block';hint.textContent="Tu découvres les métiers du commerce et de la vente chez "+getNomCourt()+".";}
   } else if(cls.includes('AGEC')){
     sel.value='Conseiller de vente — Showroom & E-commerce';
-    if(hint){hint.style.display='block';hint.textContent="Tu travailles chez Vasseur Renault Évry et Vasseur Sélection Occasion.";}
+    if(hint){hint.style.display='block';hint.textContent=((getCfg().textes||{}).lieu_vente)||"Tu travailles au showroom d'Évry et sur laboro-sport.fr.";}
   } else if(cls.includes('PVOC')){
     sel.value='Commercial terrain — Prospection & Vente B2B';
-    if(hint){hint.style.display='block';hint.textContent='Tu prospectes et développes le portefeuille clients professionnels de LABORO.';}
+    if(hint){hint.style.display='block';hint.textContent='Tu prospectes et développes le portefeuille clients professionnels de '+getNomCourt()+'.';}
   }
 }
 // Outil de test (Pascal) : menu d'accès rapide à tous les profils.
 // Déclenché en tapant "ana" dans le champ mail (sur doLogin ET doLoginServeur).
-// Raccourci volontaire et pratique pour Pascal — ne jamais le retirer sans le demander explicitement.
+// Raccourci VOLONTAIRE et permanent, demandé par Pascal : ne jamais le retirer
+// sans sa demande explicite (confirmé à plusieurs reprises).
 function ouvrirAccesRapide(){
   const profils = [
     {cls:'enseignant', label:'👨‍🏫 Enseignant'},
@@ -63,11 +79,11 @@ function ouvrirAccesRapide(){
   overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center';
   const box = document.createElement('div');
   box.style.cssText = 'background:#fff;border-radius:16px;padding:28px;min-width:280px;text-align:center';
-  box.innerHTML = '<div style="font-size:16px;font-weight:800;color:#2B2B2E;margin-bottom:20px">🔑 Accès rapide Pascal</div>';
+  box.innerHTML = '<div style="font-size:16px;font-weight:800;color:var(--th-fonce);margin-bottom:20px">🔑 Accès rapide Pascal</div>';
   profils.forEach(function(p){
     const btn = document.createElement('button');
     btn.textContent = p.label;
-    btn.style.cssText = 'display:block;width:100%;margin-bottom:8px;padding:12px;background:#F5E6D8;color:#2B2B2E;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700';
+    btn.style.cssText = 'display:block;width:100%;margin-bottom:8px;padding:12px;background:var(--th-fond);color:var(--th-fonce);border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700';
     btn.onclick = function(){
       document.body.removeChild(overlay);
       const posteMap={
@@ -87,67 +103,9 @@ function ouvrirAccesRapide(){
   document.body.appendChild(overlay);
 }
 
-function doLogin(){
-  const mail=document.getElementById('inp-mail').value.trim();
-  const cls=document.getElementById('inp-classe').value;
-
-  if(mail.toLowerCase()==='ana'){
-    ouvrirAccesRapide();
-    return;
-  }
-
-  if(!mail||!cls){showLoginError('Merci de renseigner tous les champs.');return}
-  if(!mail.includes('@')){showLoginError('Adresse mail invalide — vérifie le format prenom.nom@monlycee.net.');return}
-  const posteMap={'enseignant':'Enseignant — Accès direction','2nde':'Découverte de la famille des métiers MCV'};
-  const poste=posteMap[cls]||(cls.includes('AGEC')?'Conseiller de vente — Showroom & E-commerce':cls.includes('PVOC')?'Commercial terrain — Prospection & Vente B2B':'');
-  if(!poste){showLoginError('Merci de sélectionner ta classe.');return}
-  // Vérification mot de passe enseignant
-  if(cls==='enseignant'){
-    const mdpVal=document.getElementById('inp-mdp')?.value||'';
-    if(!mdpVal){showLoginError('Merci de saisir le code d\'accès enseignant.');return}
-    // Hash SHA256 côté client
-    const hashMdp=async(str)=>{const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('')};
-    hashMdp(mdpVal).then(h=>{
-      if(h!=='3e4b672e60279a8fc681052361892d4a50239106de51b8dacf93dee8e3dd644d'){showLoginError('Code d\'accès incorrect. Contactez Pascal Berruelle.');return}
-      finishLogin(mail,cls,poste,null);
-    });
-    return;
-  }
-  finishLogin(mail,cls,poste,null);
-}
-let PENDING_LOGIN = null;
-
-async function validerChangementMdpObligatoire(){
-  const npEl = document.getElementById('fmdp-new');
-  const ncEl = document.getElementById('fmdp-confirm');
-  const errEl = document.getElementById('fmdp-error');
-  if(errEl) errEl.textContent = '';
-  const np = npEl ? npEl.value : '';
-  const nc = ncEl ? ncEl.value : '';
-  if(!np || np.length < 8){ if(errEl) errEl.textContent = 'Le mot de passe doit faire au moins 8 caractères.'; return; }
-  if(np !== nc){ if(errEl) errEl.textContent = 'Les deux mots de passe ne correspondent pas.'; return; }
-  const token = localStorage.getItem('laboro_token');
-  if(!token){ if(errEl) errEl.textContent = 'Session expirée, reconnecte-toi.'; return; }
-  try{
-    const rep = await fetch(LABORO_API + '/api/mon-mot-de-passe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({ nouveauMotDePasse: np })
-    });
-    const d = await rep.json();
-    if(!d.ok){ if(errEl) errEl.textContent = d.erreur || 'Erreur, réessaie.'; return; }
-    const overlay = document.getElementById('force-mdp-overlay');
-    if(overlay) overlay.style.display = 'none';
-    if(PENDING_LOGIN){
-      finishLogin(PENDING_LOGIN.mail, PENDING_LOGIN.cls, PENDING_LOGIN.poste, PENDING_LOGIN.nomComplet);
-      PENDING_LOGIN = null;
-    }
-  }catch(e){
-    if(errEl) errEl.textContent = 'Impossible de joindre le serveur LABORO.';
-    console.error('validerChangementMdpObligatoire :', e);
-  }
-}
-
+// (ancien doLogin() de la version pré-serveur, supprimé le 20/09/2026 — code mort,
+// jamais appelé depuis le passage à doLoginServeur(). Contenait un hash de code
+// d'accès enseignant exposé côté client inutilement.)
 function finishLogin(mail,cls,poste,nomParam){
   const nom=nomParam||mail.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
   CU={mail,classe:cls,poste,nom};
@@ -178,7 +136,6 @@ function finishLogin(mail,cls,poste,nomParam){
   else{
     setTimeout(function(){
       if(typeof checkCharte === 'function') checkCharte();
-      if(typeof synchroniserProgressionsServeur === 'function') synchroniserProgressionsServeur();
       showApp();
     }, 100);
   }
@@ -207,15 +164,15 @@ function startOb(){
       msg=`<div class="ob-h1">Prêt(e) pour les CCF ?</div>
       <div class="ob-sub">Cette année, tu passes tes épreuves de certification. LABORO t'y prépare directement.</div>
       <div class="ob-steps">
-        <div class="ob-step"><div class="ob-step-n" style="background:#7A4614;color:#fff">E31</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-accent);color:#fff">E31</div><div>
           <div class="ob-step-t">Sous-épreuve E31 — Conseiller et vendre <span style="font-size:10px;opacity:.7">coef. 3</span></div>
           <div class="ob-step-d">Veille commerciale · Réalisation de la vente · Exécution de la vente · Communication</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#B5651D;color:#fff">E32</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-second);color:#fff">E32</div><div>
           <div class="ob-step-t">Sous-épreuve E32 — Suivre les ventes <span style="font-size:10px;opacity:.7">coef. 2</span></div>
           <div class="ob-step-d">Suivi commande · Services associés · Réclamations · Satisfaction client</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#2B2B2E;color:#fff">E33</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-fonce);color:#fff">E33</div><div>
           <div class="ob-step-t">Sous-épreuve E33 — Développer la relation client <span style="font-size:10px;opacity:.7">coef. 3</span></div>
           <div class="ob-step-d">Information client · Actions de fidélisation · Évaluation</div>
         </div></div>
@@ -227,44 +184,44 @@ function startOb(){
       msg=`<div class="ob-h1">Comment ça fonctionne ?</div>
       <div class="ob-sub">Tu connais déjà les bases. Cette année on va plus loin — missions plus complexes, contextes B2B, gestion de la relation client.</div>
       <div class="ob-steps">
-        <div class="ob-step"><div class="ob-step-n" style="background:#7A4614;color:#fff">1</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-accent);color:#fff">1</div><div>
           <div class="ob-step-t">📚 Lis la ressource</div>
           <div class="ob-step-d">Chaque mission inclut la méthode. Lis-la avant d'agir — même si tu penses connaître.</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#B5651D;color:#fff">2</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-second);color:#fff">2</div><div>
           <div class="ob-step-t">✍️ Produis en autonomie</div>
           <div class="ob-step-d">Les questions de 1ère demandent de vrais arguments, des calculs, des analyses. Pas de QCM.</div>
         </div></div>
-        <div class="ob-step"><div class="ob-step-n" style="background:#2B2B2E;color:#fff">3</div><div>
+        <div class="ob-step"><div class="ob-step-n" style="background:var(--th-fonce);color:#fff">3</div><div>
           <div class="ob-step-t">⭐ Progresse et monte en compétences</div>
           <div class="ob-step-d">Ton score et ton niveau de maîtrise sont suivis par ton enseignant. Vise le niveau Professionnel compétent ou Professionnel performant.</div>
         </div></div>
       </div>`;
     } else {
       // 2nde
-      msg=`<div style="font-size:11px;font-weight:700;color:#B5651D;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Mode d'emploi</div>
-      <div style="font-size:22px;font-weight:900;color:#2B2B2E;margin-bottom:6px">Comment ça fonctionne ?</div>
+      msg=`<div style="font-size:11px;font-weight:700;color:var(--th-second);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Mode d'emploi</div>
+      <div style="font-size:22px;font-weight:900;color:var(--th-fonce);margin-bottom:6px">Comment ça fonctionne ?</div>
       <div style="font-size:13px;color:#6B7280;margin-bottom:20px">3 étapes simples pour chaque mission.</div>
       <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:8px">
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
-          <div style="width:34px;height:34px;background:#2B2B2E;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">1</div>
-          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">📚 Tu apprends la notion</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid var(--th-ciel)">
+          <div style="width:34px;height:34px;background:var(--th-fonce);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">1</div>
+          <div><div style="font-size:13px;font-weight:800;color:var(--th-fonce);margin-bottom:3px">📚 Tu apprends la notion</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Chaque mission commence par une ressource courte. Lis-la — elle contient tout ce qu'il faut savoir.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
-          <div style="width:34px;height:34px;background:#7A4614;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">2</div>
-          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">✍️ Tu réponds aux questions</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5">Des situations réelles chez LABORO — tu observes, tu identifies, tu complètes. C'est guidé.</div></div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid var(--th-ciel)">
+          <div style="width:34px;height:34px;background:var(--th-accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">2</div>
+          <div><div style="font-size:13px;font-weight:800;color:var(--th-fonce);margin-bottom:3px">✍️ Tu réponds aux questions</div>
+          <div style="font-size:12px;color:#6B7280;line-height:1.5">Des situations réelles chez ${getNomCourt()} — tu observes, tu identifies, tu complètes. C'est guidé.</div></div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid #F5E6D8">
-          <div style="width:34px;height:34px;background:#B5651D;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
-          <div><div style="font-size:13px;font-weight:800;color:#2B2B2E;margin-bottom:3px">⭐ Tu progresses</div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#F8FAFF;border-radius:12px;border:1px solid var(--th-ciel)">
+          <div style="width:34px;height:34px;background:var(--th-principal);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0">3</div>
+          <div><div style="font-size:13px;font-weight:800;color:var(--th-fonce);margin-bottom:3px">⭐ Tu progresses</div>
           <div style="font-size:12px;color:#6B7280;line-height:1.5">Ton enseignant valide tes réponses. Tu montes en compétences et tu débloques de nouvelles missions.</div></div>
         </div>
       </div>`;
     }
     const wrapStart='<div style="background:#fff;border-radius:16px;padding:28px 32px;max-width:560px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.15)">';
-    const navHtml='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><button class="ob-btn-prev" onclick="obPrev()" style="background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button><div style="display:flex;gap:10px"><button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button><button class="ob-btn-next" onclick="obNext()" style="background:#2B2B2E;border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Commencer mes missions →</button></div></div></div>';
+    const navHtml='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><button class="ob-btn-prev" onclick="obPrev()" style="background:#F3F4F6;border:none;color:#374151;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">← Précédent</button><div style="display:flex;gap:10px"><button onclick="skipOb()" style="background:none;border:1px solid #E5E7EB;color:#6B7280;padding:10px 16px;border-radius:8px;font-size:12px;cursor:pointer">Passer</button><button class="ob-btn-next" onclick="obNext()" style="background:var(--th-fonce);border:none;color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Commencer mes missions →</button></div></div></div>';
     ob3.innerHTML=wrapStart+msg+navHtml;
   }
   obStep=0;updateOb();
@@ -341,16 +298,14 @@ function showApp(){
   document.getElementById('tb-d').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
   const ens=CU.classe==='enseignant';
   document.body.classList.toggle('ens-mode',ens);
-  ['ns-ens','ni-mdj','ni-cl','ni-gn'].forEach(id=>document.getElementById(id).style.display=ens?'':'none');
+  ['ns-ens','ni-mdj','ni-cl'].forEach(id=>document.getElementById(id).style.display=ens?'':'none');
   const btnGuide=document.getElementById('btn-guide-ens');if(btnGuide)btnGuide.style.display=ens?'block':'none';
   // Message personnalisé
   const msgKey=CU.classe.includes('AGEC')?'AGEC':CU.classe.includes('PVOC')?'PVOC':CU.classe.includes('Term')?'Term':CU.classe==='enseignant'?'ens':'2nde';
   const msgCfg=getMsg(CU.classe,CU.poste);
   document.getElementById('msg-f').textContent=msgCfg.from;
   document.getElementById('msg-t').textContent=msgCfg.txt;
-  // populateMDJSelect() retirée avec la reconstruction de "Mission du jour" —
-  // initMissionDuJour() (js/classe-serveur.js) s'en charge désormais, déclenchée
-  // à la navigation vers ce panneau (voir goP()), pas au moment de la connexion.
+  if(ens)populateMDJSelect();
   // Visibilité nav E2 AGEC -- visible pour élèves AGEC et 2nde (tous sauf PVOC pur)
   const niE2 = document.getElementById('ni-e2agec');
   const niE2Pvoc = document.getElementById('ni-e2pvoc');
@@ -370,12 +325,20 @@ function showApp(){
   // Visibilité nav enseignant
   const niMdj = document.getElementById('ni-mdj');
   const niCl = document.getElementById('ni-cl');
-  const niGn = document.getElementById('ni-gn');
   const nsEns = document.getElementById('ns-ens');
-  if(niMdj) niMdj.style.display = ens ? 'block' : 'none';
-  if(niCl) niCl.style.display = ens ? 'block' : 'none';
-  if(niGn) niGn.style.display = ens ? 'block' : 'none';
+  if(niMdj) niMdj.style.display = ens ? '' : 'none'; // '' = affichage du CSS (.ni en flex : pastille alignée avec le texte)
+  if(niCl) niCl.style.display = ens ? '' : 'none';
   if(nsEns) nsEns.style.display = ens ? 'block' : 'none';
+  // Visibilité nav "Gestion des classes" (administrateur uniquement)
+  const estAdminUtilisateur = localStorage.getItem('laboro_est_admin') === '1';
+  const niClassesAdmin = document.getElementById('ni-classes-admin');
+  if(niClassesAdmin) niClassesAdmin.style.display = (ens && estAdminUtilisateur) ? '' : 'none';
+  const niAccesEleves = document.getElementById('ni-acces-eleves');
+  if(niAccesEleves) niAccesEleves.style.display = (ens && estAdminUtilisateur) ? '' : 'none';
+  // Génération de mission par IA (univers qui la proposent : menu présent dans index.html)
+  const niGn = document.getElementById('ni-gn');
+  if(niGn) niGn.style.display = ens ? '' : 'none';
+  if(ens && typeof populateClasseSelects === 'function') populateClasseSelects();
   // ── Boutons export/import dans la sidebar (sauvegarde entre postes) ──
   const sbBt = document.querySelector('.sb-bt');
   if(sbBt && !document.getElementById('btn-export') && !ens){
@@ -400,10 +363,11 @@ function doLogout(){
   // Effacer aussi le jeton serveur : sur un poste partagé, l'élève suivant
   // ne doit hériter d'aucune session.
   localStorage.removeItem('laboro_token');
+  localStorage.removeItem('laboro_est_admin');
   // Remettre la couleur par défaut
   const r=document.documentElement;
-  r.style.setProperty('--bl','#B5651D');r.style.setProperty('--bf','#5C3814');
-  r.style.setProperty('--bm','#E8CBA8');r.style.setProperty('--bc','#F5E6D8');
+  r.style.setProperty('--bl','var(--th-principal)');r.style.setProperty('--bf','var(--th-profond)');
+  r.style.setProperty('--bm','var(--th-bordure)');r.style.setProperty('--bc','var(--th-voile)');
   ['app','onboarding'].forEach(id=>document.getElementById(id).classList.remove('on'));
   document.getElementById('login').classList.add('on');
 }
@@ -412,7 +376,7 @@ function goP(id,el){
   document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
   const panel=document.getElementById('panel-'+id); if(panel)panel.classList.add('on');
   if(el)el.classList.add('on');
-  const t2={dashboard:'Tableau de bord',missions:'Mes missions',competences:'Mes compétences',catalogue:'Catalogue produits',clients:'Fichier clients',indicateurs:'Indicateurs commerciaux',missiondujour:'Mission du jour',classe:'Vue classe',generation:'Générer une mission',e2agec:'Préparation E2 — Option AGEC',e2pvoc:'Préparation E2 — Option PVOC'};
+  const t2={dashboard:'Tableau de bord',missions:'Mes missions',competences:'Mes compétences',catalogue:'Catalogue produits',clients:'Fichier clients',indicateurs:'Indicateurs commerciaux',missiondujour:'Mission du jour',classe:'Vue classe',generation:'Générer une mission',e2agec:'Préparation E2 — Option AGEC',e2pvoc:'Préparation E2 — Option PVOC',classesadmin:'Gestion des classes',acceseleves:'Accès élèves'};
   document.getElementById('tb-t').textContent=t2[id]||id;
   if(id==='classe')renderClasse();
   if(id==='dashboard')renderDashboard();
@@ -422,8 +386,10 @@ function goP(id,el){
   if(id==='competences' && typeof renderCompetences==='function') renderCompetences();
   if(id==='e2agec' && typeof renderE2AGEC==='function') renderE2AGEC();
   if(id==='e2pvoc' && typeof renderE2PVOC==='function') renderE2PVOC();
-  if(id==='missiondujour' && typeof initMissionDuJour==='function') initMissionDuJour();
+  if(id==='missiondujour' && typeof renderMDJPanel==='function') renderMDJPanel();
   if(id==='generation' && typeof initGenerationMission==='function') initGenerationMission();
+  if(id==='classesadmin' && typeof renderClassesAdmin==='function') renderClassesAdmin();
+  if(id==='acceseleves' && typeof renderAccesEleves==='function') renderAccesEleves();
 }
 function renderAll(){
   const safe = function(fn, name){
@@ -501,65 +467,104 @@ function importerDonnees(){
 }
 
 // ════════════════════════════════════════════════
-// LOGIN SERVEUR (nouvelle version — branchée sur le backend)
-// Coexiste avec doLogin() classique. Ne le remplace pas.
+// LOGIN SERVEUR (version branchée sur le backend — seule utilisée)
 // ════════════════════════════════════════════════
-const LABORO_API = 'https://auto-api.laboro-edu.fr';
+// Adresse du serveur de l'univers (data/univers.js) — jamais écrite en dur ici
+// Volontairement AUCUNE adresse par défaut : si data/univers.js manquait, le site
+// ne doit surtout pas se brancher par erreur sur le serveur d'un autre univers.
+const LABORO_API = getCfg().api || '';
+if(!LABORO_API) console.error('[LABORO] Adresse du serveur absente (data/univers.js) : connexion impossible.');
 
 async function doLoginServeur(){
   const mail = document.getElementById('inp-mail').value.trim();
   const mdp  = document.getElementById('inp-mdp').value;
 
+  // Outil de test : "ana" ouvre le menu d'accès rapide (avant toute vérification).
   if(mail.toLowerCase()==='ana'){
     ouvrirAccesRapide();
     return;
   }
 
-  // Outil de test : "ana" ouvre le menu d'accès rapide (avant toute vérification).
-
   if(!mail || !mdp){ showLoginError('Merci de saisir ton adresse mail et ton mot de passe.'); return; }
 
-  try{
-    const reponse = await fetch(LABORO_API + '/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: mail, motDePasse: mdp })
-    });
-    const data = await reponse.json();
+  const r = await fetchJSON(LABORO_API + '/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: mail, motDePasse: mdp })
+  });
 
-    if(!data.ok){
-      showLoginError(data.erreur || 'Identifiants incorrects.');
-      return;
-    }
-
-    localStorage.setItem('laboro_token', data.token);
-    const u = data.utilisateur;
-
-    const cls = u.classe || '';
-    let poste;
-    if(cls === 'enseignant') poste = 'Enseignant — Accès direction';
-    else if(cls === '2nde') poste = 'Découverte de la famille des métiers MCV';
-    else if(cls.includes('AGEC')) poste = 'Conseiller de vente — Showroom & E-commerce';
-    else if(cls.includes('PVOC')) poste = 'Commercial terrain — Prospection & Vente B2B';
-    else poste = 'Collaborateur LABORO';
-
-    const nomComplet = (u.prenom || u.nom)
-      ? ((u.prenom||'') + ' ' + (u.nom||'')).trim()
-      : mail.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g, l => l.toUpperCase());
-
-    if(u.doit_changer_mdp){
-      PENDING_LOGIN = { mail, cls, poste, nomComplet };
-      const overlay = document.getElementById('force-mdp-overlay');
-      if(overlay) overlay.style.display='flex';
-      return;
-    }
-
-    finishLogin(mail, cls, poste, nomComplet);
-
-  }catch(err){
-    showLoginError('Impossible de joindre le serveur LABORO. Vérifie ta connexion internet.');
-    console.error('Erreur login serveur:', err);
+  if(!r.ok){
+    // Écran de blocage horaire déjà affiché par fetchJSON — pas de message d'erreur en plus.
+    if(r.data && r.data.erreur === 'ACCES_HORAIRE_BLOQUE') return;
+    showLoginError(r.erreur);
+    return;
   }
+  const data = r.data;
+
+  if(!data.ok){
+    showLoginError(data.erreur || 'Identifiants incorrects.');
+    return;
+  }
+
+  localStorage.setItem('laboro_token', data.token);
+  const u = data.utilisateur;
+  localStorage.setItem('laboro_est_admin', u.est_admin ? '1' : '0');
+
+  const cls = u.classe || '';
+  let poste;
+  if(cls === 'enseignant') poste = 'Enseignant — Accès direction';
+  else if(cls === '2nde') poste = 'Découverte de la famille des métiers MCV';
+  else if(cls.includes('AGEC')) poste = 'Conseiller de vente — Showroom & E-commerce';
+  else if(cls.includes('PVOC')) poste = 'Commercial terrain — Prospection & Vente B2B';
+  else poste = 'Collaborateur LABORO';
+
+  const nomComplet = (u.prenom || u.nom)
+    ? ((u.prenom||'') + ' ' + (u.nom||'')).trim()
+    : mail.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g, l => l.toUpperCase());
+
+  // Mot de passe par défaut / réinitialisé : on force le changement avant d'entrer dans l'appli
+  if(u.doit_changer_mdp){
+    window.__pendingLogin = { mail, cls, poste, nomComplet };
+    document.getElementById('login').classList.remove('on');
+    const modal = document.getElementById('modal-changer-mdp');
+    if(modal) modal.style.display = 'flex';
+    return;
+  }
+
+  finishLogin(mail, cls, poste, nomComplet);
+}
+
+// --- Soumission du nouveau mot de passe (changement obligatoire à la 1ère connexion) ---
+async function soumettreNouveauMdp(){
+  const p1 = document.getElementById('new-mdp-1').value;
+  const p2 = document.getElementById('new-mdp-2').value;
+  const msgEl = document.getElementById('new-mdp-msg');
+  const setMsg = function(t,c){ if(msgEl){ msgEl.textContent = t; msgEl.style.color = c; } };
+
+  if(!p1 || p1.length < 6){ setMsg('Le mot de passe doit contenir au moins 6 caractères.', '#C53030'); return; }
+  if(p1 !== p2){ setMsg('Les deux mots de passe ne correspondent pas.', '#C53030'); return; }
+
+  const token = localStorage.getItem('laboro_token');
+  if(!token){ setMsg('Session expirée — reconnecte-toi.', '#C53030'); return; }
+
+  setMsg('Enregistrement…', '#6B7280');
+  const r = await fetchJSON(LABORO_API + '/api/changer-mdp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ nouveauMdp: p1 })
+  });
+  if(!r.ok){ setMsg(r.erreur, '#C53030'); return; }
+  const d = r.data;
+  if(!d.ok){ setMsg('Échec : ' + (d.erreur || 'erreur inconnue'), '#C53030'); return; }
+
+  const modal = document.getElementById('modal-changer-mdp');
+  if(modal) modal.style.display = 'none';
+  document.getElementById('new-mdp-1').value = '';
+  document.getElementById('new-mdp-2').value = '';
+
+  const pending = window.__pendingLogin;
+  window.__pendingLogin = null;
+  if(pending) finishLogin(pending.mail, pending.cls, pending.poste, pending.nomComplet);
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -596,29 +601,28 @@ async function ajouterEleve(){
 
   showMsg('Création en cours…', '#6B7280');
 
-  try{
-    const reponse = await fetch(LABORO_API + '/api/eleves', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({ nomComplet, email, classeCode })
-    });
-    const data = await reponse.json();
+  const r = await fetchJSON(LABORO_API + '/api/eleves', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ nomComplet, email, classeCode, groupe: (document.getElementById('add-grp')||{}).value || null })
+  });
 
-    if(!data.ok){
-      showMsg('⚠️ ' + (data.erreur || 'Création impossible.'), '#C53030');
-      return;
-    }
-
-    showMsg('✅ ' + data.prenom + ' ' + data.nom + ' ajouté(e) — mot de passe : ' + data.motDePasseInitial, '#2E7D5E');
-    if(nomEl) nomEl.value = '';
-    if(mailEl) mailEl.value = '';
-    if(typeof renderClasse === 'function') renderClasse();
-
-  }catch(err){
-    showMsg('Impossible de joindre le serveur LABORO.', '#C53030');
-    console.error('Erreur ajouterEleve:', err);
+  if(!r.ok){
+    showMsg('⚠️ ' + r.erreur, '#C53030');
+    return;
   }
+  const data = r.data;
+
+  if(!data.ok){
+    showMsg('⚠️ ' + (data.erreur || 'Création impossible.'), '#C53030');
+    return;
+  }
+
+  showMsg('✅ ' + data.prenom + ' ' + data.nom + ' ajouté(e)' + (data.groupe ? ' en ' + data.groupe : '') + ' — mot de passe : ' + data.motDePasseInitial, '#2E7D5E');
+  if(nomEl) nomEl.value = '';
+  if(mailEl) mailEl.value = '';
+  if(typeof renderClasse === 'function') renderClasse();
 }

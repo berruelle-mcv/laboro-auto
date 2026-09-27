@@ -4,6 +4,8 @@
    Version 1.0 — Migration architecture modulaire
 ================================================ */
 
+/* Couleurs de l'univers utilisées par le moteur commun (js/*.js) : var(--th-…) */
+:root{--th-fonce:#2B2B2E;--th-accent:#7A4614;--th-principal:#B5651D;--th-second:#B5651D;--th-fond:#F5E6D8;--th-nuit:#2B2B2E;--th-pastel:#E8C9A0;--th-ciel:#F5E6D8;--th-bordure:#E8CBA8;--th-voile:#F5E6D8;--th-vif:#E0A868;--th-profond:#5C3814;--th-doux:#DCAE78;--th-e2:#B5651D;--th-fond2:#F5E6D8;--th-bordure2:#E8CBA8;--th-fond3:#F5E6D8;--th-vif2:#D98A4A;--th-profond2:#5C3814;--th-pale:#F3C6C6;--th-fonce2:#7A4614;--th-pale2:#F0DFC8}
 :root{--bl:#B5651D;--bf:#7A4614;--bc:#F5E6D8;--bm:#F3C6C6;--ac1:#B5651D;--ac1f:#7A4614;--ac1m:#F3C6C6;--gr:#1F2937;--gm:#6B7280;--gc:#F3F4F6;--gb:#E5E7EB;--vt:#1D9E75;--vc:#E1F5EE;--am:#D97706;--ac:#FEF3C7;--rg:#DC2626;--rc:#FEE2E2;--wh:#fff;--sidebar-bg:#fff;--card-bg:#fff;--body-bg:#F3F4F6;--border:#E5E7EB}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:var(--gr);background:#F3F4F6;min-height:100vh}
@@ -96,7 +98,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:var(--g
 .fm-m{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px}
 /* APP */
 #app{flex-direction:row}#app.on{display:flex;flex-direction:row;height:100vh;overflow:hidden}
-.sb{width:230px;min-width:230px;background:#fff;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;min-height:100vh}
+.sb{width:230px;min-width:230px;background:#fff;border-right:1px solid #E5E7EB;display:flex;flex-direction:column;min-height:100vh;height:100vh}
 .sb-lo{padding:14px 16px;background:#fff;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;gap:10px;transition:background .4s}
 .ens-mode .sb-lo{background:#EFF6FF;border-bottom:1px solid #F0DFC8}
 .ens-mode .sb-lo .sb-li{background:var(--bl);color:#fff}
@@ -110,7 +112,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;color:var(--g
 .sb-u{padding:11px 14px;border-bottom:.5px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:9px}
 .avu{width:30px;height:30px;border-radius:50%;background:#B5651D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 .sb-un{font-size:13px;font-weight:800;color:#2B2B2E}.sb-ur{font-size:10px;color:#6B7280;margin-top:1px}
-.sb-nv{flex:1;padding:5px 0}
+.sb-nv{flex:1;padding:5px 0;overflow-y:auto;min-height:0} /* menu défilant si l'écran est trop petit */
 .ns{font-size:9px;font-weight:700;color:#CBD5E1;text-transform:uppercase;letter-spacing:.15em;padding:12px 18px 4px}
 .ni{display:flex;align-items:center;gap:10px;padding:9px 16px 9px 18px;cursor:pointer;font-size:13px;color:#4B5563;transition:all .15s;border-left:3px solid transparent;border-radius:0 8px 8px 0;margin:1px 8px 1px 0}
 .ni:hover{background:#F1F5FB;color:#1F2937}
@@ -600,7 +602,8 @@ img { max-width: 100%; height: auto; }
   #app.on { height: auto; min-height: 100vh; overflow: visible; flex-direction: column; }
   .sb { width: 100%; min-width: 0; min-height: auto; flex-direction: row; flex-wrap: wrap;
         border-right: none; border-bottom: 1px solid #E5E7EB; }
-  .sb-nv { display: flex; flex-direction: row; flex-wrap: wrap; }
+  .sb { height: auto; }
+  .sb-nv { display: flex; flex-direction: row; flex-wrap: wrap; overflow: visible; }
   .main { overflow: visible; }
   .content { overflow-y: visible; height: auto; }
 
