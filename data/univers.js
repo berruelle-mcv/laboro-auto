@@ -69,22 +69,6 @@ var LABORO_CONFIG = {
       "label": "Prospection et Valorisation de l'Offre Commerciale"
     }
   ],
-  "examens": [
-    {
-      "id": "E31",
-      "label": "E31 — Vente et suivi de clientèle",
-      "niveaux": [
-        "1ere-PVOC"
-      ]
-    },
-    {
-      "id": "E33",
-      "label": "E33 — Prospection et valorisation",
-      "niveaux": [
-        "1ere-PVOC"
-      ]
-    }
-  ],
   "couleurs": {
     "primaire": "#2B2B2E",
     "secondaire": "#B5651D",
@@ -311,5 +295,306 @@ var LABORO_CONFIG = {
       "note": 5,
       "texte": "Très satisfaite de mon nouveau véhicule et du suivi après-vente avec Bruno."
     }
-  ]
+  ],
+  "demo": {
+    "eleve": {
+      "mail": "demo@laboro-demo.fr",
+      "nom": "Léa Martin",
+      "classe": "1ere-PVOC",
+      "poste": "Commercial terrain — Prospection & Vente B2B",
+      "missions": {
+        "C11a-P1": {
+          "status": "done",
+          "score": 14,
+          "comp": "C1.1",
+          "progression": 0,
+          "date_validation": "2025-09-22T10:00:00.000Z"
+        },
+        "C12a-P1": {
+          "status": "done",
+          "score": 15,
+          "comp": "C1.2",
+          "progression": 0,
+          "date_validation": "2025-10-01T10:00:00.000Z"
+        },
+        "B41a-P1": {
+          "status": "done",
+          "score": 13,
+          "comp": "B4.1",
+          "progression": 0,
+          "date_validation": "2025-10-10T10:00:00.000Z"
+        },
+        "C21a-P1": {
+          "status": "done",
+          "score": 16,
+          "comp": "C2.1",
+          "progression": 0,
+          "date_validation": "2025-10-20T10:00:00.000Z"
+        },
+        "B42a-P1": {
+          "status": "done",
+          "score": 14,
+          "comp": "B4.2",
+          "progression": 0,
+          "date_validation": "2025-10-28T10:00:00.000Z"
+        },
+        "C13a-P1": {
+          "status": "done",
+          "score": 12,
+          "comp": "C1.3",
+          "progression": 0,
+          "date_validation": "2025-11-06T10:00:00.000Z"
+        },
+        "C23a-P1": {
+          "status": "done",
+          "score": 15,
+          "comp": "C2.3",
+          "progression": 0,
+          "date_validation": "2025-11-17T10:00:00.000Z"
+        },
+        "B43a-P1": {
+          "status": "done",
+          "score": 16,
+          "comp": "B4.3",
+          "progression": 0,
+          "date_validation": "2025-11-24T10:00:00.000Z"
+        },
+        "C31a-P1": {
+          "status": "done",
+          "score": 14,
+          "comp": "C3.1",
+          "progression": 0,
+          "date_validation": "2025-12-03T10:00:00.000Z"
+        },
+        "C22a-P1": {
+          "status": "done",
+          "score": 13,
+          "comp": "C2.2",
+          "progression": 0,
+          "date_validation": "2025-12-12T10:00:00.000Z"
+        },
+        "C24a-P1": {
+          "status": "done",
+          "score": 15,
+          "comp": "C2.4",
+          "progression": 0,
+          "date_validation": "2025-12-22T10:00:00.000Z"
+        },
+        "C32a-P1": {
+          "status": "done",
+          "score": 17,
+          "comp": "C3.2",
+          "progression": 0,
+          "date_validation": "2025-12-30T10:00:00.000Z"
+        },
+        "B44a-P1": {
+          "status": "done",
+          "score": 13,
+          "comp": "B4.4",
+          "progression": 0,
+          "date_validation": "2026-01-08T10:00:00.000Z"
+        },
+        "C33a-P1": {
+          "status": "done",
+          "score": 14,
+          "comp": "C3.3",
+          "progression": 0,
+          "date_validation": "2026-01-19T10:00:00.000Z"
+        },
+        "B45a-P1": {
+          "status": "done",
+          "score": 16,
+          "comp": "B4.5",
+          "progression": 0,
+          "date_validation": "2026-01-26T10:00:00.000Z"
+        },
+        "B41a-P2": {
+          "status": "done",
+          "score": 15,
+          "comp": "B4.1",
+          "progression": 0,
+          "date_validation": "2026-01-12T10:00:00.000Z"
+        },
+        "C12a-P2": {
+          "status": "done",
+          "score": 14,
+          "comp": "C1.2",
+          "progression": 0,
+          "date_validation": "2026-01-21T10:00:00.000Z"
+        },
+        "B43a-P2": {
+          "status": "done",
+          "score": 16,
+          "comp": "B4.3",
+          "progression": 0,
+          "date_validation": "2026-01-30T10:00:00.000Z"
+        },
+        "C23a-P2": {
+          "status": "done",
+          "score": 13,
+          "comp": "C2.3",
+          "progression": 0,
+          "date_validation": "2026-02-09T10:00:00.000Z"
+        },
+        "C32a-P2": {
+          "status": "done",
+          "score": 15,
+          "comp": "C3.2",
+          "progression": 0,
+          "date_validation": "2026-02-17T10:00:00.000Z"
+        },
+        "B45a-P2": {
+          "status": "att",
+          "score": 0,
+          "comp": "B4.5",
+          "progression": 0
+        }
+      },
+      "competences": {
+        "C1.1": 1,
+        "C1.2": 2,
+        "B4.1": 2,
+        "C2.1": 1,
+        "B4.2": 1,
+        "C1.3": 1,
+        "C2.3": 2,
+        "B4.3": 2,
+        "C3.1": 1,
+        "C2.2": 1,
+        "C2.4": 1,
+        "C3.2": 2,
+        "B4.4": 1,
+        "C3.3": 1,
+        "B4.5": 1
+      }
+    },
+    "camarades": [
+      {
+        "mail": "camille.demo@laboro-demo.fr",
+        "nom": "Camille Bernard",
+        "classe": "1ere-PVOC",
+        "missions": {
+          "C11a-P1": {
+            "status": "done",
+            "score": 15,
+            "comp": "C1.1",
+            "progression": 0,
+            "date_validation": "2025-09-22T10:00:00.000Z"
+          },
+          "C12a-P1": {
+            "status": "done",
+            "score": 16,
+            "comp": "C1.2",
+            "progression": 0,
+            "date_validation": "2025-10-01T10:00:00.000Z"
+          },
+          "B41a-P1": {
+            "status": "done",
+            "score": 14,
+            "comp": "B4.1",
+            "progression": 0,
+            "date_validation": "2025-10-10T10:00:00.000Z"
+          },
+          "C21a-P1": {
+            "status": "done",
+            "score": 17,
+            "comp": "C2.1",
+            "progression": 0,
+            "date_validation": "2025-10-20T10:00:00.000Z"
+          },
+          "B42a-P1": {
+            "status": "done",
+            "score": 15,
+            "comp": "B4.2",
+            "progression": 0,
+            "date_validation": "2025-10-28T10:00:00.000Z"
+          },
+          "C13a-P1": {
+            "status": "done",
+            "score": 13,
+            "comp": "C1.3",
+            "progression": 0,
+            "date_validation": "2025-11-06T10:00:00.000Z"
+          },
+          "C23a-P1": {
+            "status": "done",
+            "score": 16,
+            "comp": "C2.3",
+            "progression": 0,
+            "date_validation": "2025-11-17T10:00:00.000Z"
+          },
+          "B43a-P1": {
+            "status": "done",
+            "score": 17,
+            "comp": "B4.3",
+            "progression": 0,
+            "date_validation": "2025-11-24T10:00:00.000Z"
+          },
+          "C31a-P1": {
+            "status": "done",
+            "score": 15,
+            "comp": "C3.1",
+            "progression": 0,
+            "date_validation": "2025-12-03T10:00:00.000Z"
+          },
+          "C22a-P1": {
+            "status": "done",
+            "score": 14,
+            "comp": "C2.2",
+            "progression": 0,
+            "date_validation": "2025-12-12T10:00:00.000Z"
+          }
+        }
+      },
+      {
+        "mail": "hugo.demo@laboro-demo.fr",
+        "nom": "Hugo Lefèvre",
+        "classe": "1ere-PVOC",
+        "missions": {
+          "C11a-P1": {
+            "status": "done",
+            "score": 12,
+            "comp": "C1.1",
+            "progression": 0,
+            "date_validation": "2025-09-22T10:00:00.000Z"
+          },
+          "C12a-P1": {
+            "status": "done",
+            "score": 13,
+            "comp": "C1.2",
+            "progression": 0,
+            "date_validation": "2025-10-01T10:00:00.000Z"
+          },
+          "B41a-P1": {
+            "status": "done",
+            "score": 11,
+            "comp": "B4.1",
+            "progression": 0,
+            "date_validation": "2025-10-10T10:00:00.000Z"
+          },
+          "C21a-P1": {
+            "status": "done",
+            "score": 14,
+            "comp": "C2.1",
+            "progression": 0,
+            "date_validation": "2025-10-20T10:00:00.000Z"
+          },
+          "B42a-P1": {
+            "status": "done",
+            "score": 12,
+            "comp": "B4.2",
+            "progression": 0,
+            "date_validation": "2025-10-28T10:00:00.000Z"
+          },
+          "C13a-P1": {
+            "status": "done",
+            "score": 10,
+            "comp": "C1.3",
+            "progression": 0,
+            "date_validation": "2025-11-06T10:00:00.000Z"
+          }
+        }
+      }
+    ]
+  }
 };
