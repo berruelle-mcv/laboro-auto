@@ -596,5 +596,50 @@ var LABORO_CONFIG = {
         }
       }
     ]
-  }
+  },
+  "recherche_synonymes": [
+    [
+      "véhicule",
+      "voiture",
+      "automobile"
+    ],
+    [
+      "véhicule neuf",
+      "vn",
+      "neuf"
+    ],
+    [
+      "occasion",
+      "vo",
+      "véhicule d'occasion"
+    ],
+    [
+      "essai",
+      "essai routier"
+    ],
+    [
+      "reprise",
+      "estimation",
+      "cote"
+    ],
+    [
+      "atelier",
+      "révision",
+      "réparation",
+      "mécanique"
+    ],
+    [
+      "utilitaire",
+      "flotte",
+      "kangoo",
+      "trafic",
+      "master"
+    ],
+    [
+      "électrique",
+      "e-tech",
+      "recharge",
+      "borne"
+    ]
+  ]
 };
