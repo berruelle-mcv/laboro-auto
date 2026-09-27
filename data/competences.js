@@ -14,16 +14,16 @@ const COMP = [
   {code:'C3.1', label:'Info & contact client', g:'G3'},
   {code:'C3.2', label:'Actions de fidélisation', g:'G3'},
   {code:'C3.3', label:'Évaluation fidélisation', g:'G3'},
-  {code:'B4.1', label:'Rechercher et qualifier les informations de prospection', g:'G4'},
-  {code:'B4.2', label:"Concevoir un plan et des supports de prospection", g:'G4'},
-  {code:'B4.3', label:'Mettre en œuvre la prospection commerciale', g:'G4'},
-  {code:'B4.4', label:'Assurer le suivi de la prospection et des devis', g:'G4'},
+  {code:'B4.1', label:"Rechercher et analyser les informations à des fins d'exploitation", g:'G4'},
+  {code:'B4.2', label:"Participer à la conception d'une opération de prospection", g:'G4'},
+  {code:'B4.3', label:"Mettre en œuvre une opération de prospection", g:'G4'},
+  {code:'B4.4', label:"Suivre et évaluer l'action de prospection", g:'G4'},
   {code:'B4.5', label:"Valoriser les produits et/ou les services", g:'G4'},
 ];
 
 const RES = {
 
-  'B4.1':{t:"Rechercher et qualifier les informations de prospection",c:`<div class="res-section res-debutant">
+  'B4.1':{t:"Rechercher et analyser les informations à des fins d'exploitation",c:`<div class="res-section res-debutant">
 <p><strong>B4.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique), souvent désignés par le sigle <strong>B2C</strong> (business to consumer, « d'entreprise à particulier »), et les professionnels (artisans, PME — utilitaires), désignés par le sigle <strong>B2B</strong> (business to business, « d'entreprise à entreprise ») que tu retrouveras souvent dans les missions. Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
 <p><strong>D'où viennent les prospects chez Vasseur ?</strong></p>
 <ul>
@@ -63,7 +63,7 @@ const RES = {
 <p>Si un de ces éléments manque, ma mission n'est pas de deviner — c'est de poser la bonne question pour l'obtenir.</p>
 </div>`},
 
-  'B4.2':{t:"Concevoir un plan et des supports de prospection",c:`<div class="res-section res-debutant">
+  'B4.2':{t:"Participer à la conception d'une opération de prospection",c:`<div class="res-section res-debutant">
 <p><strong>B4.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
 <p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise dont le véhicule professionnel est livré (mis en service) avant la fin de son exercice comptable (souvent le 31 décembre) commence à l'amortir dès cette année, au prorata du temps restant : une partie de son prix entre dans les charges de l'exercice et réduit le bénéfice imposable de cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
 <p><strong>Un bon plan de prospection contient toujours :</strong></p>
@@ -91,7 +91,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'B4.3':{t:"Mettre en œuvre la prospection commerciale",c:`<div class="res-section res-debutant">
+  'B4.3':{t:"Mettre en œuvre une opération de prospection",c:`<div class="res-section res-debutant">
 <p><strong>B4.3 — Conduire un contact de prospection chez Vasseur.</strong> Qu'il s'agisse d'un mail entrant à qualifier ou d'un appel sortant, la structure reste la même :</p>
 <ol>
 <li><strong>Accroche</strong> — se présenter, expliquer rapidement pourquoi on contacte la personne</li>
