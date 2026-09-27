@@ -65,7 +65,7 @@ const RES = {
 
   'B4.2':{t:"Concevoir un plan et des supports de prospection",c:`<div class="res-section res-debutant">
 <p><strong>B4.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
-<p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise qui achète un véhicule professionnel avant la fin de son exercice comptable (souvent le 31 décembre) commence à l'amortir dès cette année : une partie de son prix entre dans les charges de l'exercice et réduit le bénéfice imposable de cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
+<p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise dont le véhicule professionnel est livré (mis en service) avant la fin de son exercice comptable (souvent le 31 décembre) commence à l'amortir dès cette année, au prorata du temps restant : une partie de son prix entre dans les charges de l'exercice et réduit le bénéfice imposable de cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
 <p><strong>Un bon plan de prospection contient toujours :</strong></p>
 <ul>
 <li>Une cible définie avec des critères précis (pas "tout le monde")</li>
@@ -147,10 +147,10 @@ const RES = {
 </ul>
 <p>Le contenu de l'information reste le même, seule la forme change selon le canal.</p>
 <p><strong>Cas pratique — la même question, trois canaux :</strong></p>
-<p>Un client demande le prix d'un Captur Evolution (26 000 €, délai 4 à 6 semaines) selon 3 canaux différents :</p>
+<p>Un client demande le prix d'un Captur Evolution (26 000 €, délai 6 à 8 semaines) selon 3 canaux différents :</p>
 <ul>
-<li><strong>Par mail</strong> — "Bonjour, merci pour votre message. Le Captur Evolution est proposé à 26 000 €, avec un délai de livraison de 4 à 6 semaines. Je reste à votre disposition pour organiser un essai. Cordialement, [signature]"</li>
-<li><strong>Par chat</strong> — "Bonjour ! Le Captur Evolution est à 26 000 €, livré en 4 à 6 semaines 🙂 Vous voulez qu'on prévoie un essai ?"</li>
+<li><strong>Par mail</strong> — "Bonjour, merci pour votre message. Le Captur Evolution est proposé à 26 000 €, avec un délai de livraison de 6 à 8 semaines. Je reste à votre disposition pour organiser un essai. Cordialement, [signature]"</li>
+<li><strong>Par chat</strong> — "Bonjour ! Le Captur Evolution est à 26 000 €, livré en 6 à 8 semaines 🙂 Vous voulez qu'on prévoie un essai ?"</li>
 <li><strong>Sur réseau social (commentaire public)</strong> — "Bonjour, je vous envoie le détail en message privé !" (puis, en privé, la même information que par mail)</li>
 </ul>
 <p>Même information, trois formes différentes — c'est ça, l'omnicanal.</p>
@@ -391,10 +391,10 @@ const RES = {
 <p><strong>Ce qui change concrètement :</strong> tu devras souvent <em>prioriser</em> (tous les prospects ne se valent pas également) et <em>combiner</em> plusieurs sources d'information, sans qu'on te les serve déjà croisées dans un même tableau.</p>
 <p><strong>Rappel — le SIC :</strong> chaque prospect a une fiche dans le SIC (Système d'Information Commercial, ex. le CRM Vasseur), créée dès le premier contact. Au palier 2, la difficulté n'est plus de créer une fiche vide, mais de l'<strong>enrichir correctement</strong> après un nouvel échange : ajouter l'information nouvelle sans effacer ce qu'un collègue avait déjà noté, et signaler clairement quand une information change (plutôt que de la remplacer silencieusement).</p>
 <p><strong>Cas pratique — deux prospects, un seul créneau libre :</strong></p>
-<p>En fin de journée, deux demandes arrivent : l'une d'un particulier qui dit vouloir "changer de voiture un jour", l'autre d'une entreprise qui a un besoin déclaré mais reste vague sur le budget.</p>
+<p>En fin de journée, deux demandes arrivent : l'une d'une association qui veut « peut-être un minibus l'an prochain », l'autre d'un couple qui a déjà comparé deux SUV et parle de financement, sans avoir fixé de date.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — traiter les deux dans l'ordre d'arrivée, sans réfléchir à qui a le plus de chances d'aboutir vite</li>
-<li><strong>✅ À privilégier</strong> — évaluer rapidement le niveau de qualification de chacun (le B2B a un Need clair, il manque "juste" le Budget ; le particulier n'a presque rien de qualifié) et prioriser celui qui a le plus d'éléments déjà réunis</li>
+<li><strong>✅ À privilégier</strong> — évaluer rapidement le niveau de qualification de chacun (le couple a un Need précis et un Budget en cours de réflexion, il manque la Timeline ; l'association n'a encore rien de qualifié) et prioriser celui qui a le plus d'éléments déjà réunis</li>
 </ul>
 <p><strong>En résumé, avant de qualifier un prospect dans une situation moins nette, je vérifie que je :</strong></p>
 <ul>
@@ -449,7 +449,7 @@ const RES = {
 <p>Trois devis sont en attente : un pour un Captur (validité expirant dans 3 jours), un pour une Renault 5 (validité expirant dans 8 jours), un pour 2 Master destinés à une entreprise de BTP (validité expirant dans 6 jours, montant nettement plus élevé que les deux autres).</p>
 <ul>
 <li><strong>❌ À éviter</strong> — relancer les trois dans l'ordre où ils ont été envoyés, sans tenir compte ni de l'urgence ni de l'enjeu</li>
-<li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Captur expire dans 3 jours) tout en gardant à l'esprit l'enjeu (les 2 Master, plus importants en valeur, mérite une relance soignée même si elle expire un peu plus tard)</li>
+<li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Captur expire dans 3 jours) tout en gardant à l'esprit l'enjeu (les 2 Master, plus importants en valeur, méritent une relance soignée même si elle expire un peu plus tard)</li>
 </ul>
 <p><strong>En résumé, avant de conclure sur une performance ou de prioriser des relances, je vérifie que je :</strong></p>
 <ul>
@@ -735,7 +735,7 @@ const RES = {
 <p><strong>C2.2 — Arbitrer la mise en œuvre des services associés quand tout ne peut pas être satisfait en même temps.</strong> Tu sais coordonner plusieurs prestataires et suivre leurs délais respectifs. Sur le terrain, la difficulté professionnelle est différente : il faut parfois choisir entre deux solutions qui ont chacune un coût (financier ou en délai), sans réponse évidente, et l'assumer devant le client.</p>
 <p><strong>Petit rappel :</strong> la LOA (Location avec Option d'Achat) est un mode de financement où le client loue le véhicule et paie pour son usage, sans en être propriétaire pendant la durée du contrat, avec une mensualité plus légère qu'un crédit classique.</p>
 <p><strong>Cas pratique — un arbitrage financement chez Vasseur :</strong></p>
-<p>Mme Lechene achète un Austral à 32 900 € et hésite entre deux financements proposés par l'organisme partenaire : une LOA sur 4 ans (mensualité 349 €, mais un kilométrage plafonné à 12 000 km/an, au-delà duquel des pénalités s'appliquent) ou un crédit classique sur 5 ans (mensualité 419 €, aucune limite de kilométrage, elle reste propriétaire dès le premier mois). Elle t'indique rouler environ 18 000 km/an pour son activité d'infirmière libérale, mais hésite car la mensualité LOA est plus légère.</p>
+<p>Mme Lechene achète un Austral Techno à 35 000 € (avec un apport de 10 000 €) et hésite entre deux financements proposés par l'organisme partenaire : une LOA sur 4 ans (mensualité 349 €, mais un kilométrage plafonné à 12 000 km/an, au-delà duquel des pénalités s'appliquent) ou un crédit classique sur 5 ans (mensualité 470 €, aucune limite de kilométrage, elle reste propriétaire dès le premier mois). Elle t'indique rouler environ 18 000 km/an pour son activité d'infirmière libérale, mais hésite car la mensualité LOA est plus légère.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — la laisser choisir la LOA uniquement parce que la mensualité est plus basse, sans lui signaler que son kilométrage réel dépasse largement le plafond du contrat</li>
 <li>✅ <strong>À privilégier</strong> — chiffrer concrètement ce que représenterait le dépassement de kilométrage en LOA sur 4 ans, et le comparer honnêtement à l'écart de mensualité du crédit classique, avant de la laisser décider en connaissance de cause</li>
@@ -814,7 +814,7 @@ const RES = {
 <li><strong>❌ À éviter</strong> — répartir le budget à parts égales entre les trois leviers « pour ne pas faire de jaloux », sans comparer leur rendement réel</li>
 <li><strong>✅ À privilégier</strong> — comparer le rendement de chaque levier (résultat attendu rapporté au coût), puis proposer une répartition argumentée, quitte à ne pas financer un levier ce trimestre-ci</li>
 </ul>
-<p><strong>Quand la hiérarchie demande une exception :</strong> Michel demande d’inclure un client très influent (un seul achat, mais très actif sur les réseaux sociaux Vasseur) dans une offre réservée aux clients à 2 achats ou plus. Céder systématiquement casse la règle pour tout le monde ; refuser sans discussion ignore la réalité commerciale. La bonne posture professionnelle : proposer une solution qui respecte l’esprit de la règle (un geste hors-cadre, distinct de l’offre elle-même) plutôt qu’un renoncement pur et simple.</p>
+<p><strong>Quand la hiérarchie demande une exception :</strong> Michel demande de prolonger d’un mois, pour un seul client, une offre d’entretien dont la date limite est dépassée. Céder systématiquement casse la règle pour tout le monde ; refuser sans discussion ignore la réalité commerciale. La bonne posture professionnelle : proposer une solution qui respecte l’esprit de la règle (un geste hors-cadre, distinct de l’offre elle-même) plutôt qu’un renoncement pur et simple.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter un arbitrage budgétaire uniquement en chiffres, sans expliquer le raisonnement — Michel doit pouvoir comprendre pourquoi un levier passe avant un autre.</p>
 <p><strong>En résumé, avant de proposer une répartition budgétaire, je vérifie que je :</strong></p>
 <ul>
