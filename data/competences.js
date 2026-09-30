@@ -52,6 +52,14 @@ const RES = {
 </ul>
 <p>Sur 4 critères BANT, seul 1 est connu ici (Need). Ce prospect n'est donc <strong>pas encore qualifié</strong> : il ne faut pas lui envoyer un devis Twingo E-Tech tout de suite, mais lui poser 2-3 questions ciblées sur le budget et le délai.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> vouloir "qualifier" en posant les 4 questions BANT d'un coup, façon interrogatoire. En pratique, on qualifie progressivement, souvent en 2-3 échanges, et on adapte les questions au canal (un mail peut poser 2-3 questions, un appel se prête à un échange plus naturel).</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
+<li><strong>Prospect / client</strong> — un prospect n'a encore jamais acheté ; un client a déjà acheté. On dit qu'un prospect est <em>froid</em> (aucun contact, aucun intérêt exprimé), <em>tiède</em> (un contact, un intérêt encore vague) ou <em>chaud</em> (besoin, budget et délai connus).</li>
+<li><strong>Segment / cible</strong> — un segment est un groupe de clients qui se ressemblent (âge, usage, métier…) ; la cible est le segment qu'on choisit de contacter.</li>
+<li><strong>B2B / B2C</strong> — B2B : vente à des professionnels (artisans, entreprises) ; B2C : vente à des particuliers. Un même client peut avoir un double usage (un artisan qui utilise aussi son véhicule en famille) : on analyse alors les deux usages, sans créer une « troisième catégorie ».</li>
+</ul>
 <p><strong>En résumé, avant de qualifier un prospect, je vérifie que je sais :</strong></p>
 <ul>
 <li>✓ Ce qu'il veut faire du véhicule (Need)</li>
@@ -82,6 +90,14 @@ const RES = {
 <li><strong>Calendrier</strong> — courrier début novembre, appel dix jours plus tard, rendez-vous avant le 10 décembre pour laisser le temps de livrer avant le 31 décembre</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> construire le message avant la cible. Si on ne sait pas précisément à qui on s'adresse, le message reste vague et ne convainc personne — toujours définir la cible en premier.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Opération de prospection</strong> — une action organisée pour trouver de nouveaux clients : une cible, un message, un canal (mail, téléphone, réseaux sociaux, salon), un budget, un calendrier et un objectif chiffré.</li>
+<li><strong>Résultat attendu</strong> — nombre de contacts × taux habituel. Exemple : 2 400 mails × 1 % = 24 demandes attendues. C'est une estimation, pas une garantie.</li>
+<li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
+<li><strong>Fichier de prospection</strong> — liste de contacts à démarcher. Pour démarcher des particuliers par mail, il faut leur accord préalable, sauf s'ils sont déjà clients et que l'offre porte sur des produits ou services semblables. Un professionnel peut être démarché par mail sans accord préalable si le message concerne son métier. Dans tous les cas, chaque mail doit permettre de se désinscrire facilement, et on n'utilise pas un fichier acheté sans savoir si les personnes ont donné leur accord.</li>
+</ul>
 <p><strong>En résumé, avant de valider un plan de prospection, je vérifie que j'ai :</strong></p>
 <ul>
 <li>✓ Une cible précise (pas une généralité)</li>
@@ -109,6 +125,14 @@ const RES = {
 </ul>
 <p>On ne "gagne" pas un appel de prospection en forçant une vente immédiate — on gagne en obtenant une suite (rappel programmé, envoi d'une fiche produit) qui garde la porte ouverte.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> proposer un véhicule précis avant d'avoir posé au moins une question de qualification. Même avec un contact entrant qui semble "chaud", il faut vérifier le besoin réel avant de répondre.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Question ouverte / question fermée</strong> — une question ouverte laisse le client s'exprimer (« Comment utilisez-vous votre véhicule ? ») ; une question fermée appelle oui/non ou un choix précis (« Roulez-vous plus de 20 000 km par an ? »). On découvre avec des questions ouvertes, on confirme avec des questions fermées.</li>
+<li><strong>Reformuler</strong> — redire avec ses mots ce que le client vient de dire (« Si je vous comprends bien, vous… ») : il se sent écouté et on vérifie qu'on a bien compris.</li>
+<li><strong>Objection</strong> — raison donnée par le prospect pour ne pas avancer (« pas le temps », « trop cher », « déjà équipé »). On l'écoute, on la reformule, on y répond avec des faits, sans forcer.</li>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+</ul>
 <p><strong>En résumé, dans un contact de prospection, je vérifie que j'ai :</strong></p>
 <ul>
 <li>✓ Une accroche claire (pourquoi je contacte cette personne)</li>
@@ -129,6 +153,14 @@ const RES = {
 </ul>
 <p>La veille ne sert pas à "avoir raison contre le concurrent" — elle sert à connaître assez précisément l'offre en face pour construire un argumentaire honnête et factuel.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> comparer sur un seul critère (souvent le prix) alors que le client compare en réalité un ensemble (prix + équipements + garantie + service). Toujours élargir la comparaison au-delà du prix affiché.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Veille commerciale</strong> — surveiller régulièrement les concurrents (prix, offres, délais, services), la réglementation et les tendances du marché, pour adapter l'offre et l'argumentaire.</li>
+<li><strong>Source fiable</strong> — on privilégie les sources officielles et datées (site du constructeur, texte officiel, note du réseau) ; une rumeur ou un article non sourcé est « à vérifier ».</li>
+<li><strong>Cote d'un véhicule d'occasion</strong> — prix de référence estimé selon le modèle, l'âge, le kilométrage et l'état ; il sert à fixer un prix de vente ou de reprise.</li>
+<li><strong>Mandataire</strong> — intermédiaire (souvent en ligne) qui, sur mandat du client, commande pour lui un véhicule neuf, souvent importé d'un autre pays de l'Union européenne, à un prix inférieur à celui d'une concession, avec moins de services (essai, reprise, entretien, suivi). Pour un véhicule neuf vendu dans l'Union européenne, la garantie constructeur s'applique quand même dans tout le réseau de la marque.</li>
+</ul>
 <p><strong>En résumé, avant de répondre à une comparaison concurrentielle, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Reconnais honnêtement l'écart s'il existe (jamais le nier ou l'ignorer)</li>
@@ -155,6 +187,13 @@ const RES = {
 </ul>
 <p>Même information, trois formes différentes — c'est ça, l'omnicanal.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> copier-coller une réponse de mail dans un chat. Le client sur chat attend une réponse rapide et directe ; un pavé de texte formel donne l'impression de ne pas être écouté.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Canal</strong> — moyen de contact : showroom, téléphone, mail, chat du site, réseaux sociaux, SMS. <strong>Omnicanal</strong> : le client passe d'un canal à l'autre, et chaque collaborateur reprend l'échange là où il s'est arrêté grâce à l'historique.</li>
+<li><strong>Engagement de délai de réponse</strong> — délai promis au client selon le canal (par exemple 1 h sur le chat, 24 h par mail) : on calcule l'attente depuis l'heure de réception du message.</li>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+</ul>
 <p><strong>En résumé, avant de répondre sur un canal, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Donne la même information factuelle, quel que soit le canal</li>
@@ -186,6 +225,14 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — accorder les 400 € autorisés, puis proposer une contrepartie de valeur équivalente pour le client sans sortir du cadre : par exemple une garantie étendue offerte plutôt qu'une remise supplémentaire</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> annoncer un montant net sans détailler le calcul. Le client (et l'atelier, et la compta) doivent pouvoir vérifier chaque ligne du dossier.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Bon de commande</strong> — document signé par le client qui fixe le véhicule, les options, le prix, la reprise, le mode de paiement et la date de livraison prévue.</li>
+<li><strong>Reprise</strong> — rachat de l'ancien véhicule du client ; sa valeur vient en déduction du prix. <strong>Reste à payer</strong> = prix − reprise − remise éventuelle.</li>
+<li><strong>Acompte</strong> — somme versée à la commande ; le <strong>solde</strong> est ce qui reste à payer à la livraison : solde = reste à payer − acompte.</li>
+<li><strong>Certificat de cession</strong> — formulaire officiel rempli et signé par le vendeur et par l'acheteur quand un véhicule change de propriétaire (par exemple lors d'une reprise) ; la vente est ensuite déclarée en ligne (ANTS) dans les 15 jours.</li>
+</ul>
 <p><strong>En résumé, avant de finaliser un dossier de vente, je vérifie que j'ai :</strong></p>
 <ul>
 <li>✓ Toutes les informations obligatoires (identité, véhicule + options, prix, mode de paiement)</li>
@@ -205,6 +252,13 @@ const RES = {
 </ul>
 <p>Un client informé tôt et honnêtement reste un client satisfait, même en cas de retard. Un client qui doit relancer lui-même pour avoir des nouvelles perd confiance, même si le retard n'est pas la faute de Vasseur.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> minimiser ou cacher la cause du retard pour "rassurer" — c'est l'effet inverse qui se produit si le client l'apprend autrement. La transparence rassure plus que l'esquive.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Délai de livraison</strong> — temps entre la commande et la remise du véhicule (arrivée, préparation, rendez-vous de livraison). Nouvelle date = date prévue + retard annoncé.</li>
+<li><strong>Jours ouvrés</strong> — du lundi au vendredi, hors jours fériés. Le samedi, le dimanche et les jours fériés ne comptent pas. Chez Vasseur, pour un délai « de 5 jours ouvrés », on compte à partir du lendemain : une pièce commandée un lundi arrive le lundi suivant (s'il n'y a pas de jour férié dans la semaine).</li>
+<li><strong>Geste commercial</strong> — compensation offerte pour une gêne (lavage, véhicule de courtoisie, remise sur l'entretien), choisie dans la liste autorisée et adaptée à la gêne réelle du client.</li>
+</ul>
 <p><strong>En résumé, avant d'informer un client d'un imprévu, je vérifie que j'ai :</strong></p>
 <ul>
 <li>✓ Contacté le client avant qu'il ne s'inquiète lui-même</li>
@@ -238,6 +292,13 @@ const RES = {
 </ul>
 <p>Si Bruno annonce que son planning ne permet pas de tenir le délai, il vaut mieux le savoir tout de suite (et proposer une date de livraison ajustée) que de laisser le client découvrir un retard à la dernière minute.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> confondre "vendre le service" et "le mettre en œuvre". Une fois le client d'accord sur la prestation, le travail ne fait que commencer — il faut encore la transmettre au bon prestataire et suivre qu'elle est bien réalisée.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Services associés</strong> — ce qui accompagne la vente : financement, assurance, carte grise (immatriculation), accessoires posés, livraison, extension de garantie.</li>
+<li><strong>Prestataire / partenaire</strong> — entreprise extérieure qui réalise une partie du service pour Vasseur (carrossier, courtier en assurance, installateur de borne).</li>
+<li><strong>Jours ouvrés</strong> — du lundi au vendredi, hors jours fériés. Le samedi, le dimanche et les jours fériés ne comptent pas. Chez Vasseur, pour un délai « de 5 jours ouvrés », on compte à partir du lendemain : une pièce commandée un lundi arrive le lundi suivant (s'il n'y a pas de jour férié dans la semaine).</li>
+</ul>
 <p><strong>En résumé, avant de considérer un service associé comme mis en œuvre, je vérifie que j'ai :</strong></p>
 <ul>
 <li>✓ Choisi le bon prestataire (interne ou partenaire) pour cette prestation précise</li>
@@ -263,6 +324,13 @@ const RES = {
 <li><strong>✅ À privilégier</strong> — reformuler ("je comprends, vous découvrez une rayure qui n'était pas là lors de la remise"), proposer de vérifier le dossier de contrôle qualité et de rappeler sous 24h avec une réponse concrète</li>
 </ul>
 <p>La règle d'or : ne jamais promettre une solution avant d'avoir vérifié les faits — un engagement qu'on doit ensuite retirer abîme la confiance bien plus qu'un léger délai de réponse.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Réclamation</strong> — expression d'un mécontentement qui demande une réponse. On traite les faits, pas le ton.</li>
+<li><strong>Geste commercial</strong> — compensation choisie dans la liste autorisée, proportionnée à la gêne et à la responsabilité de Vasseur.</li>
+<li><strong>Avoir</strong> — document qui annule tout ou partie d'une facture (en cas d'erreur ou de remboursement).</li>
+</ul>
 <p><strong>En résumé, avant de répondre à une réclamation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ N'ai pas coupé la parole ni minimisé ce que dit le client</li>
@@ -282,6 +350,11 @@ const RES = {
 <li><strong>✅ À privilégier</strong> — identifier la vraie cause (pas la qualité de la révision, mais l'absence de prévenance sur l'heure), et proposer une action ciblée sur CE point précis (par exemple, un SMS systématique dès qu'un véhicule prend du retard à l'atelier)</li>
 </ul>
 <p>Un avis en ligne fonctionne pareil : la réponse publique compte autant pour les futurs clients qui la liront que pour le client lui-même — elle doit rester factuelle, jamais défensive.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Calcul du NPS</strong> — % de promoteurs (notes 9-10) − % de détracteurs (notes 0-6) ; les passifs (7-8) ne comptent pas dans la soustraction, mais ils comptent dans le total des réponses qui sert à calculer les pourcentages. Exemple : 100 réponses, 55 promoteurs, 17 détracteurs → 55 − 17 = NPS de 38. Le résultat va de −100 à +100.</li>
+</ul>
 <p><strong>En résumé, avant d'exploiter un résultat de satisfaction, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Identifie la cause précise derrière la note, pas seulement le chiffre</li>
@@ -299,6 +372,13 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — un message anxiogène ("Votre véhicule présente un défaut") ou au contraire trop rassurant au point de minimiser ("c'est rien du tout, pas besoin de venir")</li>
 <li><strong>✅ À privilégier</strong> — un message factuel et rassurant : ce qui se passe, pourquoi ce n'est pas urgent-danger mais à traiter, comment prendre rendez-vous simplement</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+<li><strong>Canal adapté</strong> — on choisit le canal d'après ce que dit la fiche du client (préférence, horaires, coordonnées vérifiées) et d'après l'urgence du message.</li>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
 </ul>
 <p><strong>En résumé, avant d'envoyer un contact d'information, je vérifie que je :</strong></p>
 <ul>
@@ -318,6 +398,13 @@ const RES = {
 <li><strong>❌ À éviter</strong> — un avantage trop symbolique (qui ne motive personne à recommander) ou au contraire disproportionné (qui rogne la marge sans réel retour)</li>
 <li><strong>✅ À privilégier</strong> — un avantage calibré sur ce que l'action rapporte réellement à Vasseur, simple, et compréhensible en une phrase</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Fidélisation</strong> — actions qui donnent au client une raison de revenir (entretien, rachat, recommandation).</li>
+<li><strong>Marge</strong> — prix de vente HT − coût d'achat HT : ce qui reste à Vasseur pour payer ses frais (salaires, locaux…) et faire un bénéfice. Un avantage de fidélité doit rester raisonnable par rapport à la marge.</li>
+<li><strong>Parrainage</strong> — un client (le parrain) recommande un proche (le filleul) ; l'avantage est versé quand le filleul achète réellement.</li>
+</ul>
 <p><strong>En résumé, avant de proposer une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Récompense un comportement réel (fidélité, recommandation), pas juste "être client"</li>
@@ -334,6 +421,14 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — juger uniquement sur "ça a marché, on a vendu 6 voitures" sans regarder le coût ni comparer à d'autres actions</li>
 <li><strong>✅ À privilégier</strong> — calculer le taux de conversion (6/150 = 4 %) et le coût par vente (1 800/6 = 300 €), comparer ce taux et ce coût à d'autres actions similaires menées par Vasseur, et formuler une recommandation (reconduire, ajuster le montant, cibler différemment)</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
+<li><strong>Taux de participation</strong> — clients qui ont utilisé l'offre ÷ clients à qui elle s'adresse vraiment × 100 (on retire du total les clients qui n'y avaient pas droit).</li>
+<li><strong>Taux de conversion</strong> — clients qui ont acheté ÷ clients touchés par l'action × 100.</li>
+<li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
 </ul>
 <p><strong>En résumé, avant de conclure sur une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
@@ -360,6 +455,14 @@ const RES = {
 <li><strong>❌ À éviter</strong> — attendre passivement l'expiration du devis avant de réagir, ou relancer trop tôt (dès le lendemain), ce qui peut sembler pressant</li>
 <li><strong>✅ À privilégier</strong> — relancer avec quelques jours de marge avant l'expiration, avec un message qui rouvre la discussion sans donner l'impression de "forcer" une réponse (ex. une question ouverte sur un point du devis, plutôt qu'un simple rappel de délai)</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
+<li><strong>Taux de transformation</strong> — nombre à l'étape d'arrivée ÷ nombre à l'étape de départ × 100. Nomme toujours les deux étapes : contacts → réponses (c'est le <em>taux de réponse</em>), réponses → rendez-vous, rendez-vous → ventes. Exemple : 16 rendez-vous pour 80 réponses → 20 % de transformation des réponses en rendez-vous.</li>
+<li><strong>Écart en points</strong> — différence entre deux pourcentages : un taux qui passe de 12 % à 10 % perd 2 points (et non « 2 % »).</li>
+<li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
+</ul>
 <p><strong>En résumé, avant de juger une action de prospection ou de suivre un devis, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Distingue les différentes étapes (contact → rendez-vous → vente), pas un seul taux global</li>
@@ -377,6 +480,13 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter d'un argument vague ("chez nous c'est mieux") sans rien de concret</li>
 <li><strong>✅ À privilégier</strong> — valoriser précisément un service (caractéristique : suivi de l'entretien dans le carnet constructeur ; avantage : historique complet et reconnu ; bénéfice pour cette cliente : une meilleure valeur de revente de sa Clio)</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Argument CAB</strong> — Caractéristique (ce qu'est le produit : « coffre de 575 L ») → Avantage (ce que ça permet : « on charge poussette et vélos sans démonter ») → Bénéfice pour <em>ce</em> client (« vos départs en week-end sans casse-tête »).</li>
+<li><strong>Mandataire</strong> — intermédiaire (souvent en ligne) qui, sur mandat du client, commande pour lui un véhicule neuf, souvent importé d'un autre pays de l'Union européenne, à un prix inférieur à celui d'une concession, avec moins de services (essai, reprise, entretien, suivi). Pour un véhicule neuf vendu dans l'Union européenne, la garantie constructeur s'applique quand même dans tout le réseau de la marque.</li>
+<li><strong>Coût d'usage</strong> — ce que coûte le véhicule à l'utilisation : carburant ou électricité, entretien, assurance. Carburant sur un an = kilomètres ÷ 100 × consommation (L/100 km) × prix du litre.</li>
 </ul>
 <p><strong>En résumé, avant de valoriser une offre, je vérifie que je :</strong></p>
 <ul>
@@ -396,6 +506,15 @@ const RES = {
 <li><strong>❌ À éviter</strong> — traiter les deux dans l'ordre d'arrivée, sans réfléchir à qui a le plus de chances d'aboutir vite</li>
 <li><strong>✅ À privilégier</strong> — évaluer rapidement le niveau de qualification de chacun (le couple a un Need précis et un Budget en cours de réflexion, il manque la Timeline ; l'association n'a encore rien de qualifié) et prioriser celui qui a le plus d'éléments déjà réunis</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
+<li><strong>Croiser deux sources</strong> — mettre en regard ce que dit chacune (ex. les ventes du SIC et une enquête de satisfaction). Si les deux sources ne portent pas sur les mêmes personnes, on compare des tendances : on ne peut pas conclure que « ceux qui ont répondu X sont ceux qui ont acheté Y ».</li>
+<li><strong>Prioriser des prospects</strong> — on traite d'abord celui dont la qualification BANT (Budget, Autorité — qui décide —, Besoin, Temps — le délai) est la plus avancée et dont la suite est possible tout de suite (disponibilités, canal), puis on programme les autres sans en laisser aucun sans réponse.</li>
+<li><strong>Taux d'ouverture / taux de réponse d'un mail</strong> — mails ouverts ÷ mails envoyés × 100 ; réponses ÷ mails envoyés × 100.</li>
+</ul>
 <p><strong>En résumé, avant de qualifier un prospect dans une situation moins nette, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Priorise quand plusieurs prospects se présentent en même temps, au lieu de traiter au hasard</li>
@@ -413,6 +532,14 @@ const RES = {
 <li><strong>❌ À éviter</strong> — choisir par habitude ou par facilité, sans comparer objectivement le rapport entre coût et résultat attendu</li>
 <li><strong>✅ À privilégier</strong> — comparer explicitement les deux options sur les mêmes critères (coût, portée, taux de conversion attendu) avant de trancher</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Calcul à rebours (rétroplanning)</strong> — on part de la date à ne pas dépasser (dernière livraison possible) et on remonte chaque délai : signature, rendez-vous, premier contact. Si une étape tombe avant aujourd'hui, elle est déjà dépassée : la promesse n'est pas tenable.</li>
+<li><strong>Arbitrer entre plusieurs options</strong> — comparer chaque option sur les mêmes critères (coût, contacts touchés, résultat attendu, délai, temps de travail) avant de choisir, et dire ce qu'on reporte.</li>
+<li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
+<li><strong>Taux de transformation</strong> — nombre à l'étape d'arrivée ÷ nombre à l'étape de départ × 100. Nomme toujours les deux étapes : contacts → réponses (c'est le <em>taux de réponse</em>), réponses → rendez-vous, rendez-vous → ventes. Exemple : 16 rendez-vous pour 80 réponses → 20 % de transformation des réponses en rendez-vous.</li>
+</ul>
 <p><strong>En résumé, avant de valider un plan avec des ressources limitées, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Compare plusieurs options sur les mêmes critères avant de choisir</li>
@@ -428,6 +555,14 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — répondre à la deuxième objection en ignorant la première, comme si elle n'avait pas été dite</li>
 <li><strong>✅ À privilégier</strong> — reconnaître les deux objections successivement, sans se précipiter sur une réponse toute faite pour la seconde</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Question ouverte / question fermée</strong> — une question ouverte laisse le client s'exprimer (« Comment utilisez-vous votre véhicule ? ») ; une question fermée appelle oui/non ou un choix précis (« Roulez-vous plus de 20 000 km par an ? »). On découvre avec des questions ouvertes, on confirme avec des questions fermées.</li>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+<li><strong>Relance</strong> — nouveau contact pour faire avancer un prospect qui ne répond pas. Une réponse qui se limite aux questions posées par le prospect n'est pas une relance ; un message qui ajoute une sollicitation commerciale en est une.</li>
+<li><strong>Argument CAB</strong> — Caractéristique (ce qu'est le produit : « coffre de 575 L ») → Avantage (ce que ça permet : « on charge poussette et vélos sans démonter ») → Bénéfice pour <em>ce</em> client (« vos départs en week-end sans casse-tête »).</li>
 </ul>
 <p><strong>En résumé, face à un échange qui se complique, je vérifie que je :</strong></p>
 <ul>
@@ -450,6 +585,16 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — relancer les trois dans l'ordre où ils ont été envoyés, sans tenir compte ni de l'urgence ni de l'enjeu</li>
 <li><strong>✅ À privilégier</strong> — prioriser d'abord selon l'urgence réelle (le Captur expire dans 3 jours) tout en gardant à l'esprit l'enjeu (les 2 Master, plus importants en valeur, méritent une relance soignée même si elle expire un peu plus tard)</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Taux de transformation</strong> — nombre à l'étape d'arrivée ÷ nombre à l'étape de départ × 100. Nomme toujours les deux étapes : contacts → réponses (c'est le <em>taux de réponse</em>), réponses → rendez-vous, rendez-vous → ventes. Exemple : 16 rendez-vous pour 80 réponses → 20 % de transformation des réponses en rendez-vous.</li>
+<li><strong>Écart en points</strong> — différence entre deux pourcentages : un taux qui passe de 12 % à 10 % perd 2 points (et non « 2 % »).</li>
+<li><strong>Taux d'évolution</strong> — (valeur d'arrivée − valeur de départ) ÷ valeur de départ × 100. Exemple : 40 ventes puis 44 → (44 − 40) ÷ 40 × 100 = +10 %.</li>
+<li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
+<li><strong>Moyenne</strong> — somme des valeurs ÷ nombre de valeurs. Exemple : 10 %, 11 %, 9 % → (10 + 11 + 9) ÷ 3 = 10 %. Attention : la moyenne de plusieurs taux n'est égale au taux global que si chaque taux porte sur le même nombre de personnes.</li>
+<li><strong>Tableau de bord</strong> — tableau qui suit les mêmes indicateurs mois après mois, avec l'objectif en regard, pour repérer tôt ce qui se dégrade et à quelle étape.</li>
 </ul>
 <p><strong>En résumé, avant de conclure sur une performance ou de prioriser des relances, je vérifie que je :</strong></p>
 <ul>
@@ -475,6 +620,14 @@ const RES = {
 <li><strong>✅ À privilégier</strong> — reconnaître honnêtement les limites de tes connaissances sur le point précis posé, et orienter vers un expert de l'atelier (Bruno Faucher) plutôt que d'improviser une réponse fragile</li>
 </ul>
 <p>Face à ce profil, la crédibilité ne vient pas du fait de tout savoir, mais de savoir dire "je vérifie et je reviens vers vous" plutôt que d'inventer une réponse.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Argument CAB</strong> — Caractéristique (ce qu'est le produit : « coffre de 575 L ») → Avantage (ce que ça permet : « on charge poussette et vélos sans démonter ») → Bénéfice pour <em>ce</em> client (« vos départs en week-end sans casse-tête »).</li>
+<li><strong>Mandataire</strong> — intermédiaire (souvent en ligne) qui, sur mandat du client, commande pour lui un véhicule neuf, souvent importé d'un autre pays de l'Union européenne, à un prix inférieur à celui d'une concession, avec moins de services (essai, reprise, entretien, suivi). Pour un véhicule neuf vendu dans l'Union européenne, la garantie constructeur s'applique quand même dans tout le réseau de la marque.</li>
+<li><strong>Coût d'usage</strong> — carburant sur un an = kilomètres ÷ 100 × consommation × prix du litre. Exemple : 16 000 km à 4,5 L/100 km et 1,80 €/L → 160 × 4,5 × 1,80 = 1 296 €.</li>
+<li><strong>Coût net d'un achat</strong> — prix du véhicule − remise − valeur de reprise (c'est le « reste à payer » du bon de commande). Pour comparer deux offres, on compare leurs coûts nets, pas seulement les prix affichés.</li>
+</ul>
 <p><strong>En résumé, face à un client informé ou expert, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Pars de SA comparaison ou de SON niveau, pas d'un argumentaire générique</li>
@@ -492,6 +645,17 @@ const RES = {
 <li><strong>❌ À éviter</strong> — privilégier automatiquement une source parce qu'elle est externe (plus "objective" en apparence) ou interne (plus familière)</li>
 <li><strong>✅ À privilégier</strong> — chercher ce qui explique l'écart (marché national vs zone Vasseur, période exacte) avant de trancher</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Taux d'évolution</strong> — (valeur d'arrivée − valeur de départ) ÷ valeur de départ × 100. Exemple : 40 ventes puis 44 → (44 − 40) ÷ 40 × 100 = +10 %.</li>
+<li><strong>Pourcentage (part)</strong> — partie ÷ total × 100. Exemple : 18 Austral sur 40 SUV vendus → 18 ÷ 40 × 100 = 45 %.</li>
+<li><strong>Écart en points</strong> — différence entre deux pourcentages : un taux qui passe de 12 % à 10 % perd 2 points (et non « 2 % »).</li>
+<li><strong>Écart de prix</strong> — prix Vasseur − prix du concurrent. <strong>Variation (en valeur)</strong> — valeur d'aujourd'hui − valeur précédente, en euros ou en unités ; à ne pas confondre avec le taux d'évolution, en %.</li>
+<li><strong>Hybride / hybride rechargeable</strong> — un hybride recharge seul sa petite batterie en roulant ; un hybride rechargeable se branche sur une prise et roule quelques dizaines de kilomètres en électrique.</li>
+<li><strong>Crit'Air et ZFE</strong> — la vignette Crit'Air classe les véhicules selon leur pollution (de 0, le moins polluant, à 5 ; les véhicules les plus anciens sont « non classés » et sont les premiers exclus) ; une zone à faibles émissions (ZFE) interdit progressivement les classes les plus polluantes.</li>
+<li><strong>Prime et score environnemental</strong> — une prime à l'achat d'un véhicule électrique, encadrée par l'État et financée par les fournisseurs d'énergie, existe sous conditions (prix, revenus, et un score environnemental minimal, qui tient compte de la fabrication et du transport du véhicule) ; ses montants changent : on les vérifie toujours sur une source officielle et on les présente comme soumis à conditions.</li>
+</ul>
 <p><strong>En résumé, avant de conclure sur une veille, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Confronte plusieurs sources avant de conclure, sans en écarter une par principe</li>
@@ -507,6 +671,15 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — répondre comme si c'était une toute nouvelle demande, en redemandant des informations déjà données par message</li>
 <li><strong>✅ À privilégier</strong> — retrouver l'historique de l'échange précédent et poursuivre directement, sans faire répéter le client</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+<li><strong>Validité d'un devis</strong> — un devis engage Vasseur au prix indiqué pendant sa durée de validité, même si le tarif change entre-temps. Jours restants = durée de validité − jours déjà écoulés.</li>
+<li><strong>Contraintes incompatibles</strong> — quand deux souhaits du client ne peuvent pas être satisfaits ensemble (7 places et budget trop bas, par exemple), on ne choisit pas à sa place : on lui explique clairement l'écart et on lui fait préciser sa priorité.</li>
+<li><strong>Location longue durée (LLD)</strong> — l'entreprise loue le véhicule pour une durée et un kilométrage fixés, avec un loyer mensuel, et le rend à la fin ; le contrat ne prévoit pas d'option d'achat (c'est la différence avec la LOA).</li>
+<li><strong>Représentant légal</strong> — la personne qui a le droit de signer au nom de l'entreprise (le gérant d'une SARL, le président d'une SAS, l'artisan lui-même s'il est à son compte).</li>
 </ul>
 <p><strong>En résumé, en situation multi-canal, je vérifie que je :</strong></p>
 <ul>
@@ -525,6 +698,15 @@ const RES = {
 <li><strong>❌ À éviter</strong> — s'adresser uniquement à celui qui parle le plus, en ignorant les priorités de l'autre</li>
 <li><strong>✅ À privilégier</strong> — reformuler les deux priorités exprimées et proposer une solution qui tient compte des deux, avant de figer le dossier</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Les montants d'une LOA</strong> — premier loyer (parfois payé par la reprise), loyers mensuels, puis option d'achat à la fin. Coût total si le client achète = premier loyer + nombre de loyers mensuels (après le premier) × montant du loyer + option d'achat. Ce total dépasse en général le prix comptant : la différence correspond au coût du financement (et des services inclus, s'il y en a).</li>
+<li><strong>Apport</strong> — somme versée au départ d'un crédit ; le crédit finance le reste du prix.</li>
+<li><strong>Avenant</strong> — document qui modifie un bon de commande déjà signé (ajout d'une option, correction) ; il est signé par le client et par Vasseur.</li>
+<li><strong>Procuration</strong> — document par lequel le client autorise une autre personne à agir à sa place (par exemple venir chercher le véhicule).</li>
+<li><strong>Cadrage de négociation</strong> — remise ou geste maximum autorisé par le responsable ; au-delà, on propose une contrepartie ou on demande l'accord du responsable.</li>
+</ul>
 <p><strong>En résumé, sur un dossier complexe, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Prends en compte tous les interlocuteurs impliqués, pas un seul</li>
@@ -540,6 +722,14 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — ne rien dire tant que le retard n'est pas confirmé à 100%, au risque de prévenir au dernier moment</li>
 <li><strong>✅ À privilégier</strong> — informer le client d'un risque possible dès qu'il est identifié, sans dramatiser, pour qu'il ne soit jamais pris de court</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Jours ouvrés</strong> — du lundi au vendredi, hors jours fériés. Le samedi, le dimanche et les jours fériés ne comptent pas. Chez Vasseur, pour un délai « de 5 jours ouvrés », on compte à partir du lendemain : une pièce commandée un lundi arrive le lundi suivant (s'il n'y a pas de jour férié dans la semaine).</li>
+<li><strong>Jours calendaires</strong> — tous les jours, week-end compris. Une pièce peut arriver un samedi sans que l'atelier (ouvert en semaine) puisse la poser avant le lundi.</li>
+<li><strong>Calcul à rebours</strong> — pour savoir jusqu'à quand une pièce peut arriver, on part de la date de livraison et on remonte chaque étape en jours ouvrés. Exemple : si la pièce doit être posée la veille de la livraison et arriver un jour ouvré avant la pose, pour une livraison le lundi, la pose a lieu le vendredi et la pièce doit arriver au plus tard le jeudi.</li>
+<li><strong>Informer d'un risque</strong> — on prévient le client dès qu'un risque sérieux est identifié, sans lui promettre une date qu'on ne maîtrise pas.</li>
 </ul>
 <p><strong>En résumé, sur le suivi de commande, je vérifie que je :</strong></p>
 <ul>
@@ -558,6 +748,16 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — construire une vue d'ensemble avec les 3 délais côte à côte, identifier lequel est le plus long (ici le marquage, jusqu'à 8 jours), et baser la date de livraison annoncée sur ce délai le plus contraignant — pas sur le plus rapide</li>
 </ul>
 <p>Un dossier avec plusieurs services n'est jamais plus rapide que son service le plus lent. C'est ce délai-là qu'il faut avoir en tête en premier.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Jours ouvrés</strong> — du lundi au vendredi, hors jours fériés. Le samedi, le dimanche et les jours fériés ne comptent pas. Chez Vasseur, pour un délai « de 5 jours ouvrés », on compte à partir du lendemain : une pièce commandée un lundi arrive le lundi suivant (s'il n'y a pas de jour férié dans la semaine).</li>
+<li><strong>Enchaînement de services</strong> — quand un service ne peut commencer qu'une fois un autre terminé (la carte grise attend l'accord du financement), on additionne leurs délais. La date de livraison dépend de l'enchaînement le plus long.</li>
+<li><strong>Coût total / reste à charge</strong> — le coût total est le prix de toutes les prestations ; le reste à charge est ce que le client paie réellement, une fois déduite la part prise en charge par Vasseur.</li>
+<li><strong>Taux de respect des délais</strong> — dossiers traités dans le délai ÷ dossiers traités × 100.</li>
+<li><strong>Crédit-bail</strong> — financement d'un véhicule professionnel où l'organisme de financement reste propriétaire pendant tout le contrat ; l'entreprise peut l'acheter à la fin.</li>
+<li><strong>Courtier en assurance</strong> — intermédiaire qui trouve un contrat d'assurance pour le client auprès d'une compagnie.</li>
+</ul>
 <p><strong>En résumé, sur un dossier à plusieurs services, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Liste tous les services engagés, pas seulement le premier ou le plus simple</li>
@@ -573,6 +773,15 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — rejeter toute la faute sur le client (même si les faits le permettent), ou au contraire s'excuser sans nuance</li>
 <li><strong>✅ À privilégier</strong> — reconnaître la part de Vasseur s'il y en a une, expliquer factuellement la part du client sans lui faire de reproche direct, et avancer sur une solution</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Responsabilité partagée et prorata</strong> — quand un retard vient en partie du client et en partie de Vasseur, on ne rembourse que la part de Vasseur. Exemple : 6 jours de location, dont 2 dus à Vasseur → 2 ÷ 6 de la facture.</li>
+<li><strong>Manquement / cause</strong> — un manquement est une faute de procédure (ne pas avoir relancé, ne pas avoir prévenu) ; il ne cause pas forcément un jour de retard, mais il pèse dans le mécontentement.</li>
+<li><strong>Manque à gagner</strong> — argent qu'un professionnel dit ne pas avoir gagné pendant l'immobilisation de son véhicule ; c'est à la direction, pas au vendeur, de se prononcer sur une demande d'indemnisation.</li>
+<li><strong>Expertise</strong> — examen technique (par le constructeur, un expert indépendant ou l'expert de l'assurance) qui établit l'origine d'une panne ; on ne reconnaît ni ne nie une responsabilité avant son résultat.</li>
+<li><strong>Jours ouvrés</strong> — du lundi au vendredi, hors jours fériés. Le samedi, le dimanche et les jours fériés ne comptent pas. Chez Vasseur, pour un délai « de 5 jours ouvrés », on compte à partir du lendemain : une pièce commandée un lundi arrive le lundi suivant (s'il n'y a pas de jour férié dans la semaine).</li>
 </ul>
 <p><strong>En résumé, face à une réclamation ambiguë, je vérifie que je :</strong></p>
 <ul>
@@ -590,6 +799,14 @@ const RES = {
 <li><strong>❌ À éviter</strong> — ignorer ce retour parce qu'il n'est "ni bon ni mauvais", ou le traiter avec la même urgence qu'un Détracteur</li>
 <li><strong>✅ À privilégier</strong> — reconnaître ce que ce retour révèle (un point d'amélioration réel, même sans urgence), et le capitaliser pour l'équipe</li>
 </ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Calcul du NPS</strong> — % de promoteurs (9-10) − % de détracteurs (0-6). Exemple : 50 réponses, 20 promoteurs (40 %), 11 détracteurs (22 %) → NPS de 18.</li>
+<li><strong>Tendance</strong> — sens de l'évolution sur plusieurs périodes (hausse régulière, baisse, stabilité). Un mois avec très peu de réponses peut être atypique : on le signale et on le met à part.</li>
+<li><strong>Moyenne</strong> — somme des valeurs ÷ nombre de valeurs. Attention : la moyenne de plusieurs NPS n'est égale au NPS global que si chaque période a le même nombre de réponses.</li>
+<li><strong>Segment</strong> — groupe de clients comparables (particuliers, professionnels) : un bon NPS global peut cacher un segment en difficulté.</li>
+</ul>
 <p><strong>En résumé, sur la satisfaction, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Regarde une évolution dans le temps, pas un seul résultat isolé</li>
@@ -606,6 +823,14 @@ const RES = {
 <ul>
 <li><strong>❌ À éviter</strong> — lui envoyer le même message commercial qu'à tout le monde, comme si rien ne s'était passé</li>
 <li><strong>✅ À privilégier</strong> — un message qui tient compte de l'incident récent sans le rappeler lourdement, et qui privilégie la relation avant la vente</li>
+</ul>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>SIC (ou CRM)</strong> — système d'information commerciale : le logiciel où l'on tient la fiche de chaque client ou prospect (coordonnées, historique des échanges datés, statut, prochaine action). Une information non vérifiée y est signalée comme telle, jamais présentée comme sûre.</li>
+<li><strong>Taux d'ouverture / de prise de rendez-vous</strong> — mails ouverts ÷ mails envoyés × 100 ; rendez-vous pris ÷ mails envoyés × 100.</li>
+<li><strong>Message de base et variantes</strong> — un seul message commun à tous, et quelques variantes seulement pour les segments qui ont vraiment un bénéfice différent.</li>
+<li><strong>Fiche inactive</strong> — client sans réponse après les tentatives prévues : on arrête les sollicitations commerciales pendant la période fixée, sauf informations de sécurité.</li>
 </ul>
 <p><strong>En résumé, sur le contact client, je vérifie que je :</strong></p>
 <ul>
@@ -625,6 +850,14 @@ const RES = {
 <li><strong>✅ À privilégier</strong> — anticiper ce cas et préparer une réponse cohérente si la question se pose, sans casser la règle pour autant</li>
 </ul>
 <p><strong>Adapter un levier à un public professionnel (B2B) :</strong> un avantage pensé pour un particulier (ex. un forfait entretien offert) n'a pas forcément le même attrait pour une entreprise, qui raisonne surtout en <strong>coût d'exploitation</strong> — c'est-à-dire l'ensemble des dépenses régulières liées à l'usage de ses véhicules (carburant, entretien, assurance, immobilisation en cas de panne). Pour un client B2B avec une flotte de véhicules, un levier qui réduit ce coût d'exploitation sur la durée (ex. tarif préférentiel sur l'entretien de toute la flotte) parle souvent plus qu'un avantage ponctuel à l'achat.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Coût attendu d'une opération</strong> — nombre de bénéficiaires attendus × montant de l'avantage. Exemple : 260 clients × 25 % = 65 bénéficiaires ; 65 × 200 € = 13 000 €.</li>
+<li><strong>Enveloppe</strong> — budget maximum (par exemple 10 à 20 % de la marge d'une vente) à ne pas dépasser pour un avantage.</li>
+<li><strong>Effet pervers</strong> — conséquence non voulue d'une action : sentiment d'injustice d'un client exclu, abus d'une règle mal écrite, confusion entre deux offres.</li>
+<li><strong>Coût d'exploitation</strong> — pour un professionnel, ce que lui coûte son véhicule au quotidien (entretien, immobilisation, carburant) ; c'est souvent là qu'un avantage de fidélité le touche le plus.</li>
+</ul>
 <p><strong>En résumé, en construisant une action de fidélisation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Anticipe les cas limites, pas seulement le cas général</li>
@@ -645,6 +878,15 @@ const RES = {
 </ul>
 <p><strong>Un biais plus subtil — le biais de sélection :</strong> quand on compare les clients ayant participé à une offre à ceux n'y ayant pas participé, il faut se méfier d'une explication trompeuse : les clients qui participent sont peut-être déjà, au départ, plus fidèles ou plus engagés que les autres — indépendamment de l'offre elle-même. Une bonne évaluation dans la durée doit envisager cette explication alternative avant de conclure que l'offre est seule responsable du résultat.</p>
 <p><strong>Regarder au-delà du taux de conversion :</strong> le taux de conversion (combien de clients rachètent) ne capture pas tout. D'autres indicateurs peuvent révéler un effet que le taux de conversion seul sous-estime, par exemple le <strong>taux de recommandation</strong> (des clients satisfaits qui parlent de Vasseur sans forcément racheter tout de suite) ou l'<strong>ancienneté moyenne</strong> des clients fidélisés.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Écart en points</strong> — différence entre deux pourcentages : un taux qui passe de 12 % à 10 % perd 2 points (et non « 2 % »).</li>
+<li><strong>Biais de sélection</strong> — quand les clients qui participent à une offre étaient déjà différents des autres au départ (plus fidèles, choisis par un vendeur), l'écart observé ne vient pas seulement de l'offre.</li>
+<li><strong>Différence d'évolution</strong> — on compare comment chaque groupe a évolué (+10 points pour l'un, +5 pour l'autre) plutôt que l'écart final : c'est une estimation, pas une preuve.</li>
+<li><strong>Groupe de comparaison</strong> — clients semblables, choisis au hasard, qui ne reçoivent pas l'offre pendant la même période ; on compare leurs résultats à ceux des clients qui l'ont reçue.</li>
+<li><strong>Échantillon trop petit</strong> — sur 10 clients, une seule vente de plus ou de moins change le taux de 10 points : on ne peut pas généraliser un tel résultat.</li>
+</ul>
 <p><strong>En résumé, avant de valider une évaluation, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Questionne la taille de l'échantillon avant de faire confiance à un pourcentage</li>
