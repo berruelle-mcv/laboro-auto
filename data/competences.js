@@ -313,7 +313,7 @@ const RES = {
 <p><strong>C3.2 — Fidéliser concrètement chez Vasseur.</strong> Une action de fidélisation efficace récompense un comportement réel du client (ancienneté, fréquence, recommandation), pas un geste générique offert à tout le monde sans distinction — sinon ça devient une simple remise, pas de la fidélisation.</p>
 <p><strong>Les leviers classiques :</strong> offre réservée aux clients existants, programme de parrainage (le client recommande, les deux y gagnent), événement dédié (portes ouvertes clients), geste personnalisé suite à un problème résolu.</p>
 <p><strong>Cas pratique — un programme de parrainage chez Vasseur :</strong></p>
-<p>Isabelle veut récompenser les clients de Vasseur Sélection qui laissent un avis après leur achat d'occasion.</p>
+<p>Isabelle veut récompenser les clients de Vasseur Sélection qui recommandent un proche, lorsque ce proche achète à son tour un véhicule d'occasion.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — un avantage trop symbolique (qui ne motive personne à recommander) ou au contraire disproportionné (qui rogne la marge sans réel retour)</li>
 <li><strong>✅ À privilégier</strong> — un avantage calibré sur ce que l'action rapporte réellement à Vasseur, simple, et compréhensible en une phrase</li>
@@ -348,7 +348,7 @@ const RES = {
 <p><strong>B4.4 — Faire le bilan d'une prospection chez Vasseur.</strong> Une campagne de prospection ne s'arrête pas à l'envoi des messages : il faut suivre les résultats (taux de réponse, taux de transformation en rendez-vous, taux de transformation en vente) et ajuster si besoin, y compris en cours de campagne.</p>
 <p><strong>Les indicateurs clés :</strong> nombre de contacts touchés, taux de réponse (combien ont réagi), taux de transformation (combien ont acheté). Un faible taux de réponse peut venir du message, du canal, ou du mauvais ciblage — il faut identifier lequel avant d'ajuster.</p>
 <p><strong>Cas pratique — bilan d'une session de phoning chez Vasseur :</strong></p>
-<p>Sur 50 mails de prospection B2B envoyés ce mois-ci, 5 rendez-vous ont été pris, et aucune vente n'est encore conclue.</p>
+<p>Sur 50 appels de prospection B2B passés ce mois-ci, 5 rendez-vous ont été pris, et aucune vente n'est encore conclue.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — conclure "ça n'a pas marché" en ne regardant que la vente finale (0 sur 50), sans distinguer les étapes</li>
 <li><strong>✅ À privilégier</strong> — calculer chaque taux séparément (10 % de taux de rendez-vous, encore trop tôt pour juger le taux de transformation en vente), et identifier à quelle étape se situe la vraie marge de progression</li>
