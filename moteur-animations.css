@@ -86,6 +86,8 @@
 .ma-resultat{margin-top:10px;padding:10px 12px;background:var(--th-fond,#EBF4FF);border-radius:8px;font-size:12.5px;line-height:1.7;font-variant-numeric:tabular-nums}
 .ma-gros{font-size:16px;color:var(--th-nuit,#0A2540)}
 .ma-piege{color:#B4331F;font-size:11.5px}
+.ma-trou{display:inline-block;min-width:26px;text-align:center;font-weight:800;color:var(--th-principal,#185FA5);background:#fff;border:1.5px dashed var(--th-principal,#185FA5);border-radius:6px;padding:0 6px}
+.ma-aide-calc{margin:10px 0 0}
 .ma-ent{position:relative;height:20px;background:#fff;border-radius:5px;margin-bottom:4px;overflow:hidden}
 .ma-ent i{position:absolute;left:0;top:0;bottom:0;background:var(--th-pastel,#93C5FD);border-radius:5px;transition:width .4s}
 .ma-ent span{position:relative;font-size:11px;padding-left:8px;line-height:20px;font-weight:600}
