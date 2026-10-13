@@ -44,6 +44,7 @@
 //   js/brouillons-serveur.js et js/maison.js). Chargé en dernier.
 //   Créé le 12/10/2026 (LABORO MCV) ; rendu commun aux univers le 12/10/2026
 //   pour LABORO Auto.
+//   13/10/2026 : calculatrices en mode « méthode » (toutes celles des deux univers).
 // ================================================
 (function(){
   "use strict";
@@ -158,7 +159,7 @@
   function enseigne(){
     var e = U().enseigne || {};
     return { nom: e.nom || "LABORO", sous: e.sous || "SPORT & OUTDOOR · ÉVRY", lieu: e.lieu || "LABORO · ÉVRY",
-      fond: e.fond || "#0A2540", accent: e.accent || "#4A6FA5", logo: U().logo || "LABORO" };
+      fond: e.fond || "#0A2540", accent: e.accent || "#185FA5", logo: U().logo || "LABORO" };
   }
   function svgPerso(x, p, id, decor){
     var f = p.sexe === "f";
@@ -480,6 +481,7 @@
 
   // ─────────────────────────────────────────────
   //  Bloc CALCUL  { type:"calcul", titre, intro, calc:"…", valeurs:[…] (facultatif), objectif (facultatif) }
+  //  (relance : valeurs:[n] = jour d'envoi du devis proposé au départ, 0 = lundi ; mercredi par défaut)
   //  Mode « méthode » (ANIM_UNIVERS.calcul = "methode", choix de Pascal du 13/10/2026) :
   //  l'exemple de départ est résolu en entier ; dès que l'élève saisit ses propres
   //  chiffres, la calculatrice pose le calcul avec ces chiffres et remplace chaque
@@ -552,6 +554,42 @@
       return "Résultat attendu = " + fmt(v[0], 0) + " × " + fmt(v[1], 2) + " ÷ 100 = " + TROU + "<br>"
         + "Coût par contact = " + euros(v[2]) + " ÷ " + fmt(v[0], 0) + " = " + TROU + " · Coût par demande attendue = " + euros(v[2]) + " ÷ résultat attendu = " + TROU + "<br>"
         + "<span class='ma-intro'>C'est une estimation, pas une garantie.</span>";
+    },
+    // Calculatrices de LABORO Sport & Outdoor (ajoutées le 13/10/2026)
+    satisfaction: function(v){
+      var t = v[0] + v[1] + v[2]; if(!t) return "Saisis au moins une réponse.";
+      return "Total des répondants = " + v[0] + " + " + v[1] + " + " + v[2] + " = " + TROU + "<br>"
+        + "Taux de satisfaction = (" + v[0] + " + " + v[1] + ") ÷ total × 100 = " + TROU + "<br>"
+        + "<span class='ma-intro'>Au numérateur : seulement les clients satisfaits et très satisfaits. Au dénominateur : tous les répondants.</span>";
+    },
+    ttc: function(v){
+      return "HT = TTC ÷ 1,20 = " + fmt(v[0], 2) + " ÷ 1,20 = " + TROU + "<br>"
+        + "TVA = TTC − HT = " + fmt(v[0], 2) + " − HT = " + TROU + "<br>"
+        + "<span class='ma-piege'>Piège : retirer 20 % du TTC (TTC × 0,80) ne donne pas le HT.</span>";
+    },
+    points: function(v){
+      return "Points gagnés = " + fmt(v[0], 2) + " € × 1 point par euro entier = " + TROU + "<br>"
+        + "Tranches complètes de 100 points = points ÷ 100, sans garder la partie après la virgule = " + TROU + "<br>"
+        + "Remise = tranches × 10 € = " + TROU + "<br>"
+        + "<span class='ma-intro'>Les points qui ne forment pas une tranche complète restent pour la prochaine fois.</span>";
+    },
+    retention: function(v){
+      if(!v[0]) return "Saisis le nombre de clients de la période précédente.";
+      if(v[1] > v[0]) return "Les clients qui ont racheté ne peuvent pas être plus nombreux que les clients de départ.";
+      return "Rétention = " + v[1] + " ÷ " + v[0] + " × 100 = " + TROU + "<br>"
+        + "Attrition = 100 − rétention = " + TROU + "<br>"
+        + "<span class='ma-intro'>Rétention + attrition = 100 % : c'est ta vérification.</span>";
+    },
+    relance: function(v){
+      var j = v[0], cases = [];
+      for(var x = j + 1; x <= j + 12; x++){
+        var jj = x % 7;
+        cases.push("<span class='ma-jour" + (jj < 5 ? "" : " off") + "'>" + JOURS[jj].slice(0, 3) + "<small>" + (jj < 5 ? "&nbsp;" : "—") + "</small></span>");
+      }
+      return "<div class='ma-jours'><span class='ma-jour dep'>" + JOURS[j].slice(0, 3) + "<small>devis (J)</small></span>" + cases.join("") + "</div>"
+        + "Devis (J) envoyé un <b>" + JOURS[j] + "</b>. Compte les jours à partir du lendemain, week-end compris.<br>"
+        + "J+5, première relance : " + TROU + "<br>J+10, dernière relance : " + TROU + "<br>"
+        + "<span class='ma-intro'>Si la relance tombe un samedi ou un dimanche, on relance le premier jour ouvré suivant.</span>";
     }
   };
   var CALCS = {
@@ -713,7 +751,8 @@
     var etiq = b.champs || [];
     var champs = "";
     if(def.jours){
-      champs = '<label class="ma-champ">Jour d\'envoi du devis <select>' + JOURS.slice(0, 5).map(function(j, i){ return '<option value="' + i + '"' + (i === 2 ? " selected" : "") + '>' + j + '</option>'; }).join("") + '</select></label>';
+      var jr = vals[0] != null ? vals[0] : 2;
+      champs = '<label class="ma-champ">Jour d\'envoi du devis <select>' + JOURS.slice(0, 5).map(function(j, i){ return '<option value="' + i + '"' + (i === jr ? " selected" : "") + '>' + j + '</option>'; }).join("") + '</select></label>';
     } else {
       if(def.jourDepart){
         var jd = vals.length > def.champs.length ? vals[0] : 0;
