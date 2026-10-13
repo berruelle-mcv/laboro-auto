@@ -480,6 +480,10 @@
 
   // ─────────────────────────────────────────────
   //  Bloc CALCUL  { type:"calcul", titre, intro, calc:"…", valeurs:[…] (facultatif), objectif (facultatif) }
+  //  Mode « méthode » (ANIM_UNIVERS.calcul = "methode", choix de Pascal du 13/10/2026) :
+  //  l'exemple de départ est résolu en entier ; dès que l'élève saisit ses propres
+  //  chiffres, la calculatrice pose le calcul avec ces chiffres et remplace chaque
+  //  résultat par « ? » — elle ne fait jamais à sa place le calcul de sa mission.
   //  Les objectifs propres à l'univers se règlent dans ANIM_UNIVERS.objectifs
   //  (sans réglage : objectifs de LABORO Sport & Outdoor). Mettre un objectif
   //  à null pour ne pas afficher de comparaison.
@@ -497,6 +501,59 @@
     return { v: (cle in o) ? o[cle] : null, nom: o.nom || "" };
   }
   var JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+  var TROU = "<span class='ma-trou'>?</span>";
+  // Versions « méthode » : le calcul est posé avec les chiffres de l'élève, sans résultat
+  var METHODES = {
+    nps: function(v){
+      var t = v[0] + v[1] + v[2]; if(!t) return "Saisis au moins une réponse.";
+      return "Total des répondants = " + v[0] + " + " + v[1] + " + " + v[2] + " = " + TROU + " (passifs compris)<br>"
+        + "% promoteurs = " + v[0] + " ÷ total × 100 = " + TROU + "<br>"
+        + "% détracteurs = " + v[2] + " ÷ total × 100 = " + TROU + "<br>"
+        + "NPS = % promoteurs − % détracteurs = " + TROU + " <span class='ma-intro'>(entre −100 et +100)</span>";
+    },
+    entonnoir: function(v, def){
+      var et = def.etapes, noms = def.taux || [];
+      var lignes = [];
+      for(var i = 1; i < v.length; i++){
+        lignes.push(esc(noms[i - 1] || (et[i - 1] + " → " + et[i])) + " = " + v[i] + " ÷ " + v[i - 1] + " × 100 = " + TROU);
+      }
+      return v.map(function(x, i){ return esc(et[i]) + " : <b>" + x + "</b>"; }).join(" → ") + "<br>" + lignes.join("<br>");
+    },
+    reste: function(v){
+      return "Reste à payer = " + euros(v[0]) + (v[1] ? " + " + euros(v[1]) + " (options)" : "") + " − " + euros(v[2]) + " (reprise)" + (v[3] ? " − " + euros(v[3]) + " (remise)" : "") + " = " + TROU + "<br>"
+        + "Solde à la livraison = reste à payer − " + euros(v[4]) + " (acompte) = " + TROU + "<br>"
+        + "Vérification : reste à payer + " + euros(v[2]) + (v[3] ? " + " + euros(v[3]) : "") + " doit redonner " + (v[1] ? "le prix + les options" : "le prix du véhicule") + ".";
+    },
+    joursouvres: function(v){
+      var d = v[0], n = Math.min(Math.floor(v[1]), 40);
+      if(n < 1) return "Saisis un délai d'au moins 1 jour ouvré.";
+      var cases = [];
+      for(var x = d + 1; x <= d + 14; x++){
+        var jj = x % 7;
+        cases.push("<span class='ma-jour" + (jj < 5 ? "" : " off") + "'>" + JOURS[jj].slice(0, 3) + "<small>" + (jj < 5 ? "&nbsp;" : "—") + "</small></span>");
+      }
+      return "<div class='ma-jours'><span class='ma-jour dep'>" + JOURS[d].slice(0, 3) + "<small>départ</small></span>" + cases.join("") + "</div>"
+        + "Compte " + n + " jour" + (n > 1 ? "s" : "") + " ouvré" + (n > 1 ? "s" : "") + " à partir du lendemain, sans le samedi ni le dimanche : arrivée le " + TROU + "."
+        + "<br><span class='ma-intro'>S'il y a un jour férié dans la période, il ne compte pas : ajoute un jour.</span>";
+    },
+    conversion: function(v){
+      if(!v[0]) return "Saisis le nombre de clients touchés.";
+      if(v[1] > v[0]) return "Il ne peut pas y avoir plus de ventes que de clients touchés.";
+      return "Taux de conversion = " + v[1] + " ÷ " + v[0] + " × 100 = " + TROU + "<br>"
+        + "Coût par vente = " + euros(v[2]) + " ÷ " + v[1] + " = " + TROU + "<br>"
+        + "<span class='ma-intro'>Un taux seul ne suffit pas : compare-le à un repère et regarde aussi le coût.</span>";
+    },
+    carburant: function(v){
+      return "Litres = " + fmt(v[0], 0) + " ÷ 100 × " + fmt(v[1], 2) + " = " + TROU + "<br>"
+        + "Coût = litres × " + fmt(v[2], 2) + " € = " + TROU + "<br>"
+        + "<span class='ma-intro'>Pour comparer deux véhicules, fais le calcul pour chacun, puis la différence.</span>";
+    },
+    previsionnel: function(v){
+      return "Résultat attendu = " + fmt(v[0], 0) + " × " + fmt(v[1], 2) + " ÷ 100 = " + TROU + "<br>"
+        + "Coût par contact = " + euros(v[2]) + " ÷ " + fmt(v[0], 0) + " = " + TROU + " · Coût par demande attendue = " + euros(v[2]) + " ÷ résultat attendu = " + TROU + "<br>"
+        + "<span class='ma-intro'>C'est une estimation, pas une garantie.</span>";
+    }
+  };
   var CALCS = {
     nps: {
       champs: [["Promoteurs (notes 9-10)", 20], ["Passifs (notes 7-8)", 25], ["Détracteurs (notes 0-6)", 5]],
@@ -674,9 +731,20 @@
     var entrees = racine.querySelectorAll("input,select"), res = racine.querySelector(".ma-resultat");
     var defLocal = def;
     if(b.etapes || b.taux){ defLocal = Object.create(def); if(b.etapes) defLocal.etapes = b.etapes; if(b.taux) defLocal.taux = b.taux; }
+    var methode = (b.mode || U().calcul) === "methode" && METHODES[b.calc];
+    var lire = function(){ return Array.prototype.map.call(entrees, function(x){ var n = parseFloat(String(x.value).replace(",", ".")); return isFinite(n) && n >= 0 ? n : 0; }); };
+    var depart = lire().join("|");
+    if(methode){
+      var aide = el("p", "ma-intro ma-aide-calc", "📝 L'exemple de départ est résolu. Avec tes propres chiffres, le calcul est posé : à toi de trouver chaque « ? ».");
+      racine.insertBefore(aide, res);
+      var raz = el("button", "ma-btn ma-sec ma-petit", "↺ Revenir à l'exemple résolu");
+      raz.type = "button";
+      raz.addEventListener("click", function(){ entrees.forEach(function(x, i){ x.value = depart.split("|")[i]; }); maj(); });
+      racine.appendChild(raz);
+    }
     function maj(){
-      var v = Array.prototype.map.call(entrees, function(x){ var n = parseFloat(String(x.value).replace(",", ".")); return isFinite(n) && n >= 0 ? n : 0; });
-      res.innerHTML = def.calc(v, defLocal, b);
+      var v = lire();
+      res.innerHTML = (methode && v.join("|") !== depart) ? METHODES[b.calc](v, defLocal, b) : def.calc(v, defLocal, b);
     }
     entrees.forEach(function(x){ x.addEventListener("input", maj); x.addEventListener("change", maj); });
     maj();
