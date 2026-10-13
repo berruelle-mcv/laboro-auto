@@ -30,6 +30,9 @@ const ANIM_UNIVERS = {
   expediteur: { strict: true, par_defaut: "Karim Yildiz" },
   // Pas d'objectif chiffré imposé dans les calculatrices (chaque mission donne ses repères)
   objectifs: { nom: "Vasseur" },
+  // Calculatrices en mode « méthode » (choix de Pascal du 13/10/2026) : avec ses propres
+  // chiffres, l'élève voit le calcul posé et des « ? » à la place des résultats.
+  calcul: "methode",
   // Photos du catalogue dans les dossiers : « Captur », « Kangoo Van »… et la ligne « Véhicule »
   catalogue: { cles_modele: true, colonnes_vehicule: "^(vehicule|modele)(?!s)(?! repris)" }
 };
@@ -104,7 +107,7 @@ const RES_ANIMEES = {
         ["Je paie en plusieurs fois sans organisme de financement, et la voiture est à moi tout de suite.", 0, "Comptant en plusieurs fois : toujours propriétaire immédiatement."]
       ] },
     { type: "calcul", calc: "reste", titre: "Calculer un reste à payer, ligne par ligne",
-      intro: "Cas pratique de la fiche : Corolla d'occasion à 19 000 €, reprise estimée à 4 500 €. Ajoute un acompte, une remise ou une option : chaque ligne reste visible, comme dans le dossier." },
+      intro: "Cas pratique de la fiche : Corolla d'occasion à 19 000 €, reprise estimée à 4 500 €. Avec d'autres montants, le calcul se pose ligne par ligne, comme dans le dossier : à toi de le terminer." },
     { type: "etapes", titre: "Finaliser une vente en 4 temps",
       etapes: [
         { ico: "🪪", k: "Identité", s: "Le client, ses coordonnées complètes" },
@@ -275,7 +278,7 @@ const RES_ANIMEES = {
 
   "C3.3-1": [
     { type: "calcul", calc: "conversion", titre: "Taux de conversion et coût par vente",
-      intro: "Cas pratique de la fiche : une soirée essais, 150 clients invités, 6 ventes, 1 800 € de coût. Change les chiffres pour comparer deux actions." },
+      intro: "Cas pratique de la fiche : une soirée essais, 150 clients invités, 6 ventes, 1 800 € de coût. Essaie avec d'autres chiffres : le calcul se pose, à toi de le terminer." },
     { type: "tri", titre: "Taux de participation ou taux de conversion ?", consigne: "Lis chaque résultat : mesure-t-il qui a utilisé l'offre, ou qui a acheté ?",
       categories: ["Participation", "Conversion"],
       items: [
@@ -385,7 +388,7 @@ const RES_ANIMEES = {
 
   "B4.4-1": [
     { type: "calcul", calc: "entonnoir", titre: "Suivre une campagne étape par étape",
-      intro: "Saisis les résultats d'une campagne : chaque taux se calcule par rapport à l'étape juste avant.",
+      intro: "Exemple résolu d'une campagne : chaque taux se calcule par rapport à l'étape juste avant. Avec d'autres chiffres, à toi de terminer le calcul.",
       champs: ["Contacts (mails, appels)", "Réponses", "Rendez-vous", "Ventes"],
       valeurs: [200, 24, 8, 2],
       etapes: ["Contacts", "Réponses", "Rendez-vous", "Ventes"],
@@ -425,6 +428,6 @@ const RES_ANIMEES = {
         ["Vous restez dans votre budget sans renoncer au volume.", 2, "Le gain personnel du client."]
       ] },
     { type: "calcul", calc: "carburant", titre: "Calculer un coût de carburant",
-      intro: "Coût d'usage = kilomètres ÷ 100 × consommation × prix du litre. Change les valeurs pour comparer deux véhicules." }
+      intro: "Coût d'usage = kilomètres ÷ 100 × consommation × prix du litre. Avec d'autres valeurs, le calcul se pose : à toi de le terminer." }
   ]
 };
