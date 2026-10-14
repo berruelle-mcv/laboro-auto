@@ -14,6 +14,9 @@
 //   (deux missions de même compétence affichaient la même scène) mais à
 //   la mission elle-même, avec sa variante PVOC.
 //
+//   L'exercice animé PROPRE À CHAQUE MISSION vient de data/exercices-missions.js
+//   (EXERCICES_MISSIONS), en tête de « Apprendre d'abord » (14/10/2026).
+//
 //   Ce qui est propre à un univers (équipe, enseigne, objectifs chiffrés,
 //   reconnaissance des modèles du catalogue) se règle dans la constante
 //   ANIM_UNIVERS du même fichier de données. Sans ANIM_UNIVERS, le moteur
@@ -978,8 +981,13 @@
     var zone = document.getElementById("mo-learn");
     if(!zone) return;
     var fiche = zone.querySelector(".res-block");
-    var blocs = blocsPour(m);
-    if(blocs && blocs.length && !zone.querySelector(".ma-zone")){
+    // Un seul exercice, propre à la mission (data/exercices-missions.js).
+    // Les blocs de compétence (data/ressources-animees.js) ne servent plus
+    // que de secours pour une future mission qui n'aurait pas encore le sien
+    // (14/10/2026 : « une animation par mission », jamais partagée).
+    var propre = (typeof EXERCICES_MISSIONS !== "undefined") ? EXERCICES_MISSIONS[m.id] : null;
+    var blocs = propre ? [propre] : (blocsPour(m) || []);
+    if(blocs.length && !zone.querySelector(".ma-zone")){
       var z = el("div", "ma-zone");
       z.appendChild(el("div", "ma-zone-tete", "<span>Découvrir en action</span><small>Regarde, manipule, vérifie que tu as compris. La fiche complète est juste en dessous.</small>"));
       blocs.forEach(function(b){ var n = MA.rendreBloc(b); if(n) z.appendChild(n); });
