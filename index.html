@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="moteur-animations.css?v=20261014c">
 <link rel="stylesheet" href="espace-prof.css?v=20261015">
 <!-- Réglages de l'univers (moteur commun) : DOIT rester le premier script -->
-<script src="data/univers.js?v=20260927g"></script>
+<script src="data/univers.js?v=20261015codes"></script>
 <script src="js/univers-config.js?v=20260927b"></script>
 
 
@@ -169,7 +169,7 @@
       <div style="background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
         <div style="font-size:24px;margin-bottom:12px">📋</div>
         <div style="font-size:15px;font-weight:700;color:#1F2937;margin-bottom:8px">Aligné référentiel</div>
-        <div style="font-size:13px;color:#6B7280;line-height:1.6">Chaque mission est rattachée à une compétence du référentiel (C1.1 à B4.5, intitulés officiels), à un palier de progression et à une épreuve (E31, E32, E33 ou E2). Avant chaque mission, une fiche méthode adaptée au palier.</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.6">Chaque mission est rattachée à une compétence du référentiel (C1.1 à C4B.5, intitulés officiels), à un palier de progression et à une épreuve (E31, E32, E33 ou E2). Avant chaque mission, une fiche méthode adaptée au palier.</div>
       </div>
       <div style="background:#fff;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
         <div style="font-size:24px;margin-bottom:12px">📊</div>
@@ -214,7 +214,7 @@
           <div style="font-size:11px;color:#6B7280;line-height:1.5">C3.1 Information et contact client<br>C3.2 Actions de fidélisation<br>C3.3 Évaluation de la fidélisation</div>
         </div>
       </div>
-      <div style="margin-top:12px;background:#fff;border-radius:10px;padding:14px 16px;font-size:12px;color:#374151;line-height:1.6"><strong style="color:#7A4614">E2 — Épreuve écrite · Coeff. 4 :</strong> l'option B est évaluée à l'écrit — bloc 4B « Prospecter et valoriser l'offre commerciale » (B4.1 à B4.5). LABORO Auto propose des missions sur chacune de ces cinq compétences, à chaque palier.</div>
+      <div style="margin-top:12px;background:#fff;border-radius:10px;padding:14px 16px;font-size:12px;color:#374151;line-height:1.6"><strong style="color:#7A4614">E2 — Épreuve écrite · Coeff. 4 :</strong> l'option B est évaluée à l'écrit — bloc 4B « Prospecter et valoriser l'offre commerciale » (C4B.1 à C4B.5). LABORO Auto propose des missions sur chacune de ces cinq compétences, à chaque palier.</div>
       <div style="margin-top:12px;font-size:11px;color:#B5651D;font-style:italic">Le portfolio LABORO présente la progression de l'élève compétence par compétence, épreuve par épreuve, à partir des missions validées.</div>
     </div>
     <div id="vitrine-revolution" style="background:#fff;border-radius:14px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:32px;border-left:4px solid #D97706">
@@ -893,13 +893,13 @@
       </div>
       <div class="card" style="overflow-x:auto;margin-bottom:12px">
         <div class="ct" id="cl-titre">Vue classe — cliquer sur un élève pour le sélectionner</div>
-        <table class="ctl"><thead><tr><th>Élève</th><th>Classe</th><th id="th-activite" onclick="if(typeof basculerTriActivite==='function')basculerTriActivite()" style="cursor:pointer" title="Cliquer pour trier : les plus anciennes en haut">Dernière activité</th><th>C1</th><th>C2</th><th>C3</th><th>G4</th><th>Score</th><th>Posture</th><th>Missions</th><th>Moy.</th><th>Actions</th></tr></thead><tbody id="cl-tbody"></tbody></table>
+        <table class="ctl"><thead><tr><th>Élève</th><th>Classe</th><th id="th-activite" onclick="if(typeof basculerTriActivite==='function')basculerTriActivite()" style="cursor:pointer" title="Cliquer pour trier : les plus anciennes en haut">Dernière activité</th><th>Bloc 1</th><th>Bloc 2</th><th>Bloc 3</th><th>Bloc 4</th><th>Score</th><th>Posture</th><th>Missions</th><th>Moy.</th><th>Actions</th></tr></thead><tbody id="cl-tbody"></tbody></table>
       </div>
       <div id="archives-wrap"></div>
     </div>
 
     <div id="panel-generation" class="panel">
-      <div class="card"><div class="ct">Générer une nouvelle mission</div><div class="gen-grid"><select id="g-opt"><option value="PVOC">PVOC</option></select><select id="g-pal"><option value="1">Palier 1 — Débutant</option><option value="2">Palier 2 — Apprenti</option><option value="3">Palier 3 — Professionnel compétent</option><option value="4">Palier 4 — Expert</option></select><select id="g-comp"><option value="C1.1">C1.1 Veille commerciale</option><option value="C1.2">C1.2 Vente omnicanale</option><option value="C1.3">C1.3 Exécution vente</option><option value="C2.1">C2.1 Suivi commande</option><option value="C2.1b">C2.1b Services associés</option><option value="C2.2">C2.2 Réclamations</option><option value="C2.3">C2.3 Satisfaction client</option><option value="C3.1">C3.1 Contact client</option><option value="C3.2">C3.2 Fidélisation</option><option value="C3.3">C3.3 Évaluation FDRC</option><option value="B4.1">B4.1 Infos prospection</option><option value="B4.2">B4.2 Conception prospection</option><option value="B4.3">B4.3 Mise en oeuvre</option><option value="B4.4">B4.4 Suivi prospection</option><option value="B4.5">B4.5 Valorisation offre</option></select><select id="g-cli"><option value="B2C particulier VN">B2C — Particulier (neuf)</option><option value="B2C particulier VO">B2C — Particulier (occasion)</option><option value="B2B artisan">B2B — Artisan</option><option value="B2B PME">B2B — PME</option><option value="B2B collectivité">B2B — Collectivité</option></select></div><button class="btn-gen" onclick="genMission()">Générer la mission →</button><div class="gen-res" id="gen-res" style="color:var(--gm);font-style:italic">La mission générée apparaîtra ici…</div></div>
+      <div class="card"><div class="ct">Générer une nouvelle mission</div><div class="gen-grid"><select id="g-opt"><option value="PVOC">PVOC</option></select><select id="g-pal"><option value="1">Palier 1 — Débutant</option><option value="2">Palier 2 — Apprenti</option><option value="3">Palier 3 — Professionnel compétent</option><option value="4">Palier 4 — Expert</option></select><select id="g-comp"><option value="C1.1">C1.1 Veille commerciale</option><option value="C1.2">C1.2 Vente omnicanale</option><option value="C1.3">C1.3 Exécution de la vente</option><option value="C2.1">C2.1 Suivi de la commande</option><option value="C2.2">C2.2 Services associés</option><option value="C2.3">C2.3 Retours et réclamations</option><option value="C2.4">C2.4 Satisfaction client</option><option value="C3.1">C3.1 Contact client</option><option value="C3.2">C3.2 Fidélisation</option><option value="C3.3">C3.3 Évaluation des actions de fidélisation</option><option value="B4.1">C4B.1 Recherche et analyse d'informations</option><option value="B4.2">C4B.2 Conception de la prospection</option><option value="B4.3">C4B.3 Mise en œuvre de la prospection</option><option value="B4.4">C4B.4 Suivi et évaluation de la prospection</option><option value="B4.5">C4B.5 Valorisation de l'offre</option></select><select id="g-cli"><option value="B2C particulier VN">B2C — Particulier (neuf)</option><option value="B2C particulier VO">B2C — Particulier (occasion)</option><option value="B2B artisan">B2B — Artisan</option><option value="B2B PME">B2B — PME</option><option value="B2B collectivité">B2B — Collectivité</option></select></div><button class="btn-gen" onclick="genMission()">Générer la mission →</button><div class="gen-res" id="gen-res" style="color:var(--gm);font-style:italic">La mission générée apparaîtra ici…</div></div>
     </div>
 
     <div id="panel-classesadmin" class="panel">
@@ -1002,37 +1002,37 @@
   </div>
 </div>
 </div>
-<script src="data/competences.js?v=20260930n"></script>
+<script src="data/competences.js?v=20261015codes"></script>
 <script src="data/missions.js?v=20260930p2"></script>
 <script src="data/produits.js?v=20260927b"></script>
 <script src="data/catalogue-visuels.js?v=20260927"></script>
-<script src="js/app.js?v=20261010b"></script>
+<script src="js/app.js?v=20261015codes"></script>
 <script src="js/auth.js?v=20261007b"></script>
-<script src="js/dashboard.js?v=20261010c"></script>
-<script src="js/missions.js?v=20261014"></script>
+<script src="js/dashboard.js?v=20261015codes"></script>
+<script src="js/missions.js?v=20261015codes"></script>
 <script src="js/correction-serveur.js?v=20261014"></script>
 <script src="js/catalogue.js?v=20260927"></script>
 <script src="js/clients.js?v=20260927"></script>
-<script src="js/teacher.js?v=20261010c"></script>
-<script src="js/classe-serveur.js?v=20261010b"></script>
-<script src="js/releve-notes.js?v=20261010b"></script>
+<script src="js/teacher.js?v=20261015codes"></script>
+<script src="js/classe-serveur.js?v=20261015codes"></script>
+<script src="js/releve-notes.js?v=20261015codes"></script>
 <script src="js/groupes.js?v=20260927"></script>
 <script src="js/dashboard-enseignant.js?v=20261010b"></script>
-<script src="js/copie.js?v=20261015"></script>
-<script src="js/annulation.js?v=20261002"></script>
-<script src="js/portfolio.js?v=20260927f"></script>
+<script src="js/copie.js?v=20261015codes"></script>
+<script src="js/annulation.js?v=20261015codes"></script>
+<script src="js/portfolio.js?v=20261015codes"></script>
 <script src="js/admin-classes.js?v=20260927"></script>
 <script src="js/admin-acces.js?v=20260927"></script>
-<script src="js/generation-mission.js?v=20260927b"></script>
-<script src="js/recherche-missions.js?v=20261015"></script>
-<script src="js/utils.js?v=20260927f"></script>
+<script src="js/generation-mission.js?v=20261015codes"></script>
+<script src="js/recherche-missions.js?v=20261015codes"></script>
+<script src="js/utils.js?v=20261015codes"></script>
 <script src="js/mot-de-passe.js?v=20260927"></script>
 <script src="js/brouillons-serveur.js?v=20260928b"></script>
 <script src="js/sante-ia.js?v=20261015"></script>
-<script src="js/maison.js?v=20260929"></script>
+<script src="js/maison.js?v=20261015codes"></script>
 <script src="js/memos.js?v=20261002"></script>
-<script src="js/suivi-missions.js?v=20261015c"></script>
-<script src="js/indicateurs-classe.js?v=20261015b"></script>
+<script src="js/suivi-missions.js?v=20261015codes"></script>
+<script src="js/indicateurs-classe.js?v=20261015codes"></script>
 <script src="js/menu-enseignant.js?v=20261007"></script>
 <script src="js/activite-eleves.js?v=20261007"></script>
 <!-- Animations (13/10/2026) : blocs de méthode, saynètes des missions, puis moteur, chargés en dernier -->
@@ -1043,7 +1043,7 @@
 <script src="js/parcours-eleve.js?v=20261014b"></script>
 <script src="js/maitrise.js?v=20261014"></script>
 <script src="js/acces-missions.js?v=20261015"></script>
-<script src="js/espace-prof.js?v=20261015c"></script>
+<script src="js/espace-prof.js?v=20261015codes"></script>
 
 <div id="charte-laboro" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2B2B2E 0%,#7A4614 100%);z-index:9999;overflow-y:auto;padding:40px 20px">
   <div style="max-width:680px;margin:0 auto">
