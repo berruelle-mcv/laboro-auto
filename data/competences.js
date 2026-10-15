@@ -24,7 +24,7 @@ const COMP = [
 const RES = {
 
   'B4.1':{t:"Rechercher et analyser les informations à des fins d'exploitation",c:`<div class="res-section res-debutant">
-<p><strong>B4.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique), souvent désignés par le sigle <strong>B2C</strong> (business to consumer, « d'entreprise à particulier »), et les professionnels (artisans, PME — utilitaires), désignés par le sigle <strong>B2B</strong> (business to business, « d'entreprise à entreprise ») que tu retrouveras souvent dans les missions. Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
+<p><strong>C4B.1 — Trouver et qualifier des prospects chez Vasseur.</strong> Un prospect est un client potentiel qu'on n'a pas encore. Chez Vasseur, on distingue deux familles de prospects : les particuliers (achat citadine, SUV, électrique), souvent désignés par le sigle <strong>B2C</strong> (business to consumer, « d'entreprise à particulier »), et les professionnels (artisans, PME — utilitaires), désignés par le sigle <strong>B2B</strong> (business to business, « d'entreprise à entreprise ») que tu retrouveras souvent dans les missions. Avant de proposer quoi que ce soit, un commercial doit d'abord <em>comprendre</em> le prospect — proposer trop vite, c'est le meilleur moyen de perdre une vente.</p>
 <p><strong>D'où viennent les prospects chez Vasseur ?</strong></p>
 <ul>
 <li>Formulaires du site Vasseur (demande de devis, essai, information)</li>
@@ -72,7 +72,7 @@ const RES = {
 </div>`},
 
   'B4.2':{t:"Participer à la conception d'une opération de prospection",c:`<div class="res-section res-debutant">
-<p><strong>B4.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
+<p><strong>C4B.2 — Préparer une opération de prospection chez Vasseur.</strong> Avant de contacter qui que ce soit, il faut définir 4 éléments : la cible précise, le message clé (bénéfice concret, pas juste "on a de nouveaux modèles"), le canal (mail, téléphone, réseaux sociaux, salon), et le calendrier (avec relance prévue).</p>
 <p><strong>Un argument fréquent en B2B : l'amortissement.</strong> Une entreprise dont le véhicule professionnel est livré (mis en service) avant la fin de son exercice comptable (souvent le 31 décembre) commence à l'amortir dès cette année, au prorata du temps restant : une partie de son prix entre dans les charges de l'exercice et réduit le bénéfice imposable de cette même année — c'est ce qu'on appelle amortir un investissement. C'est pour ça que beaucoup d'entreprises accélèrent leurs achats juste avant la clôture de l'exercice : c'est un vrai argument daté et concret à utiliser en prospection B2B, pas juste une expression toute faite.</p>
 <p><strong>Un bon plan de prospection contient toujours :</strong></p>
 <ul>
@@ -108,10 +108,10 @@ const RES = {
 </div>`},
 
   'B4.3':{t:"Mettre en œuvre une opération de prospection",c:`<div class="res-section res-debutant">
-<p><strong>B4.3 — Conduire un contact de prospection chez Vasseur.</strong> Qu'il s'agisse d'un mail entrant à qualifier ou d'un appel sortant, la structure reste la même :</p>
+<p><strong>C4B.3 — Conduire un contact de prospection chez Vasseur.</strong> Qu'il s'agisse d'un mail entrant à qualifier ou d'un appel sortant, la structure reste la même :</p>
 <ol>
 <li><strong>Accroche</strong> — se présenter, expliquer rapidement pourquoi on contacte la personne</li>
-<li><strong>Questions de qualification</strong> — reprendre la méthode BANT (B4.1)</li>
+<li><strong>Questions de qualification</strong> — reprendre la méthode BANT (C4B.1)</li>
 <li><strong>Proposition adaptée</strong> — uniquement si on a assez d'informations, sinon poser encore des questions</li>
 <li><strong>Traitement d'une objection éventuelle</strong> — écouter, reformuler, répondre sans forcer</li>
 <li><strong>Conclusion</strong> — proposer une suite concrète (RDV, envoi de documentation ciblée, rappel programmé)</li>
@@ -440,7 +440,7 @@ const RES = {
 </div>`},
 
   'B4.4':{t:"Suivre et évaluer l'action de prospection",c:`<div class="res-section res-debutant">
-<p><strong>B4.4 — Faire le bilan d'une prospection chez Vasseur.</strong> Une campagne de prospection ne s'arrête pas à l'envoi des messages : il faut suivre les résultats (taux de réponse, taux de transformation en rendez-vous, taux de transformation en vente) et ajuster si besoin, y compris en cours de campagne.</p>
+<p><strong>C4B.4 — Faire le bilan d'une prospection chez Vasseur.</strong> Une campagne de prospection ne s'arrête pas à l'envoi des messages : il faut suivre les résultats (taux de réponse, taux de transformation en rendez-vous, taux de transformation en vente) et ajuster si besoin, y compris en cours de campagne.</p>
 <p><strong>Les indicateurs clés :</strong> nombre de contacts touchés, taux de réponse (combien ont réagi), taux de transformation (combien ont acheté). Un faible taux de réponse peut venir du message, du canal, ou du mauvais ciblage — il faut identifier lequel avant d'ajuster.</p>
 <p><strong>Cas pratique — bilan d'une session de phoning chez Vasseur :</strong></p>
 <p>Sur 50 appels de prospection B2B passés ce mois-ci, 5 rendez-vous ont été pris, et aucune vente n'est encore conclue.</p>
@@ -473,7 +473,7 @@ const RES = {
 </div>`},
 
   'B4.5':{t:"Valoriser les produits et services face à la concurrence",c:`<div class="res-section res-debutant">
-<p><strong>B4.5 — Valoriser l'offre Vasseur.</strong> Valoriser, ce n'est pas décrire un produit, c'est expliquer pourquoi il répond mieux au besoin du client que les alternatives (autre modèle, occasion, concurrent). Une bonne valorisation combine une caractéristique du véhicule ou du service, l'avantage qu'elle procure, et le bénéfice concret pour ce client précis.</p>
+<p><strong>C4B.5 — Valoriser l'offre Vasseur.</strong> Valoriser, ce n'est pas décrire un produit, c'est expliquer pourquoi il répond mieux au besoin du client que les alternatives (autre modèle, occasion, concurrent). Une bonne valorisation combine une caractéristique du véhicule ou du service, l'avantage qu'elle procure, et le bénéfice concret pour ce client précis.</p>
 <p><strong>Attention à un piège fréquent :</strong> valoriser uniquement le produit alors que le service (garantie, SAV, accompagnement) est parfois le vrai argument différenciant, notamment face à un mandataire en ligne moins-disant sur le prix.</p>
 <p><strong>Cas pratique — valoriser un service chez Vasseur :</strong></p>
 <p>Une cliente hésite à confier l'entretien de sa Clio à Vasseur plutôt qu'à un centre auto discount un peu moins cher.</p>
@@ -497,7 +497,7 @@ const RES = {
 </div>`},
 
   'B4.1-P2':{t:"Qualifier un prospect en situation réelle",c:`<div class="res-section res-apprenti">
-<p><strong>B4.1 — Qualifier un prospect en situation réelle.</strong> Tu maîtrises la méthode BANT (Budget, Autorité, Need, Timeline). La vraie difficulté, sur le terrain, n'est plus de connaître la méthode, mais de l'appliquer quand la situation est moins nette : plusieurs prospects à traiter en même temps, des informations contradictoires, un profil qui ne rentre pas dans une case évidente.</p>
+<p><strong>C4B.1 — Qualifier un prospect en situation réelle.</strong> Tu maîtrises la méthode BANT (Budget, Autorité, Need, Timeline). La vraie difficulté, sur le terrain, n'est plus de connaître la méthode, mais de l'appliquer quand la situation est moins nette : plusieurs prospects à traiter en même temps, des informations contradictoires, un profil qui ne rentre pas dans une case évidente.</p>
 <p><strong>Ce qui change concrètement :</strong> tu devras souvent <em>prioriser</em> (tous les prospects ne se valent pas également) et <em>combiner</em> plusieurs sources d'information, sans qu'on te les serve déjà croisées dans un même tableau.</p>
 <p><strong>Rappel — le SIC :</strong> chaque prospect a une fiche dans le SIC (Système d'Information Commercial, ex. le CRM Vasseur), créée dès le premier contact. Au palier 2, la difficulté n'est plus de créer une fiche vide, mais de l'<strong>enrichir correctement</strong> après un nouvel échange : ajouter l'information nouvelle sans effacer ce qu'un collègue avait déjà noté, et signaler clairement quand une information change (plutôt que de la remplacer silencieusement).</p>
 <p><strong>Cas pratique — deux prospects, un seul créneau libre :</strong></p>
@@ -525,7 +525,7 @@ const RES = {
 </div>`},
 
   'B4.2-P2':{t:"Arbitrer un plan de prospection",c:`<div class="res-section res-apprenti">
-<p><strong>B4.2 — Arbitrer un plan de prospection.</strong> Tu sais construire un plan de prospection à partir d'une cible déjà identifiée. Sur le terrain, il faut aussi savoir arbitrer entre plusieurs options (canaux, budgets, cibles) quand les ressources sont limitées — ce qui est la réalité de toute concession.</p>
+<p><strong>C4B.2 — Arbitrer un plan de prospection.</strong> Tu sais construire un plan de prospection à partir d'une cible déjà identifiée. Sur le terrain, il faut aussi savoir arbitrer entre plusieurs options (canaux, budgets, cibles) quand les ressources sont limitées — ce qui est la réalité de toute concession.</p>
 <p><strong>Cas pratique — un budget qui ne permet pas tout :</strong></p>
 <p>Karim a un budget de campagne réduit ce trimestre. Deux options s'offrent : une campagne mail large mais peu coûteuse, ou une opération salon plus chère mais plus qualitative.</p>
 <ul>
@@ -549,7 +549,7 @@ const RES = {
 </div>`},
 
   'B4.3-P2':{t:"Gérer l'imprévu d'un contact réel",c:`<div class="res-section res-apprenti">
-<p><strong>B4.3 — Gérer l'imprévu d'un contact réel.</strong> Tu sais traiter une objection isolée. Dans un vrai échange, un contact de prospection peut enchaîner plusieurs objections, changer de sujet, ou être compliqué à cerner. La compétence n'est plus de connaître une réponse toute faite, mais de rester maître du fil de la conversation.</p>
+<p><strong>C4B.3 — Gérer l'imprévu d'un contact réel.</strong> Tu sais traiter une objection isolée. Dans un vrai échange, un contact de prospection peut enchaîner plusieurs objections, changer de sujet, ou être compliqué à cerner. La compétence n'est plus de connaître une réponse toute faite, mais de rester maître du fil de la conversation.</p>
 <p><strong>Cas pratique — un enchaînement d'objections :</strong></p>
 <p>Un artisan répond d'abord "je n'ai pas le temps en ce moment", puis enchaîne "et puis l'électrique, ça ne tient pas la route pour mon métier".</p>
 <ul>
@@ -573,7 +573,7 @@ const RES = {
 </div>`},
 
   'B4.4-P2':{t:"Comparer pour mieux piloter",c:`<div class="res-section res-apprenti">
-<p><strong>B4.4 — Comparer pour mieux piloter.</strong> Tu sais calculer un taux pour une action, et suivre un devis isolé. Il faut maintenant savoir comparer plusieurs actions (ou plusieurs devis) entre eux pour prioriser, et en tirer un vrai diagnostic — pas juste un chiffre ou un dossier isolé.</p>
+<p><strong>C4B.4 — Comparer pour mieux piloter.</strong> Tu sais calculer un taux pour une action, et suivre un devis isolé. Il faut maintenant savoir comparer plusieurs actions (ou plusieurs devis) entre eux pour prioriser, et en tirer un vrai diagnostic — pas juste un chiffre ou un dossier isolé.</p>
 <p><strong>Cas pratique — une performance en baisse :</strong></p>
 <p>Une opération d'appels auprès des clients entretien, qui obtenait habituellement 1 rendez-vous pour 5 appels, n'en obtient plus que 1 pour 12 ce mois-ci.</p>
 <ul>
@@ -606,7 +606,7 @@ const RES = {
 </div>`},
 
   'B4.5-P2':{t:"Valoriser face à un client déjà informé",c:`<div class="res-section res-apprenti">
-<p><strong>B4.5 — Valoriser face à un client déjà informé.</strong> Tu sais construire un argumentaire simple. Le client en face de toi a souvent déjà comparé plusieurs critères tout seul (en ligne, avec un concurrent), ou en sait parfois plus que la moyenne sur un plan technique — ton argumentaire doit s'adapter à ce niveau réel, pas juste présenter un produit.</p>
+<p><strong>C4B.5 — Valoriser face à un client déjà informé.</strong> Tu sais construire un argumentaire simple. Le client en face de toi a souvent déjà comparé plusieurs critères tout seul (en ligne, avec un concurrent), ou en sait parfois plus que la moyenne sur un plan technique — ton argumentaire doit s'adapter à ce niveau réel, pas juste présenter un produit.</p>
 <p><strong>Cas pratique — un client déjà convaincu ailleurs :</strong></p>
 <p>Un client arrive en disant avoir déjà comparé 3 modèles en ligne et penche clairement pour un concurrent, sur plusieurs critères à la fois (prix, consommation, image).</p>
 <ul>
@@ -1088,7 +1088,7 @@ const RES = {
 </div>`},
 
 'B4.1-P3':{t:"Qualifier un prospect quand les sources se contredisent",c:`<div class="res-section res-pro">
-<p><strong>B4.1 — Qualifier un prospect quand les sources se contredisent.</strong> Tu sais croiser deux sources pour enrichir un profil (palier 2). En poste, la difficulté n'est plus seulement de croiser des informations complémentaires : c'est de gérer des informations qui se contredisent frontalement. Un commercial compétent ne choisit pas la source qui l'arrange ni n'ignore la contradiction — il cherche à la lever par une question précise, et s'il ne peut pas la lever tout de suite, il construit une réponse prudente qui n'engage rien de trop risqué.</p>
+<p><strong>C4B.1 — Qualifier un prospect quand les sources se contredisent.</strong> Tu sais croiser deux sources pour enrichir un profil (palier 2). En poste, la difficulté n'est plus seulement de croiser des informations complémentaires : c'est de gérer des informations qui se contredisent frontalement. Un commercial compétent ne choisit pas la source qui l'arrange ni n'ignore la contradiction — il cherche à la lever par une question précise, et s'il ne peut pas la lever tout de suite, il construit une réponse prudente qui n'engage rien de trop risqué.</p>
 <p><strong>Rappel express :</strong> BANT = Budget, Autorité, Need (besoin), Timeline (délai) — les 4 éléments à connaître pour qualifier un prospect. B2B = vente à une entreprise, B2C = vente à un particulier. Le SIC (Système d'Information Commercial, ex. le CRM Vasseur) centralise la fiche de chaque prospect — au palier 3, une contradiction entre deux sources est très souvent une contradiction entre deux versions du SIC : une fiche pas encore mise à jour contre une information plus récente non encore enregistrée. Fiabiliser le SIC, c'est trancher laquelle des deux versions doit devenir la référence, puis l'y inscrire.</p>
 <p><strong>Cas pratique chiffré chez Vasseur :</strong> une clinique vétérinaire veut 3 véhicules pour ses visites à domicile. La fiche du premier contact indique « décision avant fin juin » ; un mail plus récent de la gérante parle d'attendre « l'arrivée d'un nouvel associé », sans date.</p>
 <ul>
@@ -1107,7 +1107,7 @@ const RES = {
 </div>`},
 
 'B4.2-P3':{t:"Répartir un budget de prospection entre plusieurs opérations",c:`<div class="res-section res-pro">
-<p><strong>B4.2 — Répartir un budget de prospection entre plusieurs opérations.</strong> Tu sais choisir entre deux options de campagne selon un budget réduit (palier 2). En poste, l'arbitrage porte rarement sur seulement deux options : il faut souvent répartir un budget unique entre plusieurs opérations qui visent des cibles différentes, sans pouvoir tout financer au niveau idéal. La compétence n'est plus de choisir A ou B, mais de construire une répartition argumentée entre plusieurs postes.</p>
+<p><strong>C4B.2 — Répartir un budget de prospection entre plusieurs opérations.</strong> Tu sais choisir entre deux options de campagne selon un budget réduit (palier 2). En poste, l'arbitrage porte rarement sur seulement deux options : il faut souvent répartir un budget unique entre plusieurs opérations qui visent des cibles différentes, sans pouvoir tout financer au niveau idéal. La compétence n'est plus de choisir A ou B, mais de construire une répartition argumentée entre plusieurs postes.</p>
 <p><strong>Cas pratique chiffré chez Vasseur :</strong> Isabelle dispose de 3 000 € pour promouvoir le pôle occasion et hésite entre trois actions : des annonces payantes sur un site d'occasion (~1 800 €, résultats bien connus), des flyers en boîte aux lettres (~700 €, résultats faibles les années passées) et une journée « reprise express » en concession (~1 500 €, jamais testée).</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — répartir le budget à parts égales entre les trois (1 000 € chacune) par souci d'équité apparente, sans tenir compte du potentiel réel de chaque opération</li>
@@ -1124,7 +1124,7 @@ const RES = {
 </div>`},
 
 'B4.3-P3':{t:"Gérer un contact avec plusieurs interlocuteurs aux priorités opposées",c:`<div class="res-section res-pro">
-<p><strong>B4.3 — Gérer un contact avec plusieurs interlocuteurs aux priorités opposées.</strong> Tu sais enchaîner deux objections d'un même interlocuteur sans perdre le fil (palier 2). En B2B, une même opération de prospection implique souvent plusieurs personnes côté client, dont les priorités ne coïncident pas toujours. Rester maître de l'échange, ici, c'est aussi savoir concilier deux points de vue internes chez le client, pas seulement répondre à des objections successives.</p>
+<p><strong>C4B.3 — Gérer un contact avec plusieurs interlocuteurs aux priorités opposées.</strong> Tu sais enchaîner deux objections d'un même interlocuteur sans perdre le fil (palier 2). En B2B, une même opération de prospection implique souvent plusieurs personnes côté client, dont les priorités ne coïncident pas toujours. Rester maître de l'échange, ici, c'est aussi savoir concilier deux points de vue internes chez le client, pas seulement répondre à des objections successives.</p>
 <p><strong>Cas pratique chiffré chez Vasseur :</strong> lors d'un rendez-vous dans une agence immobilière (4 véhicules pour ses conseillers), le comptable veut des véhicules électriques pour réduire les frais de carburant, tandis que le directeur d'agence craint que l'autonomie gêne les conseillers qui font beaucoup de kilomètres.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — répondre uniquement au premier qui a parlé en ignorant ensuite la remarque de l'autre, ou inversement changer complètement de discours dès que le second intervient, au risque de contredire ce qui venait d'être dit</li>
@@ -1141,7 +1141,7 @@ const RES = {
 </div>`},
 
 'B4.4-P3':{t:"Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause",c:`<div class="res-section res-pro">
-<p><strong>B4.4 — Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause.</strong> Tu sais comparer deux ou trois devis pour prioriser une relance (palier 2). En poste, un commercial actif a souvent plusieurs devis en attente en même temps, avec des échéances et des enjeux qui ne s'alignent jamais parfaitement — il faut arbitrer un vrai portefeuille, pas juste ranger 2-3 dossiers par date. De la même façon, une baisse de performance a rarement une seule cause évidente : plusieurs éléments changent souvent en même temps, et il faut une méthode pour ne pas conclure trop vite.</p>
+<p><strong>C4B.4 — Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause.</strong> Tu sais comparer deux ou trois devis pour prioriser une relance (palier 2). En poste, un commercial actif a souvent plusieurs devis en attente en même temps, avec des échéances et des enjeux qui ne s'alignent jamais parfaitement — il faut arbitrer un vrai portefeuille, pas juste ranger 2-3 dossiers par date. De la même façon, une baisse de performance a rarement une seule cause évidente : plusieurs éléments changent souvent en même temps, et il faut une méthode pour ne pas conclure trop vite.</p>
 <p><strong>Rappel express :</strong> un devis est une proposition chiffrée à durée de validité limitée ; le relancer avant expiration, avec un élément nouveau plutôt qu'un simple rappel de délai, est la règle de base déjà vue en palier 1 et 2.</p>
 <p><strong>Cas pratique chiffré chez Vasseur — un portefeuille de devis à prioriser :</strong> un jeudi, 4 devis sont en attente : un Scénic E-Tech (expire demain, client qui a déjà fait deux essais), un Master pour une mairie (expire dans 6 jours, montant élevé, décision en conseil municipal), une Dacia Sandero d'occasion (expire dans 2 jours, montant faible, jeune conducteur pressé) et un Espace (expire dans 10 jours, simple demande de prix). Tu ne peux en relancer sérieusement que 2 aujourd'hui.</p>
 <ul>
@@ -1164,7 +1164,7 @@ const RES = {
 </div>`},
 
 'B4.5-P3':{t:"Valoriser une offre en coût total plutôt qu'en prix d'achat",c:`<div class="res-section res-pro">
-<p><strong>B4.5 — Valoriser une offre en coût total plutôt qu'en prix d'achat.</strong> Tu sais construire un argumentaire caractéristique → avantage → bénéfice et l'adapter à un client déjà informé (palier 2). En poste, un des arguments professionnels les plus puissants — et les plus mal maîtrisés par les débutants — consiste à comparer non pas le prix d'achat affiché, mais le <strong>coût total de possession</strong> (souvent noté <strong>TCO</strong>, de l'anglais "Total Cost of Ownership") : c'est-à-dire le prix d'achat, additionné de l'entretien, de la consommation de carburant ou d'électricité, et diminué de la valeur de revente estimée. Un véhicule plus cher à l'achat peut coûter moins cher sur la durée — et inversement.</p>
+<p><strong>C4B.5 — Valoriser une offre en coût total plutôt qu'en prix d'achat.</strong> Tu sais construire un argumentaire caractéristique → avantage → bénéfice et l'adapter à un client déjà informé (palier 2). En poste, un des arguments professionnels les plus puissants — et les plus mal maîtrisés par les débutants — consiste à comparer non pas le prix d'achat affiché, mais le <strong>coût total de possession</strong> (souvent noté <strong>TCO</strong>, de l'anglais "Total Cost of Ownership") : c'est-à-dire le prix d'achat, additionné de l'entretien, de la consommation de carburant ou d'électricité, et diminué de la valeur de revente estimée. Un véhicule plus cher à l'achat peut coûter moins cher sur la durée — et inversement.</p>
 <p><strong>Cas pratique chiffré chez Vasseur — un client B2B qui ne regarde que le prix d'achat :</strong> une entreprise de dépannage informatique compare un Kangoo Van E-Tech (25 000 €) à un Kangoo Van diesel (22 000 €) et penche pour le diesel sur ce seul critère.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — se contenter de répéter que "l'électrique est plus économique" sans rien de chiffré, ou proposer une remise pour aligner le prix d'achat, ce qui reviendrait à accepter que la comparaison du client (prix d'achat seul) était la bonne</li>

@@ -116,6 +116,13 @@ var LABORO_CONFIG = {
     "competences": "data/competences.js",
     "catalogue": "data/produits.js"
   },
+  "codes_competences": {
+    "B4.1": "C4B.1",
+    "B4.2": "C4B.2",
+    "B4.3": "C4B.3",
+    "B4.4": "C4B.4",
+    "B4.5": "C4B.5"
+  },
   "api": "https://auto-api.laboro-edu.fr",
   "textes": {
     "lieu_vente": "Tu travailles chez Vasseur Renault Évry et Vasseur Sélection Occasion.",
@@ -249,7 +256,7 @@ var LABORO_CONFIG = {
         "Fidéliser la clientèle et traiter les réclamations"
       ],
       "competences_cles": [
-        "Bloc 4 (B4.1 à B4.5) — Prospecter et valoriser l'offre commerciale",
+        "Bloc 4 (C4B.1 à C4B.5) — Prospecter et valoriser l'offre commerciale",
         "Bloc 1 (C1.1 à C1.3) — Conseiller et vendre",
         "Bloc 2 (C2.1 à C2.4) — Suivre les ventes",
         "Bloc 3 (C3.1 à C3.3) — Fidéliser la relation client"
