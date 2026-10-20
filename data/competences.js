@@ -910,6 +910,16 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — classer chaque information par fiabilité, puis construire la décision sur les informations les plus solides, en signalant explicitement ce qui reste incertain</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter une information non confirmée à la direction comme si elle était acquise. Une rumeur peut être mentionnée — mais toujours signalée comme telle, jamais présentée avec la même autorité qu'un chiffre vérifié.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Information vérifiée</strong> — chiffre ou fait contrôlé à sa source : ventes enregistrées dans le SIC, texte officiel publié.</li>
+<li><strong>Information sourcée</strong> — publiée par une source identifiée et sérieuse (fédération professionnelle, presse spécialisée) ; fiable, mais elle décrit souvent une tendance générale, pas la situation de la concession.</li>
+<li><strong>Information non confirmée</strong> — propos rapportés, rumeur, annonce sans date ni conditions : on la signale comme telle et on la vérifie avant d'en tenir compte.</li>
+<li><strong>Évolution en %</strong> — (nouvelle valeur − ancienne valeur) ÷ ancienne valeur × 100.</li>
+<li><strong>Part en %</strong> — nombre concerné ÷ nombre total × 100.</li>
+<li><strong>Mandataire</strong> — intermédiaire, souvent en ligne, qui vend des véhicules moins cher qu'en concession, avec moins de services (essai, reprise, suivi).</li>
+</ul>
 <p><strong>En résumé, avant de trancher sur une veille à enjeux, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Distingue clairement ce qui est vérifié de ce qui est rapporté ou supposé</li>
@@ -928,6 +938,15 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — vérifier l'information qui fait foi, puis contacter la cliente avant le rendez-vous, sur un canal adapté à l'urgence (téléphone plutôt que mail si le délai est court), avec une solution concrète si possible</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter cette situation comme un simple problème de communication interne à régler entre collègues, en oubliant que c'est d'abord le client qui doit être informé rapidement — pas en dernier.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Information qui fait foi</strong> — celle qui engage l'entreprise : en général la plus récente, écrite et confirmée par le service responsable.</li>
+<li><strong>Prix oral et prix écrit</strong> — un prix annoncé oralement n'engage pas tant qu'il n'est pas confirmé par écrit ; un devis engage pendant toute sa durée de validité.</li>
+<li><strong>Cadrage de négociation</strong> — remise ou geste maximum autorisé par le responsable ; au-delà, c'est lui qui décide.</li>
+<li><strong>Réponse publique et message privé</strong> — en ligne, on répond brièvement en public (pour le client et pour tous ceux qui lisent), puis on traite le détail en privé ; on ne parle jamais d'un autre client en public.</li>
+<li><strong>Canal adapté à l'urgence</strong> — plus le délai est court, plus le canal doit être direct : le téléphone plutôt que le mail quand il faut prévenir vite.</li>
+</ul>
 <p><strong>En résumé, face à une incohérence d'information entre canaux ou interlocuteurs, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Identifie l'information qui doit désormais faire foi avant de communiquer</li>
@@ -946,6 +965,16 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — identifier lequel de ces écarts a le plus d'impact concret pour la cliente (en général celui qui l'engage le plus, en argent ou dans la durée), l'annoncer en premier avec une solution, puis traiter les autres dans l'ordre</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> vouloir tout corriger seul et dans l'urgence sur place, au risque d'improviser une solution non validée. Certains écarts (comme un montant absent du contrat) demandent souvent une vérification ou une validation avant d'être corrigés définitivement.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Coût total d'une LOA</strong> — premier loyer + loyers mensuels + option d'achat si elle est levée ; l'écart avec le prix comptant est le coût du financement.</li>
+<li><strong>Mensualité d'un crédit</strong> — elle dépend du montant emprunté et de la durée : emprunter moins fait baisser chaque mensualité.</li>
+<li><strong>Remise flotte</strong> — remise négociée sur une commande de plusieurs véhicules ; elle doit être affectée clairement (à un véhicule ou répartie) pour que chaque montant reste vérifiable.</li>
+<li><strong>Reprise « sous réserve d'expertise »</strong> — la valeur annoncée peut être revue à la livraison si l'état du véhicule repris a changé ; la nouvelle valeur doit être justifiée (fiche d'expertise, photos).</li>
+<li><strong>Délai de rétractation</strong> — un crédit à la consommation peut être annulé par le client pendant 14 jours après la signature, sans frais ni justification.</li>
+<li><strong>Avenant</strong> — document qui modifie un bon de commande déjà signé ; il est signé par le client et par Vasseur.</li>
+</ul>
 <p><strong>En résumé, face à plusieurs écarts découverts en même temps, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Classe les écarts par impact réel pour le client avant de les annoncer</li>
@@ -956,14 +985,23 @@ const RES = {
 
   'C2.1-P3':{t:"Piloter un dossier sous tension, seul",c:`<div class="res-section res-pro">
 <p><strong>C2.1 — Piloter un dossier de suivi quand plusieurs signaux se contredisent.</strong> Tu sais annoncer un retard et anticiper un risque isolé. En situation professionnelle réelle, plusieurs informations arrivent souvent en même temps, parfois contradictoires (l'atelier dit une chose, le transporteur en dit une autre), et c'est à toi de trancher ce que tu communiques au client — sans attendre que quelqu'un te dise quoi faire.</p>
-<p><strong>Cas pratique — deux sources qui se contredisent chez Vasseur :</strong></p>
-<p>Un Trafic doit être livré dans 4 jours à Transports Rigal (flotte de 2 véhicules). Le matin même, Bruno Faucher t'indique que la préparation sera prête dans les temps. L'après-midi, le transporteur chargé d'acheminer le véhicule signale par mail un risque de grève partielle qui pourrait décaler l'acheminement de 2 à 5 jours, sans certitude à ce stade.</p>
+<p><strong>Cas pratique — deux informations qui ne collent pas :</strong></p>
+<p>M. Royer doit recevoir sa Renault Mégane E-Tech vendredi, avec une borne de recharge posée chez lui avant la livraison. Le fournisseur de la borne écrit « pose prévue en fin de semaine », alors que l'installateur partenaire n'a encore aucun rendez-vous au nom de M. Royer dans son planning.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — se fier uniquement à la dernière information reçue (le risque de grève) et annoncer un retard certain, ou à l'inverse ignorer le mail du transporteur parce que Bruno, lui, est dans les temps</li>
-<li>✅ <strong>À privilégier</strong> — considérer les deux informations comme complémentaires (l'une porte sur la préparation, l'autre sur l'acheminement) : le retard n'est pas confirmé mais le risque est réel et mérite d'être partagé au client de façon proportionnée, avec un point de suivi fixé toi-même dans 48h plutôt que d'attendre passivement</li>
+<li>❌ <strong>À éviter</strong> — croire l'information la plus rassurante et confirmer la livraison sans réserve, ou au contraire annuler la livraison par précaution sans rien vérifier</li>
+<li>✅ <strong>À privilégier</strong> — repérer ce qui manque pour que les deux informations collent (un rendez-vous réellement réservé), demander une confirmation écrite avec une date, prévenir le client du point encore incertain sans l'alarmer, et fixer toi-même le moment où tu le rappelles, avec une solution de repli si la borne n'est pas posée à temps</li>
 </ul>
 <p>Piloter un dossier, ce n'est pas seulement transmettre une information reçue : c'est croiser plusieurs sources, identifier laquelle est la plus fiable ou la plus récente, et décider — sans validation systématique d'un responsable — de ce qui doit remonter jusqu'au client et à quel moment.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter deux sources d'information comme s'il fallait choisir entre elles. La plupart du temps, elles se complètent — la vraie compétence est de les articuler, pas de trancher laquelle "a raison".</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Retard confirmé et risque de retard</strong> — un retard confirmé a une nouvelle date certaine ; un risque de retard est seulement possible, avec une fourchette (meilleur cas, pire cas).</li>
+<li><strong>Délai déterminant</strong> — dans un dossier à plusieurs étapes, c'est l'étape la plus longue ou la plus incertaine qui fixe la date finale.</li>
+<li><strong>Point de suivi</strong> — moment que tu fixes toi-même (jour, heure, information attendue) pour faire le point, avec une décision prévue pour chaque réponse possible.</li>
+<li><strong>Jours ouvrés et jours calendaires</strong> — jours ouvrés : du lundi au vendredi ; jours calendaires : tous les jours, week-end compris.</li>
+<li><strong>Prêt d'un véhicule</strong> — encadré par un contrat de prêt, un état des lieux au départ et au retour, et la vérification de l'assurance et du permis du conducteur.</li>
+</ul>
 <p><strong>En résumé, avant de communiquer sur un dossier à signaux multiples, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Ai rapproché toutes les informations disponibles, même si elles semblent porter sur des sujets différents</li>
@@ -984,6 +1022,16 @@ const RES = {
 </ul>
 <p>Mettre en œuvre un service associé ne se limite pas à transmettre un dossier au bon prestataire : quand plusieurs options sont possibles, un professionnel compétent chiffre les conséquences réelles de chacune avant de laisser le client choisir — sans pour autant décider à sa place.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter uniquement l'option qui semble la plus simple à vendre (mensualité la plus basse) sans vérifier qu'elle correspond réellement à l'usage du client. Un chiffre séduisant qui coûte cher plus tard nuit à la confiance autant qu'un retard mal annoncé.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Accord de principe et accord définitif</strong> — l'accord de principe indique que le dossier peut être accepté, sous réserve de pièces ; seul l'accord définitif permet de livrer.</li>
+<li><strong>Calcul à rebours</strong> — partir de la date limite et remonter étape par étape pour trouver le moment où chaque action doit être faite au plus tard.</li>
+<li><strong>Garantie constructeur</strong> — réparation gratuite des pannes pendant une durée fixée (chez Renault : 3 ans / 100 000 km, 8 ans pour la batterie), à condition de respecter le programme d'entretien.</li>
+<li><strong>Extension de garantie</strong> — prolonge la couverture des pannes après la fin de la garantie constructeur.</li>
+<li><strong>Contrat d'entretien</strong> — entretiens prévus payés d'avance à un prix fixé ; il ne couvre pas les pannes.</li>
+<li><strong>Combinaison de prestataires</strong> — pour chaque service, on compare le coût, le délai et la disponibilité ; une combinaison n'est possible que si toutes ses étapes tiennent dans les créneaux.</li>
+</ul>
 <p><strong>En résumé, avant de finaliser un dossier de services associés avec plusieurs options possibles, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Chiffre concrètement les conséquences de chaque option, pas seulement leur coût affiché</li>
@@ -995,14 +1043,23 @@ const RES = {
 
   'C2.3-P3':{t:"Décider seul jusqu'où aller sur une réclamation",c:`<div class="res-section res-pro">
 <p><strong>C2.3 — Décider seul de la limite entre ce que tu peux régler et ce qui doit remonter.</strong> Tu sais gérer une responsabilité partagée ou une réclamation récurrente. La compétence professionnelle qui se joue maintenant est différente : savoir évaluer, sans consulter systématiquement Michel, jusqu'où tu peux t'engager financièrement ou juridiquement — et reconnaître seul le moment où un dossier dépasse ce que tu peux décider.</p>
-<p><strong>Cas pratique — un geste commercial à la limite de ta marge de décision :</strong></p>
-<p>Un client B2B (Groupe Delacroix, flotte de 4 Trafic) signale qu'un des véhicules livrés présente un défaut de peinture visible sur une portière. L'atelier confirme le défaut et propose une reprise en peinture sous garantie (aucun coût réel pour Vasseur), mais le client, agacé par ce contretemps sur un dossier déjà volumineux, réclame aussi un geste commercial de 800 € sur la facture globale — un montant que tu n'as encore jamais accordé seul.</p>
+<p><strong>Cas pratique — deux demandes, deux niveaux de décision :</strong></p>
+<p>M. Lenoir a reçu sa voiture avec 2 jours de retard. Il demande un plein offert et 300 € de remise sur sa prochaine révision. Le plein fait partie des gestes que tu peux accorder seul ; une remise de 300 € n'en fait pas partie.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — accepter les 800 € directement pour "faire plaisir" à un gros client sans savoir si ce montant est dans tes prérogatives, ou refuser sèchement sans rien proposer d'autre par peur de mal faire</li>
-<li>✅ <strong>À privilégier</strong> — traiter immédiatement ce qui relève de toi (la reprise en peinture, sans coût, validée), et transmettre la demande de geste commercial à Michel avec un dossier argumenté (valeur du client, nature du désagrément), en informant le client d'un délai de réponse précis plutôt que de trancher seul un montant inhabituel</li>
+<li>❌ <strong>À éviter</strong> — tout accepter pour clore vite le dossier, tout refuser par peur de mal faire, ou tout transmettre à Michel alors qu'une partie relève de toi</li>
+<li>✅ <strong>À privilégier</strong> — décider toi-même de ce qui est dans ta marge, si c'est justifié, et transmettre le reste avec un dossier argumenté, en annonçant au client un délai de réponse précis</li>
 </ul>
-<p>Un professionnel compétent ne cherche pas à tout régler seul pour paraître autonome, ni à tout transmettre par prudence excessive : il sait distinguer ce qui relève clairement de sa marge de manœuvre (un défaut avéré, une solution sans coût pour Vasseur) de ce qui dépasse un seuil qu'il doit faire valider.</p>
+<p>Un professionnel compétent ne cherche pas à tout régler seul pour paraître autonome, ni à tout transmettre par prudence excessive : il sait distinguer ce qui relève clairement de sa marge de manœuvre de ce qui dépasse un seuil qu'il doit faire valider.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> confondre "vouloir bien faire" et "avoir le mandat pour décider". Un engagement financier inhabituel pris seul, même bien intentionné, peut mettre Vasseur en difficulté si la direction n'était pas au courant.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Marge de décision</strong> — ce que tu peux accorder seul, fixé par ta hiérarchie (par exemple une liste de gestes) ; au-delà, tu transmets avec un dossier argumenté.</li>
+<li><strong>Geste commercial</strong> — avantage accordé au client pour compenser un désagrément ; il doit être proportionné au préjudice et à la part de responsabilité de Vasseur.</li>
+<li><strong>Chronologie d'un dossier</strong> — tableau des étapes (prévu, réel, écart, origine) qui permet d'établir les faits avant de répondre.</li>
+<li><strong>Imputable</strong> — dû à quelqu'un : un retard imputable à Vasseur est causé par Vasseur, pas par un fournisseur ou par le client.</li>
+<li><strong>Au prorata</strong> — en proportion de la part de chacun.</li>
+</ul>
 <p><strong>En résumé, face à une réclamation qui implique un engagement inhabituel, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Traite immédiatement ce qui relève clairement de ma marge de décision</li>
@@ -1014,14 +1071,23 @@ const RES = {
 
   'C2.4-P3':{t:"Distinguer la cause réelle d'un symptôme visible",c:`<div class="res-section res-pro">
 <p><strong>C2.4 — Distinguer la cause réelle d'un symptôme visible dans les résultats de satisfaction.</strong> Tu sais lire une tendance dans le temps et comparer deux segments de clientèle. La compétence professionnelle qui se joue maintenant est d'aller au-delà d'un chiffre qui semble parler de lui-même : deux indicateurs peuvent sembler se contredire, et il faut creuser avant de conclure — au risque sinon de corriger le mauvais problème.</p>
-<p><strong>Cas pratique — deux indicateurs qui semblent se contredire chez Vasseur :</strong></p>
-<p>Michel te montre deux résultats du même trimestre : le NPS (Net Promoter Score, une note de 0 à 10 mesurant si le client recommanderait Vasseur, avec les catégories Promoteurs 9-10, Passifs 7-8, Détracteurs 0-6) global de Vasseur est en légère hausse (36 contre 32 le trimestre précédent), mais le nombre de réclamations déposées a augmenté de 40% sur la même période.</p>
+<p><strong>Cas pratique — un indicateur stable qui cache un recul :</strong></p>
+<p>Bruno Faucher constate que la note moyenne de satisfaction de l'atelier reste stable (8,1 sur 10), alors que la part des clients qui reviennent pour l'entretien suivant baisse.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — conclure que "tout va bien" en te basant uniquement sur le NPS en hausse, ou au contraire "tout va mal" en te basant uniquement sur les réclamations en hausse, sans chercher à expliquer l'écart entre les deux</li>
-<li>✅ <strong>À privilégier</strong> — formuler des hypothèses vérifiables pour expliquer cet écart apparent (par exemple : la hausse du volume de ventes du trimestre explique-t-elle mécaniquement la hausse du nombre absolu de réclamations, même si leur proportion baisse ? les réclamations concernent-elles surtout un point précis, différent de ce qui motive la satisfaction globale ?), puis vérifier ces hypothèses avec les données disponibles avant de conclure</li>
+<li>❌ <strong>À éviter</strong> — conclure que tout va bien parce que la note est stable, ou que tout va mal parce que les retours baissent, sans chercher ce qui relie les deux</li>
+<li>✅ <strong>À privilégier</strong> — se demander qui répond réellement à l'enquête, et si la baisse touche tous les clients ou un type de clients précis ; formuler des hypothèses, puis les vérifier avec les données disponibles avant de conclure</li>
 </ul>
 <p>Un chiffre isolé, même juste, peut raconter une histoire incomplète. La compétence professionnelle est de croiser plusieurs indicateurs, d'expliquer un écart apparent plutôt que de choisir celui qui arrange la conclusion qu'on avait déjà en tête, et de proposer une action qui corrige la cause réelle plutôt que le symptôme le plus visible.</p>
-<p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter un symptôme visible (le nombre de réclamations) sans avoir identifié s'il révèle un vrai problème de fond ou un simple effet mécanique (plus de ventes = plus de réclamations en valeur absolue, sans que le taux ne se dégrade).</p>
+<p><strong>⚠️ Erreur fréquente à éviter :</strong> réagir à un nombre qui augmente ou baisse sans l'avoir rapporté à une base (nombre de clients, de ventes, de passages) : un nombre seul ne dit pas si la situation s'améliore ou se dégrade.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>NPS</strong> — % de promoteurs (notes 9-10) − % de détracteurs (notes 0-6) ; résultat entre −100 et +100.</li>
+<li><strong>Points et pourcentage</strong> — passer d'un NPS de 35 à 42, c'est + 7 points ; l'évolution en % d'un nombre se calcule par (nouvelle − ancienne) ÷ ancienne × 100.</li>
+<li><strong>Taux</strong> — rapporter un nombre à une base pour pouvoir comparer deux périodes ou deux groupes (par exemple un nombre de réclamations rapporté au nombre de ventes).</li>
+<li><strong>Segment</strong> — groupe de clients aux caractéristiques communes (particuliers, professionnels, nouveaux clients…) ; un résultat global peut cacher des écarts entre segments.</li>
+<li><strong>Hypothèse vérifiable</strong> — explication possible que l'on peut confirmer ou écarter avec des données.</li>
+</ul>
 <p><strong>En résumé, avant de conclure sur des indicateurs de satisfaction qui semblent se contredire, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Ne me base pas sur un seul indicateur quand plusieurs sont disponibles</li>
@@ -1034,12 +1100,21 @@ const RES = {
   'C3.1-P3':{t:"Arbitrer un portefeuille de contacts sous contrainte de temps",c:`<div class="res-section res-pro">
 <p><strong>C3.1 — Arbitrer un portefeuille de contacts sous contrainte de temps.</strong> Tu sais rédiger un bon message pour un client donné. En situation réelle, un vendeur gère un <strong>portefeuille</strong> (l’ensemble des clients dont il a la charge) de plusieurs dizaines ou centaines de personnes enregistrées dans le CRM — le <em>Customer Relationship Management</em>, le logiciel qui centralise l’historique de chaque client (achats, contacts, réclamations). Le temps disponible pour contacter ces clients est limité : la compétence professionnelle est de choisir QUI contacter en priorité, avec des informations parfois incomplètes ou contradictoires d’un collègue à l’autre.</p>
 <p><strong>Cas pratique — une semaine de contacts chez Vasseur :</strong></p>
-<p>Tu disposes d’1h30 cette semaine pour des contacts de fidélisation, soit environ 5 clients sur les 40 marqués « à recontacter » dans le CRM. Deux fiches se contredisent : le CRM indique que Mme Coquet n’a pas été contactée depuis 8 mois, mais Karim se souvient l’avoir eue au téléphone la semaine dernière, sans avoir mis à jour sa fiche.</p>
+<p>Après un salon, tu as 2 heures pour rappeler les contacts les plus prometteurs parmi les 30 enregistrés. Un collègue pense que l’un d’eux a déjà acheté ailleurs, mais rien n’est noté dans sa fiche.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — contacter les 5 premiers clients de la liste par ordre alphabétique ou par ancienneté de fiche, sans vérifier la fiabilité de l’information</li>
-<li><strong>✅ À privilégier</strong> — vérifier rapidement l’information douteuse (un message à Karim) avant d’agir, puis prioriser selon des critères objectifs : ancienneté réelle du dernier contact, valeur du client, motif de contact disponible</li>
+<li><strong>❌ À éviter</strong> — rappeler les contacts dans l’ordre de la liste, ou écarter quelqu’un sur la seule foi d’un souvenir non vérifié</li>
+<li><strong>✅ À privilégier</strong> — vérifier rapidement l’information douteuse avant d’agir, puis prioriser selon des critères objectifs (intérêt exprimé, projet daté, valeur possible) et noter dans le CRM ce qui a été vérifié</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter une fiche CRM non mise à jour comme une vérité absolue. Le CRM est un outil, pas la réalité — il ne reflète que ce que les collègues ont pris le temps d’y noter.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Portefeuille</strong> — l'ensemble des clients dont un vendeur a la charge.</li>
+<li><strong>Critère de priorité</strong> — raison objective de contacter un client avant un autre : motif de contact utile, valeur du client, échéance, ancienneté réelle du dernier contact.</li>
+<li><strong>Fait et impression</strong> — un fait est vérifiable (date, achat, réclamation) ; l'impression d'un collègue se note comme telle (« à confirmer »), sans être présentée comme un fait.</li>
+<li><strong>Recoupement de listes</strong> — quand deux listes ont des clients en commun, ces clients ne comptent qu'une fois : total = liste A + liste B − clients communs.</li>
+<li><strong>Opposition à la prospection</strong> — un client qui a refusé les messages commerciaux ne doit plus en recevoir : c'est une obligation légale.</li>
+</ul>
 <p><strong>En résumé, avant de prioriser un ensemble de contacts, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Vérifie une information douteuse avant de m’y fier pour prioriser</li>
@@ -1058,6 +1133,16 @@ const RES = {
 </ul>
 <p><strong>Quand la hiérarchie demande une exception :</strong> Michel demande de prolonger d’un mois, pour un seul client, une offre d’entretien dont la date limite est dépassée. Céder systématiquement casse la règle pour tout le monde ; refuser sans discussion ignore la réalité commerciale. La bonne posture professionnelle : proposer une solution qui respecte l’esprit de la règle (un geste hors-cadre, distinct de l’offre elle-même) plutôt qu’un renoncement pur et simple.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter un arbitrage budgétaire uniquement en chiffres, sans expliquer le raisonnement — Michel doit pouvoir comprendre pourquoi un levier passe avant un autre.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Enveloppe budgétaire</strong> — somme fixée à l'avance, non extensible.</li>
+<li><strong>Coût par vente</strong> — coût total d'un levier ÷ nombre de ventes générées.</li>
+<li><strong>Rendement d'un levier</strong> — résultat attendu rapporté à son coût.</li>
+<li><strong>Coût d'opportunité</strong> — ce à quoi on renonce en finançant une action plutôt qu'une autre.</li>
+<li><strong>Dépense engagée sur le réalisé</strong> — on n'engage une dépense que sur ce qui est constaté (véhicule livré, vente conclue), pas sur ce qui est seulement prévu.</li>
+<li><strong>Précédent</strong> — exception accordée à un client, que d'autres peuvent ensuite réclamer : une règle de fidélisation s'applique de la même façon à tous.</li>
+</ul>
 <p><strong>En résumé, avant de proposer une répartition budgétaire, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Compare le rendement réel des leviers, pas seulement leur coût affiché</li>
@@ -1075,9 +1160,20 @@ const RES = {
 <li><strong>❌ À éviter</strong> — choisir arbitrairement le chiffre le plus flatteur, ou présenter les deux chiffres sans jamais trancher</li>
 <li><strong>✅ À privilégier</strong> — comprendre l’origine de l’écart avant de trancher (délai d’enregistrement différent, périmètre différent), puis choisir la source la plus fiable pour l’usage visé, en le signalant clairement</li>
 </ul>
-<p><strong>Quand deux indicateurs se contredisent :</strong> une action peut voir son taux de conversion progresser tout en voyant son NPS reculer chez les clients touchés — signe que l’action fait vendre, mais dégrade la relation. Ne retenir que l’indicateur qui arrange la conclusion est une erreur professionnelle grave.</p>
+<p><strong>Quand deux indicateurs se contredisent :</strong> une campagne peut voir son nombre de rendez-vous augmenter alors que la part de ces rendez-vous qui aboutissent à une vente diminue — signe qu’elle attire du monde, mais pas forcément les bons contacts. Ne retenir que l’indicateur qui arrange la conclusion est une erreur professionnelle grave.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> conclure « on ne peut rien dire, les données sont trop imparfaites ». Un professionnel formule une recommandation prudente et argumentée avec les données disponibles ; il ne se réfugie pas derrière leur imperfection.</p>
 <p><strong>Fiabiliser le SIC, pas seulement le bilan :</strong> une fois l'écart entre le CRM et la comptabilité tranché, le SIC doit être corrigé en conséquence — sinon le même écart réapparaîtra au prochain bilan, et un collègue qui consultera une fiche client concernée gardera une information fausse. Au niveau professionnel compétent, fiabiliser une donnée pour un rapport ponctuel sans la corriger à la source dans le SIC est un travail incomplet.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>ROI</strong> — gain généré par une action ÷ coût de l'action.</li>
+<li><strong>Coût par vente</strong> — coût de l'action ÷ nombre de ventes.</li>
+<li><strong>Taux de conversion</strong> — ventes ÷ personnes ciblées × 100.</li>
+<li><strong>Effectif</strong> — nombre de personnes concernées par une action ; un taux calculé sur un petit effectif est fragile.</li>
+<li><strong>Effet de saison</strong> — certains mois vendent plus que d'autres : une action menée à ce moment-là profite de cet effet.</li>
+<li><strong>Groupe de comparaison</strong> — groupe semblable qui ne reçoit pas l'action, pour savoir si le résultat vient vraiment de l'action.</li>
+<li><strong>Verbatim</strong> — phrase d'un client citée mot pour mot.</li>
+</ul>
 <p><strong>En résumé, avant de présenter un bilan, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Explique un écart entre deux sources avant de choisir un chiffre à retenir</li>
@@ -1096,6 +1192,15 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — repérer que l'information la plus récente (le second échange) doit primer sur la première tant qu'elle n'est pas confirmée, poser une question directe et non intrusive pour lever le doute, et en attendant la réponse, garder une proposition prête mais sans engagement de date</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> considérer qu'une contradiction entre deux sources est un problème à résoudre seul, en devinant. Ce n'est presque jamais le cas : la bonne réponse professionnelle est très souvent de poser la question qui lève le doute, formulée de façon à ne pas donner l'impression de douter de la parole du client.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>BANT</strong> — Budget, Autorité (qui décide), Need (besoin), Timeline (délai) : plus il y a d'éléments connus, plus le prospect est qualifié.</li>
+<li><strong>Source la plus récente</strong> — tant qu'elle n'est pas démentie, elle prime sur une information plus ancienne.</li>
+<li><strong>Marge totale</strong> — nombre de ventes × marge moyenne par véhicule.</li>
+<li><strong>Exercice et amortissement</strong> — l'exercice est l'année comptable de l'entreprise ; un véhicule professionnel livré avant sa clôture commence à être amorti dès cette année.</li>
+<li><strong>Mise à jour du SIC</strong> — datée et sourcée, sans effacer ce qu'un collègue a noté ; une information incertaine est notée « à confirmer ».</li>
+</ul>
 <p><strong>En résumé, avant de qualifier un prospect à partir de plusieurs sources, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Repère une contradiction entre deux sources avant de construire quoi que ce soit dessus</li>
@@ -1114,6 +1219,16 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — comparer les trois options sur les mêmes critères (coût, portée, taux de conversion attendu ou incertain), financer d'abord ce dont le résultat est connu, réduire ou supprimer ce qui a déjà montré de faibles résultats, et n'allouer qu'un budget test à l'action jamais essayée</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> traiter chaque opération indépendamment, comme trois décisions séparées. Une répartition de budget est une seule décision globale : financer généreusement une opération a toujours un coût d'opportunité sur les deux autres, il faut le dire explicitement dans l'arbitrage.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Ventes attendues</strong> — nombre de contacts × taux de transformation habituel.</li>
+<li><strong>Coût par vente</strong> — coût de l'opération ÷ ventes attendues.</li>
+<li><strong>Budget test</strong> — petite somme pour essayer une opération sans historique, avant de l'étendre si elle fonctionne.</li>
+<li><strong>Coût d'opportunité</strong> — ce à quoi on renonce en finançant une opération plutôt qu'une autre.</li>
+<li><strong>Charge de travail</strong> — temps nécessaire pour préparer une opération (en jours de travail), à comparer au temps dont l'équipe dispose.</li>
+<li><strong>Cannibalisation</strong> — quand une offre de l'entreprise prend des ventes à une autre offre de la même entreprise, au lieu d'attirer de nouveaux clients.</li>
+</ul>
 <p><strong>En résumé, avant de répartir un budget de prospection entre plusieurs opérations, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Compare toutes les options sur les mêmes critères (coût, portée, taux de conversion attendu)</li>
@@ -1131,6 +1246,15 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — reformuler les deux priorités pour montrer qu'elles ont été entendues toutes les deux, puis proposer une piste qui articule les deux sans trancher à leur place (par exemple en partant des kilométrages réels de chaque conseiller), et clarifier avec eux qui validera la décision finale</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> répondre trop vite au premier interlocuteur qui parle en pensant avoir conclu, alors qu'en B2B la décision finale implique souvent plusieurs personnes dont les priorités ne sont pas identiques. Il faut identifier qui décide réellement, ou si la décision est partagée, avant de considérer un accord comme acquis.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Décideur, prescripteur, utilisateur</strong> — en B2B, celui qui signe n'est pas toujours celui qui choisit les modèles, ni celui qui conduit le véhicule.</li>
+<li><strong>Reformuler</strong> — redire avec ses mots ce que l'interlocuteur a exprimé, pour montrer qu'on l'a compris.</li>
+<li><strong>Frais de mise à la route</strong> — immatriculation, plaques, préparation et livraison ; une offre peut les inclure ou non.</li>
+<li><strong>Marge de négociation</strong> — remise maximale qu'un vendeur peut accorder seul.</li>
+<li><strong>Urgence et enjeu</strong> — l'urgence, c'est ce qui serait perdu si l'on attendait ; l'enjeu, c'est ce que représente le dossier (montant, client stratégique).</li>
+</ul>
 <p><strong>En résumé, face à plusieurs interlocuteurs aux priorités différentes, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Repère et reformule chaque priorité exprimée, même si elle vient d'une personne différente</li>
@@ -1143,10 +1267,10 @@ const RES = {
 'B4.4-P3':{t:"Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause",c:`<div class="res-section res-pro">
 <p><strong>C4B.4 — Piloter un portefeuille de devis et diagnostiquer une baisse multi-cause.</strong> Tu sais comparer deux ou trois devis pour prioriser une relance (palier 2). En poste, un commercial actif a souvent plusieurs devis en attente en même temps, avec des échéances et des enjeux qui ne s'alignent jamais parfaitement — il faut arbitrer un vrai portefeuille, pas juste ranger 2-3 dossiers par date. De la même façon, une baisse de performance a rarement une seule cause évidente : plusieurs éléments changent souvent en même temps, et il faut une méthode pour ne pas conclure trop vite.</p>
 <p><strong>Rappel express :</strong> un devis est une proposition chiffrée à durée de validité limitée ; le relancer avant expiration, avec un élément nouveau plutôt qu'un simple rappel de délai, est la règle de base déjà vue en palier 1 et 2.</p>
-<p><strong>Cas pratique chiffré chez Vasseur — un portefeuille de devis à prioriser :</strong> un jeudi, 4 devis sont en attente : un Scénic E-Tech (expire demain, client qui a déjà fait deux essais), un Master pour une mairie (expire dans 6 jours, montant élevé, décision en conseil municipal), une Dacia Sandero d'occasion (expire dans 2 jours, montant faible, jeune conducteur pressé) et un Espace (expire dans 10 jours, simple demande de prix). Tu ne peux en relancer sérieusement que 2 aujourd'hui.</p>
+<p><strong>Cas pratique — trois prospects à rappeler, du temps pour deux :</strong> après un salon, un prospect est très intéressé mais n'a donné aucun budget, un autre représente un gros montant mais n'a aucune échéance, et le troisième, plus modeste, doit se décider avant la fin de la semaine.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — traiter uniquement par ordre d'expiration sans tenir compte de l'enjeu ni du profil, ou au contraire uniquement par montant</li>
-<li>✅ <strong>À privilégier</strong> — croiser urgence, enjeu et profil : pour chaque devis, se demander ce qui serait perdu s'il attendait demain, et adapter le ton de la relance au client (un client déjà engagé ne se relance pas comme une simple demande de prix)</li>
+<li>❌ <strong>À éviter</strong> — choisir uniquement selon le montant, ou uniquement selon l'échéance</li>
+<li>✅ <strong>À privilégier</strong> — croiser urgence, enjeu et profil : pour chaque prospect, se demander ce qui serait perdu s'il attendait, et adapter le ton du contact à son degré d'engagement</li>
 </ul>
 <p><strong>Cas pratique chiffré — diagnostiquer une baisse multi-cause :</strong> les demandes d'essai reçues par le site Vasseur passent de 30 à 12 par mois. Au même moment, le formulaire du site a été modifié, un concurrent a lancé une grosse campagne locale et les prix affichés ont augmenté de 3 %.</p>
 <ul>
@@ -1154,6 +1278,15 @@ const RES = {
 <li>✅ <strong>À privilégier</strong> — lister les changements, chercher dans l'historique ce qui a déjà produit ce genre d'effet, puis tester une seule variable à la fois (par exemple revenir à l'ancien formulaire sans rien changer d'autre) plutôt que de tout changer d'un coup</li>
 </ul>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> quand plusieurs causes sont possibles, changer plusieurs éléments en même temps pour "corriger" la baisse. On ne peut alors plus savoir lequel a réellement fait effet — un diagnostic sérieux teste une variable à la fois.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Portefeuille de devis</strong> — ensemble des devis envoyés qui attendent une réponse.</li>
+<li><strong>Taux de réponse</strong> — réponses ÷ envois × 100.</li>
+<li><strong>Taux de prise de rendez-vous</strong> — rendez-vous ÷ contacts × 100.</li>
+<li><strong>Variable</strong> — élément que l'on peut changer (message, période, relance) ; un test sérieux n'en change qu'une à la fois.</li>
+<li><strong>Doublon et donnée manquante</strong> — un même contact compté deux fois fausse les taux ; une case vide ne se remplace jamais par une estimation sans le dire.</li>
+</ul>
 <p><strong>En résumé, avant de prioriser un portefeuille de devis ou de diagnostiquer une baisse, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Classe mes devis en croisant urgence ET enjeu, jamais un seul des deux critères isolément</li>
@@ -1165,13 +1298,22 @@ const RES = {
 
 'B4.5-P3':{t:"Valoriser une offre en coût total plutôt qu'en prix d'achat",c:`<div class="res-section res-pro">
 <p><strong>C4B.5 — Valoriser une offre en coût total plutôt qu'en prix d'achat.</strong> Tu sais construire un argumentaire caractéristique → avantage → bénéfice et l'adapter à un client déjà informé (palier 2). En poste, un des arguments professionnels les plus puissants — et les plus mal maîtrisés par les débutants — consiste à comparer non pas le prix d'achat affiché, mais le <strong>coût total de possession</strong> (souvent noté <strong>TCO</strong>, de l'anglais "Total Cost of Ownership") : c'est-à-dire le prix d'achat, additionné de l'entretien, de la consommation de carburant ou d'électricité, et diminué de la valeur de revente estimée. Un véhicule plus cher à l'achat peut coûter moins cher sur la durée — et inversement.</p>
-<p><strong>Cas pratique chiffré chez Vasseur — un client B2B qui ne regarde que le prix d'achat :</strong> une entreprise de dépannage informatique compare un Kangoo Van E-Tech (25 000 €) à un Kangoo Van diesel (22 000 €) et penche pour le diesel sur ce seul critère.</p>
+<p><strong>Cas pratique — une cliente persuadée que l'hybride « se rembourse » :</strong> Mme Roux compare une Clio 6 Evolution essence et une Clio 6 Techno hybride, plus chère à l'achat. Elle est sûre que l'hybride sera rentabilisé par les économies de carburant. Elle roule peu, en ville.</p>
 <ul>
-<li>❌ <strong>À éviter</strong> — se contenter de répéter que "l'électrique est plus économique" sans rien de chiffré, ou proposer une remise pour aligner le prix d'achat, ce qui reviendrait à accepter que la comparaison du client (prix d'achat seul) était la bonne</li>
-<li>✅ <strong>À privilégier</strong> — reconstruire la comparaison sur 4 ans avec les postes qui manquent : énergie (environ 900 € d'économie par an en électrique pour 20 000 km), entretien (moins de pièces d'usure en électrique) et valeur de revente (incertaine, à présenter prudemment) ; présenter un tableau simple : 3 000 € d'écart à l'achat, 3 600 € d'économie d'énergie sur 4 ans, puis le solde</li>
+<li>❌ <strong>À éviter</strong> — confirmer son idée sans rien calculer, ou affirmer l'inverse sans chiffre</li>
+<li>✅ <strong>À privilégier</strong> — lui demander son kilométrage et la durée pendant laquelle elle gardera la voiture, puis chiffrer l'économie de carburant sur cette durée et la comparer à l'écart de prix ; si l'écart n'est pas rattrapé, le lui dire, et ne valoriser l'hybride que sur d'autres critères qui comptent vraiment pour elle</li>
 </ul>
-<p><strong>Cas pratique — le même principe côté particulier :</strong> une cliente hésite entre une Renault 5 E-Tech neuve et une Renault Zoé d'occasion Vasseur Sélection (13 000 €, garantie 12 mois incluse). Ici, valoriser honnêtement ne veut pas dire pousser systématiquement le neuf : il faut interroger le vrai besoin (kilométrage annuel, durée de détention envisagée, envie ou non d'un véhicule sous garantie constructeur complète) avant de recommander l'une ou l'autre offre — les deux existent chez Vasseur, et pousser la mauvaise pour une commission plus élevée abîme la confiance du client à long terme.</p>
+<p><strong>Valoriser honnêtement</strong>, c'est partir du besoin réel du client (usage, durée de détention, budget) avant de recommander une offre : pousser la plus chère, ou la plus rentable pour l'entreprise, sans tenir compte de ce besoin abîme la confiance du client à long terme.</p>
 <p><strong>⚠️ Erreur fréquente à éviter :</strong> présenter un calcul de coût total flou ou approximatif ("sur la durée ça revient moins cher, croyez-moi") sans aucun chiffre. Un argument de coût total qui n'est pas chiffré n'est pas plus convaincant qu'un argument de prix — il doit être aussi précis et vérifiable que le prix d'achat qu'il vient nuancer.</p>
+<!-- notions -->
+<p><strong>📘 Les notions à connaître :</strong></p>
+<ul>
+<li><strong>Coût total de possession (TCO)</strong> — prix d'achat + entretien + énergie − valeur de revente, sur la durée réelle d'usage.</li>
+<li><strong>Valeur de revente</strong> — prix estimé du véhicule à la fin de sa période d'usage : c'est une estimation, à présenter comme telle.</li>
+<li><strong>Argument CAB</strong> — Caractéristique (ce qu'est le produit) → Avantage (ce qu'il permet) → Bénéfice (ce que CE client y gagne).</li>
+<li><strong>Coût total d'un financement</strong> — tout ce que le client paie (somme de départ, mensualités, option d'achat éventuelle), à comparer au prix comptant.</li>
+<li><strong>Mensualité et coût total</strong> — une mensualité plus basse peut aller avec un coût total plus élevé ou sans propriété du véhicule à la fin.</li>
+</ul>
 <p><strong>En résumé, avant de valoriser une offre au-delà du seul prix d'achat, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Identifie les postes de coût qui manquent à la comparaison du client (entretien, consommation, revente)</li>

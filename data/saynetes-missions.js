@@ -934,385 +934,380 @@ Object.assign(SAYNETES_MISSIONS, {
 // ═════════════════════ PALIER 3 ═════════════════════
 Object.assign(SAYNETES_MISSIONS, {
 
-"C11a-P3": { titre: "Seulement 3 véhicules à commander", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C11a-P3": { titre: "Renault 5 ou Kangoo Van pour le stock ?", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Michel Vasseur doit réapprovisionner le stock ce mois-ci, mais son budget est limité à 3 véhicules.",
-    "a|Deux segments se disputent ces 3 places. Et les informations de veille se contredisent, ou ne sont pas sûres.",
-    "a|J'ai besoin de quelqu'un qui démêle tout ça avant que je signe la commande.",
-    "fin|À toi : arbitre la répartition des 3 véhicules à partir de la veille."
+    "n|Fin de mois. Michel Vasseur ne peut commander que 3 véhicules de plus pour le stock.",
+    "a|Renault 5 E-Tech ou Kangoo Van E-Tech ? Karim m'a apporté tout ce qui circule sur ces deux modèles.",
+    "a|Des chiffres, une promotion vue par un client, une aide dont on parle… Tout n'a pas la même valeur.",
+    "a|Je veux savoir sur quoi repose ta recommandation, pas seulement la recommandation.",
+    "fin|À toi : trie les signaux de veille et propose une répartition des 3 véhicules."
   ] },
 
-"C11b-P3": { titre: "Une page pour orienter le prochain trimestre", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C11b-P3": { titre: "La note de veille du trimestre", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Fin de trimestre. Michel prépare la stratégie commerciale du suivant.",
-    "a|Je veux une synthèse qui croise plusieurs sujets de veille.",
-    "a|Une page maximum. Je n'ai pas le temps de lire un rapport.",
-    "fin|À toi : rédige la note de veille trimestrielle pour la direction."
+    "n|Réunion de fin de trimestre. Michel Vasseur te confie, pour la première fois, la note de veille.",
+    "a|Quatre sujets sur la table. Certains sont sûrs, d'autres beaucoup moins.",
+    "a|Une page, pas plus. Pour chaque sujet que tu gardes : ce qu'on sait, ce que ça change pour nous, ce qu'on fait.",
+    "fin|À toi : hiérarchise les sujets et rédige la note pour Michel Vasseur."
   ] },
 
-"C11c-P3": { titre: "Un prix « anormalement bas » chez un mandataire", decor: "bureau", a: P_ISABELLE, b: P_TOI,
+"C11c-P3": { titre: "Un Q3 « bien moins cher » sur internet", decor: "concession", a: P_ISABELLE, b: P_TOI,
   lignes: [
-    "n|Réunion d'équipe. Un collègue du service occasion lève la main.",
-    "n|Il affirme qu'un mandataire en ligne affiche un prix anormalement bas. Personne n'a vérifié.",
-    "a|Avant que cette information circule dans toute l'équipe, il faut savoir si elle est vraie.",
-    "fin|À toi : vérifie cette alerte avant de la relayer."
+    "n|En réunion, un vendeur du pôle occasion affirme qu'un Audi Q3 équivalent se vend bien moins cher chez un mandataire.",
+    "a|Il voudrait qu'on baisse le prix du nôtre tout de suite. Moi, je voudrais d'abord savoir si c'est vrai.",
+    "a|Et justement, M. Ollivier, qui a essayé notre Q3, vient d'arriver au showroom… Il a entendu la même chose.",
+    "fin|À toi : évalue cette rumeur, organise sa vérification et réponds à M. Ollivier."
   ] },
 
-"C12a-P3": { titre: "Delval Logistique s'appuie sur un prix oral", decor: "bureau", a: P_KARIM, b: sayClient("Delval Logistique", "Par mail", "h"),
+"C12a-P3": { titre: "Le prix entendu au téléphone", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Delval Logistique négocie le renouvellement de deux utilitaires, par téléphone et par mail.",
-    "n|Un collègue lui a donné au téléphone un prix différent du prix catalogue actuel.",
-    "b|Comme convenu au téléphone, nous partons sur ce prix-là.",
-    "a|Le client fonde sa décision sur ce chiffre. Il faut trancher, et proprement.",
-    "fin|À toi : tranche cette incohérence tarifaire et réponds à Delval Logistique."
+    "n|Ce matin, la comptable de Delval Logistique a écrit pour faire confirmer un prix entendu au téléphone il y a dix jours.",
+    "a|Deux Master L2H2, et un prix bien en dessous du catalogue. Le collègue qui a eu l'appel est absent jusqu'à demain.",
+    "a|M. Delval veut signer jeudi. Je te confie le dossier : reste dans le cadrage, et ne mets personne en cause.",
+    "fin|À toi : diagnostique l'écart et réponds à Delval Logistique."
   ] },
 
-"C12b-P3": { titre: "Un avis négatif qui prend de l'ampleur", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C12b-P3": { titre: "Une étoile sur la page Google", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Un client a publié un avis négatif sur les réseaux, après un retard de livraison.",
-    "n|L'avis récolte des « j'aime », et un autre client commente : il a vécu la même chose.",
-    "a|Chaque heure qui passe, plus de monde le lit. Il faut agir avant que ça s'aggrave.",
-    "fin|À toi : désamorce cet avis public."
+    "n|M. Fabre attend toujours sa Renault 4 E-Tech. Ce matin, il a publié un avis 1 étoile sur la page Google de la concession.",
+    "a|L'avis a déjà des mentions « utile », et quelqu'un a ajouté un commentaire dessous.",
+    "a|Il faut répondre aujourd'hui, en respectant notre charte. Et régler le fond du problème, pas seulement l'avis.",
+    "fin|À toi : réponds en public et en privé, puis traite la cause."
   ] },
 
-"C12c-P3": { titre: "Deux dates de livraison pour une même flotte", decor: "telephone", a: P_KARIM, b: sayClient("Un client B2B", "Doit signer dans 5 jours", "h"),
+"C12c-P3": { titre: "Deux délais pour la même commande", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Un client professionnel important doit signer dans 5 jours le renouvellement de sa flotte de 3 véhicules.",
-    "b|Votre service m'a annoncé une date de livraison, puis un autre m'en a donné une autre. Laquelle est la bonne ?",
-    "a|Deux services de chez nous, deux dates, à deux moments différents. On ne peut pas le laisser comme ça.",
-    "fin|À toi : pilote ce parcours et donne au client une information fiable."
+    "n|Lundi matin. Arnaud Livraisons signe lundi prochain la commande de trois Kangoo Van E-Tech.",
+    "a|Le mail envoyé il y a trois semaines annonçait un délai. La logistique vient de m'en donner un autre, plus long.",
+    "a|M. Arnaud ne le sait pas encore, et son nouveau contrat démarre bientôt. On ne le laisse pas le découvrir à la signature.",
+    "fin|À toi : réconcilie les deux délais et construis une solution avant le rendez-vous."
   ] },
 
-"C13a-P3": { titre: "La commande groupée de Chaumont Bâtiment", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C13a-P3": { titre: "Trois utilitaires, trois façons de payer", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Chaumont Bâtiment commande 3 véhicules utilitaires en une seule commande groupée.",
-    "a|Chaque véhicule a son propre financement. Et la remise flotte doit être répartie.",
-    "a|Un dossier comme celui-là, l'erreur se cache dans les détails.",
-    "fin|À toi : monte le dossier flotte de Chaumont Bâtiment."
+    "n|Chaumont Bâtiment commande d'un coup un Kangoo Van, un Trafic et un Master.",
+    "a|Comptant pour l'un, crédit pour l'autre, LOA avec reprise pour le troisième. Et une remise flotte pas encore affectée.",
+    "a|M. Chaumont veut sortir le moins d'argent possible à la livraison… et il a un chantier qui démarre bientôt.",
+    "fin|À toi : monte le dossier flotte et propose un calendrier de livraison."
   ] },
 
-"C13b-P3": { titre: "Fin de mois, objectif presque atteint", decor: "concession", a: P_KARIM, b: sayClient("Un couple", "Négocie l'achat", "f"),
+"C13b-P3": { titre: "« On nous a fait mieux ailleurs »", decor: "concession", a: sayClient("M. Lefèvre", "Veut un Symbioz Iconic", "h"), b: sayClient("Mme Lefèvre", "Veut comparer avant de signer", "f"),
   lignes: [
-    "n|C'est la fin du mois. L'objectif commercial de l'équipe est presque atteint.",
-    "b|Ailleurs, on nous a fait une meilleure offre. Il nous faut une plus grosse remise.",
-    "n|Le couple ne peut pas montrer cette offre. Et ce qu'il demande dépasse le cadrage autorisé.",
-    "fin|À toi : mène cette négociation sans sortir du cadrage."
+    "n|M. et Mme Lefèvre sont décidés pour un Renault Symbioz Iconic… à condition d'obtenir une grosse remise.",
+    "a|On nous a fait mieux ailleurs. Alors, vous nous suivez ? On part bientôt en vacances, je veux la voiture avant.",
+    "b|Moi, je ne signe rien aujourd'hui. Je veux prendre le temps de comparer.",
+    "n|Dans le couloir, Karim Yildiz glisse qu'il manque une vente pour l'objectif du mois.",
+    "fin|À toi : réponds au couple sans sortir du cadrage de négociation."
   ] },
 
-"C13c-P3": { titre: "Trois écarts découverts à la livraison", decor: "concession", a: P_KARIM, b: sayClient("Le client", "Venu prendre livraison", "h"),
+"C13c-P3": { titre: "Trois surprises à la livraison", decor: "concession", a: sayClient("M. Bertin", "Vient chercher son Austral", "h"), b: P_TOI,
   lignes: [
-    "n|Jour de livraison. En comparant le dossier signé et la commande réelle, trois écarts apparaissent en même temps.",
-    "b|J'ai un peu de temps devant moi. On règle ça maintenant ?",
-    "a|Tout ne se règle pas de la même façon. Trie avant d'agir.",
-    "fin|À toi : trie les trois écarts et corrige-les."
+    "n|M. Bertin vient chercher son Renault Austral Techno. En reprenant le dossier avec lui, tu découvres trois écarts.",
+    "a|Bon, on signe et je file ? J'ai un rendez-vous juste après.",
+    "n|L'attelage, la reprise, le financement : rien n'est tout à fait ce qu'il attendait. Et Karim Yildiz est en clientèle.",
+    "fin|À toi : classe les écarts, annonce-les dans le bon ordre et organise leur correction."
   ] },
 
-"C21a-P3": { titre: "La teinte nacrée de Mme Perrot", decor: "telephone", a: P_KARIM, b: sayClient("Mme Perrot", "Cliente", "f"),
+"C21a-P3": { titre: "Une rayure avant le grand jour", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Mme Perrot a commandé un Symbioz Iconic, avec une teinte spéciale nacrée.",
-    "b|L'anniversaire de mariage de mes parents, c'est dans 6 jours. La voiture sera là à temps ?",
-    "a|Deux informations se contredisent sur ce délai. Avant de lui répondre quoi que ce soit, il faut trancher.",
-    "fin|À toi : tranche entre les deux informations et réponds à Mme Perrot."
+    "n|Lundi. Le Symbioz Iconic de Mme Perrot doit être remis samedi matin : c'est un cadeau pour ses parents.",
+    "a|La préparation, je m'en occupe, pas de souci. Mais il y a une petite rayure sur une portière.",
+    "a|La retouche part chez le carrossier. Lui, il ne peut pas encore dire quand ce sera fini.",
+    "fin|À toi : décide quoi dire à Mme Perrot, et quand, puis organise la suite."
   ] },
 
-"C21b-P3": { titre: "Un Kangoo Van sur 4 en panne la veille", decor: "atelier", a: P_BRUNO, b: P_TOI,
+"C21b-P3": { titre: "Le voyant du véhicule n° 3", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Le Cabinet Comptable Lartigue a commandé 4 Kangoo Van, livrés ensemble le même jour.",
-    "a|Veille de livraison : je viens de trouver un défaut électrique sur l'un des 4.",
-    "a|Combien de temps pour le réparer ? Franchement, je ne peux pas encore le dire.",
-    "fin|À toi : adapte la livraison groupée du Cabinet Lartigue."
+    "n|Vendredi après-midi. Les quatre Kangoo Van de Net'Pro Services doivent partir lundi matin.",
+    "a|Trois sont prêts. Sur le quatrième, un voyant s'allume par intermittence. Il faut le réparer, et je ne sais pas encore combien de temps ça prendra.",
+    "a|Karim est en congé. C'est toi qui pilotes. Mme Lopes avait insisté : les quatre le même matin.",
+    "fin|À toi : choisis une solution pour lundi et préviens la cliente."
   ] },
 
-"C21c-P3": { titre: "La fiche de vente et le contrat de Mme Savary", decor: "bureau", a: P_BRUNO, b: P_TOI,
+"C21c-P3": { titre: "L'attelage a disparu du bon de commande", decor: "bureau", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Tu prépares la transmission du dossier de Mme Savary, qui a commandé un Captur Techno.",
-    "n|En comparant la fiche de vente initiale et le contrat signé, quelque chose ne colle pas.",
-    "a|Ce que tu m'envoies, je le prépare tel quel. Alors vérifie bien avant.",
-    "fin|À toi : fiabilise le dossier de Mme Savary avant de le transmettre."
+    "n|Tu prépares la transmission du dossier de Mme Savary à l'atelier. Son Captur Techno sera livré dans quelques jours.",
+    "a|Alors, qu'est-ce que je prépare exactement ? Je dois commander les pièces à temps.",
+    "n|Sur la fiche du rendez-vous, l'attelage est coché. Sur le bon de commande signé, il n'apparaît pas.",
+    "fin|À toi : lève la contradiction et transmets un dossier fiable à Bruno Faucher."
   ] },
 
-"C22a-P3": { titre: "Les accessoires de M. Delorme", decor: "concession", a: P_KARIM, b: sayClient("M. Delorme", "Achète un Captur Evolution", "h"),
-  etiquettes: ["CAPTUR", "EVOLUTION"], couleurs: ["#9CA3AF", "#1E3A8A"],
+"C22a-P3": { titre: "Trois accessoires et une semaine chargée", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|M. Delorme achète un Captur Evolution. Livraison dans 7 jours.",
-    "b|Je voudrais un attelage, des barres de toit et une protection de coffre. Mais pas plus de 650 € pour le tout.",
-    "a|Il faudra peut-être choisir. À toi de l'aider à arbitrer.",
-    "fin|À toi : arbitre le panier d'accessoires de M. Delorme."
+    "n|M. Delorme veut trois accessoires posés sur son Captur Evolution avant la livraison, lundi prochain.",
+    "a|Cette semaine, mon planning est presque plein. Il ne me reste qu'une journée avant la livraison.",
+    "a|Le carrossier partenaire et le fournisseur en ligne ont peut-être des solutions. Mais le budget du client est serré.",
+    "fin|À toi : cherche la bonne combinaison et présente un arbitrage à M. Delorme."
   ] },
 
-"C22b-P3": { titre: "Le partenaire dit tout et son contraire", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C22b-P3": { titre: "Accordé ou en attente ?", decor: "telephone", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Menuiserie Caron commande 2 Trafic, financés en LOA par l'organisme partenaire de Vasseur.",
-    "a|La livraison est prévue dans 5 jours.",
-    "n|Problème : l'organisme partenaire a donné deux réponses qui se contredisent.",
-    "fin|À toi : décide quelle réponse croire et sécurise la livraison."
+    "n|Mardi matin. Menuiserie Caron doit recevoir lundi deux Trafic Confort financés en LOA.",
+    "a|Dimanche, l'organisme partenaire nous a écrit que c'était bon. Et ce matin, un autre conseiller appelle : il manque une pièce.",
+    "a|M. Caron, lui, croit que tout est réglé. Je te confie le dossier.",
+    "fin|À toi : calcule ta marge de temps et sécurise la livraison."
   ] },
 
-"C22c-P3": { titre: "Garantie étendue ou contrat d'entretien ?", decor: "concession", a: P_KARIM, b: sayClient("Mme Kowalski", "Achète une Clio 6 Techno", "f"),
-  etiquettes: ["CLIO 6", "HYBRIDE"], couleurs: ["#B5651D", "#6B7280"],
+"C22c-P3": { titre: "Un seul service dans le budget", decor: "concession", a: sayClient("Mme Kowalski", "Achète une Clio 6 Techno", "f"), b: P_TOI,
   lignes: [
-    "n|Mme Kowalski achète une Clio 6 Techno hybride.",
-    "b|La garantie étendue ou le contrat d'entretien ? Mon budget, c'est 400 € maximum.",
-    "a|Les deux services sont utiles, mais elle ne peut en prendre qu'un. Conseille-la, sans choisir à sa place.",
-    "fin|À toi : conseille Mme Kowalski entre les deux services."
+    "n|Mme Kowalski vient de choisir sa Clio 6 Techno hybride. Reste la question des services associés.",
+    "a|L'extension de garantie ou le contrat d'entretien… Je ne peux pas prendre les deux.",
+    "a|Je roule peu, surtout en ville, et je compte la garder quelques années. Qu'est-ce qui est le plus utile pour moi ?",
+    "fin|À toi : chiffre ce que chaque service lui apporte vraiment et conseille-la."
   ] },
 
-"C23a-P3": { titre: "Le message de M. Perrichon", decor: "bureau", a: P_KARIM, b: sayClient("M. Perrichon", "Par message", "h"),
+"C23a-P3": { titre: "Un régulateur mal réglé et une facture contestée", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|M. Perrichon a réceptionné son Austral hier. Il écrit déjà.",
-    "b|Le régulateur de vitesse adaptatif est mal réglé. Je demande 500 € de remboursement sur ma facture… et je laisserai un avis à la hauteur de votre réponse.",
-    "a|Tout ne relève pas de toi dans ce message. Fais la part des choses.",
-    "fin|À toi : distingue ce que tu peux régler de ce qui doit être validé."
+    "n|M. Perrichon a reçu son Austral il y a trois jours. Ce matin, il écrit, mécontent.",
+    "a|Une aide à la conduite qui ne marche pas comme prévu, une demande de remboursement, et une menace d'avis en ligne.",
+    "a|Michel est en déplacement jusqu'à jeudi. Règle ce qui relève de toi, et prépare-lui le reste.",
+    "fin|À toi : trie les deux demandes et réponds à M. Perrichon."
   ] },
 
-"C23b-P3": { titre: "Les Ateliers du Gâtinais attendent depuis 8 jours", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C23b-P3": { titre: "Chacun accuse l'autre", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|SARL Ateliers du Gâtinais, flotte de 3 Master, se plaint d'un retard de livraison de 8 jours.",
-    "n|En interne, deux services se renvoient la faute. Deux versions de la cause circulent.",
-    "a|On ne répond pas au client tant qu'on ne sait pas ce qui s'est vraiment passé.",
-    "fin|À toi : enquête sur la cause avant de répondre au client."
+    "n|SARL Ateliers du Gâtinais a reçu ses trois Master en retard. Son gérant veut savoir ce qui s'est passé.",
+    "a|Le commercial dit que c'est l'atelier. Bruno dit que c'est le commercial.",
+    "a|Avant de répondre au client, je veux les faits. Les traces écrites du dossier sont là.",
+    "fin|À toi : reconstitue ce qui s'est passé, puis réponds à M. Garnier."
   ] },
 
-"C23c-P3": { titre: "Mme Guillermic veut un deuxième avis", decor: "telephone", a: P_KARIM, b: sayClient("Mme Guillermic", "Cliente depuis 6 ans", "f"),
+"C23c-P3": { titre: "« Je vais demander un deuxième avis »", decor: "telephone", a: sayClient("Mme Guillermic", "Cliente depuis 6 ans", "f"), b: P_TOI,
   lignes: [
-    "n|Mme Guillermic est cliente depuis 6 ans. Elle a acheté 3 véhicules chez Vasseur.",
-    "b|Ma Symbioz fait encore un bruit suspect au moteur, 2 semaines après votre atelier. J'ai pris rendez-vous chez un concurrent, pour avoir un deuxième avis.",
-    "a|C'est sa troisième réclamation en 8 mois. On risque de la perdre.",
-    "fin|À toi : traite cette réclamation et retiens Mme Guillermic."
+    "n|Mme Guillermic appelle au sujet de son Symbioz. Le même bruit moteur, deux semaines après le passage à l'atelier.",
+    "a|Je vous fais confiance depuis des années, mais là… J'ai pris rendez-vous dans un autre garage, pour avoir un deuxième avis.",
+    "a|Je ne veux pas une troisième intervention pour rien.",
+    "fin|À toi : change le traitement du problème et regagne sa confiance."
   ] },
 
-"C24a-P3": { titre: "Deux résultats B2B qui se contredisent", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C24a-P3": { titre: "Le NPS monte, les réclamations aussi", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Michel Vasseur pose deux résultats du même trimestre, pour la clientèle professionnelle.",
-    "a|L'un dit une chose, l'autre semble dire l'inverse.",
-    "a|Explique-moi d'où vient cet écart. Je ne veux pas tirer de conclusion trop vite.",
-    "fin|À toi : explique l'écart entre les deux indicateurs."
+    "n|Michel Vasseur te montre les résultats du trimestre pour les clients professionnels.",
+    "a|Le NPS progresse. Bonne nouvelle. Mais il y a aussi plus de réclamations. Alors, je dois m'inquiéter ou pas ?",
+    "a|Ce trimestre, notre nouvelle offre de flotte a amené pas mal de nouveaux clients.",
+    "fin|À toi : explique cet écart et trouve où se trouve le problème."
   ] },
 
-"C24b-P3": { titre: "La salle d'attente de l'atelier", decor: "atelier", a: P_MICHEL, b: P_BRUNO,
+"C24b-P3": { titre: "Personne ne nous dit rien pendant l'attente", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Les retours clients le répètent : pendant les rendez-vous SAV, on attend en salle d'accueil sans savoir où en est son véhicule.",
-    "a|Bruno, j'accorde 1 500 € pour régler ce point faible.",
-    "b|Il y a plusieurs façons de faire. On n'est pas certains de laquelle marchera le mieux.",
-    "fin|À toi : choisis l'action d'amélioration dans ce budget."
+    "n|Les clients de l'atelier se plaignent toujours de la même chose : pendant l'attente, personne ne les informe.",
+    "a|Michel nous accorde un budget pour l'année. J'ai étudié trois options.",
+    "a|Il veut une action dont on puisse mesurer l'effet assez vite.",
+    "fin|À toi : compare les options et recommande un choix évaluable."
   ] },
 
-"C24c-P3": { titre: "« On m'a menti pour me faire signer »", decor: "bureau", a: P_KARIM, b: sayClient("Un client", "Avis 2 étoiles", "h"),
+"C24c-P3": { titre: "« On m'a menti pour me faire signer »", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Un avis 2 étoiles vient d'être publié, au sujet d'un achat de Captur.",
-    "b|Le vendeur m'a annoncé une garantie de 5 ans, et mon contrat n'en indique que 3. On m'a menti pour me faire signer.",
-    "a|Cet avis contient une erreur. Mais une réponse qui donne tort au client en public serait pire.",
-    "fin|À toi : réponds à cet avis sans laisser passer l'erreur."
+    "n|M. Rousset a publié un avis 2 étoiles sur son Captur Techno : il affirme qu'on lui avait promis une garantie plus longue.",
+    "a|Le vendeur dit qu'il n'a jamais promis ça. Le bon de commande signé dit autre chose que l'avis.",
+    "a|Je veux une réponse, et surtout comprendre d'où vient ce malentendu.",
+    "fin|À toi : réponds à l'avis et cherche l'origine du malentendu."
   ] },
 
-"C31a-P3": { titre: "1h30 pour 6 clients", decor: "bureau", a: P_ISABELLE, b: P_TOI,
+"C31a-P3": { titre: "Six clients, quatre appels", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Cette semaine, tu as 1h30 pour des contacts de fidélisation. Le CRM propose 6 clients ; tu pourras en joindre environ 4.",
-    "a|Attention, certaines fiches sont incomplètes. Et des collègues se souviennent de choses qui ne sont notées nulle part.",
-    "fin|À toi : choisis les clients à contacter en priorité."
+    "n|Karim Yildiz te réserve du temps cette semaine pour des appels de fidélisation.",
+    "a|Le CRM te propose six clients. Tu n'auras le temps d'en appeler que quatre.",
+    "a|Attention : certaines fiches ne sont pas à jour, et une note d'Isabelle n'a pas de date.",
+    "fin|À toi : vérifie les fiches douteuses et choisis tes quatre appels."
   ] },
 
-"C31b-P3": { titre: "M. Andrieu sur la liste de demain", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C31b-P3": { titre: "M. Andrieu dans l'envoi de demain ?", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Demain, 9h : un message automatique sur la nouvelle Renault Symbioz doit partir chez 140 clients SUV jugés « satisfaits ».",
-    "a|M. Andrieu est sur la liste. Or il a eu une réclamation il y a 3 semaines.",
-    "a|Avant l'envoi, il faut trancher : le message part, ou pas, et sous quelle forme ?",
-    "fin|À toi : tranche le cas de M. Andrieu avant l'envoi."
+    "n|Demain matin, un mail sur le Renault Symbioz part automatiquement vers des clients jugés satisfaits.",
+    "a|Tiens, M. Andrieu est dans la liste. Sa réclamation est close… mais je l'ai trouvé encore agacé la semaine dernière.",
+    "a|Je n'ai rien noté, je n'étais pas sûr. Tu as jusqu'à ce soir pour modifier la liste.",
+    "fin|À toi : décide si M. Andrieu reçoit le mail, puis corrige la pratique."
   ] },
 
-"C31c-P3": { titre: "Qui reçoit l'offre de reprise majorée ?", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C31c-P3": { titre: "Des listes qui se chevauchent", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Vasseur prépare une campagne sur une offre de reprise majorée, réservée à un segment précis de la base clients.",
-    "a|Plusieurs critères d'exclusion se chevauchent.",
-    "a|Tous doivent être appliqués avant l'envoi. Une erreur, et un client reçoit un message qui ne le concerne pas.",
-    "fin|À toi : construis la liste de diffusion en appliquant tous les critères."
+    "n|Vasseur prépare une campagne SMS pour une offre de reprise majorée.",
+    "a|Avant d'envoyer, il faut retirer plusieurs listes de clients. Et certaines se recoupent.",
+    "a|Je veux le nombre exact de clients ciblés, et le coût de l'envoi.",
+    "fin|À toi : calcule la cible exacte et sécurise l'envoi."
   ] },
 
-"C32a-P3": { titre: "2 400 € pour trois leviers", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C32a-P3": { titre: "Une enveloppe trop petite pour tout", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Michel confie une enveloppe de 2 400 € pour le trimestre.",
-    "a|Trois leviers de fidélisation à financer. Le budget ne suffit pas à les financer tous à pleine puissance.",
-    "a|Propose-moi une répartition, et dis-moi pourquoi.",
-    "fin|À toi : répartis l'enveloppe entre les trois leviers."
+    "n|Michel Vasseur confie une enveloppe de fidélisation pour le trimestre.",
+    "a|Trois leviers, et pas assez d'argent pour les financer tous en entier.",
+    "a|Je veux une répartition que je comprenne, et de quoi vérifier en fin de trimestre si c'était le bon choix.",
+    "fin|À toi : compare les leviers et répartis l'enveloppe."
   ] },
 
-"C32b-P3": { titre: "Isabelle veut une exception pour Transports Gauvin", decor: "bureau", a: P_ISABELLE, b: P_TOI,
+"C32b-P3": { titre: "Faire entrer Gauvin au Club ?", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Isabelle entre dans le bureau, le dossier Transports Gauvin à la main.",
-    "a|Inclus-les dans le parrainage. Je sais, ils n'ont signé qu'un contrat, et la règle exige 2 achats.",
-    "a|Mais j'ai une négociation en cours avec eux, pour une flotte de 6 véhicules.",
-    "fin|À toi : réponds à la demande d'exception d'Isabelle."
+    "n|Karim Yildiz négocie une grosse commande d'utilitaires avec Transports Gauvin.",
+    "a|Si je les fais entrer tout de suite au Club Vasseur Pro, ça peut faire pencher la balance.",
+    "a|Je sais, ils n'ont qu'un véhicule chez nous… Qu'est-ce que tu en penses, avant que j'en parle à Michel ?",
+    "fin|À toi : réponds à Karim sans casser la règle du Club."
   ] },
 
-"C32c-P3": { titre: "Transports Roussel : combien de Trafic livrés ?", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C32c-P3": { titre: "Un geste à chaque livraison", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Transports Roussel a signé pour une flotte de Renault Trafic, livrée de façon échelonnée sur l'année.",
-    "a|À ce jour, on a livré moins de véhicules que le nombre prévu au contrat.",
-    "a|Sur quel chiffre bâtir leur programme de fidélisation ? Ce n'est pas si évident.",
-    "fin|À toi : construis le programme de fidélisation de Transports Roussel."
+    "n|Transports Roussel reçoit ses Trafic en plusieurs fois au cours de l'année. Une partie est déjà livrée.",
+    "a|Le gérant attend un geste à chaque livraison, même pour les véhicules qu'il a déjà reçus.",
+    "a|D'accord, mais dans notre règle budgétaire. Construis-moi le programme.",
+    "fin|À toi : construis une fidélisation qui suit les livraisons réelles."
   ] },
 
-"C33a-P3": { titre: "Le bilan annuel des trois actions", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C33a-P3": { titre: "Le bilan de l'année", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Fin d'année. Michel doit décider du budget de fidélisation de l'année prochaine.",
-    "a|Je veux un bilan des trois actions menées cette année.",
-    "a|Attention : nos sources de données ne concordent pas toutes.",
-    "fin|À toi : construis le bilan annuel à partir de ces sources."
+    "n|Michel Vasseur veut le bilan des trois actions de fidélisation de l'année avant de fixer le budget suivant.",
+    "a|Le CRM et la comptabilité ne donnent pas le même chiffre pour une action. Le coût d'une autre n'a pas été noté à part.",
+    "a|Et la troisième n'a fait vendre aucune voiture directement. Ça ne veut pas dire qu'elle n'a servi à rien.",
+    "fin|À toi : fiabilise les chiffres et construis le bilan."
   ] },
 
-"C33b-P3": { titre: "Trois actions impossibles à comparer… vraiment ?", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C33b-P3": { titre: "Trois actions, trois contextes", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Cette année, trois actions de fidélisation ont été menées, à des périodes, sur des échantillons et des publics très différents.",
-    "a|Je dois répartir le budget de l'an prochain entre elles.",
-    "a|Comment les comparer honnêtement ?",
+    "n|Trois actions de fidélisation ont été menées cette année. Sur le papier, l'une écrase les autres.",
+    "a|Michel veut savoir comment répartir le budget de l'an prochain.",
+    "a|Avant de comparer les taux, regarde bien dans quelles conditions chaque résultat a été obtenu.",
     "fin|À toi : compare les trois actions et propose une répartition."
   ] },
 
-"C33c-P3": { titre: "Plus de ventes, moins de satisfaction", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C33c-P3": { titre: "« Encore la même offre ? »", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Depuis 18 mois, une offre de reprise majorée part tous les 3 mois aux clients de plus de 3 ans d'ancienneté.",
-    "a|Son taux de conversion s'améliore. Mais le NPS de ceux qui l'ont reçue plusieurs fois se dégrade.",
-    "a|Les deux indicateurs vont en sens contraire. Lequel écouter ?",
-    "fin|À toi : tranche entre ces deux indicateurs."
+    "n|Depuis un an et demi, une offre de reprise majorée part régulièrement vers les clients anciens.",
+    "a|Elle fait vendre de plus en plus. Mais certains clients commencent à s'en plaindre.",
+    "a|On continue, on change quelque chose, ou on arrête ?",
+    "fin|À toi : analyse les deux indicateurs et décide de la suite du programme."
   ] },
 
-"B41a-P3": { titre: "Le budget du Groupe Bréard", decor: "bureau", a: P_KARIM, b: P_TOI,
+"C33d-P3": { titre: "Mettre le SIC à jour avant vendredi", decor: "bureau", a: P_ISABELLE, b: P_TOI,
   lignes: [
-    "n|Le Groupe Bréard, entreprise de BTP, veut renouveler une flotte de 8 utilitaires.",
-    "a|Voici deux documents du dossier, écrits à quelques semaines d'écart.",
-    "a|Sur le budget, ils ne disent pas tout à fait la même chose. Sur un compte pareil, on ne peut pas se tromper.",
-    "fin|À toi : lève la contradiction sur le budget du Groupe Bréard."
+    "n|Mardi. Trois actions de fidélisation viennent de se terminer, et le bilan est vendredi.",
+    "a|Pour la reprise majorée, tout est propre. Pour le parrainage, deux fiches sont incomplètes.",
+    "a|Et pour les gestes après réclamation… je me souviens d'environ cinq ou six clients, mais je n'ai pas de liste.",
+    "fin|À toi : enrichis le SIC en traitant chaque source selon sa fiabilité."
   ] },
 
-"B41b-P3": { titre: "17h30 : cinq demandes, deux appels", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B41a-P3": { titre: "Le budget du Groupe Bréard a changé", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|17h30. Cinq demandes sont arrivées dans la journée, par le site et par téléphone.",
-    "a|Avant la fermeture, tu ne pourras en traiter sérieusement que deux.",
-    "a|Les autres attendront demain matin, au plus tôt.",
-    "fin|À toi : choisis les deux prospects à traiter ce soir."
+    "n|Le Groupe Bréard veut renouveler six utilitaires avant la fin de l'année.",
+    "a|Au premier rendez-vous, le dirigeant m'a donné un budget. Au deuxième, il m'a dit qu'il serait plus serré.",
+    "a|Sans chiffre. Et son responsable des chantiers tient à ses fourgons.",
+    "fin|À toi : lève la contradiction et prépare une offre qui puisse s'adapter."
   ] },
 
-"B41c-P3": { titre: "Volume ou marge ?", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"B41b-P3": { titre: "Cinq demandes avant la fermeture", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Avant la réunion commerciale, Michel Vasseur veut une lecture des chiffres du trimestre.",
-    "a|Selon qu'on regarde le volume ou la marge, les chiffres ne racontent pas la même histoire.",
-    "a|Je veux savoir sur quoi m'appuyer.",
-    "fin|À toi : arbitre entre volume et marge sur les chiffres du trimestre."
+    "n|Il est 17 h 30. Cinq demandes sont arrivées dans la journée, par le site et par téléphone.",
+    "a|Je file en rendez-vous jusqu'à la fermeture. Tu ne pourras en traiter sérieusement que deux.",
+    "a|Les autres ne doivent pas rester sans réponse pour autant.",
+    "fin|À toi : choisis les deux demandes à traiter ce soir et prévois une suite pour les autres."
   ] },
 
-"B42a-P3": { titre: "5 000 € pour trois besoins", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B41c-P3": { titre: "Plus de Captur vendus, mais à quel prix ?", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Karim dispose de 5 000 € de prospection pour ce trimestre.",
-    "a|Trois besoins à couvrir, et pas assez pour financer chacun au niveau idéal.",
-    "a|Aide-moi à répartir ce budget.",
-    "fin|À toi : répartis le budget entre les trois opérations."
+    "n|Avant la réunion commerciale, Michel Vasseur regarde les ventes de véhicules neufs du trimestre.",
+    "a|Karim est ravi : on a vendu plus de Captur, grâce aux remises.",
+    "a|Moi, je me demande ce que ces remises nous ont coûté. Et si ce sont vraiment elles qui ont fait la hausse.",
+    "fin|À toi : analyse volume et marge, puis propose un ajustement mesuré."
   ] },
 
-"B42b-P3": { titre: "Deux échéances, deux personnes", decor: "bureau", a: P_ISABELLE, b: P_KARIM,
+"B41d-P3": { titre: "Vingt minutes pour quatre fiches", decor: "bureau", a: P_ISABELLE, b: P_TOI,
   lignes: [
-    "n|Deux échéances tombent en même temps ce mois-ci.",
-    "a|Karim et moi, nous sommes les seuls à pouvoir préparer les supports.",
-    "b|Et aucun renfort n'est possible. On ne peut pas tout faire en même temps.",
-    "fin|À toi : séquence les deux opérations."
+    "n|17 h. Isabelle Ferrand te signale quatre fiches prospects qui ne sont plus à jour dans le SIC.",
+    "a|Des informations plus récentes traînent ailleurs : un mail, une note de Karim qui n'a pas été saisie…",
+    "a|Tu ne pourras pas tout faire ce soir. Commence par ce qui compte vraiment.",
+    "fin|À toi : choisis les fiches à mettre à jour et fais-le avec rigueur."
   ] },
 
-"B42c-P3": { titre: "Développer Vasseur Sélection, sans cannibaliser le neuf", decor: "concession", a: P_MICHEL, b: P_ISABELLE,
-  etiquettes: ["NEUF", "SÉLECTION"], couleurs: ["#B5651D", "#1F2937"],
+"B42a-P3": { titre: "Un budget pour trois opérations", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Michel veut développer la clientèle du pôle Vasseur Sélection, y compris pour des modèles premium en bon état.",
-    "a|Mais je ne veux pas qu'on détourne des prospects qui auraient de toute façon acheté un neuf chez nous.",
-    "b|Il faut donc viser juste.",
-    "fin|À toi : conçois l'opération ciblant la clientèle de Vasseur Sélection."
+    "n|Karim Yildiz a un budget de prospection pour le trimestre, sans rallonge possible.",
+    "a|J'ai trois opérations en tête : une campagne mail, un salon, de la publicité sur les réseaux sociaux.",
+    "a|Je ne peux pas tout faire au maximum. Il me faut une répartition que je puisse défendre devant Michel.",
+    "fin|À toi : compare les trois opérations et répartis le budget."
   ] },
 
-"B43a-P3": { titre: "Le prix d'un côté, l'image de l'autre", decor: "exterieur", enseigne: "NETTOYAGE INDUSTRIEL", a: P_KARIM, b: sayClient("La dirigeante", "Entreprise de nettoyage", "f"),
+"B42b-P3": { titre: "La même semaine, deux opérations", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Rendez-vous chez une entreprise de nettoyage industriel : une flotte de 5 véhicules à renouveler.",
-    "n|Pendant tout l'entretien, le responsable d'exploitation n'a parlé que du prix.",
-    "b|Pour moi, ce qui compte, c'est l'image de l'entreprise auprès de nos clients.",
-    "fin|À toi : concilie les priorités des deux décideurs."
+    "n|En novembre, une campagne auprès des entreprises et un salon doivent être prêts la même semaine.",
+    "a|Isabelle et moi, on est les seuls à pouvoir les préparer. Et on n'aura pas de renfort.",
+    "a|Tout ne pourra pas être fait au mieux. Propose-moi une organisation réaliste.",
+    "fin|À toi : calcule la charge de travail et décide de l'organisation."
   ] },
 
-"B43b-P3": { titre: "Vendredi 14h, deux rendez-vous", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B42c-P3": { titre: "Attirer de nouveaux clients vers l'occasion", decor: "bureau", a: P_ISABELLE, b: P_TOI,
   lignes: [
-    "n|Deux demandes de rendez-vous arrivent presque en même temps.",
-    "a|Les deux veulent vendredi, 14h. Tu ne peux en tenir qu'un à cette heure-là.",
-    "a|Choisis, et ne perds pas l'autre.",
-    "fin|À toi : arbitre entre les deux rendez-vous."
+    "n|Michel Vasseur veut développer la clientèle de Vasseur Sélection.",
+    "a|Sa crainte : une campagne qui attire surtout des gens qui auraient de toute façon acheté du neuf chez nous.",
+    "a|On ne veut pas déplacer des ventes, on veut de nouveaux clients. Tu as un petit budget pour ça.",
+    "fin|À toi : conçois l'opération et prévois de quoi vérifier qu'elle ne cannibalise pas le neuf."
   ] },
 
-"B43c-P3": { titre: "Une offre imprimée à 1 800 € de moins", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Offre imprimée en main", "h"),
-  etiquettes: ["CAPTUR", "NEUF"], couleurs: ["#B5651D", "#374151"],
+"B43a-P3": { titre: "Le prix d'un côté, l'image de l'autre", decor: "exterieur", enseigne: "HYGIÈNE PRO 91", a: sayClient("M. Collin", "Responsable d'exploitation", "h"), b: sayClient("Mme Arbaoui", "Dirigeante", "f"),
   lignes: [
-    "n|En showroom, un client pose une feuille sur le bureau : une offre d'un concurrent pour un Captur.",
-    "b|Chez eux, c'est 1 800 € de moins. Vous vous alignez tout de suite ?",
-    "a|Cette fois, il y a un document. Mais un document, ça se vérifie.",
-    "fin|À toi : vérifie cette contre-offre avant d'y répondre."
+    "n|Rendez-vous chez Hygiène Pro 91, qui renouvelle ses véhicules. Tu accompagnes Karim Yildiz.",
+    "a|Nous avons un plafond, et cinq équipes partent chaque matin. Il me faut cinq véhicules.",
+    "b|Nos véhicules roulent devant nos clients tous les jours. L'image compte aussi, quitte à en prendre un peu moins.",
+    "fin|À toi : prépare des configurations sans trancher à leur place, et clarifie qui décide."
   ] },
 
-"B44a-P3": { titre: "5 devis en attente, 3 relances possibles", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B43b-P3": { titre: "Vendredi, 14 h : un seul créneau", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Lundi matin. 5 devis attendent une réponse.",
-    "a|Aujourd'hui, tu n'as le temps d'en relancer sérieusement que 3.",
-    "fin|À toi : choisis les 3 devis à relancer en priorité."
+    "n|Mercredi. Deux demandes de rendez-vous arrivent presque en même temps pour vendredi à 14 h.",
+    "a|D'un côté, une entreprise de transport et une belle flotte. De l'autre, un particulier dont la voiture vient de lâcher.",
+    "a|Je suis libre vendredi à 14 h, mais je ne connais aucun des deux dossiers.",
+    "fin|À toi : décide qui tu reçois, et organise la suite pour n'en perdre aucun."
   ] },
 
-"B44b-P3": { titre: "De 10% à 3% : trois changements à la fois", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B43c-P3": { titre: "Une offre imprimée sur le bureau", decor: "concession", a: sayClient("M. Leroux", "Veut un Captur Techno", "h"), b: sayClient("Mme Leroux", "Attentive à l'entretien", "f"),
   lignes: [
-    "n|Le taux de réponse des campagnes mail est tombé de 10% à 3% ce mois-ci.",
-    "a|D'habitude, un seul élément change d'un mois à l'autre. Cette fois, trois ont changé en même temps.",
-    "a|Lequel est responsable ? Peut-être plusieurs.",
-    "fin|À toi : diagnostique les causes de cette baisse."
+    "n|M. et Mme Leroux posent sur ton bureau l'offre imprimée d'un concurrent pour un Captur Techno.",
+    "a|Chez eux, c'est bien moins cher. Vous vous alignez ? Je veux la voiture avant la fin du mois.",
+    "b|Moi, ce qui compte, c'est l'entretien et la garantie.",
+    "fin|À toi : vérifie l'offre concurrente avant de répondre, dans ta marge de négociation."
   ] },
 
-"B44c-P3": { titre: "Des chiffres qui posent problème", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"B44a-P3": { titre: "Cinq devis, trois relances", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Michel te transmet le tableau de bord mensuel de prospection, pour préparer la réunion commerciale.",
-    "n|En le relisant, certains chiffres te semblent bizarres.",
-    "a|Avant d'en tirer quoi que ce soit, je veux un tableau propre.",
-    "fin|À toi : nettoie le tableau de bord, puis interprète-le."
+    "n|Lundi matin. Cinq devis attendent une réponse.",
+    "a|Tu as le temps d'en relancer sérieusement trois aujourd'hui.",
+    "a|Ne te contente pas des dates d'expiration : regarde aussi qui sont les clients et ce qui est en jeu.",
+    "fin|À toi : choisis tes trois relances et organise la suite pour les deux autres."
   ] },
 
-"B45a-P3": { titre: "Captur neuf ou Captur d'occasion ?", decor: "concession", a: P_ISABELLE, b: sayClient("Un client", "Hésite", "h"),
-  etiquettes: ["NEUF", "SÉLECTION"], couleurs: ["#B5651D", "#9CA3AF"],
+"B44b-P3": { titre: "Trois changements, une chute", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Un client hésite entre un Captur Evolution neuf et un Captur équivalent d'occasion, arrivé cette semaine chez Vasseur Sélection.",
-    "b|Le neuf, c'est 6 à 8 semaines d'attente. L'occasion, elle est là tout de suite…",
-    "a|Celle-ci n'est même pas encore au catalogue. Aide-le à choisir ce qui lui convient vraiment.",
-    "fin|À toi : oriente ce client entre le neuf et l'occasion Vasseur Sélection."
+    "n|Le taux de réponse au mail mensuel de Vasseur s'est effondré.",
+    "a|Karim veut tout corriger le mois prochain. Moi, je veux d'abord comprendre.",
+    "a|Ce mois-ci, trois choses ont changé en même temps. Laquelle a pesé le plus ?",
+    "fin|À toi : estime le poids de chaque cause et propose un test."
   ] },
 
-"B45b-P3": { titre: "« Le budget est trop juste »", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Intéressé par la Clio 6", "h"),
-  etiquettes: ["CLIO 6", "TECHNO"], couleurs: ["#B5651D", "#1E3A8A"],
+"B44c-P3": { titre: "Un tableau rempli à la hâte", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
-    "n|Un client s'intéresse à la Clio 6 Techno, à 25 000 €.",
-    "b|Payée comptant, c'est trop juste pour mon budget.",
-    "a|Il n'a pas encore comparé les autres modes de financement. Parle-lui de ce que ça coûte vraiment, au total.",
-    "fin|À toi : valorise le financement en coût total."
+    "n|Michel Vasseur te transmet le tableau de bord de prospection du mois pour la réunion commerciale.",
+    "a|Il a été rempli vite. Relis-le avant qu'on en tire des conclusions.",
+    "fin|À toi : repère les anomalies, corrige ce qui peut l'être et recommande avec honnêteté."
   ] },
 
-"B45c-P3": { titre: "3 000 € de moins à l'achat", decor: "exterieur", enseigne: "TRANSPORT DE COLIS", a: P_KARIM, b: sayClient("Le responsable", "Entreprise de colis", "h"),
+"B45a-P3": { titre: "Neuf ou occasion récente ?", decor: "concession", a: sayClient("M. Hamon", "Hésite entre deux Captur", "h"), b: P_TOI,
   lignes: [
-    "n|Une entreprise de transport de colis compare le Trafic Grand Confort à 35 000 € et un utilitaire concurrent à 32 000 €.",
-    "b|Le vôtre est plus cher à l'achat. Je pars sur l'autre.",
-    "a|Il ne regarde qu'un seul critère. Un utilitaire, ça coûte aussi à l'usage.",
-    "fin|À toi : valorise le Trafic en coût total."
+    "n|M. Hamon compare un Captur Evolution neuf et un Captur d'occasion arrivé cette semaine chez Vasseur Sélection.",
+    "a|Franchement, je n'ai pas de préférence. Je regarde ce qui se présente.",
+    "n|Plus tôt, Karim Yildiz t'a glissé que Vasseur gagne en général davantage sur le neuf.",
+    "fin|À toi : découvre son vrai besoin avant de lui conseiller une offre."
   ] },
 
-"B41d-P3": { titre: "20 minutes pour 4 fiches", decor: "bureau", a: P_ISABELLE, b: P_TOI,
+"B45b-P3": { titre: "« Le budget est trop juste »", decor: "concession", a: sayClient("Mme Ferrari", "Intéressée par une Clio 6", "f"), b: P_TOI,
   lignes: [
-    "n|17h. Isabelle s'arrête à ton bureau.",
-    "a|4 fiches prospects du SIC ne sont plus à jour. Des informations plus récentes traînent dans des mails et des notes de collègues.",
-    "a|Tu as 20 minutes avant de partir. Corrige ce qui compte le plus.",
-    "fin|À toi : choisis et fiabilise les fiches prioritaires."
+    "n|Mme Ferrari a eu un coup de cœur pour une Clio 6 Techno hybride. Puis elle a vu le prix.",
+    "a|Elle me plaît beaucoup, mais le budget est trop juste.",
+    "n|Elle n'a pas encore regardé les différentes façons de financer la voiture.",
+    "fin|À toi : trouve son vrai frein et compare les financements en coût total."
   ] },
 
-"C33d-P3": { titre: "Trois actions terminées, un SIC à enrichir", decor: "bureau", a: P_KARIM, b: P_TOI,
+"B45c-P3": { titre: "Le moins cher à l'achat", decor: "telephone", a: sayClient("M. Faivre", "Gérant de Colis Express Essonne", "h"), b: P_TOI,
   lignes: [
-    "n|Cette semaine, trois actions de fidélisation se sont terminées : reprise majorée, parrainage, geste après réclamation.",
-    "a|Vendredi, c'est la réunion de bilan. Les fiches des clients concernés doivent être enrichies d'ici là.",
-    "a|Attention : les informations que tu as ne se valent pas toutes.",
-    "fin|À toi : enrichis le SIC en triant les informations fiables."
+    "n|Colis Express Essonne compare un Trafic Grand Confort à un fourgon concurrent, moins cher à l'achat.",
+    "a|Je garde mes véhicules longtemps, mais là, le concurrent est moins cher. Et je n'ai pas beaucoup de trésorerie en ce moment.",
+    "fin|À toi : prépare une comparaison en coût total honnête pour le rendez-vous de demain."
   ] }
 
 });

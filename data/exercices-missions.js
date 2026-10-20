@@ -975,9 +975,9 @@ Object.assign(EXERCICES_MISSIONS, {
   ] },
 
 "C11b-P3": { type: "cartes", titre: "Une note de veille pour la direction", cartes: [
-    ["Comment classer les informations ?", "Par importance pour les décisions de l'entreprise."],
-    ["Une rumeur a-t-elle sa place dans la note ?", "Oui, mais présentée clairement comme non vérifiée."],
-    ["Une bonne note se termine par…", "Des recommandations concrètes."],
+    ["Comment classer les sujets d'une note ?", "Selon leur importance pour les décisions à prendre, en tenant compte de leur fiabilité."],
+    ["Que dire d'une information encore incertaine ?", "D'où elle vient, et ce qui permettrait de la confirmer."],
+    ["Une bonne note se termine par…", "Des actions concrètes, pas seulement des constats."],
     ["Avant de remettre la note, on anticipe…", "Les questions que le dirigeant posera."]
   ] },
 
@@ -991,10 +991,10 @@ Object.assign(EXERCICES_MISSIONS, {
   ] },
 
 "C12a-P3": { type: "cartes", titre: "Deux prix pour une même flotte", cartes: [
-    ["Avant de répondre au client flotte ?", "Retrouver quel prix a été écrit, et par qui."],
-    ["Un prix annoncé à l'oral engage-t-il ?", "Il crée une attente : on vérifie s'il respecte la marge autorisée."],
-    ["Si le prix oral était une erreur ?", "On s'excuse et on propose une solution qui respecte la marge."],
-    ["Pour éviter une nouvelle incohérence ?", "Toute proposition de prix passe par écrit dans le SIC."]
+    ["Avant de répondre au client flotte ?", "Retrouver ce qui a été écrit, par qui et quand."],
+    ["Un prix annoncé à l'oral engage-t-il l'entreprise ?", "Il crée une attente, mais n'engage pas tant qu'il n'est pas confirmé par écrit."],
+    ["Le client s'appuie sur un prix impossible à tenir : que faire ?", "Clarifier sans accuser un collègue, et proposer le meilleur prix possible dans le cadrage."],
+    ["Pour éviter une nouvelle incohérence ?", "Toute proposition de prix est confirmée par écrit et notée dans le SIC."]
   ] },
 
 "C12b-P3": { type: "tri", titre: "Fait ou ressenti dans un avis public ?", consigne: "Un avis négatif mélange des faits et des émotions. Classe chaque élément.",
@@ -1014,13 +1014,13 @@ Object.assign(EXERCICES_MISSIONS, {
     { ico: "🤝", k: "Compenser", s: "Une solution si le nouveau délai le gêne" }
   ] },
 
-"C13a-P3": { type: "tri", titre: "Une commande groupée, plusieurs financements", consigne: "Dans une commande de 3 véhicules, à quoi s'applique chaque élément ?",
-  categories: ["Un seul véhicule", "Toute la commande"],
+"C13a-P3": { type: "tri", titre: "Un dossier, plusieurs véhicules", consigne: "Dans une commande de plusieurs véhicules, chaque élément doit être rattaché au bon endroit. Où le noter ?",
+  categories: ["Sur un seul véhicule", "Sur l'ensemble de la commande"],
   items: [
-    ["La reprise d'un ancien véhicule.", 0, "Elle ne réduit que le véhicule qu'elle remplace."],
-    ["La remise accordée pour la flotte.", 1, "Négociée pour l'ensemble."],
-    ["Un financement en LOA choisi pour un des véhicules.", 0, "Il concerne ce véhicule."],
-    ["La date de livraison groupée.", 1, "Commune aux trois véhicules."]
+    ["La valeur de reprise d'un ancien véhicule.", 0, "Elle ne réduit que le véhicule qu'elle remplace."],
+    ["L'offre de crédit signée pour l'un des véhicules.", 0, "Chaque financement a son propre contrat."],
+    ["Le total à payer par le client pour toute la commande.", 1, "Il additionne tous les véhicules."],
+    ["L'adresse de livraison de l'entreprise.", 1, "Elle vaut pour toute la commande."]
   ] },
 
 "C13b-P3": { type: "tri", titre: "« On m'a fait une meilleure offre »", consigne: "Un client réclame plus de remise en citant une autre offre. Que vaut cet argument ?",
@@ -1050,13 +1050,13 @@ Object.assign(EXERCICES_MISSIONS, {
     ["La pose d'un accessoire.", 1, "Réalisée sur place."]
   ] },
 
-"C21b-P3": { type: "tri", titre: "Un véhicule sur quatre pose problème", consigne: "Une livraison groupée est exigée, mais un véhicule aura du retard. Bonne option ?",
-  categories: ["Option à étudier", "Option à éviter"],
+"C21b-P3": { type: "tri", titre: "Annoncer un contretemps la veille", consigne: "Un client attend demain un véhicule qui ne sera pas prêt. Bonne façon de faire ?",
+  categories: ["Bonne pratique", "À éviter"],
   items: [
-    ["Livrer les 3 prêts, avec un véhicule de prêt pour le quatrième.", 0, "Le client peut démarrer."],
-    ["Décider à la place du client sans le prévenir.", 1, "Il doit choisir en connaissance de cause."],
-    ["Proposer au client de choisir : tout livrer plus tard, ou en deux fois.", 0, "On respecte sa contrainte."],
-    ["Promettre une date sans l'avoir vérifiée.", 1, "Risque d'un second retard."]
+    ["Prévenir le client dès que le problème est connu.", 0, "Il peut encore s'organiser."],
+    ["Attendre le matin même, au cas où le problème se réglerait.", 1, "Le client n'a plus aucune marge."],
+    ["Vérifier qu'une solution proposée est réellement possible avant de l'annoncer.", 0, "On ne promet que ce qu'on peut tenir."],
+    ["Livrer quand même sans rien dire, en espérant que tout aille bien.", 1, "Le risque retombe sur le client."]
   ] },
 
 "C21c-P3": { type: "cartes", titre: "Fiabiliser un dossier avant transmission", cartes: [
@@ -1066,11 +1066,11 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Pourquoi ne pas transmettre « au cas où » ?", "L'atelier pourrait préparer le mauvais véhicule."]
   ] },
 
-"C22a-P3": { type: "cartes", titre: "Un panier d'accessoires sous contrainte", cartes: [
-    ["Avant de proposer une combinaison, on vérifie…", "Le budget du client et le délai de pose."],
-    ["Combinaison possible ?", "Celle qui respecte à la fois le budget et la date de livraison."],
-    ["Aucune combinaison ne convient : que dire ?", "Expliquer pourquoi et proposer une solution, comme une pose après la livraison."],
-    ["Pourquoi chiffrer plusieurs combinaisons ?", "Pour laisser le client choisir en connaissance de cause."]
+"C22a-P3": { type: "cartes", titre: "Combiner plusieurs prestataires", cartes: [
+    ["Avant de proposer une combinaison, on vérifie…", "Le coût, le délai et les créneaux réellement disponibles de chaque prestataire."],
+    ["Une combinaison est possible si…", "Toutes ses étapes tiennent dans le calendrier, l'une après l'autre."],
+    ["Un délai « annoncé, sans garantie », c'est…", "Un risque à signaler au client, pas une certitude."],
+    ["Pourquoi présenter plusieurs propositions ?", "Pour que le client choisisse en connaissance de cause, selon ce qui compte le plus pour lui."]
   ] },
 
 "C22b-P3": { type: "tri", titre: "Deux réponses contradictoires d'un partenaire", consigne: "Un organisme de financement donne deux réponses différentes. Bonne réaction ?",
@@ -1082,13 +1082,13 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Ignorer les deux réponses.", 1, "Le dossier reste bloqué."]
   ] },
 
-"C22c-P3": { type: "tri", titre: "Garantie étendue ou contrat d'entretien ?", consigne: "Que couvre chaque service ?",
-  categories: ["Garantie étendue", "Contrat d'entretien"],
+"C22c-P3": { type: "tri", titre: "Garantie ou entretien ?", consigne: "Ce service couvre-t-il cette situation ?",
+  categories: ["Extension de garantie", "Contrat d'entretien"],
   items: [
-    ["La réparation d'une panne après la garantie constructeur.", 0, "Elle prolonge la couverture des pannes."],
-    ["Les révisions prévues dans le carnet.", 1, "L'entretien régulier."],
-    ["Le remplacement des plaquettes de frein usées.", 1, "Une pièce d'usure, couverte par l'entretien."],
-    ["Une panne électronique inattendue après 3 ans.", 0, "Une panne couverte par l'extension."]
+    ["La réparation d'une panne électronique après la fin de la garantie constructeur.", 0, "C'est une panne, pas un entretien."],
+    ["La révision annuelle prévue dans le programme du constructeur.", 1, "C'est un entretien planifié."],
+    ["Un moteur de vitre qui lâche après 4 ans.", 0, "Panne imprévue, hors garantie constructeur."],
+    ["Le contrôle des niveaux et des filtres lors d'une révision.", 1, "Fait partie de la révision prévue."]
   ] },
 
 "C23a-P3": { type: "tri", titre: "Ce que je règle, ce que je fais valider", consigne: "Un client signale plusieurs problèmes. Qui décide pour chacun ?",
@@ -1158,11 +1158,12 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Un client qui a demandé à recevoir les nouveautés.", 0, "Il l'a souhaité."]
   ] },
 
-"C31c-P3": { type: "cartes", titre: "Construire une liste de diffusion", cartes: [
-    ["Pourquoi ne pas soustraire simplement les exclusions ?", "Un même client peut cumuler plusieurs critères d'exclusion : on le compterait deux fois."],
-    ["Critère d'exclusion fréquent ?", "Client qui a refusé les messages, ou litige en cours."],
-    ["Avant l'envoi, on contrôle…", "Un échantillon de la liste finale."],
-    ["Un bon message de campagne est…", "Court, ciblé et cohérent avec l'offre réservée au segment."]
+"C31c-P3": { type: "chaine", titre: "Compter sans compter deux fois", intro: "Exemple : 50 clients dans la liste A, 30 dans la liste B, dont 10 sont dans les deux listes.",
+  questions: ["Combien de clients différents ?", "Comment vérifier ?"],
+  maillons: [
+    { k: "Additionner les deux listes", txt: "50 + 30 = 80 : mais 10 clients sont comptés deux fois." },
+    { k: "Retirer les clients communs", txt: "80 − 10 = 70 clients différents." },
+    { k: "Vérification", txt: "40 seulement dans A + 20 seulement dans B + 10 dans les deux = 70 : le compte est bon." }
   ] },
 
 "C32a-P3": { type: "tri", titre: "Levier mesurable ou difficile à mesurer ?", consigne: "Pour répartir une enveloppe, certains leviers se mesurent plus facilement que d'autres.",
@@ -1174,20 +1175,20 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Un message d'anniversaire : effet sur la fidélité à long terme.", 1, "Effet difficile à isoler."]
   ] },
 
-"C32b-P3": { type: "tri", titre: "Faire une exception ?", consigne: "Une responsable demande d'inclure un client hors règle. Risque ou pas ?",
+"C32b-P3": { type: "tri", titre: "Faire une exception ?", consigne: "Un responsable demande d'accorder un avantage à un client qui ne remplit pas la règle. Risque ou garde-fou ?",
   categories: ["Risque", "Garde-fou"],
   items: [
-    ["D'autres clients demandent la même exception.", 0, "La règle perd son sens."],
-    ["L'exception est écrite, limitée dans le temps et justifiée.", 1, "Elle reste encadrée."],
-    ["Le budget du programme est dépassé.", 0, "Coût non prévu."],
-    ["La décision est validée par la direction.", 1, "La responsabilité est claire."]
+    ["D'autres clients ont déjà essuyé un refus pour la même raison.", 0, "Ils pourraient se sentir lésés."],
+    ["La solution respecte la règle, par exemple en la faisant jouer au bon moment.", 1, "Personne n'est traité à part."],
+    ["L'avantage est accordé « juste cette fois », sans trace écrite.", 0, "Personne ne pourra expliquer la décision."],
+    ["La décision est notée et expliquée à l'équipe.", 1, "Elle reste compréhensible et équitable."]
   ] },
 
-"C32c-P3": { type: "cartes", titre: "Fidéliser un client B2B malgré une donnée contestée", cartes: [
-    ["Pourquoi ne pas construire sur un chiffre contesté ?", "Le programme serait faux dès le départ."],
-    ["En attendant la vérification, on…", "Construit un programme qui fonctionne quelle que soit la valeur."],
-    ["Un geste de fidélisation B2B efficace…", "Facilite l'activité du client : disponibilité, rapidité, interlocuteur dédié."],
-    ["Pour vérifier la donnée ?", "Comparer avec le contrat signé et les livraisons réelles."]
+"C32c-P3": { type: "cartes", titre: "Fidéliser un client professionnel", cartes: [
+    ["Sur quoi s'appuie un budget de fidélisation ?", "Sur ce qui est réellement constaté (ventes, livraisons), pas sur une prévision."],
+    ["Un bon geste pour une entreprise…", "Lui fait gagner du temps ou de l'argent, ou protège ses salariés."],
+    ["Un geste pensé pour le gérant à titre personnel ?", "À éviter : en B2B, le geste doit servir l'entreprise."],
+    ["Pour suivre un programme dans la durée ?", "Un tableau mis à jour à chaque nouvel événement (livraison, achat)."]
   ] },
 
 "C33a-P3": { type: "tri", titre: "Quel chiffre retenir ?", consigne: "Deux tableaux donnent des résultats différents pour une même action. Lequel croire ?",
@@ -1199,20 +1200,20 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Un chiffre sans date ni source.", 1, "Impossible de savoir d'où il vient."]
   ] },
 
-"C33b-P3": { type: "tri", titre: "Comparer des actions vraiment comparables ?", consigne: "Trois actions ont eu lieu dans des conditions différentes. Cet élément fausse-t-il la comparaison ?",
+"C33b-P3": { type: "tri", titre: "Deux vendeurs comparables ?", consigne: "On compare le taux de transformation de deux vendeurs sur un mois. Cet élément fausse-t-il la comparaison ?",
   categories: ["Fausse la comparaison", "Ne la fausse pas"],
   items: [
-    ["Une action menée en décembre, période d'achats.", 0, "Contexte favorable."],
-    ["Une action testée sur 12 clients seulement.", 0, "Échantillon trop petit."],
-    ["Les trois actions ont été mesurées sur la même durée.", 1, "Condition identique."],
-    ["Une action réservée aux meilleurs clients.", 0, "Public plus facile."]
+    ["L'un n'a reçu que 4 prospects ce mois-ci, l'autre 40.", 0, "Un taux sur 4 personnes est très fragile."],
+    ["L'un a tenu le stand des portes ouvertes, où les visiteurs étaient déjà décidés.", 0, "Le public n'était pas le même."],
+    ["Les deux ont travaillé sur le même mois, avec les mêmes horaires.", 1, "Les conditions sont identiques."],
+    ["Les deux taux sont calculés de la même façon : ventes ÷ prospects reçus.", 1, "La méthode est la même."]
   ] },
 
-"C33c-P3": { type: "cartes", titre: "Deux indicateurs en sens contraire", cartes: [
-    ["Le taux de conversion monte, la satisfaction baisse : que penser ?", "L'action vend, mais agace peut-être une partie des clients."],
-    ["Pourquoi ne pas regarder que la conversion ?", "Une action trop insistante peut user la relation."],
-    ["Un ajustement possible ?", "Réduire la fréquence des envois, ou mieux cibler les clients."],
-    ["Après l'ajustement, on suit…", "Les deux indicateurs ensemble."]
+"C33c-P3": { type: "cartes", titre: "Quand deux indicateurs divergent", cartes: [
+    ["Un indicateur monte, un autre baisse : premier réflexe ?", "Chercher quels clients sont concernés par chacun des deux."],
+    ["Pourquoi ne pas suivre un seul indicateur ?", "Un seul chiffre peut cacher ce qui se dégrade ailleurs."],
+    ["Un verbatim, ça sert à…", "Comprendre ce que les clients ressentent, au-delà des chiffres."],
+    ["Après un changement, on suit…", "Plusieurs indicateurs ensemble, avec un seuil qui déclenche une décision."]
   ] },
 
 "B41a-P3": { type: "tri", titre: "Deux sources qui ne disent pas la même chose", consigne: "Pour un compte stratégique, que faire de chaque information ?",
@@ -1249,22 +1250,22 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Ne pas financer une opération, c'est…", "Accepter de renoncer à ce qu'elle aurait pu rapporter."]
   ] },
 
-"B42b-P3": { type: "tri", titre: "Deux opérations, une seule équipe", consigne: "Quelle contrainte rend une opération prioritaire ?",
-  categories: ["Contrainte forte", "Contrainte souple"],
+"B42b-P3": { type: "tri", titre: "Deux projets, une seule équipe", consigne: "Quelle contrainte rend un projet difficile à déplacer ?",
+  categories: ["Contrainte rigide", "Contrainte souple"],
   items: [
-    ["Une date de salon fixée et non déplaçable.", 0, "Impossible de reporter."],
-    ["Une campagne mail qui peut partir la semaine suivante.", 1, "Reportable sans perte."],
-    ["Des supports à faire imprimer avec 10 jours de délai.", 0, "Le délai impose de commencer tôt."],
-    ["Une relance de clients sans échéance particulière.", 1, "Peut attendre."]
+    ["Une journée portes ouvertes annoncée dans la presse locale.", 0, "La date est connue de tous."],
+    ["Un mail d'information qui peut partir quelques jours plus tard.", 1, "Le décaler coûte peu."],
+    ["Des véhicules d'exposition à réserver auprès du constructeur un mois à l'avance.", 0, "Le délai ne se rattrape pas."],
+    ["Une relance de clients sans échéance particulière.", 1, "Elle peut attendre la semaine suivante."]
   ] },
 
-"B42c-P3": { type: "tri", titre: "Bien cibler une offre d'occasion", consigne: "Pour développer la vente d'occasion, ce ciblage est-il pertinent ?",
-  categories: ["Ciblage pertinent", "Ciblage trop large"],
+"B42c-P3": { type: "tri", titre: "Une offre qui attire de nouveaux clients ?", consigne: "Une concession veut développer ses ventes de pièces et d'entretien auprès de nouveaux clients. Ce ciblage est-il pertinent ?",
+  categories: ["Attire de nouveaux clients", "Risque de viser des clients déjà acquis"],
   items: [
-    ["Les prospects qui ont demandé une estimation de reprise.", 0, "Ils ont un projet."],
-    ["Tous les contacts de la base, sans distinction.", 1, "Message peu adapté."],
-    ["Les clients dont le véhicule a plus de 8 ans.", 0, "Besoin probable de changer."],
-    ["Les clients qui viennent d'acheter un véhicule neuf.", 1, "Ils n'ont pas besoin d'occasion."]
+    ["Les automobilistes du quartier qui n'ont jamais fait entretenir leur voiture à la concession.", 0, "Ce sont de vrais nouveaux clients."],
+    ["Les clients qui ont déjà un contrat d'entretien chez elle.", 1, "Ils viennent déjà."],
+    ["Les entreprises voisines équipées de véhicules d'une autre marque.", 0, "Clientèle nouvelle."],
+    ["Les clients qui ont pris rendez-vous à l'atelier la semaine prochaine.", 1, "Ils seraient venus de toute façon."]
   ] },
 
 "B43a-P3": { type: "tri", titre: "Deux décideurs, deux priorités", consigne: "Un rendez-vous réunit deux décideurs. Qui est sensible à chaque argument ?",
@@ -1308,22 +1309,22 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Que garder en attendant ?", "La version qui fonctionnait avant."]
   ] },
 
-"B44c-P3": { type: "tri", titre: "Anomalie dans un tableau de bord ?", consigne: "Avant de présenter un tableau, on repère ce qui cloche.",
+"B44c-P3": { type: "tri", titre: "Anomalie ou résultat normal ?", consigne: "En relisant un tableau de ventes, repère ce qui cloche.",
   categories: ["Anomalie", "Normal"],
   items: [
-    ["Un même contact compté deux fois.", 0, "Il gonfle les résultats."],
-    ["Un taux supérieur à 100 %.", 0, "Impossible : erreur de calcul."],
-    ["Un mois avec moins de rendez-vous que le précédent.", 1, "Variation normale."],
-    ["Une case vide pour un mois déjà terminé.", 0, "Donnée manquante."]
+    ["Le total de la colonne n'est pas égal à la somme des lignes.", 0, "Erreur de saisie ou de formule."],
+    ["Un taux de transformation de 130 %.", 0, "Un taux de ce type ne peut pas dépasser 100 %."],
+    ["Un mois avec moins de ventes que le précédent.", 1, "Une baisse n'est pas une erreur."],
+    ["Une vente datée d'un mois qui n'a pas encore eu lieu.", 0, "Date impossible."]
   ] },
 
-"B45a-P3": { type: "tri", titre: "Neuf ou occasion ?", consigne: "Un client hésite. Quel argument correspond à chaque option ?",
-  categories: ["Plutôt le neuf", "Plutôt l'occasion récente"],
+"B45a-P3": { type: "tri", titre: "Quelle question pour quel besoin ?", consigne: "Avant de conseiller un client, on cherche son vrai besoin. Que t'apprend chaque question ?",
+  categories: ["Son usage", "Ses contraintes"],
   items: [
-    ["Il veut choisir sa couleur et ses options.", 0, "On configure un véhicule neuf."],
-    ["Il a besoin d'un véhicule la semaine prochaine.", 1, "Disponible tout de suite."],
-    ["Il veut la garantie constructeur la plus longue.", 0, "Elle démarre à zéro."],
-    ["Il veut payer moins cher pour un modèle presque neuf.", 1, "Prix plus bas."]
+    ["« Combien de kilomètres faites-vous par an ? »", 0, "Elle renseigne sur l'usage du véhicule."],
+    ["« Pour quand vous faut-il le véhicule ? »", 1, "Elle renseigne sur le délai."],
+    ["« Qui va le conduire, et pour quels trajets ? »", 0, "Usage quotidien."],
+    ["« Quelle somme souhaitez-vous consacrer à cet achat ? »", 1, "Contrainte de budget."]
   ] },
 
 "B45b-P3": { type: "chaine", titre: "Raisonner en coût total, pas en prix", intro: "Un client trouve un véhicule trop cher. Entraîne-toi avec une mensualité incluant l'entretien.",
@@ -1334,12 +1335,12 @@ Object.assign(EXERCICES_MISSIONS, {
     { k: "Bénéfice", txt: "…il connaît exactement son budget voiture chaque mois." }
   ] },
 
-"B45c-P3": { type: "chaine", titre: "Le coût d'un utilitaire sur 5 ans", intro: "Exemple : un utilitaire coûte 2 000 € de plus à l'achat, mais consomme moins et s'entretient moins cher.",
-  questions: ["Et sur 5 ans ?", "Alors, lequel coûte le moins ?"],
+"B45c-P3": { type: "chaine", titre: "Le coût d'une citadine sur 4 ans", intro: "Exemple : une citadine électrique coûte 4 000 € de plus à l'achat qu'une citadine essence, mais coûte 700 € de moins par an en énergie.",
+  questions: ["Et sur 4 ans ?", "Et donc ?"],
   maillons: [
-    { k: "Écart à l'achat", txt: "+2 000 € pour le modèle le plus cher." },
-    { k: "Économies sur 5 ans", txt: "Carburant −1 800 € et entretien −700 € : 2 500 € économisés." },
-    { k: "Bilan", txt: "2 500 − 2 000 = 500 € gagnés : le plus cher à l'achat revient le moins cher." }
+    { k: "Économie d'énergie sur 4 ans", txt: "700 × 4 = 2 800 €." },
+    { k: "Comparaison avec l'écart à l'achat", txt: "2 800 − 4 000 = − 1 200 € : sur 4 ans, l'écart n'est pas rattrapé." },
+    { k: "Conclusion honnête", txt: "Sur cette durée, l'électrique coûte plus cher : on le dit, puis on cherche s'il a d'autres atouts pour ce client." }
   ] }
 
 });
