@@ -220,13 +220,13 @@ Object.assign(SAYNETES_MISSIONS, {
     "fin|À toi : finalise le dossier de vente avec reprise de Mme Roussel."
   ] },
 
-"C13c-P1": { titre: "M. Diallo hésite : LOA ou crédit ?", decor: "concession", a: P_KARIM, b: sayClient("M. Diallo", "Client", "h"),
+"C13c-P1": { titre: "M. Diakité hésite : LOA ou crédit ?", decor: "concession", a: P_KARIM, b: sayClient("M. Diakité", "Client", "h"),
   etiquettes: ["RAFALE", "NEUF"], couleurs: ["#374151", "#B5651D"],
   lignes: [
-    "n|M. Diallo a choisi un Rafale Techno, à 42 000 €. Reste le financement.",
+    "n|M. Diakité a choisi un Rafale Techno, à 42 000 €. Reste le financement.",
     "b|LOA, crédit classique… honnêtement, je m'y perds. Vous pouvez m'aider à y voir clair ?",
     "a|C'est à lui de choisir. Notre rôle : lui présenter les deux options clairement.",
-    "fin|À toi : présente les options de financement à M. Diallo."
+    "fin|À toi : présente les options de financement à M. Diakité."
   ] },
 
 "C13d-P1": { titre: "Une remise sur la Golf d'occasion ?", decor: "concession", a: P_ISABELLE, b: sayClient("Un client", "Intéressé par la Golf", "h"),
@@ -327,11 +327,11 @@ Object.assign(SAYNETES_MISSIONS, {
     "fin|À toi : réponds à cet avis négatif."
   ] },
 
-"C24c-P1": { titre: "Un questionnaire 48h après la livraison", decor: "bureau", a: P_MICHEL, b: P_TOI,
+"C24c-P1": { titre: "Un questionnaire 48 h après la livraison", decor: "bureau", a: P_MICHEL, b: P_TOI,
   lignes: [
     "n|Michel Vasseur fait le point sur l'après-vente.",
-    "a|Aujourd'hui, personne ne demande à nos clients s'ils sont satisfaits de leur livraison.",
-    "a|Je veux un questionnaire envoyé systématiquement 48h après chaque livraison.",
+    "a|Aujourd'hui, notre enquête arrive un mois après la livraison : on découvre les problèmes trop tard.",
+    "a|Je veux un questionnaire envoyé systématiquement 48 h après chaque livraison.",
     "fin|À toi : construis le questionnaire de satisfaction post-livraison."
   ] },
 
@@ -474,11 +474,11 @@ Object.assign(SAYNETES_MISSIONS, {
     "fin|À toi : valorise le service Vasseur face à cette offre en ligne."
   ] },
 
-"B45c-P1": { titre: "« 1500 € moins cher ailleurs »", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Au showroom", "h"),
+"B45c-P1": { titre: "« 1 500 € moins cher ailleurs »", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Au showroom", "h"),
   etiquettes: ["CAPTUR", "NEUF"],
   lignes: [
     "n|Au showroom, un client interpelle Karim devant le Captur.",
-    "b|J'ai trouvé le même Captur 1500 € moins cher ailleurs. Vous vous alignez, là, tout de suite ?",
+    "b|J'ai trouvé le même Captur 1 500 € moins cher ailleurs. Vous vous alignez, là, tout de suite ?",
     "a|Il demande un alignement immédiat. On reste calmes, et on vérifie avant de répondre.",
     "fin|À toi : réponds à cette comparaison de prix."
   ] }
@@ -518,7 +518,7 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Le lancement de la Renault 4 E-Tech se prépare dans le hall.",
     "a|Michel ne veut pas d'une campagne sur un seul canal. Il veut toucher nos clients actuels, et aussi un public plus jeune qui ne nous connaît pas.",
     "a|Construis la campagne, et vérifie par le calcul qu'elle peut atteindre l'objectif.",
-    "fin|À toi : conçois la campagne multi-canal du lancement."
+    "fin|À toi : conçois la campagne multicanale du lancement."
   ] },
 
 "B42b-P2": { titre: "Un budget de prospection coupé en deux", decor: "bureau", a: P_KARIM, b: P_TOI,
@@ -1010,15 +1010,15 @@ Object.assign(SAYNETES_MISSIONS, {
 
 "C21a-P3": { titre: "Une rayure avant le grand jour", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Lundi. Le Symbioz Iconic de Mme Perrot doit être remis samedi matin : c'est un cadeau pour ses parents.",
+    "n|Lundi. Le Symbioz Iconic de Mme Rivière doit être remis samedi matin : c'est un cadeau pour ses parents.",
     "a|La préparation, je m'en occupe, pas de souci. Mais il y a une petite rayure sur une portière.",
     "a|La retouche part chez le carrossier. Lui, il ne peut pas encore dire quand ce sera fini.",
-    "fin|À toi : décide quoi dire à Mme Perrot, et quand, puis organise la suite."
+    "fin|À toi : décide quoi dire à Mme Rivière, et quand, puis organise la suite."
   ] },
 
 "C21b-P3": { titre: "Le voyant du véhicule n° 3", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|Vendredi après-midi. Les quatre Kangoo Van de Net'Pro Services doivent partir lundi matin.",
+    "n|Vendredi après-midi. Les quatre Kangoo Van de Lopes Propreté doivent partir lundi matin.",
     "a|Trois sont prêts. Sur le quatrième, un voyant s'allume par intermittence. Il faut le réparer, et je ne sais pas encore combien de temps ça prendra.",
     "a|Karim est en congé. C'est toi qui pilotes. Mme Lopes avait insisté : les quatre le même matin.",
     "fin|À toi : choisis une solution pour lundi et préviens la cliente."
@@ -1034,10 +1034,10 @@ Object.assign(SAYNETES_MISSIONS, {
 
 "C22a-P3": { titre: "Trois accessoires et une semaine chargée", decor: "atelier", a: P_BRUNO, b: P_TOI,
   lignes: [
-    "n|M. Delorme veut trois accessoires posés sur son Captur Evolution avant la livraison, lundi prochain.",
+    "n|M. Delmas veut trois accessoires posés sur son Captur Evolution avant la livraison, lundi prochain.",
     "a|Cette semaine, mon planning est presque plein. Il ne me reste qu'une journée avant la livraison.",
     "a|Le carrossier partenaire et le fournisseur en ligne ont peut-être des solutions. Mais le budget du client est serré.",
-    "fin|À toi : cherche la bonne combinaison et présente un arbitrage à M. Delorme."
+    "fin|À toi : cherche la bonne combinaison et présente un arbitrage à M. Delmas."
   ] },
 
 "C22b-P3": { titre: "Accordé ou en attente ?", decor: "telephone", a: P_KARIM, b: P_TOI,
@@ -1146,7 +1146,7 @@ Object.assign(SAYNETES_MISSIONS, {
 
 "C32c-P3": { titre: "Un geste à chaque livraison", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Transports Roussel reçoit ses Trafic en plusieurs fois au cours de l'année. Une partie est déjà livrée.",
+    "n|Transports Mercadier reçoit ses Trafic en plusieurs fois au cours de l'année. Une partie est déjà livrée.",
     "a|Le gérant attend un geste à chaque livraison, même pour les véhicules qu'il a déjà reçus.",
     "a|D'accord, mais dans notre règle budgétaire. Construis-moi le programme.",
     "fin|À toi : construis une fidélisation qui suit les livraisons réelles."
@@ -1194,7 +1194,7 @@ Object.assign(SAYNETES_MISSIONS, {
 
 "B41b-P3": { titre: "Cinq demandes avant la fermeture", decor: "bureau", a: P_KARIM, b: P_TOI,
   lignes: [
-    "n|Il est 17 h 30. Cinq demandes sont arrivées dans la journée, par le site et par téléphone.",
+    "n|Il est 18 h. Cinq demandes sont arrivées dans la journée, par le site et par téléphone.",
     "a|Je file en rendez-vous jusqu'à la fermeture. Tu ne pourras en traiter sérieusement que deux.",
     "a|Les autres ne doivent pas rester sans réponse pour autant.",
     "fin|À toi : choisis les deux demandes à traiter ce soir et prévois une suite pour les autres."
@@ -1303,9 +1303,9 @@ Object.assign(SAYNETES_MISSIONS, {
     "fin|À toi : trouve son vrai frein et compare les financements en coût total."
   ] },
 
-"B45c-P3": { titre: "Le moins cher à l'achat", decor: "telephone", a: sayClient("M. Faivre", "Gérant de Colis Express Essonne", "h"), b: P_TOI,
+"B45c-P3": { titre: "Le moins cher à l'achat", decor: "telephone", a: sayClient("M. Faivre", "Gérant de Faivre Messagerie", "h"), b: P_TOI,
   lignes: [
-    "n|Colis Express Essonne compare un Trafic Grand Confort à un fourgon concurrent, moins cher à l'achat.",
+    "n|Faivre Messagerie compare un Trafic Grand Confort à un fourgon concurrent, moins cher à l'achat.",
     "a|Je garde mes véhicules longtemps, mais là, le concurrent est moins cher. Et je n'ai pas beaucoup de trésorerie en ce moment.",
     "fin|À toi : prépare une comparaison en coût total honnête pour le rendez-vous de demain."
   ] }

@@ -66,7 +66,7 @@ const RES = {
 <li>✓ S'il a une idée de budget ou de mode de financement (Budget)</li>
 <li>✓ Si c'est lui qui décide seul (Autorité)</li>
 <li>✓ Dans quel délai il compte agir (Timeline)</li>
-<li>✓ Ai créé ou mis à jour la fiche du prospect dans le SIC avec ce que je sais déjà</li>
+<li>✓ J'ai créé ou mis à jour la fiche du prospect dans le SIC avec ce que je sais déjà</li>
 </ul>
 <p>Si un de ces éléments manque, ma mission n'est pas de deviner — c'est de poser la bonne question pour l'obtenir.</p>
 </div>`},
@@ -96,7 +96,9 @@ const RES = {
 <li><strong>Opération de prospection</strong> — une action organisée pour trouver de nouveaux clients : une cible, un message, un canal (mail, téléphone, réseaux sociaux, salon), un budget, un calendrier et un objectif chiffré.</li>
 <li><strong>Résultat attendu</strong> — nombre de contacts × taux habituel. Exemple : 2 400 mails × 1 % = 24 demandes attendues. C'est une estimation, pas une garantie.</li>
 <li><strong>Coût par contact, par rendez-vous, par vente</strong> — coût total de l'action ÷ nombre de contacts (ou de rendez-vous, ou de ventes) obtenus. Exemple : 800 € pour 4 ventes → 200 € par vente.</li>
-<li><strong>Fichier de prospection</strong> — liste de contacts à démarcher. Pour démarcher des particuliers par mail, il faut leur accord préalable, sauf s'ils sont déjà clients et que l'offre porte sur des produits ou services semblables. Un professionnel peut être démarché par mail sans accord préalable si le message concerne son métier. Dans tous les cas, chaque mail doit permettre de se désinscrire facilement, et on n'utilise pas un fichier acheté sans savoir si les personnes ont donné leur accord.</li>
+<li><strong>Fichier de prospection</strong> — liste de contacts à démarcher. Pour démarcher des particuliers par mail, il faut leur accord préalable, sauf s'ils sont déjà clients et que l'offre porte sur des produits ou services semblables. Un professionnel peut être démarché par mail sans accord préalable si le message concerne son métier. Dans tous les cas, chaque mail doit permettre de se désinscrire facilement, et on n'utilise pas un fichier acheté sans savoir si les personnes ont donné leur accord. Le SMS suit la même règle que le mail (avec la mention STOP pour se désinscrire).</li>
+<li><strong>Démarchage téléphonique</strong> — depuis le 11 août 2026, il est interdit d'appeler un particulier pour lui vendre quelque chose sans son accord préalable (noté et conservé), sauf s'il s'agit d'un contrat en cours ; Bloctel n'existe plus. Les appels de prospection à des professionnels (B2B) restent possibles.</li>
+<li><strong>Durée de conservation</strong> — les coordonnées d'un prospect ou d'un client inactif ne sont pas gardées plus de 3 ans après le dernier contact ; une personne qui s'oppose à être recontactée est retirée du fichier.</li>
 </ul>
 <p><strong>En résumé, avant de valider un plan de prospection, je vérifie que j'ai :</strong></p>
 <ul>
@@ -142,7 +144,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'C1.1':{t:'La veille commerciale',c:`<div class="res-section res-debutant">
+  'C1.1':{t:'Assurer la veille commerciale',c:`<div class="res-section res-debutant">
 <p><strong>C1.1 — Assurer la veille commerciale chez Vasseur.</strong> La veille, c'est suivre en permanence ce qui se passe autour de soi : les offres concurrentes (autres concessions, mandataires en ligne), les tendances du marché (électrique en hausse, développement des zones à faibles émissions — ZFE, qui restreignent progressivement l'accès des centres-villes aux véhicules les plus polluants), et les dispositifs d'aide à l'achat en vigueur.</p>
 <p><strong>À quoi ça sert concrètement ?</strong> À pouvoir répondre à un client qui compare une offre Vasseur à une offre concurrente, sans dénigrer le concurrent mais en mettant en avant les vrais avantages Vasseur (garantie, SAV, essai possible, accompagnement).</p>
 <p><strong>Cas pratique — un client hésitant chez Vasseur :</strong></p>
@@ -163,16 +165,16 @@ const RES = {
 </ul>
 <p><strong>En résumé, avant de répondre à une comparaison concurrentielle, je vérifie que je :</strong></p>
 <ul>
-<li>✓ Reconnais honnêtement l'écart s'il existe (jamais le nier ou l'ignorer)</li>
+<li>✓ Reconnais honnêtement l'écart s'il existe (ne jamais le nier ni l'ignorer)</li>
 <li>✓ Identifie au moins 2 avantages réels Vasseur au-delà du prix</li>
 <li>✓ Ne dénigre jamais le concurrent nommément</li>
 </ul>
 </div>`},
 
-  'C1.2':{t:'La vente dans un cadre omnicanal',c:`<div class="res-section res-debutant">
+  'C1.2':{t:'Réaliser la vente dans un cadre omnicanal',c:`<div class="res-section res-debutant">
 <p><strong>C1.2 — Vendre à distance comme en showroom.</strong> Chez Vasseur, un client peut arriver par mail, chat en ligne, réseau social, ou en showroom — le commercial doit savoir s'adapter à chaque canal :</p>
 <ul>
-<li><strong>Mail</strong> — réponse complète et structurée, sous 24h</li>
+<li><strong>Mail</strong> — réponse complète et structurée, sous 24 h</li>
 <li><strong>Chat</strong> — réponse courte et rapide, pas un mail déguisé</li>
 <li><strong>Réseau social</strong> — réponse publique brève, puis bascule vers le privé pour le détail (prix, données personnelles)</li>
 <li><strong>Showroom</strong> — échange en direct, avec essai possible</li>
@@ -202,12 +204,12 @@ const RES = {
 </ul>
 </div>`},
 
-  'C1.3':{t:"L'exécution de la vente",c:`<div class="res-section res-debutant">
+  'C1.3':{t:"Assurer l'exécution de la vente",c:`<div class="res-section res-debutant">
 <p><strong>C1.3 — Finaliser une vente chez Vasseur.</strong> Une fois l'accord de principe du client obtenu, il faut monter un dossier complet : identité, véhicule choisi (avec options), prix, mode de paiement, et le cas échéant reprise du véhicule précédent.</p>
 <p><strong>Les 3 modes de paiement possibles chez Vasseur :</strong></p>
 <ul>
 <li><strong>Comptant</strong> — le client paie la totalité du prix, en une ou plusieurs fois, et devient immédiatement propriétaire du véhicule</li>
-<li><strong>Crédit classique</strong> — un organisme de financement avance l'argent, le client rembourse en mensualités sur une durée fixée, et devient propriétaire dès la signature (comme pour un comptant, mais payé progressivement)</li>
+<li><strong>Crédit classique</strong> — un organisme de financement avance l'argent, le client rembourse en mensualités sur une durée fixée, et devient propriétaire à l'achat ; le prêteur peut prévoir une réserve de propriété ou un gage jusqu'au remboursement</li>
 <li><strong>LOA (Location avec Option d'Achat)</strong> — le client ne devient PAS propriétaire tout de suite : il loue le véhicule pendant une durée fixée (souvent 2 à 4 ans) en payant une mensualité généralement plus faible qu'un crédit classique, puis choisit à la fin soit de racheter le véhicule à un prix fixé à l'avance (la "valeur résiduelle"), soit de le rendre et d'en changer</li>
 </ul>
 <p>La différence essentielle à retenir : en LOA, le client paie pour <em>l'usage</em> du véhicule, pas pour le posséder — c'est pour ça que la mensualité est plus légère, mais le client doit accepter de ne pas être propriétaire avant la fin du contrat (et parfois jamais, s'il rend le véhicule).</p>
@@ -224,13 +226,13 @@ const RES = {
 <li>❌ <strong>À éviter</strong> — refuser sèchement, ou céder au-delà du cadrage sans en référer à un responsable</li>
 <li>✅ <strong>À privilégier</strong> — accorder les 400 € autorisés, puis proposer une contrepartie de valeur équivalente pour le client sans sortir du cadre : par exemple une garantie étendue offerte plutôt qu'une remise supplémentaire</li>
 </ul>
-<p><strong>⚠️ Erreur fréquente à éviter :</strong> annoncer un montant net sans détailler le calcul. Le client (et l'atelier, et la compta) doivent pouvoir vérifier chaque ligne du dossier.</p>
+<p><strong>⚠️ Erreur fréquente à éviter :</strong> annoncer un montant net sans détailler le calcul. Le client (et l'atelier, et la compta) doit pouvoir vérifier chaque ligne du dossier.</p>
 <!-- notions -->
 <p><strong>📘 Les notions à connaître :</strong></p>
 <ul>
 <li><strong>Bon de commande</strong> — document signé par le client qui fixe le véhicule, les options, le prix, la reprise, le mode de paiement et la date de livraison prévue.</li>
 <li><strong>Reprise</strong> — rachat de l'ancien véhicule du client ; sa valeur vient en déduction du prix. <strong>Reste à payer</strong> = prix − reprise − remise éventuelle.</li>
-<li><strong>Acompte</strong> — somme versée à la commande ; le <strong>solde</strong> est ce qui reste à payer à la livraison : solde = reste à payer − acompte.</li>
+<li><strong>Acompte</strong> — somme versée à la commande, qui engage définitivement le client et le vendeur si elle est appelée « acompte » sur le bon de commande (sinon, c'est une avance en arrhes : le client peut renoncer en les perdant) ; le <strong>solde</strong> est ce qui reste à payer à la livraison : solde = reste à payer − acompte.</li>
 <li><strong>Certificat de cession</strong> — formulaire officiel rempli et signé par le vendeur et par l'acheteur quand un véhicule change de propriétaire (par exemple lors d'une reprise) ; la vente est ensuite déclarée en ligne (ANTS) dans les 15 jours.</li>
 </ul>
 <p><strong>En résumé, avant de finaliser un dossier de vente, je vérifie que j'ai :</strong></p>
@@ -241,7 +243,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.1':{t:'Le suivi de la commande client',c:`<div class="res-section res-debutant">
+  'C2.1':{t:'Assurer le suivi de la commande du produit et/ou du service',c:`<div class="res-section res-debutant">
 <p><strong>C2.1 — Suivre une commande après la vente.</strong> Une fois la vente conclue, le client doit être tenu informé : confirmation des étapes (préparation, contrôle, livraison), et information immédiate en cas de retard ou d'imprévu — sans jamais cacher la cause, avec une tonalité toujours rassurante.</p>
 <p>Le dossier doit aussi être transmis correctement à l'atelier (Bruno Faucher) pour la préparation du véhicule, avec toutes les informations utiles (options, date souhaitée, contrôles à effectuer).</p>
 <p><strong>Cas pratique — annoncer un retard chez Vasseur :</strong></p>
@@ -268,7 +270,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.2':{t:"Mettre en œuvre les services associés",c:`<div class="res-section res-debutant">
+  'C2.2':{t:"Mettre en œuvre le ou les services associés",c:`<div class="res-section res-debutant">
 <p><strong>C2.2 — Mettre en œuvre un service associé chez Vasseur.</strong> Un service associé, c'est toute prestation qui accompagne la vente sans être le véhicule lui-même. Chez Vasseur, les principaux sont :</p>
 <ul>
 <li><strong>La garantie étendue</strong> — prolonge la garantie constructeur au-delà de sa durée initiale</li>
@@ -308,11 +310,11 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.3':{t:"Traiter les réclamations client",c:`<div class="res-section res-debutant">
+  'C2.3':{t:"Traiter les retours et les réclamations du client",c:`<div class="res-section res-debutant">
 <p><strong>C2.3 — Gérer une réclamation chez Vasseur.</strong> Une réclamation n'est pas une agression : c'est un client qui donne une seconde chance à la relation avant de la rompre. La méthode de base : écouter sans couper la parole, reformuler pour montrer qu'on a compris, investiguer les faits avant de conclure, puis proposer une solution concrète.</p>
 <p><strong>Les 4 étapes d'une réclamation bien traitée :</strong></p>
 <ol>
-<li><strong>Écouter et reformuler</strong> — même si le client est énervé, jamais l'interrompre ni se justifier immédiatement</li>
+<li><strong>Écouter et reformuler</strong> — même si le client est énervé, ne jamais l'interrompre ni se justifier immédiatement</li>
 <li><strong>Vérifier les faits</strong> — consulter le dossier, l'atelier, l'historique avant de répondre quoi que ce soit de définitif</li>
 <li><strong>Proposer une solution</strong> — adaptée à la gravité réelle du problème, pas systématiquement la plus généreuse possible</li>
 <li><strong>Assurer le suivi</strong> — vérifier que la solution a bien été appliquée, pas seulement promise</li>
@@ -321,7 +323,7 @@ const RES = {
 <p>Un client appelle furieux : sa Clio 6 livrée la veille a une rayure sur la portière avant droite, non signalée lors de la remise des clés.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — répondre immédiatement "c'est impossible, on contrôle toujours avant livraison" : ça nie l'expérience du client avant même de vérifier</li>
-<li><strong>✅ À privilégier</strong> — reformuler ("je comprends, vous découvrez une rayure qui n'était pas là lors de la remise"), proposer de vérifier le dossier de contrôle qualité et de rappeler sous 24h avec une réponse concrète</li>
+<li><strong>✅ À privilégier</strong> — reformuler ("je comprends, vous découvrez une rayure qui n'était pas là lors de la remise"), proposer de vérifier le dossier de contrôle qualité et de rappeler sous 24 h avec une réponse concrète</li>
 </ul>
 <p>La règle d'or : ne jamais promettre une solution avant d'avoir vérifié les faits — un engagement qu'on doit ensuite retirer abîme la confiance bien plus qu'un léger délai de réponse.</p>
 <!-- notions -->
@@ -340,11 +342,11 @@ const RES = {
 </ul>
 </div>`},
 
-  'C2.4':{t:"Évaluer la satisfaction client",c:`<div class="res-section res-debutant">
+  'C2.4':{t:"S'assurer de la satisfaction du client",c:`<div class="res-section res-debutant">
 <p><strong>C2.4 — Mesurer et exploiter la satisfaction chez Vasseur.</strong> On ne devine pas si un client est satisfait, on le mesure. Le principal outil est le NPS (Net Promoter Score) : sur une note de 0 à 10 ("recommanderiez-vous Vasseur ?"), on distingue Promoteurs (9-10), Passifs (7-8) et Détracteurs (0-6).</p>
 <p><strong>Ce qu'on fait de ces données :</strong> un NPS élevé ne veut rien dire s'il n'est suivi d'aucune action ; un NPS bas mal exploité fait perdre le client une seconde fois. La vraie compétence n'est pas de lire le chiffre, mais d'en tirer une action commerciale concrète.</p>
 <p><strong>Cas pratique — un client Détracteur chez Vasseur :</strong></p>
-<p>Un client donne 5/10 après la révision de sa Clio, avec le commentaire : <em>"Travail correct, mais on m'avait promis ma voiture pour 17h et je l'ai récupérée à 19h, sans avoir été prévenu."</em></p>
+<p>Un client donne 5/10 après la révision de sa Clio, avec le commentaire : <em>"Travail correct, mais on m'avait promis ma voiture pour 17 h et je l'ai récupérée à 19 h, sans avoir été prévenu."</em></p>
 <ul>
 <li><strong>❌ À éviter</strong> — se contenter d'enregistrer la note sans réagir, ou répondre uniquement "merci pour votre retour"</li>
 <li><strong>✅ À privilégier</strong> — identifier la vraie cause (pas la qualité de la révision, mais l'absence de prévenance sur l'heure), et proposer une action ciblée sur CE point précis (par exemple, un SMS systématique dès qu'un véhicule prend du retard à l'atelier)</li>
@@ -363,11 +365,11 @@ const RES = {
 </ul>
 </div>`},
 
-  'C3.1':{t:"Assurer l'information et le contact avec la clientèle",c:`<div class="res-section res-debutant">
+  'C3.1':{t:"Traiter et exploiter l'information ou le contact client",c:`<div class="res-section res-debutant">
 <p><strong>C3.1 — Garder le contact avec la clientèle Vasseur.</strong> Fidéliser commence bien avant qu'un client ait besoin de racheter : c'est un contact régulier, utile, jamais uniquement commercial. Un client qui n'entend parler de Vasseur qu'au moment où on veut lui vendre quelque chose se sent instrumentalisé.</p>
 <p><strong>Avant de contacter, je consulte le CRM :</strong> le CRM Vasseur (partie du SIC — Système d'Information Commercial) garde l'historique de chaque client (achats, contacts précédents, réclamations). Un bon contact tient compte de ce que le CRM indique déjà, pour ne pas recontacter un client qui vient tout juste d'échanger avec un collègue, ni ignorer une réclamation en cours.</p>
-<p><strong>Les bons prétextes de contact :</strong> une information générale utile (rappel constructeur, actualité), un moment personnel (anniversaire d'achat), une nouveauté pertinente pour son profil. Le mauvais prétexte : "on n'a pas eu de nouvelles de vous depuis un moment" — recentré sur Vasseur, pas sur le client.</p>
-<p><strong>Cas pratique — un rappel constructeur chez Vasseur :</strong></p>
+<p><strong>Les bons prétextes de contact :</strong> une information générale utile (actualité, nouveauté réglementaire), un moment personnel (anniversaire d'achat), une nouveauté pertinente pour son profil. Le mauvais prétexte : "on n'a pas eu de nouvelles de vous depuis un moment" — recentré sur Vasseur, pas sur le client.</p>
+<p><strong>Cas pratique — une campagne de mise à jour chez Vasseur</strong> (un rappel constructeur, lui, est une information de sécurité obligatoire : on la transmet sans en faire un argument commercial) :</p>
 <p>Vasseur doit prévenir les clients Mégane E-Tech qu'une mise à jour du logiciel de recharge est disponible et doit être faite à l'atelier.</p>
 <ul>
 <li><strong>❌ À éviter</strong> — un message anxiogène ("Votre véhicule présente un défaut") ou au contraire trop rassurant au point de minimiser ("c'est rien du tout, pas besoin de venir")</li>
@@ -389,7 +391,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'C3.2':{t:"Mettre en œuvre des actions de fidélisation",c:`<div class="res-section res-debutant">
+  'C3.2':{t:"Contribuer à des actions de fidélisation et de développement de la relation client",c:`<div class="res-section res-debutant">
 <p><strong>C3.2 — Fidéliser concrètement chez Vasseur.</strong> Une action de fidélisation efficace récompense un comportement réel du client (ancienneté, fréquence, recommandation), pas un geste générique offert à tout le monde sans distinction — sinon ça devient une simple remise, pas de la fidélisation.</p>
 <p><strong>Les leviers classiques :</strong> offre réservée aux clients existants, programme de parrainage (le client recommande, les deux y gagnent), événement dédié (portes ouvertes clients), geste personnalisé suite à un problème résolu.</p>
 <p><strong>Cas pratique — un programme de parrainage chez Vasseur :</strong></p>
@@ -413,7 +415,7 @@ const RES = {
 </ul>
 </div>`},
 
-  'C3.3':{t:"Évaluer les actions de fidélisation",c:`<div class="res-section res-debutant">
+  'C3.3':{t:"Évaluer les actions de fidélisation de la clientèle et de développement de la relation client",c:`<div class="res-section res-debutant">
 <p><strong>C3.3 — Mesurer l'efficacité d'une action de fidélisation chez Vasseur.</strong> Une action de fidélisation qui n'est jamais évaluée peut coûter cher pour rien. On mesure généralement : le taux de participation (combien de clients ont utilisé l'offre), le taux de conversion (combien ont effectivement racheté), et le retour net (le gain généré compense-t-il le coût de l'action).</p>
 <p><strong>Un geste indissociable de l'évaluation — enrichir le SIC :</strong> le SIC (Système d'Information Commercial, ex. le CRM Vasseur et le fichier clients) centralise toute l'information sur chaque client. Évaluer une action de fidélisation, c'est aussi mettre à jour, pour chaque client concerné, ce que l'action a changé : a-t-il participé ? a-t-il racheté ? faut-il noter une réaction (positive ou négative) pour le prochain collègue qui consultera sa fiche ? Un bilan chiffré qui ne se traduit pas par des fiches clients actualisées est un travail à moitié fait — l'information doit rester exploitable après coup, pas seulement au moment du calcul.</p>
 <p><strong>Cas pratique — bilan d'une campagne chez Vasseur :</strong></p>
@@ -681,7 +683,7 @@ const RES = {
 <li><strong>Location longue durée (LLD)</strong> — l'entreprise loue le véhicule pour une durée et un kilométrage fixés, avec un loyer mensuel, et le rend à la fin ; le contrat ne prévoit pas d'option d'achat (c'est la différence avec la LOA).</li>
 <li><strong>Représentant légal</strong> — la personne qui a le droit de signer au nom de l'entreprise (le gérant d'une SARL, le président d'une SAS, l'artisan lui-même s'il est à son compte).</li>
 </ul>
-<p><strong>En résumé, en situation multi-canal, je vérifie que je :</strong></p>
+<p><strong>En résumé, en situation multicanal, je vérifie que je :</strong></p>
 <ul>
 <li>✓ Retrouve et utilise l'historique avant de répondre</li>
 <li>✓ Ne fais jamais répéter au client une information déjà donnée</li>
@@ -720,7 +722,7 @@ const RES = {
 <p><strong>Cas pratique — un risque détecté à temps :</strong></p>
 <p>Tu apprends, par le service administratif, que la carte grise d'un véhicule vendu risque d'arriver après la date de livraison prévue, à cause d'un pic de demandes — le client n'a encore aucune raison de s'inquiéter.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — ne rien dire tant que le retard n'est pas confirmé à 100%, au risque de prévenir au dernier moment</li>
+<li><strong>❌ À éviter</strong> — ne rien dire tant que le retard n'est pas confirmé à 100 %, au risque de prévenir au dernier moment</li>
 <li><strong>✅ À privilégier</strong> — informer le client d'un risque possible dès qu'il est identifié, sans dramatiser, pour qu'il ne soit jamais pris de court</li>
 </ul>
 <!-- notions -->
@@ -771,8 +773,8 @@ const RES = {
 <p><strong>Cas pratique — une responsabilité partagée :</strong></p>
 <p>Une cliente se plaint d'une facture d'atelier plus élevée que le devis, mais le dossier montre qu'elle avait accepté par téléphone une réparation supplémentaire, sans que ce soit confirmé par écrit.</p>
 <ul>
-<li><strong>❌ À éviter</strong> — rejeter toute la faute sur le client (même si les faits le permettent), ou au contraire s'excuser sans nuance</li>
-<li><strong>✅ À privilégier</strong> — reconnaître la part de Vasseur s'il y en a une, expliquer factuellement la part du client sans lui faire de reproche direct, et avancer sur une solution</li>
+<li><strong>❌ À éviter</strong> — rejeter la faute sur le client : c'est à Vasseur de prouver l'accord du client, et l'absence de confirmation écrite est un manquement de Vasseur ; ou au contraire s'excuser sans nuance</li>
+<li><strong>✅ À privilégier</strong> — reconnaître le manquement de Vasseur (accord non confirmé par écrit), rappeler factuellement ce que le client avait demandé au téléphone, sans reproche, et avancer sur une solution</li>
 </ul>
 <!-- notions -->
 <p><strong>📘 Les notions à connaître :</strong></p>
@@ -942,7 +944,7 @@ const RES = {
 <p><strong>📘 Les notions à connaître :</strong></p>
 <ul>
 <li><strong>Information qui fait foi</strong> — celle qui engage l'entreprise : en général la plus récente, écrite et confirmée par le service responsable.</li>
-<li><strong>Prix oral et prix écrit</strong> — un prix annoncé oralement n'engage pas tant qu'il n'est pas confirmé par écrit ; un devis engage pendant toute sa durée de validité.</li>
+<li><strong>Prix oral et prix écrit</strong> — un prix annoncé oralement peut engager le vendeur, mais il est difficile à prouver : on le confirme toujours par écrit ; un devis engage pendant toute sa durée de validité.</li>
 <li><strong>Cadrage de négociation</strong> — remise ou geste maximum autorisé par le responsable ; au-delà, c'est lui qui décide.</li>
 <li><strong>Réponse publique et message privé</strong> — en ligne, on répond brièvement en public (pour le client et pour tous ceux qui lisent), puis on traite le détail en privé ; on ne parle jamais d'un autre client en public.</li>
 <li><strong>Canal adapté à l'urgence</strong> — plus le délai est court, plus le canal doit être direct : le téléphone plutôt que le mail quand il faut prévenir vite.</li>
@@ -1015,7 +1017,7 @@ const RES = {
 <p><strong>C2.2 — Arbitrer la mise en œuvre des services associés quand tout ne peut pas être satisfait en même temps.</strong> Tu sais coordonner plusieurs prestataires et suivre leurs délais respectifs. Sur le terrain, la difficulté professionnelle est différente : il faut parfois choisir entre deux solutions qui ont chacune un coût (financier ou en délai), sans réponse évidente, et l'assumer devant le client.</p>
 <p><strong>Petit rappel :</strong> la LOA (Location avec Option d'Achat) est un mode de financement où le client loue le véhicule et paie pour son usage, sans en être propriétaire pendant la durée du contrat, avec une mensualité plus légère qu'un crédit classique.</p>
 <p><strong>Cas pratique — un arbitrage financement chez Vasseur :</strong></p>
-<p>Mme Lechene achète un Austral Techno à 35 000 € (avec un apport de 10 000 €) et hésite entre deux financements proposés par l'organisme partenaire : une LOA sur 4 ans (mensualité 349 €, mais un kilométrage plafonné à 12 000 km/an, au-delà duquel des pénalités s'appliquent) ou un crédit classique sur 5 ans (mensualité 470 €, aucune limite de kilométrage, elle reste propriétaire dès le premier mois). Elle t'indique rouler environ 18 000 km/an pour son activité d'infirmière libérale, mais hésite car la mensualité LOA est plus légère.</p>
+<p>Mme Lechene achète un Austral Techno à 35 000 € (avec un apport de 10 000 €) et hésite entre deux financements proposés par l'organisme partenaire : une LOA sur 4 ans (mensualité 349 €, mais un kilométrage plafonné à 12 000 km/an, au-delà duquel des pénalités s'appliquent) ou un crédit classique sur 5 ans (mensualité 470 €, aucune limite de kilométrage, elle est propriétaire dès l'achat). Elle t'indique rouler environ 18 000 km/an pour son activité d'infirmière libérale, mais hésite car la mensualité LOA est plus légère.</p>
 <ul>
 <li>❌ <strong>À éviter</strong> — la laisser choisir la LOA uniquement parce que la mensualité est plus basse, sans lui signaler que son kilométrage réel dépasse largement le plafond du contrat</li>
 <li>✅ <strong>À privilégier</strong> — chiffrer concrètement ce que représenterait le dépassement de kilométrage en LOA sur 4 ans, et le comparer honnêtement à l'écart de mensualité du crédit classique, avant de la laisser décider en connaissance de cause</li>
@@ -1027,7 +1029,7 @@ const RES = {
 <ul>
 <li><strong>Accord de principe et accord définitif</strong> — l'accord de principe indique que le dossier peut être accepté, sous réserve de pièces ; seul l'accord définitif permet de livrer.</li>
 <li><strong>Calcul à rebours</strong> — partir de la date limite et remonter étape par étape pour trouver le moment où chaque action doit être faite au plus tard.</li>
-<li><strong>Garantie constructeur</strong> — réparation gratuite des pannes pendant une durée fixée (chez Renault : 3 ans / 100 000 km, 8 ans pour la batterie), à condition de respecter le programme d'entretien.</li>
+<li><strong>Garantie constructeur</strong> — réparation gratuite des pannes pendant une durée fixée (chez Renault : 2 ans, kilométrage illimité, et 8 ans / 160 000 km pour la batterie ; chez Vasseur, 1 an supplémentaire est offert), à condition de respecter le programme d'entretien.</li>
 <li><strong>Extension de garantie</strong> — prolonge la couverture des pannes après la fin de la garantie constructeur.</li>
 <li><strong>Contrat d'entretien</strong> — entretiens prévus payés d'avance à un prix fixé ; il ne couvre pas les pannes.</li>
 <li><strong>Combinaison de prestataires</strong> — pour chaque service, on compare le coût, le délai et la disponibilité ; une combinaison n'est possible que si toutes ses étapes tiennent dans les créneaux.</li>

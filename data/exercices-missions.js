@@ -133,7 +133,7 @@ Object.assign(EXERCICES_MISSIONS, {
 "C11c-P1": { type: "tri", titre: "Ce qu'apporte une concession sur l'occasion", consigne: "Face à un vendeur en ligne, ces éléments sont-ils des atouts de la concession ?",
   categories: ["Atout de la concession", "Pas un atout"],
   items: [
-    ["Une garantie sur le véhicule d'occasion.", 0, "Le client est couvert."],
+    ["Une garantie commerciale en plus de la garantie légale.", 0, "Le client est mieux couvert."],
     ["Un contrôle mécanique avant la vente.", 0, "Le véhicule est vérifié."],
     ["Un prix toujours plus bas qu'en ligne.", 1, "Ce n'est pas toujours vrai."],
     ["Un essai sur place avant d'acheter.", 0, "Le client voit et essaie."]
@@ -489,7 +489,7 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Les chiffres d'immatriculation publiés par la presse spécialisée.", 1, "Information publique extérieure."]
   ] },
 
-"B42a-P2": { type: "tri", titre: "Quel canal pour quel public ?", consigne: "Une campagne multicanale adapte le message à chaque public.",
+"B42a-P2": { type: "tri", titre: "Quel canal pour quel public ?", consigne: "Une campagne multicanalee adapte le message à chaque public.",
   categories: ["Mail aux clients", "Réseaux sociaux", "Presse locale"],
   items: [
     ["Des clients qui ont déjà acheté à la concession.", 0, "On les connaît : message personnalisé."],
@@ -549,7 +549,7 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Raccrocher en pensant que c'est perdu.", 1, "Rien n'est encore signé."]
   ] },
 
-"B43d-P2": { type: "tri", titre: "Suivre un prospect qui change de canal", consigne: "Une prospecte ne répond pas aux mails mais commente sur Instagram. Que faire ?",
+"B43d-P2": { type: "tri", titre: "Suivre un prospect qui change de canal", consigne: "Une cliente potentielle ne répond pas aux mails mais commente sur Instagram. Que faire ?",
   categories: ["Bonne pratique", "Mauvaise pratique"],
   items: [
     ["Lui répondre publiquement en quelques mots, puis en message privé.", 0, "On suit son canal sans exposer ses données."],
@@ -605,7 +605,7 @@ Object.assign(EXERCICES_MISSIONS, {
   categories: ["Adaptée", "À éviter"],
   items: [
     ["Le remercier et lui demander ce qui a fait la différence.", 0, "On apprend, et on garde la relation."],
-    ["Lui reprocher de vous avoir fait perdre du temps.", 1, "On ferme la porte définitivement."],
+    ["Lui reprocher de nous avoir fait perdre du temps.", 1, "On ferme la porte définitivement."],
     ["Lui rappeler un service qui compte pour lui, sans insister.", 0, "Dernière information utile."],
     ["Lui proposer une remise énorme dans la panique.", 1, "On brade sans réfléchir."]
   ] },
@@ -786,7 +786,7 @@ Object.assign(EXERCICES_MISSIONS, {
     ["Le geste commercial doit être…", "Proportionné à la gêne totale vécue par la cliente."]
   ] },
 
-"C23c-P2": { type: "tri", titre: "Face à une menace de recours", consigne: "Un client professionnel menace d'aller en justice. Ce que l'on peut dire ou pas ?",
+"C23c-P2": { type: "tri", titre: "Face à une menace de recours", consigne: "Un client professionnel menace d'aller en justice. Que peut-on dire ou non ?",
   categories: ["Peut être dit", "À ne pas dire"],
   items: [
     ["« Nous suivons votre dossier en priorité et vous rappelons jeudi. »", 0, "Engagement précis et tenable."],
@@ -992,7 +992,7 @@ Object.assign(EXERCICES_MISSIONS, {
 
 "C12a-P3": { type: "cartes", titre: "Deux prix pour une même flotte", cartes: [
     ["Avant de répondre au client flotte ?", "Retrouver ce qui a été écrit, par qui et quand."],
-    ["Un prix annoncé à l'oral engage-t-il l'entreprise ?", "Il crée une attente, mais n'engage pas tant qu'il n'est pas confirmé par écrit."],
+    ["Un prix annoncé à l'oral engage-t-il l'entreprise ?", "Oui, il peut l'engager, mais il est difficile à prouver : on le confirme toujours par écrit."],
     ["Le client s'appuie sur un prix impossible à tenir : que faire ?", "Clarifier sans accuser un collègue, et proposer le meilleur prix possible dans le cadrage."],
     ["Pour éviter une nouvelle incohérence ?", "Toute proposition de prix est confirmée par écrit et notée dans le SIC."]
   ] },

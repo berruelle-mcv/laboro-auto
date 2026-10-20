@@ -66,7 +66,7 @@ var LABORO_CONFIG = {
   "options": [
     {
       "id": "PVOC",
-      "label": "Prospection et Valorisation de l'Offre Commerciale"
+      "label": "Prospection clientèle et valorisation de l'offre commerciale"
     }
   ],
   "couleurs": {
@@ -146,7 +146,7 @@ var LABORO_CONFIG = {
       "date": "Mar",
       "icon": "🎯",
       "titre": "Objectif semaine",
-      "txt": "Objectif : 45 000 € de CA cette semaine. À J+1 : 18 200 € réalisés. Bonne dynamique sur les hybrides."
+      "txt": "Objectif : 450 000 € de CA cette semaine. À J+1 : 182 000 € réalisés. Bonne dynamique sur les hybrides."
     },
     {
       "date": "Mar",
@@ -182,7 +182,7 @@ var LABORO_CONFIG = {
       "date": "Ven",
       "icon": "🏆",
       "titre": "Résultats semaine",
-      "txt": "CA semaine : 52 000 € — objectif dépassé ! Top vendeur : Karim Yildiz avec 3 véhicules vendus."
+      "txt": "CA semaine : 520 000 € — objectif dépassé ! Top vendeur : Karim Yildiz avec 6 véhicules vendus."
     },
     {
       "date": "Ven",
