@@ -715,7 +715,7 @@ Object.assign(EXERCICES_MISSIONS, {
     { ico: "🔍", k: "Prouver", s: "Les éléments qui montrent l'erreur" },
     { ico: "🧮", k: "Recalculer", s: "Le nouveau prix et la différence" },
     { ico: "📞", k: "Prévenir le client", s: "Avec des excuses et une solution" },
-    { ico: "📝", k: "Corriger le document", s: "Faire signer un avenant ou un nouveau bon" }
+    { ico: "📝", k: "Corriger le document", s: "Faire signer un avenant" }
   ] },
 
 "C21a-P2": { type: "tri", titre: "Retard sur retard", consigne: "Un client apprend un deuxième retard. Ce geste est-il proportionné ?",
@@ -1305,7 +1305,7 @@ Object.assign(EXERCICES_MISSIONS, {
 "B44b-P3": { type: "cartes", titre: "Diagnostiquer une baisse à causes multiples", cartes: [
     ["Trois éléments ont changé en même temps : problème ?", "Impossible de savoir lequel explique la baisse."],
     ["Comment trouver la cause ?", "Revenir à la version habituelle et ne changer qu'un élément à la fois."],
-    ["Un plan de test, c'est…", "Une seule modification par envoi, mesurée sur un groupe comparable."],
+    ["Un plan de test, c'est…", "Une seule modification par envoi, dont on mesure ensuite l'effet."],
     ["Que garder en attendant ?", "La version qui fonctionnait avant."]
   ] },
 

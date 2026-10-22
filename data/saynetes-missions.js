@@ -91,8 +91,8 @@ Object.assign(SAYNETES_MISSIONS, {
   lignes: [
     "n|Vasseur a réservé un stand au salon auto régional de printemps.",
     "a|J'y veux 2 SUV hybrides. À toi de choisir lesquels.",
-    "a|Prépare aussi ce qu'on dira aux visiteurs, et la façon de les suivre une fois le salon terminé.",
-    "fin|À toi : choisis les véhicules, prépare l'accueil et organise le suivi des visiteurs."
+    "a|Prépare aussi les panneaux du stand, ce qu'on dira aux visiteurs, et la façon de les suivre une fois le salon terminé.",
+    "fin|À toi : choisis les véhicules, prépare les panneaux et l'accueil, puis organise le suivi des visiteurs."
   ] },
 
 "B42d-P1": { titre: "Ces clients qui roulent depuis longtemps", decor: "bureau", a: P_KARIM, b: P_TOI,
@@ -462,8 +462,8 @@ Object.assign(SAYNETES_MISSIONS, {
   lignes: [
     "n|Michel Vasseur s'arrête devant l'Austral hybride exposé.",
     "a|Beaucoup de clients surveillent leur budget, et comparent l'Austral aux SUV essence de même taille.",
-    "a|Je veux un argumentaire prêt à l'emploi, qui fasse la différence pour eux.",
-    "fin|À toi : construis l'argumentaire de valorisation de l'Austral hybride."
+    "a|Je veux un argumentaire prêt à l'emploi, qui fasse la différence pour eux, et une fiche à poser sur le véhicule exposé.",
+    "fin|À toi : construis l'argumentaire de valorisation de l'Austral hybride, puis sa fiche de présentation pour le showroom."
   ] },
 
 "B45b-P1": { titre: "Vasseur ou le mandataire en ligne ?", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Compare deux vendeurs", "h"),
@@ -471,7 +471,7 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Un client hésite, son téléphone à la main.",
     "b|Chez vous, c'est un peu plus cher. Le mandataire en ligne propose un prix plus bas.",
     "a|Mais chez le mandataire, aucun service après-vente local. Ce qui fait la différence ici, ce n'est pas seulement le véhicule.",
-    "fin|À toi : valorise le service Vasseur face à cette offre en ligne."
+    "fin|À toi : valorise le service Vasseur face à cette offre en ligne, au comptoir comme sur le site."
   ] },
 
 "B45c-P1": { titre: "« 1 500 € moins cher ailleurs »", decor: "concession", a: P_KARIM, b: sayClient("Un client", "Au showroom", "h"),
@@ -939,8 +939,8 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Fin de mois. Michel Vasseur ne peut commander que 3 véhicules de plus pour le stock.",
     "a|Renault 5 E-Tech ou Kangoo Van E-Tech ? Karim m'a apporté tout ce qui circule sur ces deux modèles.",
     "a|Des chiffres, une promotion vue par un client, une aide dont on parle… Tout n'a pas la même valeur.",
-    "a|Je veux savoir sur quoi repose ta recommandation, pas seulement la recommandation.",
-    "fin|À toi : trie les signaux de veille et propose une répartition des 3 véhicules."
+    "a|Avant de décider, je veux savoir ce qui est sûr et ce qui ne l'est pas.",
+    "fin|À toi : trie les signaux de veille et rédige la synthèse qui éclairera ma décision."
   ] },
 
 "C11b-P3": { titre: "La note de veille du trimestre", decor: "bureau", a: P_MICHEL, b: P_TOI,
@@ -1173,7 +1173,7 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Depuis un an et demi, une offre de reprise majorée part régulièrement vers les clients anciens.",
     "a|Elle fait vendre de plus en plus. Mais certains clients commencent à s'en plaindre.",
     "a|On continue, on change quelque chose, ou on arrête ?",
-    "fin|À toi : analyse les deux indicateurs et décide de la suite du programme."
+    "fin|À toi : analyse les deux indicateurs et propose une suite pour le programme."
   ] },
 
 "C33d-P3": { titre: "Mettre le SIC à jour avant vendredi", decor: "bureau", a: P_ISABELLE, b: P_TOI,
@@ -1205,7 +1205,7 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Avant la réunion commerciale, Michel Vasseur regarde les ventes de véhicules neufs du trimestre.",
     "a|Karim est ravi : on a vendu plus de Captur, grâce aux remises.",
     "a|Moi, je me demande ce que ces remises nous ont coûté. Et si ce sont vraiment elles qui ont fait la hausse.",
-    "fin|À toi : analyse volume et marge, puis propose un ajustement mesuré."
+    "fin|À toi : analyse volume et marge, puis présente à Michel deux scénarios de remise chiffrés."
   ] },
 
 "B41d-P3": { titre: "Vingt minutes pour quatre fiches", decor: "bureau", a: P_ISABELLE, b: P_TOI,
@@ -1277,7 +1277,7 @@ Object.assign(SAYNETES_MISSIONS, {
     "n|Le taux de réponse au mail mensuel de Vasseur s'est effondré.",
     "a|Karim veut tout corriger le mois prochain. Moi, je veux d'abord comprendre.",
     "a|Ce mois-ci, trois choses ont changé en même temps. Laquelle a pesé le plus ?",
-    "fin|À toi : estime le poids de chaque cause et propose un test."
+    "fin|À toi : estime le poids de chaque cause et propose le changement à essayer en premier."
   ] },
 
 "B44c-P3": { titre: "Un tableau rempli à la hâte", decor: "bureau", a: P_MICHEL, b: P_TOI,
