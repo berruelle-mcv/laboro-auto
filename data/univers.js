@@ -124,6 +124,7 @@ var LABORO_CONFIG = {
     "B4.5": "C4B.5"
   },
   "api": "https://auto-api.laboro-edu.fr",
+  "api_secours": "https://laboro-pi.tail0da51c.ts.net/auto",
   "textes": {
     "lieu_vente": "Tu travailles chez Vasseur Renault Évry et Vasseur Sélection Occasion.",
     "argument_marque": "Véhicule du Groupe Vasseur — neuf Renault ou occasion multimarque",
