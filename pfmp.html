@@ -593,8 +593,8 @@ function docLettre(e){
    <ul class="lt-ul">${items.map((s,i)=>`<li>${esc(s)}${i===items.length-1?".":" ;"}</li>`).join("")}</ul>
    <p class="lt-p">${esc(pn)} vous remettra dès les premiers jours le <b>livret de suivi</b> ci-joint. En fin de période, nous vous remercions d'y indiquer, pour chaque compétence, le niveau observé (de 1 «&nbsp;novice&nbsp;» à 4 «&nbsp;expert&nbsp;»), et d'apprécier son attitude professionnelle.</p>
    <p class="lt-p">En classe de Première, ce positionnement est formatif : il ne compte pas pour l'examen et nous aide à accompagner l'élève dans sa progression.</p>
-   <p class="lt-p">Le dernier jour, merci de remettre à ${esc(pn)} le livret complété ainsi que l'attestation de stage signée, à charge pour ${esc(pn)} de les rapporter au lycée.</p>
-   <p class="lt-p">Un professeur de la classe prendra contact avec vous dans les premiers jours, puis fera le point avec vous en fin de période.</p>
+   <p class="lt-p">Un professeur de la classe prendra contact avec vous dans les premiers jours, puis fera le point avec vous en fin de période. Le livret complété lui sera remis lors de cette visite.</p>
+   <p class="lt-p">Le dernier jour, merci de remettre l'attestation de stage signée à ${esc(pn)}, qui la rapportera au lycée.</p>
    <div class="lt-box"><b>Absences et changements d'horaires</b><br>Pour des raisons d'assurance et de responsabilité, toute absence ou modification d'horaires doit être signalée sans délai au lycée, au <b class="nw">${esc(c.tel)}</b>, auprès de ${esc(c.ddfptAssist)}, assistante du DDFPT, ou de ${esc(c.ddfpt)}, DDFPT. L'élève devra justifier son absence.</div>
       <p class="lt-p">En vous remerciant pour votre accueil, nous vous prions d'agréer, ${esc(civ)}, l'expression de nos salutations distinguées.</p>
    <div class="lt-sig">Pour l'équipe pédagogique de la ${esc(c.classe)},<br><b>${esc(c.prof1)}</b>${c.role1?"<br>"+esc(c.role1.charAt(0).toUpperCase()+c.role1.slice(1)):""}</div>
@@ -616,7 +616,7 @@ function docLivret(e){
     <div><span>Période</span>du ${fdate(d)} au ${fdate(f)}</div>
     <div><span>Pratique professionnelle</span>${esc(ppTxt())}</div>
    </div>
-   <div class="lv-bottom">Livret remis au tuteur par l'élève dès les premiers jours.<br>En fin de période, l'élève rapporte au lycée ce livret complété et l'attestation de stage signée.</div>
+   <div class="lv-bottom">Livret remis au tuteur par l'élève dès les premiers jours.<br>En fin de période, il est remis complété au professeur chargé de la visite.<br>L'attestation de stage, signée le dernier jour, est remise à l'élève, qui la rapporte au lycée.</div>
   </div></div>`;
 
   const p2=`<div class="lv-page">${head(e,"Livret de suivi de PFMP — informations")}
@@ -632,15 +632,15 @@ function docLivret(e){
     <ol class="lv-ol">
      <li><b>Au début :</b> l'élève remet ce livret à son tuteur.</li>
      <li><b>En fin de période :</b> le tuteur coche, pour chaque compétence, ce que l'élève a réellement fait (page 3), puis apprécie son attitude professionnelle (page 4).</li>
-     <li><b>Lors de la visite :</b> le professeur fait le point avec le tuteur à partir de ces pages, complète le bilan et signe.</li>
-     <li><b>Au retour :</b> l'élève rapporte au lycée le livret et l'attestation de stage signée. L'appréciation globale est reportée sur Pronote (onglet « Suivi de stage »).</li>
+     <li><b>Lors de la visite :</b> le professeur fait le point avec le tuteur à partir de ces pages, complète le bilan, signe et récupère le livret. L'appréciation globale est ensuite reportée sur Pronote (onglet « Suivi de stage »).</li>
+     <li><b>Le dernier jour :</b> l'entreprise remet à l'élève l'attestation de stage signée, et l'élève la rapporte au lycée.</li>
     </ol>
     <p class="lv-p lv-small">En classe de Première, ce positionnement est formatif : il ne compte pas pour l'examen. Il sert à repérer les progrès de l'élève et ce qu'il reste à travailler.</p></div>
    <div class="lv-sec"><h2>3. Absences et changements d'horaires</h2>
     <div class="lv-alert">Toute absence ou modification d'horaires est signalée <b>immédiatement par téléphone au lycée : ${esc(c.tel)}</b>, auprès de ${esc(c.ddfptAssist)} (assistante du DDFPT) ou de ${esc(c.ddfpt)} (DDFPT). L'élève justifie son absence.</div></div>
    <div class="lv-sec"><h2>4. Compétences travaillées pendant la PFMP</h2>
     <p class="lv-p lv-small">Les compétences de la grille (page 3) sont celles du référentiel du diplôme. Chacune est illustrée par un exemple adapté à ${esc(t.art)} : ce sont des pistes, le tuteur confie les activités possibles dans l'entreprise.</p>
-    <p class="lv-p lv-small">En classe de Première, l'élève découvre le métier : il observe, assiste et participe, toujours sous la responsabilité de son tuteur. Il n'a pas vocation à agir seul face à un client. Une compétence qui n'a pas pu être abordée est simplement cochée « NE ».</p>
+    <p class="lv-p lv-small">En classe de Première, l'élève découvre le métier : il observe, assiste et participe, toujours sous la responsabilité de son tuteur. Une compétence qui n'a pas pu être abordée est simplement cochée « NE ».</p>
     ${miss.length?`<div class="lv-ex"><b>Missions convenues avec le tuteur :</b><br>${miss.map(esc).join("<br>")}</div>`:""}
    </div>
    ${foot(e,"Page 2")}</div>`;
@@ -669,10 +669,10 @@ function docLivret(e){
    <div class="lv-sec"><h2>7. Appréciation globale du tuteur</h2>
    ${[1,2,3,4].map(()=>`<div class="lv-lines"></div>`).join("")}</div>
    <div class="lv-sec"><h2>8. Visite de fin de période</h2>
-   <table class="lv-t"><tr><td class="k" style="width:30%">Date et modalité</td><td>le ……/……/………… &nbsp;&nbsp; □ visite dans l'entreprise &nbsp;&nbsp; □ entretien téléphonique</td></tr>
+   <table class="lv-t"><tr><td class="k" style="width:30%">Date de l'entretien</td><td>le ……/……/…………</td></tr>
    <tr><td class="k">Professeur</td><td>${e.visiteur?esc(e.visiteur.replace(/\s+—.*$/,"")):""}</td></tr>
    <tr><td class="k">Points forts / à travailler</td><td style="height:20mm"></td></tr></table></div>
-   <div class="lv-sign"><div>Le tuteur<br><span class="lv-small">nom, signature et cachet de l'entreprise</span></div><div>L'élève<br><span class="lv-small">signature</span></div><div>Le professeur<br><span class="lv-small">date et signature</span></div></div>
+   <div class="lv-sign" style="grid-template-columns:1fr 1fr"><div>Le tuteur<br><span class="lv-small">nom, signature et cachet de l'entreprise</span></div><div>Le professeur<br><span class="lv-small">date et signature</span></div></div>
    ${foot(e,g2?"Page 5":"Page 4")}</div>`;
   return cover+p2+g1+g2+p5;
 }
@@ -746,7 +746,7 @@ $("#btn-profs").onclick=()=>{S.cfg.profsTxt=$("#profs-txt").value.split(/\n/).ma
 function docVisites(prof,list){const c=S.cfg;
   return `<div class="lv-page"><div class="lv-head"><div><b>${esc(c.lycee)}</b> — ${esc(c.cpville)}<br>${esc(c.classe)} · ${esc([...new Set(list.map(periodeTxt))].join(", "))}</div><div style="text-align:right"><b>Visites de PFMP</b><br>${esc(prof)}</div></div>
    <h2 style="font-size:15pt;margin:2mm 0 2mm">Vos élèves à visiter — ${esc(prof)}</h2>
-   <p class="lv-p lv-small">Fin de période : prendre rendez-vous avec le tuteur, faire le point avec lui à partir de la grille du livret (page 3), compléter la partie « Visite de fin de période » (page 4) et signer. Absences : prévenir le lycée au ${esc(c.tel)}.</p>
+   <p class="lv-p lv-small">Fin de période : prendre rendez-vous avec le tuteur, faire le point avec lui à partir de la grille du livret (page 3), compléter la partie « Visite de fin de période » (page 4), signer, puis récupérer le livret. Absences : prévenir le lycée au ${esc(c.tel)}.</p>
    <table class="lv-t"><thead><tr><th style="width:22%">Élève et dates</th><th style="width:34%">Entreprise</th><th style="width:26%">Tuteur</th><th>Horaires</th></tr></thead><tbody>
    ${list.map(e=>{const {d,f}=dates(e);return `<tr><td><b>${esc(full(e))}</b><br><span class="lv-small">du ${fdate(d,false)} au ${fdate(f,false)}</span></td><td><b>${esc(e.enseigne||"")}</b><br>${esc(e.adresse||"")}<br>${esc(e.cpville||"")}${e.telEnt?"<br>"+esc(e.telEnt):""}</td><td>${esc((e.civTuteur?e.civTuteur+" ":"")+(e.tuteur||""))}${e.fonction?"<br><span class='lv-small'>"+esc(e.fonction)+"</span>":""}${e.telTuteur?"<br>"+esc(e.telTuteur):""}${e.mailTuteur?"<br><span class='lv-small'>"+esc(e.mailTuteur)+"</span>":""}</td><td class="lv-small">${esc(e.horaires||"")}</td></tr>`}).join("")}
    </tbody></table>
