@@ -526,7 +526,7 @@ function renderEditor(focus){
    ${fld("adresse","Adresse",e)}${fld("cpville","Code postal et ville",e)}
    ${fld("telEnt","Téléphone de l'entreprise",e)}${fld("siret","N° d'immatriculation (SIRET)",e,{ph:"figure sur la convention"})}${fld("horaires","Horaires de l'élève",e,{ph:"ex. mar.-sam. 9h30-12h30 / 14h-18h"})}
    ${fld("civTuteur","Tuteur : civilité",e,{type:"select",options:[["","—"],["Madame","Madame"],["Monsieur","Monsieur"]]})}
-   ${fld("tuteur","Tuteur : prénom et nom",e)}${fld("fonction","Tuteur : fonction",e)}
+   ${fld("tuteur","Tuteur : nom de famille seul",e,{ph:"ex. Goury (sans prénom ni initiale)"})}${fld("fonction","Tuteur : fonction",e)}
    ${fld("telTuteur","Tuteur : téléphone",e)}${fld("mailTuteur","Tuteur : e-mail",e)}
    <label class="f">Professeur référent (visite)<select data-k="visiteur">${(()=>{const o=["",...profsList()];if(e.visiteur&&!o.includes(e.visiteur))o.push(e.visiteur);return o.map(p=>`<option value="${esc(p)}"${(e.visiteur||"")===p?" selected":""}>${p?esc(p):"— à attribuer (ligne vide sur le livret) —"}</option>`).join("")})()}</select></label>
   </div>
