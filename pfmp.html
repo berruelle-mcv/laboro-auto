@@ -85,6 +85,14 @@ table.list tr:hover td{background:#fafbfd}
 details{border-bottom:1px solid var(--line);padding:8px 0}
 summary{cursor:pointer}
 #print-area{display:none}
+.exp-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px}
+@media(max-width:900px){.exp-grid{grid-template-columns:1fr}}
+.x-eleves{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px 10px;max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.x-eleves label{display:flex;gap:7px;align-items:flex-start;font-size:13.5px;padding:3px 0;cursor:pointer}
+.x-eleves input,.x-opts input{width:auto;margin-top:3px}
+.x-eleves .sub{display:block;color:var(--muted);font-size:12px}
+.x-opts{display:flex;flex-direction:column;gap:4px;margin:6px 0 14px}
+.x-opts label{display:flex;gap:7px;align-items:flex-start;font-size:14px}
 @media print{
   @page{size:A4;margin:0}
   html,body{background:#fff!important;margin:0;padding:0}
@@ -224,19 +232,44 @@ summary{cursor:pointer}
 <!-- DOCUMENTS -->
 <section class="panel" id="p-docs">
   <div class="card">
+    <h2>Export groupé (PDF ou impression)</h2>
+    <p class="hint">Cochez les élèves et les documents, puis cliquez sur le bouton. Dans la fenêtre qui s'ouvre, choisissez <b>« Enregistrer au format PDF »</b> comme destination pour l'enregistrer sur une clé USB, ou une imprimante.</p>
+    <div class="exp-grid">
+      <div>
+        <div class="row" style="justify-content:space-between;margin-bottom:6px"><b>1. Élèves</b>
+          <span><button class="btn ghost sm" id="x-all">Tout cocher</button> <button class="btn ghost sm" id="x-none">Tout décocher</button></span></div>
+        <div id="x-eleves" class="x-eleves"></div>
+      </div>
+      <div>
+        <b>2. Documents</b>
+        <div class="x-opts">
+          <label class="c"><input type="checkbox" id="x-lettre" checked> Lettres au tuteur <span class="muted">(1 page)</span></label>
+          <label class="c"><input type="checkbox" id="x-livret" checked> Livrets de suivi <span class="muted">(4 pages)</span></label>
+          <label class="c"><input type="checkbox" id="x-attest" checked> Attestations de stage <span class="muted">(1 page)</span></label>
+        </div>
+        <b>3. Ordre des pages</b>
+        <div class="x-opts">
+          <label class="c"><input type="radio" name="x-ordre" value="eleve" checked> Élève par élève <span class="muted">(dossier complet de chacun)</span></label>
+          <label class="c"><input type="radio" name="x-ordre" value="type"> Par type de document <span class="muted">(toutes les lettres, puis tous les livrets, puis toutes les attestations)</span></label>
+        </div>
+        <button class="btn" id="x-go" style="margin-top:12px;width:100%">Créer le PDF</button>
+        <p class="hint" style="margin:8px 0 0">Astuce : pour obtenir un fichier séparé par type (par exemple un PDF avec toutes les attestations), cochez un seul document à la fois et recommencez.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Aperçu d'un élève</h2>
     <div class="docs-bar">
       <label class="f" style="min-width:260px">Élève
         <select id="d-eleve"></select>
       </label>
-      <label class="c"><input type="checkbox" id="d-lettre" checked> Lettre au tuteur</label>
-      <label class="c"><input type="checkbox" id="d-livret" checked> Livret de compétences</label>
-      <label class="c"><input type="checkbox" id="d-attest" checked> Attestation de PFMP</label>
+      <label class="c"><input type="checkbox" id="d-lettre" checked> Lettre</label>
+      <label class="c"><input type="checkbox" id="d-livret" checked> Livret</label>
+      <label class="c"><input type="checkbox" id="d-attest" checked> Attestation</label>
       <span style="flex:1"></span>
-      <button class="btn" id="btn-dl-one">Imprimer</button>
-      <button class="btn ghost" id="btn-dl-all">Tous les élèves (un seul fichier)</button>
+      <button class="btn" id="btn-dl-one">Imprimer / PDF de cet élève</button>
       <button class="btn ghost" id="btn-edit-from-docs">← Modifier la fiche</button>
     </div>
-    <p class="hint" style="margin:10px 0 0">« Imprimer » ouvre directement la fenêtre d'impression : choisissez l'imprimante ou « Enregistrer au format PDF », format A4, marges « Aucune » ou « Par défaut ».</p>
   </div>
   <div class="preview" id="preview"></div>
 </section>
@@ -671,6 +704,7 @@ function docAttest(e){
 function buildPages(e,o){return (o.lettre?docLettre(e):"")+(o.livret?docLivret(e):"")+(o.attest?docAttest(e):"")}
 function docOpts(){return{lettre:$("#d-lettre").checked,livret:$("#d-livret").checked,attest:$("#d-attest").checked}}
 function renderDocs(){
+  renderExport();
   const sel=$("#d-eleve");const el=sortE(S.eleves).filter(e=>e.enseigne||e.id===S.sel);
   sel.innerHTML=el.length?el.map(e=>`<option value="${e.id}"${e.id===S.sel?" selected":""}>${esc((e.nom||"").toUpperCase())} ${esc(e.prenom)}${e.enseigne?" — "+esc(e.enseigne):" (sans lieu)"}</option>`).join(""):`<option>Aucun élève avec un lieu de PFMP</option>`;
   if(!el.length){$("#preview").innerHTML=`<div class="empty">Complétez d'abord l'entreprise d'un élève dans l'onglet 1.</div>`;return}
@@ -693,8 +727,7 @@ function download(_nom,pages){
 const slug=s=>(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"");
 $("#btn-dl-one").onclick=()=>{const e=S.eleves.find(x=>x.id===S.sel);if(!e)return;const p=buildPages(e,docOpts());if(!p)return toast("Cochez au moins un document");
   download(`PFMP_${slug(S.cfg.classe)}_${slug(e.nom)}_${slug(e.prenom)}.html`,fileHTML(`PFMP — ${full(e)}`,p))};
-$("#btn-dl-all").onclick=()=>{const el=sortE(S.eleves).filter(e=>e.enseigne);if(!el.length)return toast("Aucun élève avec un lieu de PFMP renseigné");
-  download(`PFMP_${slug(S.cfg.classe)}_tous_les_eleves.html`,fileHTML(`PFMP ${S.cfg.classe} — ${el.length} élèves`,el.map(e=>buildPages(e,docOpts())).join("")))};
+
 
 /* ============ VISITES ============ */
 function profsList(){return (S.cfg.profsTxt||"").split(/\n/).map(s=>s.trim()).filter(Boolean)}
@@ -723,6 +756,36 @@ $("#btn-dl-visites").onclick=()=>{const el=sortE(S.eleves).filter(e=>e.enseigne&
   const by={};el.forEach(e=>(by[e.visiteur]=by[e.visiteur]||[]).push(e));
   const order=[...profsList().filter(p=>by[p]),...Object.keys(by).filter(p=>!profsList().includes(p))];
   download(`Visites_PFMP_${slug(S.cfg.classe)}.html`,fileHTML(`Visites PFMP ${S.cfg.classe}`,order.map(p=>docVisites(p,by[p])).join("")))};
+
+/* ============ EXPORT GROUPÉ ============ */
+let XSEL=null; // élèves cochés (Set d'id) ; null = tous par défaut
+function elevesExport(){return sortE(S.eleves).filter(e=>e.enseigne)}
+function xOpts(){return{lettre:$("#x-lettre").checked,livret:$("#x-livret").checked,attest:$("#x-attest").checked,ordre:(document.querySelector('input[name="x-ordre"]:checked')||{}).value||"eleve"}}
+function xPages(){
+  const o=xOpts(), el=elevesExport().filter(e=>XSEL.has(e.id));
+  if(o.ordre==="type") return (o.lettre?el.map(docLettre).join(""):"")+(o.livret?el.map(docLivret).join(""):"")+(o.attest?el.map(docAttest).join(""):"");
+  return el.map(e=>buildPages(e,o)).join("");
+}
+function renderExport(){
+  const el=elevesExport();
+  if(XSEL===null)XSEL=new Set(el.map(e=>e.id));
+  [...XSEL].forEach(id=>{if(!el.some(e=>e.id===id))XSEL.delete(id)});
+  $("#x-eleves").innerHTML=el.length?el.map(e=>`<label><input type="checkbox" data-x="${e.id}"${XSEL.has(e.id)?" checked":""}><span><b>${esc((e.nom||"").toUpperCase())}</b> ${esc(e.prenom)}<span class="sub">${esc(e.enseigne)}</span></span></label>`).join(""):`<span class="muted">Aucun élève avec un lieu de PFMP.</span>`;
+  $("#x-eleves").querySelectorAll("[data-x]").forEach(c=>c.onchange=()=>{c.checked?XSEL.add(c.dataset.x):XSEL.delete(c.dataset.x);majBoutonExport()});
+  majBoutonExport();
+}
+function majBoutonExport(){
+  const n=XSEL?XSEL.size:0, o=xOpts();
+  const parEleve=(o.lettre?1:0)+(o.livret?4:0)+(o.attest?1:0);
+  const b=$("#x-go");
+  b.disabled=!n||!parEleve;
+  b.textContent=!n?"Cochez au moins un élève":!parEleve?"Cochez au moins un document":`Créer le PDF — ${n} élève${n>1?"s":""}, ${n*parEleve} page${n*parEleve>1?"s":""}`;
+}
+$("#x-all").onclick=()=>{XSEL=new Set(elevesExport().map(e=>e.id));renderExport()};
+$("#x-none").onclick=()=>{XSEL=new Set();renderExport()};
+["#x-lettre","#x-livret","#x-attest"].forEach(x=>$(x).onchange=majBoutonExport);
+document.querySelectorAll('input[name="x-ordre"]').forEach(r=>r.onchange=majBoutonExport);
+$("#x-go").onclick=()=>{const p=xPages();if(!p)return;download("",p)};
 
 /* ============ LIEUX TYPES ============ */
 function renderTypes(){
