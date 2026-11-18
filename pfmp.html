@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Livrets PFMP — LABORO Auto</title>
+<script src="data/univers.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style id="app-css">
+:root{
+  --ink:#1d2433; --muted:#5d6678; --line:#dfe3ea; --bg:#f5f6f8; --card:#fff;
+  --accent:#1f4e8c; --accent-soft:#e8eef8; --ok:#2e7d4f; --ok-soft:#e5f3ea; --warn:#a85b00; --warn-soft:#fdf1e1; --danger:#b3261e;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45}
+header.app{background:var(--card);border-bottom:1px solid var(--line);padding:14px 22px 0;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.top h1{font-family:"Source Serif 4",serif;font-size:21px;margin:0;font-weight:700}
+.top .sub{color:var(--muted);font-size:14px}
+.sync{margin-left:auto;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#bbb;display:inline-block}
+.dot.ok{background:var(--ok)} .dot.local{background:var(--warn)}
+nav.tabs{display:flex;gap:2px;margin-top:12px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:10px 16px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button.on{color:var(--accent);border-bottom-color:var(--accent)}
+main{padding:22px;max-width:1280px;margin:0 auto}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:18px}
+.card h2{font-size:17px;margin:0 0 4px}
+.card p.hint{margin:0 0 14px;color:var(--muted);font-size:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px 14px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+label.f.wide{grid-column:1/-1}
+input,select,textarea{font:inherit;font-size:14px;color:var(--ink);border:1px solid #c9cfd9;border-radius:6px;padding:7px 9px;background:#fff;width:100%}
+textarea{resize:vertical;min-height:70px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.btn{font:inherit;font-weight:600;font-size:14px;border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:#fff;white-space:nowrap}
+.btn.ghost{background:#fff;color:var(--accent)}
+.btn.sm{padding:5px 10px;font-size:13px}
+.btn.danger{background:#fff;color:var(--danger);border-color:#e3b4b1}
+.btn:disabled{opacity:.5;cursor:default}
+table.list{width:100%;border-collapse:collapse;font-size:14px}
+table.list th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:1px solid var(--line);padding:8px}
+table.list td{border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:middle}
+table.list tr.sel td{background:var(--accent-soft)}
+table.list tr:hover td{background:#fafbfd}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.wait{background:var(--warn-soft);color:var(--warn)}
+.chip.ty{background:#eef0f4;color:#444}
+.muted{color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px;align-items:start}
+@media(max-width:980px){.split{grid-template-columns:1fr}}
+.comp-pick{display:grid;grid-template-columns:1fr;gap:4px;font-size:13.5px}
+.comp-pick label{display:flex;gap:8px;align-items:flex-start;font-weight:400;color:var(--ink)}
+.comp-pick input{width:auto;margin-top:3px}
+.comp-pick .b{font-weight:700;margin-top:8px;color:var(--accent);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.star{color:#c98a00}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1d2433;color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+.docs-bar{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.docs-bar label.c{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px}
+.docs-bar label.c input{width:auto}
+.preview{background:#e4e7ec;border-radius:10px;padding:18px;overflow:auto;max-height:calc(100vh - 230px)}
+.preview .lv-page{margin:0 auto 18px;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.types-ref h3{margin:14px 0 4px;font-size:15px}
+.types-ref ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+.inline-confirm{display:inline-flex;gap:6px;align-items:center;font-size:13px}
+.step{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;margin:18px 0 8px;color:var(--ink)}
+.step .n{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.comp-edit .b{font-weight:700;margin:12px 0 4px;color:var(--accent);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.comp-edit .ce{border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:6px;background:#fbfcfe}
+.comp-edit .ce.off{opacity:.45}
+.comp-edit .ck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;font-weight:400;color:var(--ink)}
+.comp-edit .ck input{width:auto;margin-top:3px}
+.exrow{display:flex;gap:8px;align-items:center;margin-top:5px;font-size:13px}
+.exrow input{padding:5px 8px;font-size:13px}
+.exrow .muted{white-space:nowrap}
+.lnk{border:0;background:none;color:var(--accent);font-size:16px;cursor:pointer;padding:0 4px}
+.savebar{position:sticky;bottom:0;background:#fff;padding:12px 0 4px;margin-top:14px;justify-content:space-between;border-top:1px solid var(--line)}
+.howto{background:var(--accent-soft);border-radius:8px;padding:10px 14px;font-size:14px;margin-bottom:16px;color:#1d3557}
+.howto ol{margin:4px 0 0;padding-left:20px}
+details{border-bottom:1px solid var(--line);padding:8px 0}
+summary{cursor:pointer}
+#print-area{display:none}
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff!important;margin:0;padding:0}
+  body>*:not(#print-area){display:none!important}
+  #print-area{display:block!important}
+  #print-area .lv-page{margin:0!important;box-shadow:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.note{background:var(--warn-soft);border:1px solid #f1d5a8;border-radius:8px;padding:10px 14px;font-size:13.5px;color:#6b4200;margin-bottom:14px}
+</style>
+<style id="doc-css">
+.lv-page{width:210mm;min-height:297mm;padding:13mm 14mm 12mm;background:#fff;color:#111;font-family:"Source Sans 3",Arial,sans-serif;font-size:10.5pt;line-height:1.38;position:relative;break-after:page;page-break-after:always}
+.lv-page:last-child{break-after:auto;page-break-after:auto}
+.lv-page h1,.lv-page h2,.lv-page h3{font-family:"Source Serif 4",Georgia,serif;color:#16345e;margin:0}
+.lv-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #16345e;padding-bottom:6px;margin-bottom:12px;font-size:9pt;color:#333}
+.lv-head b{color:#16345e}
+.lv-foot{position:absolute;bottom:7mm;left:14mm;right:14mm;font-size:8pt;color:#777;display:flex;justify-content:space-between;border-top:1px solid #ddd;padding-top:3px}
+.lv-cover{display:flex;flex-direction:column;min-height:270mm}
+.lv-cover .lv-etab{font-size:11pt;line-height:1.3}
+.lv-cover .lv-title{margin-top:38mm;text-align:center}
+.lv-cover .lv-title h1{font-size:27pt;line-height:1.15}
+.lv-cover .lv-title .lv-kicker{font-size:11pt;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:6mm}
+.lv-cover .lv-title .lv-dip{margin-top:6mm;font-size:12.5pt}
+.lv-cover .lv-box{margin:20mm auto 0;width:150mm;border:1.5px solid #16345e;border-radius:3mm;padding:7mm 9mm;font-size:11.5pt}
+.lv-cover .lv-box div{display:flex;gap:4mm;padding:1.6mm 0;border-bottom:1px dotted #bbb}
+.lv-cover .lv-box div:last-child{border-bottom:0}
+.lv-cover .lv-box span{min-width:44mm;color:#555}
+.lv-cover .lv-bottom{margin-top:auto;font-size:9.5pt;color:#444;text-align:center}
+.lv-sec{margin:0 0 9px}
+.lv-sec h2{font-size:13pt;margin:10px 0 6px;padding-bottom:2px;border-bottom:1px solid #c7d1e0}
+.lv-sec h3{font-size:11pt;margin:8px 0 4px}
+.lv-t{width:100%;border-collapse:collapse;font-size:9.6pt}
+.lv-t th,.lv-t td{border:1px solid #9aa6b8;padding:3.2px 5px;vertical-align:top;text-align:left}
+.lv-t th{background:#eaf0f8;font-weight:700;color:#16345e}
+.lv-t td.k{width:38%;background:#f7f9fc;color:#333;font-weight:600}
+.lv-t tr{break-inside:avoid;page-break-inside:avoid}
+.lv-t .cb{width:15mm;text-align:center;vertical-align:middle;font-size:9pt}
+.lv-t th.cb{font-size:7.6pt;line-height:1.15;font-weight:600}
+.lv-t .code{font-weight:700;color:#16345e;white-space:nowrap}
+.lv-t .act{font-size:8.3pt;color:#444;display:block;margin-top:0;line-height:1.25}
+.lv-t.grid td{padding:2.2px 5px}
+.lv-t .bloc td{background:#16345e;color:#fff;font-weight:700;font-size:9.6pt}
+.lv-ex{border-left:3px solid #c98a00;background:#fdf8ec;padding:4px 8px;font-size:9pt;margin:4px 0 6px}
+.lv-ex b{color:#7a5300}
+.box{display:inline-block;width:3.4mm;height:3.4mm;border:1px solid #333;vertical-align:-0.5mm}
+.lv-lines{border-bottom:1px dotted #888;height:6.5mm}
+.lv-sign{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm;margin-top:6px}
+.lv-sign div{border:1px solid #9aa6b8;height:30mm;padding:2mm 3mm;font-size:9pt;color:#333}
+.lv-p{margin:0 0 7px;text-align:justify}
+.lv-letter{font-size:10.5pt;line-height:1.45}
+.lt-top{display:flex;justify-content:space-between;align-items:flex-start}
+.lt-from{display:flex;gap:4mm;align-items:flex-start;font-size:9.5pt;line-height:1.35}
+.lt-logo{width:19mm;height:auto}
+.lt-to{width:80mm;margin-top:13mm;font-size:10.5pt;line-height:1.4}
+.lt-date{margin:6mm 0 0 auto;width:80mm}
+.lt-att{margin-top:6mm}
+.lt-obj{margin:1.5mm 0 5mm}
+.lt-p{margin:0 0 2.3mm;text-align:justify;hyphens:none}
+.nw{white-space:nowrap}
+.lt-ul{margin:-1mm 0 3.2mm;padding-left:7mm}.lt-ul li{margin-bottom:.8mm}
+.lt-box{border-left:3px solid #16345e;background:#f3f6fb;padding:2.2mm 4mm;margin:0 0 3.2mm;font-size:10pt}
+.lt-sig{margin:6mm 0 0 auto;width:80mm;line-height:1.4}
+.lv-letter .lv-p{margin-bottom:9px}
+.lv-addr{display:flex;justify-content:space-between;margin-bottom:14mm;font-size:10.5pt}
+.lv-addr .to{margin-top:16mm;margin-left:auto;width:78mm}
+.lv-obj{font-weight:700;margin:6mm 0 5mm}
+.lv-letter ul{margin:2px 0 9px 0;padding-left:18px}
+.lv-letter li{margin-bottom:2px}
+.lv-sigs{display:flex;justify-content:flex-end;gap:16mm;margin-top:10mm;text-align:center}
+.lv-small{font-size:8.6pt;color:#555}
+.lv-star{color:#b07800;font-weight:700}
+.lv-att h1{font-size:17pt;text-align:center;margin:4mm 0 2mm}
+.lv-att .lv-subt{text-align:center;color:#444;margin-bottom:8mm}
+.lv-fill{display:inline-block;min-width:40mm;border-bottom:1px dotted #555}
+.lv-legend{display:flex;flex-wrap:wrap;gap:2px 12px;font-size:8.6pt;background:#f3f6fb;border:1px solid #c7d1e0;border-radius:2mm;padding:4px 8px;margin:4px 0 6px}
+.lv-ol{margin:2px 0 6px;padding-left:18px}.lv-ol li{margin-bottom:3px}
+.lv-alert{border:1.5px solid #b3261e;border-radius:2mm;padding:6px 9px;background:#fdf2f1}
+.lv-t.grid .act{font-style:italic;color:#5a4300;font-size:8.6pt;margin-top:0;line-height:1.25}
+.lv-t.grid td{padding:2.2px 5px}
+.lv-t.grid .cb{width:11mm}
+.lv-t.sav td{padding:2.6px 5px}
+.lv-att{font-size:10.5pt}
+.lv-att h1{font-size:18pt;text-align:center;margin:8mm 0 5mm;letter-spacing:.05em}
+.att-i{font-style:italic;margin:0 0 6px;font-size:10pt}
+.att-s{margin-top:6mm}.att-s p{margin:3px 0}
+.att-l{display:flex;gap:3mm;margin:2.5mm 0;align-items:flex-end}
+.att-k{white-space:nowrap}
+.att-v{flex:1;border-bottom:1px dotted #555;min-height:5mm;font-weight:600}
+.att-2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.att-cachet{width:80mm;height:35mm;border:1px solid #9aa6b8;padding:2mm;font-size:9pt;color:#444}
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="top">
+    <h1>Livrets PFMP</h1>
+    <span class="sub" id="subtitle">1MCVB — Bac Pro MCV option B</span>
+    <span class="sync"><select id="classe-sel" style="width:auto;padding:4px 8px;font-size:13px;display:none"></select><span class="dot" id="syncdot"></span><span id="synctxt">Connexion…</span><button class="btn ghost sm" id="btn-logout" style="display:none">Se déconnecter</button></span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button data-t="eleves" class="on">1 · Élèves &amp; lieux de PFMP</button>
+    <button data-t="docs">2 · Documents à imprimer</button>
+    <button data-t="visites">3 · Visites</button>
+    <button data-t="types">4 · Lieux types</button>
+    <button data-t="params">5 · Paramètres</button>
+  </nav>
+</header>
+
+<main>
+<!-- ÉLÈVES -->
+<section class="panel on" id="p-eleves">
+  <div class="howto"><b>Mode d'emploi :</b><ol><li>Cliquez sur un élève dans la liste (à gauche).</li><li>Recopiez l'entreprise et le tuteur depuis la convention ou Pronote, puis choisissez le secteur : la grille s'adapte toute seule. Ajustez les exemples si besoin.</li><li>Enregistrez, puis passez à l'onglet « Documents à imprimer ».</li></ol></div>
+  <div class="split">
+    <div>
+      <div class="card">
+        <div class="row" style="justify-content:space-between;margin-bottom:10px">
+          <div><h2>Élèves de la classe</h2><span class="muted" id="countline"></span></div>
+          <div class="row">
+            <button class="btn ghost sm" id="btn-import-toggle">Importer une liste</button>
+            <button class="btn sm" id="btn-new">+ Ajouter un élève</button>
+          </div>
+        </div>
+        <div id="importbox" style="display:none;margin-bottom:14px">
+          <p class="hint">Pour créer une classe en une fois : un élève par ligne, au format <b>NOM Prénom</b> (ou <b>NOM ; Prénom</b>, copié depuis un tableur). Les élèves déjà présents dans la liste sont ignorés : pas de doublon possible.</p>
+          <textarea id="importtxt" rows="7" placeholder="DUPONT Léa&#10;MARTIN ; Yanis ; Orange Arpajon"></textarea>
+          <div class="row" style="margin-top:8px"><button class="btn sm" id="btn-import">Importer</button><span class="muted" id="importmsg"></span></div>
+        </div>
+        <div id="elist"></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" id="editor"><div class="empty">Sélectionnez un élève dans la liste ou ajoutez-en un.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="panel" id="p-docs">
+  <div class="card">
+    <div class="docs-bar">
+      <label class="f" style="min-width:260px">Élève
+        <select id="d-eleve"></select>
+      </label>
+      <label class="c"><input type="checkbox" id="d-lettre" checked> Lettre au tuteur</label>
+      <label class="c"><input type="checkbox" id="d-livret" checked> Livret de compétences</label>
+      <label class="c"><input type="checkbox" id="d-attest" checked> Attestation de PFMP</label>
+      <span style="flex:1"></span>
+      <button class="btn" id="btn-dl-one">Imprimer</button>
+      <button class="btn ghost" id="btn-dl-all">Tous les élèves (un seul fichier)</button>
+      <button class="btn ghost" id="btn-edit-from-docs">← Modifier la fiche</button>
+    </div>
+    <p class="hint" style="margin:10px 0 0">« Imprimer » ouvre directement la fenêtre d'impression : choisissez l'imprimante ou « Enregistrer au format PDF », format A4, marges « Aucune » ou « Par défaut ».</p>
+  </div>
+  <div class="preview" id="preview"></div>
+</section>
+
+<!-- VISITES -->
+<section class="panel" id="p-visites">
+  <div class="howto"><b>Mode d'emploi :</b><ol><li>Saisissez une fois la liste des professeurs de la classe (à gauche).</li><li>Une fois la répartition faite, choisissez pour chaque élève le professeur qui fera la visite : son nom apparaît automatiquement dans le livret.</li><li>Imprimez les fiches de visite : une page par professeur, avec ses élèves, les adresses et les tuteurs.</li></ol></div>
+  <div class="split" style="grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr)">
+    <div class="card"><h2>Professeurs de la classe</h2>
+      <p class="hint">Un professeur par ligne, par exemple : <i>Mme Martin — anglais</i></p>
+      <textarea id="profs-txt" rows="14"></textarea>
+      <div class="row" style="margin-top:10px"><button class="btn" id="btn-profs">Enregistrer la liste</button></div>
+    </div>
+    <div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><h2>Répartition des visites</h2>
+      <button class="btn ghost sm" id="btn-dl-visites">Imprimer les fiches de visite</button></div>
+      <div id="vsum" style="margin-bottom:10px"></div><div id="vlist"></div></div>
+  </div>
+</section>
+
+<!-- TYPES -->
+<section class="panel" id="p-types">
+  <div class="card types-ref">
+    <h2>Lieux de PFMP types</h2>
+    <p class="hint">Pour chaque secteur, l'exemple « chez vous » proposé pour chacune des 14 compétences du référentiel. Ces textes pré-remplissent la fiche de l'élève, où vous pouvez les modifier un par un.</p>
+    <div id="typesref"></div>
+  </div>
+</section>
+
+<!-- PARAMÈTRES -->
+<section class="panel" id="p-params">
+  <div class="card">
+    <h2>Établissement, équipe et périodes</h2>
+    <p class="hint">Ces informations figurent sur tous les documents (lettre, livret, attestation). Une modification ici vaut pour tous les élèves.</p>
+    <div class="grid2" id="cfgform"></div>
+    <div class="row" style="margin-top:14px"><button class="btn" id="btn-cfg">Enregistrer les paramètres</button></div>
+  </div>
+  <div class="card">
+    <h2>Sauvegarde</h2>
+    <p class="hint">Les données sont enregistrées sur le serveur LABORO. Vous pouvez en garder une copie sur votre ordinateur, ou importer une sauvegarde (les fiches présentes dans le fichier sont ajoutées ou mises à jour, rien n'est effacé).</p>
+    <div class="row"><button class="btn ghost" id="btn-export">Télécharger une sauvegarde</button>
+      <label class="btn ghost" style="display:inline-block">Importer une sauvegarde<input type="file" id="imp-file" accept=".json,application/json" style="display:none"></label>
+      <span class="muted" id="imp-msg"></span></div>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+<div id="login" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:60;align-items:center;justify-content:center">
+  <form id="login-form" class="card" style="width:min(380px,92vw)">
+    <h2 style="margin-bottom:4px">Livrets PFMP — LABORO Auto</h2>
+    <p class="hint">Connectez-vous avec votre compte enseignant LABORO.</p>
+    <label class="f">Adresse e-mail<input id="lg-mail" type="email" autocomplete="username" required></label>
+    <label class="f" style="margin-top:10px">Mot de passe<input id="lg-mdp" type="password" autocomplete="current-password" required></label>
+    <div class="row" style="margin-top:14px;justify-content:space-between"><button class="btn" type="submit">Se connecter</button><span class="muted" id="lg-msg" style="font-size:13px"></span></div>
+  </form>
+</div>
+<div id="print-area"></div>
+
+<script>
+/* ============ RÉFÉRENTIEL (intitulés officiels — Bac Pro MCV option B) ============ */
+const BLOCS=[
+ {id:"B1",titre:"Bloc 1 — Conseiller et vendre",comps:[
+  ["C1.1","Assurer la veille commerciale"],
+  ["C1.2","Réaliser la vente dans un cadre omnicanal"],
+  ["C1.3","Assurer l'exécution de la vente"]]},
+ {id:"B2",titre:"Bloc 2 — Suivre les ventes",comps:[
+  ["C2.1","Assurer le suivi de la commande du produit et/ou du service"],
+  ["C2.2","Traiter les retours et les réclamations du client"],
+  ["C2.3","S'assurer de la satisfaction du client"]]},
+ {id:"B3",titre:"Bloc 3 — Fidéliser la clientèle et développer la relation client",comps:[
+  ["C3.1","Traiter et exploiter l'information ou le contact client"],
+  ["C3.2","Contribuer à des actions de fidélisation et de développement de la relation client"],
+  ["C3.3","Évaluer les actions de fidélisation de la clientèle et de développement de la relation client"]]},
+ {id:"B4",titre:"Bloc 4B — Prospecter et valoriser l'offre commerciale",comps:[
+  ["C4B.1","Rechercher et analyser les informations à des fins d'exploitation"],
+  ["C4B.2","Participer à la conception d'une opération de prospection"],
+  ["C4B.3","Mettre en œuvre une opération de prospection"],
+  ["C4B.4","Suivre et évaluer l'action de prospection"],
+  ["C4B.5","Valoriser les produits et/ou les services"]]}
+];
+const ALLC=BLOCS.flatMap(b=>b.comps.map(c=>c[0]));
+const NIVEAUX=[["1","Novice","ne sait pas encore faire, même aidé"],["2","Débrouillé","fait avec de l'aide ou en partie"],["3","Averti","fait correctement"],["4","Expert","fait correctement et avec aisance, sans aide"],["NE","Non évaluable","n'a pas eu l'occasion de le faire"]];
+const SAVOIR=["Respecter les horaires de travail et faire preuve de ponctualité","Se présenter et avoir une tenue adaptée","Communiquer de façon professionnelle (clients, équipe)","Mettre en œuvre des consignes de travail","S'adapter aux méthodes de travail","S'organiser en fonction des contraintes","Prendre des initiatives adaptées","Faire face aux incidents les plus courants","Respecter les règles de réserve et de confidentialité","Rendre compte","Faire preuve de motivation et s'impliquer dans son travail","Faire preuve de dynamisme, de participation active","Faire preuve d'efficacité dans son travail","S'intégrer au sein de l'équipe","Tenir compte des remarques formulées pour progresser","Garder la maîtrise de soi"];
+
+/* ============ LIEUX TYPES : exemple adapté pour chaque compétence ============ */
+const TYPES={
+ detail:{label:"Commerce de détail spécialisé",art:"votre magasin",desc:"prêt-à-porter, sport, beauté, culture, bricolage…",ex:{
+  "C1.1":"Observer les produits, les prix et les promotions du magasin et de ses concurrents proches","C1.2":"Accueillir les clients, les renseigner et participer à la vente aux côtés d'un vendeur","C1.3":"Participer à l'encaissement et présenter les services du magasin (retouche, livraison…)","C2.1":"Aider au suivi des commandes clients (réception, appel du client à l'arrivée)","C2.2":"Accueillir un client qui fait un retour ou un échange et l'orienter vers la bonne personne","C2.3":"Recueillir l'avis de quelques clients (questionnaire simple) et le transmettre","C3.1":"Aider à créer ou mettre à jour des fiches clients, selon les consignes du magasin","C3.2":"Présenter la carte de fidélité, participer aux ventes privées ou aux animations","C3.3":"Relever avec le tuteur des chiffres simples (cartes créées, participation à une opération)","C4B.1":"Repérer avec le tuteur des clients potentiels dans la zone (entreprises, associations)","C4B.2":"Observer et aider à la préparation d'une action commerciale (flyers, animation)","C4B.3":"Participer à une distribution de flyers ou à une animation pour attirer des clients","C4B.4":"Compter les contacts ou les retombées de l'action et en rendre compte au tuteur","C4B.5":"Participer à la mise en valeur des produits (vitrine, mise en rayon, présentation)"}},
+ gms:{label:"Grande et moyenne surface",art:"votre magasin",desc:"hypermarché, supermarché, drive…",ex:{
+  "C1.1":"Relever des prix et des promotions, découvrir les produits du rayon","C1.2":"Renseigner et orienter les clients au rayon, participer à une animation commerciale","C1.3":"Participer à la tenue de caisse ou à l'accueil, sous la responsabilité d'un salarié","C2.1":"Aider à la préparation ou au suivi des commandes drive ou des commandes spéciales","C2.2":"Assister au traitement d'un retour ou d'une réclamation à l'accueil","C2.3":"Recueillir l'avis de clients (questionnaire simple) et le transmettre","C3.1":"Répondre aux demandes simples des clients et transmettre les autres","C3.2":"Présenter la carte de fidélité et les temps forts commerciaux du magasin","C3.3":"Relever avec le tuteur les résultats d'une opération (cartes créées, ventes)","C4B.1":"Repérer avec le tuteur des entreprises ou associations clientes potentielles","C4B.2":"Aider à la préparation d'une animation ou d'une opération promotionnelle","C4B.3":"Participer à un stand de dégustation ou de démonstration, aller vers les clients","C4B.4":"Compter les contacts et les ventes de l'animation et en rendre compte","C4B.5":"Participer à la mise en valeur d'une tête de gondole, d'un îlot ou d'un stand"}},
+ immo:{label:"Agence immobilière",art:"votre agence",desc:"transaction, location, gestion",ex:{
+  "C1.1":"Consulter les annonces et les prix du secteur, découvrir les biens de l'agence","C1.2":"Accueillir les clients à l'agence, noter leur demande, accompagner un conseiller en visite","C1.3":"Aider à constituer un dossier (pièces à fournir, classement), sous le contrôle du conseiller","C2.1":"Aider au suivi des dossiers en cours (relance de pièces, information du client)","C2.2":"Recevoir une demande ou une réclamation et la transmettre à la bonne personne","C2.3":"Recueillir l'avis de clients après une visite, avec l'accord du conseiller","C3.1":"Mettre à jour le fichier des acquéreurs et des locataires, enregistrer les demandes","C3.2":"Participer aux relances des contacts (appels ou mails préparés avec le conseiller)","C3.3":"Compter avec le tuteur les résultats des relances (rendez-vous, visites obtenues)","C4B.1":"Relever les annonces de particuliers du secteur (pige) pour le fichier de l'agence","C4B.2":"Observer la préparation d'une campagne de prospection de l'agence","C4B.3":"Participer au boîtage et, si le tuteur le décide, à des appels avec un script","C4B.4":"Noter les contacts obtenus dans un tableau de suivi et en rendre compte","C4B.5":"Aider à préparer les annonces (photos, descriptifs, vitrine de l'agence)"}},
+ auto:{label:"Concession / garage automobile",art:"votre concession",desc:"véhicules neufs et d'occasion, après-vente",ex:{
+  "C1.1":"Découvrir la gamme, les offres du moment et celles des marques concurrentes","C1.2":"Accueillir les clients au showroom, les orienter, assister un vendeur pendant ses ventes","C1.3":"Observer la préparation d'un bon de commande et la présentation d'un financement","C2.1":"Aider au suivi d'une commande et à la préparation d'une livraison de véhicule","C2.2":"Recevoir une réclamation et la transmettre au service concerné","C2.3":"Participer aux appels de satisfaction après livraison, avec un script","C3.1":"Aider à la mise à jour du fichier clients, enregistrer les demandes reçues","C3.2":"Participer aux invitations des clients (portes ouvertes, relances entretien ou reprise)","C3.3":"Compter avec le tuteur les résultats d'une relance ou d'une journée portes ouvertes","C4B.1":"Aider à préparer un fichier de contacts (anciens clients, prospects)","C4B.2":"Observer la préparation d'une opération commerciale (portes ouvertes, campagne d'appels)","C4B.3":"Participer à une campagne d'appels avec un script, accueillir les visiteurs d'une opération","C4B.4":"Noter les contacts et les rendez-vous obtenus, en rendre compte au tuteur","C4B.5":"Participer à la mise en valeur des véhicules (showroom, parc d'occasion, photos d'annonces)"}},
+ moto:{label:"Concession / magasin moto",art:"votre concession",desc:"motos neuves et d'occasion, équipement du motard, atelier",ex:{
+  "C1.1":"Découvrir les modèles, les équipements du motard et les offres des marques concurrentes","C1.2":"Accueillir les clients au magasin, les orienter, assister un vendeur pendant ses ventes","C1.3":"Observer la préparation d'un bon de commande, présenter les équipements et accessoires associés","C2.1":"Aider au suivi d'une commande (moto, équipement, pièce) et à la préparation d'une livraison","C2.2":"Recevoir une réclamation et la transmettre à l'atelier ou au vendeur concerné","C2.3":"Participer aux appels de satisfaction après une livraison ou un passage à l'atelier, avec un script","C3.1":"Aider à la mise à jour du fichier clients, enregistrer les demandes reçues","C3.2":"Participer aux invitations des clients (portes ouvertes, sorties, relances entretien)","C3.3":"Compter avec le tuteur les résultats d'une relance ou d'une journée portes ouvertes","C4B.1":"Aider à préparer un fichier de contacts (anciens clients, jeunes permis, moto-écoles)","C4B.2":"Observer la préparation d'une opération commerciale (portes ouvertes, nouveau modèle, salon)","C4B.3":"Participer à une campagne d'appels avec un script, accueillir les visiteurs d'une opération","C4B.4":"Noter les contacts obtenus et en rendre compte au tuteur","C4B.5":"Participer à la mise en valeur des motos et des équipements (showroom, photos d'annonces)"}},
+ telecom:{label:"Téléphonie, multimédia, électroménager",art:"votre boutique",desc:"opérateur, revendeur, enseigne spécialisée",ex:{
+  "C1.1":"Découvrir les forfaits et les appareils, les comparer avec ceux des concurrents","C1.2":"Accueillir les clients, découvrir leur besoin, participer à la vente aux côtés d'un conseiller","C1.3":"Observer la finalisation d'un contrat, présenter les accessoires et services associés","C2.1":"Aider au suivi d'une commande et informer le client de son arrivée","C2.2":"Accueillir un client pour un SAV ou une réclamation et l'orienter vers le bon interlocuteur","C2.3":"Recueillir l'avis de clients après la vente","C3.1":"Enregistrer les demandes des clients, aider à la mise à jour du fichier","C3.2":"Participer aux relances (fin d'engagement, offres du moment) préparées par le tuteur","C3.3":"Compter avec le tuteur les résultats des relances","C4B.1":"Repérer avec le tuteur des professionnels ou des clients potentiels dans la zone","C4B.2":"Aider à la préparation d'une animation ou d'une opération commerciale","C4B.3":"Participer à une animation hors boutique ou à une distribution de documents","C4B.4":"Compter les contacts obtenus et en rendre compte","C4B.5":"Participer à la mise en valeur de l'offre (vitrine, PLV, démonstration)"}},
+ banque:{label:"Banque, assurance, mutuelle",art:"votre agence",desc:"agence ou stand de proximité",ex:{
+  "C1.1":"Découvrir les offres de l'établissement et celles des concurrents","C1.2":"Accueillir les clients, identifier leur demande et les orienter vers le bon conseiller","C1.3":"Observer un conseiller en rendez-vous (avec l'accord du client) et la finalisation d'un dossier","C2.1":"Aider au suivi administratif des dossiers (pièces manquantes, classement)","C2.2":"Recevoir une demande ou une réclamation simple et la transmettre au conseiller","C2.3":"Recueillir l'avis de clients (questionnaire de satisfaction)","C3.1":"Aider à la mise à jour des informations clients, dans le respect de la confidentialité","C3.2":"Participer à une campagne d'appels pour proposer un rendez-vous avec un conseiller","C3.3":"Compter avec le tuteur les rendez-vous obtenus lors d'une campagne","C4B.1":"Aider à préparer un fichier de contacts pour une campagne","C4B.2":"Observer la préparation d'une campagne commerciale de l'agence ou du stand","C4B.3":"Aller au-devant des clients pour présenter l'établissement et proposer un rendez-vous avec un conseiller","C4B.4":"Noter les contacts obtenus et en rendre compte","C4B.5":"Participer à la mise en valeur des offres (agence, stand, documentation)"}},
+ b2b:{label:"Vente aux professionnels (B2B)",art:"votre entreprise",desc:"négoce, distributeur, commercial terrain",ex:{
+  "C1.1":"Découvrir le catalogue, les clients et les concurrents de l'entreprise","C1.2":"Accompagner un commercial en rendez-vous (en observation), accueillir les clients au comptoir","C1.3":"Aider à préparer un devis ou à saisir une commande, sous le contrôle du tuteur","C2.1":"Suivre une commande et sa livraison, informer le client de l'avancement","C2.2":"Recevoir un litige (retard, erreur) et le transmettre selon la procédure","C2.3":"Recueillir l'avis de clients","C3.1":"Aider à la mise à jour du fichier clients (CRM), enregistrer les demandes","C3.2":"Participer à la relance de clients avec un message préparé avec le tuteur","C3.3":"Compter avec le tuteur les résultats des relances","C4B.1":"Aider à constituer ou mettre à jour un fichier de prospects","C4B.2":"Observer la préparation d'une campagne de prospection (cible, objectifs)","C4B.3":"Participer à une campagne d'appels avec un script, ou accompagner un commercial","C4B.4":"Tenir un tableau de suivi des contacts, en rendre compte","C4B.5":"Participer à la mise en valeur de l'offre (salon, catalogue, réseaux sociaux)"}},
+ habitat:{label:"Habitat, menuiserie, travaux (vente sur devis)",art:"votre entreprise",desc:"fenêtres, portes, fermetures, aménagement — showroom et devis",ex:{
+  "C1.1":"Découvrir les produits (fenêtres, portes, fermetures…) et les concurrents","C1.2":"Accueillir les clients au showroom, noter leur projet, présenter les produits exposés","C1.3":"Observer l'élaboration d'un devis et l'explication des étapes (métrage, pose)","C2.1":"Aider au suivi des commandes (dates de pose, information du client)","C2.2":"Recevoir une demande ou une réclamation et la transmettre à la bonne personne","C2.3":"Recueillir l'avis de clients après la pose (appel avec un script)","C3.1":"Mettre à jour le fichier clients et prospects, enregistrer les demandes reçues","C3.2":"Participer à la relance des devis en attente avec le tuteur","C3.3":"Compter avec le tuteur les résultats des relances (devis signés)","C4B.1":"Aider à constituer un fichier de prospects (demandes de devis, secteurs)","C4B.2":"Observer la préparation d'une opération (boîtage, salon, foire)","C4B.3":"Participer à une opération de boîtage ou à des appels avec un script","C4B.4":"Noter les contacts obtenus et en rendre compte","C4B.5":"Participer à la mise en valeur de l'offre (showroom, photos de réalisations, réseaux sociaux)"}},
+ relation:{label:"Centre de relation client / télévente",art:"votre service",desc:"appels entrants et sortants",ex:{
+  "C1.1":"Découvrir les offres et les argumentaires utilisés par le service","C1.2":"Écouter des appels en double écoute, puis prendre en charge des appels simples","C1.3":"Confirmer une commande ou un rendez-vous selon la procédure","C2.1":"Suivre un dossier ou une commande et informer le client","C2.2":"Recevoir une réclamation simple et la transmettre selon la procédure","C2.3":"Participer à une enquête de satisfaction par téléphone","C3.1":"Mettre à jour les fiches clients après chaque contact","C3.2":"Participer à des appels de fidélisation avec un script","C3.3":"Relever avec le tuteur les indicateurs d'appels","C4B.1":"Aider à préparer un fichier d'appels","C4B.2":"Observer la préparation d'une campagne d'appels (cible, script, objectifs)","C4B.3":"Réaliser des appels sortants simples à partir d'un script, sous la supervision du tuteur","C4B.4":"Renseigner les résultats des appels et en rendre compte","C4B.5":"Participer à la présentation de l'offre à distance (mail, argumentaire)"}},
+ services:{label:"Agence de services",art:"votre agence",desc:"voyage, location, intérim, énergie…",ex:{
+  "C1.1":"Découvrir les offres de l'agence et celles des concurrents","C1.2":"Accueillir les clients, noter leur demande, assister un conseiller","C1.3":"Aider à préparer un devis ou une réservation, sous le contrôle du conseiller","C2.1":"Aider au suivi des dossiers et informer le client","C2.2":"Recevoir une demande de modification ou une réclamation et la transmettre","C2.3":"Recueillir l'avis de clients","C3.1":"Mettre à jour le fichier client, enregistrer les demandes reçues","C3.2":"Participer aux relances clients préparées avec le tuteur","C3.3":"Compter avec le tuteur les résultats d'une relance","C4B.1":"Aider à repérer des clients potentiels (particuliers, professionnels)","C4B.2":"Observer la préparation d'une opération de prospection","C4B.3":"Participer à une distribution de documents ou à des appels avec un script","C4B.4":"Noter les contacts obtenus et en rendre compte","C4B.5":"Participer à la mise en valeur de l'offre (vitrine, brochures, réseaux sociaux)"}},
+ autre:{label:"Autre structure commerciale",art:"votre structure",desc:"à préciser",ex:{
+  "C1.1":"Découvrir l'entreprise, ses produits et ses concurrents","C1.2":"Accueillir les clients, les renseigner, participer à la vente aux côtés du tuteur","C1.3":"Observer puis participer à la finalisation d'une vente","C2.1":"Aider au suivi d'une commande et informer le client","C2.2":"Recevoir un retour ou une réclamation et le transmettre","C2.3":"Recueillir l'avis de clients","C3.1":"Enregistrer les demandes des clients, aider à la mise à jour du fichier","C3.2":"Participer à une action de fidélisation","C3.3":"Compter avec le tuteur les résultats d'une action de fidélisation","C4B.1":"Aider à rechercher des clients potentiels","C4B.2":"Observer la préparation d'une opération de prospection","C4B.3":"Participer à une action de prospection avec le tuteur","C4B.4":"Noter les contacts obtenus et en rendre compte","C4B.5":"Participer à la mise en valeur des produits ou des services"}}
+};
+
+const DEFAULT_CFG={
+ lycee:"Lycée Paul Belmondo",adresse:"23 avenue de la Division Leclerc",cpville:"91290 Arpajon",tel:"01 60 83 80 60",
+ chef:"Mme Tallec",ddfpt:"Mme Albert",ddfptAssist:"Mme Rodriguez",
+ classe:"1MCVB",diplome:"Baccalauréat professionnel Métiers du Commerce et de la Vente",option:"Option B — Prospection clientèle et valorisation de l'offre commerciale",
+ annee:"2026-2027",
+ prof1:"Sandrine Berruelle",role1:"professeure principale",mail1:"",prof2:"Pascal Berruelle",role2:"",mail2:"",
+ p1label:"PFMP 3",p2label:"PFMP 4",p1d:"2026-11-23",p1f:"2026-12-19",p2d:"2027-06-01",p2f:"2027-06-27"
+};
+
+const LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMoAAAEBCAYAAAA5PTprAAAACXBIWXMAAAsSAAALEgHS3X78AAAgAElEQVR4nO1dv04jybcu7h39dANL6w03Ws8TjMfhJkB2s4EnGHiCAcmSAwKawAESkuEJME+ACW+ESVY3As8T4Ik2/HklgqtN9qrYr6AoTlX/cXV3dfX5JAS47XbbXV+d/+dsdAbDvhCiK8LC8un+bFn3FXUGw54QohfYd5MLT/dn83XP0RkMt4yHVk/3Z4vyrz4cfBBCTIQQ5hdROzqDobwEeTMkYb4LIeY+bnpO7Akhjpt4YzVseDjHrfG/vA/bHs7bGHwI/EL7+NmRCxbkmQkhbp7uz6b1Xx6jLQidKBQkaXY6g6GUhBdCiPOn+7NVeJfJiAn/0eDP0oVa9NgZDJMArocRMWwSpU79UxnQn/C7n/L8LtSyL0KI3QqcAIewnRgtAkmUGoxmKzqDYRfq1iZ+2zx0klAPncFwt+TrX4T0/TCqQfCql7Q/pOH+dH+2L4T4iB3dJjUkiW47g+FexZfJiByNslFAGmm8S8KcSH++5amXiA8xGF7QWGP+6f4sgS1lsxduobYxGGujyV4vgeiwjSySJJc1XBYjQjSaKALqmIMsO0T6BYORG40ninhLFspmaXoKCiMAREEU8UqWfeLQFpIbGYwXjJJxd5SMk1EyzuQhjYYo4h+yzJCwZ4LdxQ2FXMijZHw7Ssa+vZgq4TVTgDoqogBXxGObtVwJwwd6yG737cGUmR8np8lRpuBxE5MinZDByc5gaHq72KCPCKNkLO/n6jQ5enHgQOJ01cIfJeMdZGtIiTE7TY5W2nPl63/Ic4ySce80OVoa59nBv3N1vhgliqDULw5ARgWZOf5gfKBbPC4X+7UQ4hqqldw0HyUhcGyC5x6r8yi1DuR6wDH5I1W+AxExUe6Ixzj4GA9uxKtkeJEmcoPUJIKsV/oZKU/y2DeQ5QAbqTz2WctCF/i9QqrUz5BGz8diJQrlJmaixAOlMWwZv+80telKqlunydE5/u9rZd0XOLbAubracxZSFYOqJu1d6R3rx0oUKvjIqlckgN0gF/IXfKJnZ81pcjSjPuFpcrRxmhzppSN5C/260RnzjNZAkmVHxkMgWfKUPkjbQ/9fJ87WKBn/bb4gVqJQAUauIYkLN6qXAlSnmxyfzlV8t8DxN4+1iSiMuKA2vgP8tm6EMmAJAryQSXMj72G9qNevtGNbkFbLWG2UT8RjtfcJY/gDYh/qni61mIr6rXvEVMBSPX8Tx5THSwWk5fEeHpf4pjxhsRLFNNxXITTUY6wFaVf8rX5wImW8v0gTGPSSLMejZPygxVsuQK4ZbBv5+COkyQWec4L/ZdzlUbmZpQcsOtULgUVT9WL7ZD2cGK+uctNx3bsf+G3Gzbahkm0innKhJM5pcrSLIOImCHWlVK3T5Gg6Ssa6N+1OPiYiNea/EY9RAUhGRqCatBZgEdvIolTsN25hxECs14zYyrnl2Mw8n4gt4Ih0eipTmLtKxokdBAhLb4AYm0SZEI9NuZNkfEA6yiKnW7gwoiEKWhTtEIdM/ZqxJqDjd/Xs2qoBw7zURo1IoOzLqH4URAFJqEYS5+zt8gtZFWiUV3snCogoF+m+MqZrgnItN1+iOEiyYGlSCjZVhm2JtsESBAxmk2ssUdCz69Kibj3Xz7Nt8iYFfaHiS7q6pIqg8K9e+KRe91IgpT0mF3B/lIyfDWkE6FTsamkUQnW1gN/CKLZSx3pQ49QxlfRoFmZtKRIpksJW6eHxHbxuph3XY2o7uL43UkqLwKvXviNo47xekiDoXv/oIMl22yZCOXCMQqVH/L5FsE3hFj8PamAQUj7U/7KwSUnsiTaz5hZk6evnRrBuT7wS4QFFVJf6ubDAH3FsYrzPy/nFa5rJA553jfdQBNjTrn+iFWp1tWu+1QqyLvH5BM59aSvk0tEYonQGwx2U+D5qiXAmmCTv8R2PzGD8TrHA9U2mq45jUW7hedt4fA/PV8mEeuNBdS92UfC0wGLsIujXw+vU8/dAkj287hAFVPqxF+A8l9p77hrFVgoyqLihFWrtGZ/vM47PkCHc065jhkKtbcu5wyOKbFiHnz0pOTqDoWyN+jd2kj1HAZb8Ij8zSaw4hFql0jX0XVOqV7s4rhaqer7KpO1DNVqpxEGoN32oQkpluSHOP9XONTfu4RTnpY7p57nBe6pOO2YfBBVAVGqVfh5drVPNR/T5nKrIa265BtpGwcJsCuTNOpHNuyu63klnMKzd9nm6P8vlGlU6u1wwRi2GoFLOtecviefr6DmMbvW4VPcO9Si7pt5Qx7I0A3mzmLXrXaVcL3XvUu9n071ecwwPqnLhcqXke5DFTsid6mqNGuaQVAvXsRqu3yzkeufybnoKyxaGByXcDbI2LDX7Qf9RSYjnsF1OcL9ulaHtOlYxDo1rNwu3oojM91R7mc5gKPXTQ3YL21HCQnxWr6hiJ+UwgDs2QWbuBM6EnnFM4D7WIbGXRiGXMNVRG1FCCdT9qs1xzHKD99DBvkybZVGgOUHtkAsYiyFTM0D1fM075vrMcuF3YSd8gbdLGt1foZbNiODkV7xOHbOdX9k5n8Qr0fueMgLUe8prmeHcE9zjN7EW2wzH4KbsIsC4pc1ytKlaXRjcX0qyXw4bOsPxWgYItR2b7FiCBXKsPf8lEGd5/pVSgUfJeIm/F3AaXBDHVCDxAp5M/dhSD4yKV2fCXCu26uEeU61zcwHXSJ37wjxPY2wUjKWbPd2fHWI03eeU9Hllv7Dx/Q/UzZcLcdeIgr+oGVqyodoMnuMrWrR6YTx/iikC6riKv6jajl3t+VPEM1aWY9uQLktoNeqcu9oowjmuX937OaEBnWjXf2WQijr3obYZbGttj67UuTdknMIUx0/3Zxs5bkCtgBF/7OhYXzgIiQwAM/i03SSJopIYEWxjFEQME7eWmBj8mYoHaJOCuVMkozBiGiS00FI0THShDzMYhRDbIKEVpAtFli2oUq3CaXKUsNq1PqJsgCfJ0hkMBWG3fJOxFi7mygdiYOxq3Zw6lcFr9AT2jlEy/jfe5+d1zh1rXy9haZtJZoYyUnFr/FC9CTJDC0pulTByzoSri0tmRNukW6phncHwUNVYaJABSY7e1wtdQm0ZBVoqntJTRWPaY12zmEy8BiF3NPdxXysge+M6dhSL6e/d10ZAPLuKY5YoAm5cczfpWgq+GNVBlRMvifmaetHYxHhMLyZTxWGqAOxSFXXhOUrtnmiTuLo4RhWL6e9zrQVdn18bNVGAd1FWrRMgox5saYFOatNSBV1mcuI2kihXGolUjdIJiq9sGQTquX2tWEwVpb2pzTEmbj0TLnqiYKS2qWaxRKkJWq3JnergSdSfyPyvcyPlfobCrSW8miou9pwDBu/eKiW15Queq86tNlF9PczNiVuiJRJF8PDToKBIoavFJlG+Exf8Q/v7T+1v34HkH9SDbSEK9cVzpL4ebCpjXCstNu2U4NCW0XQ8/DQcqFoVFfxdZU39rxNtkSg8/DQAaLUtPW2Wu5r/nkaWn+r8BG0hCgWOo1QPpWJtY1LvhtY/OI0ousGtq2qmQ8BVEq438hPaZpmaZdAWolA3gdsaVY/n+6B3qtT+TrNTZB+uRxRY6VOA1e9rpMVQ7XUVlEfsAeeZaO1bnWizRGFUj5VlgI/+2NyyiZ0j7qHOIQuuFNH0ArBdo3DrBXAeqAxzdZ5trUzZfN1LUVhbjHlqt+LEyIphS4A8TY4Otb9tSZJ/yliJ5fXmlCz9766uZrsmeJnn15/bVtWLh5+2AGq+iY9NMXqiYCyECR5+2iwUHQFxYKmpz402qF5ficd4+GmDULRmxWfBWtQSRXbAt3i8ePgpIxeiJYo2aMgEDz9l5EaURAFJbi1pKjyujpEb0RFFIwmVonLC3i5GEURFFKTO20iyCLFVLKMZiGV8thqDZmscsVKRXAajCBpNFI0g3xxp86qlKqtcjMJoHFHQa3gLZZ1pJb0LdLRnkjDWQtBE0RqvbWFWylZKGrWOcxjv7ApmrI0Yhp2aWJQ8w+QWXSgbgZImE2w1aI2c+HDixJTCIolx9XR/xlF3hnc0nShLpFRf8Xx5RploGlHUtCfZVWXGRjqjKnxAeWSo2bRL/KzdPb0gOB3/HzQ57YfvIYPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBqBc8qN8zUBrQR1lAHwVlaSMmVPT4DpkIC85dCwsb6KSoN4mTN8kcMhkNUFc/8fV5UUi2g0IynwNx1CjoG+S11VZXY6TUq4rRKIncGQwToqR8+wMKod7M/e4Mht8jTle/XHeIEEqQ1QZT1kAiNeZb/lx2BkOZJX0TwH3poibnY5uK4mxdWCbYKaNCZzCcrLOw5XfSGQwvMct8rXMVgCLMo9z1QNa6oFpCtQa2NHvVZbFQz9cQAdvhoMilYVFOtCH/WbCAvaEGrVJZrMp++Qm/+xlmS6qxbt86g+FFjS2Y+nLTeLo/26/p/SuFqx5FqmBJDL2wHO1Vs7w2SenyorBQNkXOMmR9lofePGMTUsT2vvLx485g+BWlzzPL88rEXmcwvGtDVWla4Za8EbMIDLfLHE0pXmAx7HQsUc8z9VVEhvNM8bOPRuNfHR1n5Oe6hg2zX4PdINXB6L10WTpFXtasD68FLLS0tkZ5scSilAZtUmalpZQUT/dnsnnfx5Qu/PIzPsCrVzVum7xGsiALUfopu2qwgBpTSOWyQCdIpeqGJCPsgY+muqahB7LksaV8IHrjPmvv4QPszE3DZQbbIitkn7DPdevjIMwuHC02SXYJD1+V6MMjGCVsRKFqpBulgnUGwwMiALgsMDZ7iQDbYUhxAzgMPjvUsYMSF+7cItX2apBmlYAkCjxdpuemsOeoahDRd4V9fUJsBiwgRYJsUCCJC3XM5qLdK5Es+5ZN57ImO6lUuFQvalHtYKcOFg5X8HneBQ9DOvjoM9TBbcsmsFeGGobvxbbxRGfcW4kCTw6VA3UceNT+mIiYR52/Jl5VMRtZDspQieASpqRZdMa905jHTmXqovJLuC73sorBEX1vRfQYC9dGllJUIgQ6KZs2KuM+i9eLEq99BOOCAUQ9ReDDNqWsa2ShcF2GSgSbNmrjPpUo0EWpaVXHgRltlCt4/nR/dl7T9dQGh0rkO66kI2rjPlMcBfovteBK2aHyAruWGedZtUXlogC1mXId72hzZ3y+X9TGfeZhpzCGzR2jZ3HDVgY4FkhXMDfxFtQ9E2VJlZiN+7xTgakvYa/mqD2lck1ryqYNCtoub6JXlo0Zq3GfiyjYMSg3ay1Re9xsKvoetSs4D3DPKLX5W1n3LEbjPveceRjHVNS+UpcxDEQqWbOOVPPQcULYDt2ihWwZEZVxn5soAGW0bVUVtXdE309CTTepE9g4KCn7razLis24L0QUGMmU7luVy9gWfW98NWZZgBfMdG50y1SFYjLui0oUZbRRUftSDTZL9L3VruAcuCCe+rXw2TIgFuO+MFGAfWKXKi1q74i+n3DDuEyYWlTmUnP3YjDu1yKKw/14XEZQi6Pv6wH3i1qwVbj3G23crytRXFF7ry5jR/SdSq9h2FG5+iUiMO7XJopwR+296KAp0Xd2BecAVFRKXS59oeK9qY0teOPeC1EASgXb8RS15+i7X1DfWxmq8jtAA6Fc1UEb996IkhK1L2wscvS9FNwRJ63MToBNSSVsBmvc+5Qorqh90S6NHH0vB1RQdrPia7AmbIZo3HslCuAlas/R9/KATcZcpJUuTq3OqRHGvXeiOKL2k5w7BUffy4VJlG7VixNrpRHGfRkSxRa1F1lVMI6+V4IfxJtUrvI0xbgvhSiALWrvLPTi6HtlCEZ9bYJxXxpRHFH7g5SoPUff60OdRnTQxn2ZEkWJVSohjqy1h8HP0fdqQC3K2gzo0I37UokiXhPi3hmOpr2CWAu7gitCiN9pyMZ96UQBbO1Zdf3zmtjRzjn63i6EatxXQhQY4ZQKNsEA0YTQj5eW1zAiR4jGfVUSJa3WnlK5dlnlajWCMu4rIwpAGWvUh2ZXcMsRmnFfKVEcLmMdHH2vAE0olkoz7qskS9USRUXtbVOi2BVcHahFFlwOncu4r7JLaeVEAQ4t8wdPuA1qZWhMu6AU476SFlm1EMWigs04+l4pKNUrZLvQZtxPSurP8AZ1SRQzas8Jj9Xjk/mOIXsZU4z767I7ydRGFPEatd/GQFF2BVcLU6IEX+OTYtyXOoKkVqIISBa2S6oFFpS5AzfCHV+XcV87URi1gNLpvzflVtRh3DNR2okvxKduWnl1pcY9E6WdMEsZlk1Tf6s27pkoLQP6rJlGbyMztKs07pko7QOldl019VuoyrhnorQI2GHNNPVl0xNQqzDumSjtArVoqKbdTUSpxj0TpSWANKFG0dkSVBuFso17Jkp7cGBpdB5NRkSZxj0TpQXAbkpJk+hKrcsy7pko7cDEIk2iTB0qw7hnokQOxE2oXmmxj83watwzUSIGVC7bRICos7V9G/dMlEih9XBubXtan8Y9EyVeTIiak9YVyPky7pkoEQIdFalGcYdtrP3xYdwzUSKDgyTSyxVFcLEg1jLumSgRwUESaZe0uifBusY9E8UB6VoNbZYgBXmNncHw2kIS22z31mEd456J4oY0+B6raIdTFOj4+EDESgRIss2NO14B456Srk7jnomSDtW+MwlNumAKwAPRKEIwSeyArUYa90KIr9QLmSjZITvuP4QgXeQ1dAbDR8sUAAHDnVtAOQCbjTLuSVuFiZIPPUiX2zoIA4LcYvqUzfg8bLvhngPbFuP+HT6EePUNgCSJXLQLFD7Nytq9oe7tIPvX1YF+iZkyPC4jI+Q96wyG21BfnWCiuDFF61HKUBZYuJfwxcsGDXc+SKORYxO/02yjE4zxY1UrJ+TG0hkM9y05cS9gojig3IlQsy4d6o6qRd/DRKgF9N8fWr+shbmQQQglJeR7/IrfWRP25hgGy50214A07juD4abFvf4MJkoGwKX4EfMDjzMs5L5GgBeDuzMY+rqkOTKAm9a0LlhIuw6udlK9ZaLkgHIrQsJ8de1AJWAFVfCCJUhpkPbKI6XqMlEKADv5vDMYHsKG+AKVyXecZQnpccNjxMuHy7jfiPDz1gZImj6M8K6lGbYNK9g1CzTMXrAHKxwwUSpASsxlxYRgMBgMBoPBYDAYDAaDwWAwGAwGI0hwHIWRCm0A0VctF2qp5Zy9SanRkj17+PnJUSKwRPKoCrgGOU9yA8GwYGvCA8FKq4ZrVYAQiYLXKYmgh/iONnNmP9uwAgnv0EGm9u97A3XXtpJShh1L/NyBRPPY6kHQwkfmPdXdK2CJgay1JYQyUfxigZ3wKgapg7Lj0LSNOQhTaZIoE6U8LDFtt5FzSCBNHolDU6hGezkljZLAOnprqGlL9AeohDBMlGowhZRpTKEVevKafa4OVSd8GOxU7YYy8r+rbOg0ldQw/jeNwrc0zHFdpUpw9nqlADur2vXU35/wO+vNVGhMZaJlA/1ZX/SdwXCC2ZALSM+ZL+mJ710VyGVR/+T3mvh4bwpMlDWg7YSqcCsrcabYBYM0/rXZKuYC3dZJDo/YqmzVUptBmabuLdBDwLt0YaJ4BG6oijek6d4r7IJBDfXB4r+0kL7W7pMg8AFIYyPMCpuQ1879TJSSgNmJ3zKoDTPsgrVLF8TUqCldCkFcKzakiaONlPCtijFRSgYW33EKYWpvXocOM7beVisQJKi6fWxGlw5iT311zWSiVATc1IlDJStFZciCFJJIm2S3gfaUgheyMFEqBG7qMfRsG/arJAsIfG05LLtPNmLMtmOIkvBBlv9c58WMfPjrj9//768/fv+ff/3y2x306/8iTrDzr19++/HXH7+XroZpeVzUdUjCnpZ9Db7w1x+/3/zrl9/+FEL8N3HKvjz21x+//2/Rt2OJUhNgkF47XMqlShZIN9tslUqlmk+kqJHbRWNYPPahJiD2sA1PEoXLkkdL2HopN5Yk4rWb54nlcK7Z8jqYKDVCGshP92e7lulPIssQziJAegrlWo1icjDcwtTn6DrsMSeYKAEAhqbXG2sDiEfl9kU1OdgxUWsr62x5HUyUcGCbg95HTpUvUHGHVaSTg23jso/zqmBMlECAOIVtVNoBPFRrAa5gyu4JIjPAN2AHUlKy65oATIGJEhA0slBwToTKCGpxzGLulI/PRn2+vTz2HxMlMCCNhfLa9OH6LAS81lwYK6h8sePQpoJl/dxMlAABrw1lr6xTYEe9thVDifAZL4hDmaUKEyVcUDt9r4hUQTyGkiZBpfiXjPN1pAoTJVAggkzp1kWkyjfisYs2TRHGZ6Wkyk4WDxgTJWzYpErmiL02ittE4wOLBUBJUNv38wYfRsm4n9NVJvW9m9PkKJenZJSMqRrs5Wly9DHj61Xl4BucJkc2L5F6Hfn5zNeNkvGEyLtanCZHtRm7UrfG/HrzRn7VxnKngVLVvNW2NwmY0TglvpMvaRvHhwKzBiX2Rsn4uV1MDsJQ4r83SsY7Gc/RK9hjKuvn6wfaMfOCIIo0QrPW3H8hHrvydG1NxBVBlGf1y/V9rqN6PWe/Yqd3As+x6YEUgRgAbBVq908lNdQu83mrNk8YLvp9+rBRLqVUSHmOiwxbo2TsPfEvMlALm5IUJqibz2O46e9g0/UCX8a81cYZJeMsbXxYqrhBqUpZ1ETq5t+VeaENAfUdFJYoh0in0H9sBk8PRjOFdwY4AWnz1N0IOlggWv+uHWmGYBl1TxrTrbIsWFRP52b+wXFMenzML3U+SsY/LL78LTOaDJUqS4BMueja6LLMijnxXfYt+raCuUsGOXukJszN70e63W0VkEVUL1s0l5IIFElWll2N+x+78Z04at0FLdKGSfIKKkXIKqHLDjhStsfUEiHtwZ5h0KBu7CfHd0XddLZPXkFtPF6JYlOl3vigHS7hC8RNqN2NjXo7KKK47DpK2rQmZSUDqPVn3XgyE0Ua26NkTI0CUDDVKWrRz06TI3WBlCdnh13FNCzBMJcBSpGoNSP1MiDXxuMy5m9HyTjrm8pUlJc3hgeMuok6OaYWu+RbS2okisA0QNlTWBBIZ8n8Yl82illuSUkTuSOupB0CW6RnYTW7iv2AUiNY9SoIl0TJin3djYxFTtkx8vHbDOf07Speu9a8oXi32bRpmnFBWJ1J60iU5w7sp8mRuaBzt4IhQKlk5G6YwVP2q4frYcSJzMHXvERRY4ylFPloyfrNEolPA+Uqtu2Gae9H5aFxPIEh8gxadale20Rk3gm4hH15rcyaCxtRpE1zRV3rKBnb2oa2IY3jnQR2RZ5bCnNtWL8bHzaKDmp3X2VwS1JjlCUBTpQ7+TQ5ko4AqohJwEMnVcAbvF8vZUjmTcbP00PBWRbM824sJeN7lso9RjZ4IwpcwtTClIvd2cQAahZl6EsJpS9UqohJf26WvLJljmIzW/tRG8omiumYYC9WRfCZwmKLqqd6r7ATp0bq8bx1O4c0uXWo6cnK68XiFCHA0nmzlArHFzhcwlOpMmU8DZX/1TUrKFHDXsR1vIITopEu0rw31iLdfvJ4SU0HFauj8r+e4Uui2FzCeWqzp5Yb/05SnSZH+47ufxTmcE40OY2fckpYb6zlu2lrTIkCJV2t3tAPOEi18MzjQiXPkce4hbF+SC0IKbFMyQS75xxlyJuWRXCH/LIsUuRqzezasu0TqlrR+rlkcJFI0WDV6xVUfM265nk0XUPQGQwfiM3go6sQy/Kazxyhp7+bp/szKx+4AV4DgG4q5oLPUq1IDtJpzRdngeX7dG4eTJRmgHKJZ1H1KFXSR+ZE00F9n0yUCEC1JspiT1Fk6pcxF7JhoOw9ZxCaiRI4HL2DU4OmUM2onbLtEfvcEpqJEj4o1/ssRyd6agG0Vv3C2AwzhpL6fX7oDIZU8+zCg+sZ3kEt6jzxqQuCbP0WJ0hS32dq7h9LlIBhGSe3zNM72KF+ta6RB7Ib3vVizqLGMlECBWwTqpEHleqTBtsAnbYZ9WTDkyxqLBMlXBxY5sHnTsN5uj+zpQf5mDTcCGBToPIRqayUd2CiBAioCFR6f9aZKBQoqbKVZ3pXw0FtCvOsLWaZKIEBKhd1U5eQDEVhG/YZvVTpDIY7tlqprOdgooQHakSeIFpC5QIkEbUwevB8RgmHrTfN4/VjogQEeLkoPfrchyv36f7s3JIhexyxCjaxjA7PLE0EEyUcgCSUGrTIe1NTYJNMl1nGSDcJjo3nIu/4CyZKAHCQ5Lkq0+c8eEgmqpy6l7FBYSMAhwi58Tzdn+VWNZkoNcNBEgGSlFE7cmIJQsqIfeONe5CEIv2qaM8EJkqN6AyGBykkKWUwKSTUvsULttdksmgkodTI/aITx5goNUDaAliMthEa+2u6glMBSWWzVxpJlhSSnKyz8TBRKga8Sw+OHmSlk0QBC8dFluumGPj4Xm0kmRaxS3QwUSoCpMgEN9OWY1UZSRTwfjayyEDdraVVUjCACusiyVoxKMFEqQa4kY+Otk4rlDbU0k4phSzP6gw+Q1DA5nPtUGG9kESU0HuYAUBlOUD9gytLV7prd326gItAkgXtjSjb5Dm63RkMv6xjEPsEiHvsmDrmjSSCieIfyCv6kqEP8goG5rotYr0BZJEkuLYsQGkHPHYGw3Nce+Xkhjv9OGXz8a7CMlHWBNK3t9CwYCfjXMV5KDuzCRmQ7AyGnyFZbGktBzD2ZyBMqZ9D6xuQRpAlpLP32BMTJSO0XCg1omLTMq7ChTkWVtAluFj420iWlMVOFPlVv2lJmAXKk2c+SaNJ5ywbUKlSbsNSM8/wi0YQhAIkpku6mFjg835HaUCmz4z30aVznvc7LPu7ZaKUB1WNmDsBL0RAoh6v0WnStpDzSmWFJTafSjyFrHr5xRIL4qas9JO6gB17DsJ8K9AbzFca/wKbT6WudCbKepjjxn3PU1baZGiEUTXoae5vH1CdUi7qajC+gR2i9Y2bM2bQwVAAAAA3SURBVECfRbmoO+4RErQ2QMq28JH2MldjO0Lovs9jHxjeYRjmElSvXx2SCH/it3QAhDWWQgjx/wjIawbSqaucAAAAAElFTkSuQmCC";
+/* ============ ÉTAT ============ */
+let S={eleves:[],cfg:{...DEFAULT_CFG},sel:null,mode:"init"};
+let DB=null;
+const LS_KEY="livrets-pfmp-1mcvb";
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>"e"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),2600)}
+function fdate(d,long=true){if(!d)return"…";const x=new Date(d+"T12:00:00");if(isNaN(x))return d;return x.toLocaleDateString("fr-FR",long?{day:"numeric",month:"long",year:"numeric"}:{day:"2-digit",month:"2-digit",year:"numeric"})}
+function full(e){return `${e.prenom||""} ${(e.nom||"").toUpperCase()}`.trim()}
+function sortE(a){return [...a].sort((x,y)=>(x.nom||"").localeCompare(y.nom||"","fr")||(x.prenom||"").localeCompare(y.prenom||"","fr"))}
+function dates(e){const c=S.cfg;const p=e.periode==="2";return{d:e.dateDebut||(p?c.p2d:c.p1d),f:e.dateFin||(p?c.p2f:c.p1f)}}
+function compsOf(e){return Array.isArray(e.comps)?e.comps:ALLC.slice()}
+function typeOf(e){return TYPES[e.type]||TYPES.autre}
+function exOf(e,code){const o=e.ex&&e.ex[code];return (o!=null&&o!=="")?o:typeOf(e).ex[code]}
+function periodeTxt(e){return e.periode==="2"?(S.cfg.p2label||"PFMP 2"):(S.cfg.p1label||"PFMP 1")}
+function pratiquePro(){const c=S.cfg;return [[c.prof1,c.role1,c.mail1],[c.prof2,c.role2,c.mail2]].filter(p=>p[0])}
+function ppTxt(sep=" et "){return pratiquePro().map(p=>p[0]+(p[1]?` (${p[1]})`:"")).join(sep)}
+
+/* ============ STOCKAGE : serveur LABORO Auto ============ */
+const API=(typeof LABORO_CONFIG!=="undefined"&&LABORO_CONFIG&&LABORO_CONFIG.api)||"https://auto-api.laboro-edu.fr";
+let TOKEN=null, CLASSE=null, CLASSES=[];
+function lireToken(){try{return localStorage.getItem("laboro_token")}catch(_){return null}}
+async function api(method,chemin,corps){
+  let r;
+  try{r=await fetch(API+chemin,{method,headers:Object.assign({"Content-Type":"application/json"},TOKEN?{Authorization:"Bearer "+TOKEN}:{}),body:corps?JSON.stringify(corps):undefined})}
+  catch(e){return{ok:false,erreur:"Serveur LABORO injoignable. Vérifiez votre connexion internet."}}
+  let d={};try{d=await r.json()}catch(_){}
+  if(r.status===401){afficherLogin("Session expirée : reconnectez-vous.");return{ok:false,erreur:"Session expirée"}}
+  if(!r.ok||d.ok===false)return{ok:false,erreur:d.erreur||("Erreur "+r.status)};
+  return d;
+}
+function setSync(mode,txt){S.mode=mode;$("#syncdot").className="dot "+(mode==="db"?"ok":mode==="local"?"local":"");$("#synctxt").textContent=txt}
+async function saveEleve(e){
+  const i=S.eleves.findIndex(x=>x.id===e.id); if(i>=0)S.eleves[i]=e; else S.eleves.push(e);
+  const d=await api("PUT",`/api/pfmp/${encodeURIComponent(CLASSE)}/eleves/${encodeURIComponent(e.id)}`,{data:JSON.parse(JSON.stringify(e))});
+  if(!d.ok){toast("Enregistrement impossible : "+d.erreur);return false}
+  return true;
+}
+async function delEleve(id){
+  S.eleves=S.eleves.filter(x=>x.id!==id);
+  const d=await api("DELETE",`/api/pfmp/${encodeURIComponent(CLASSE)}/eleves/${encodeURIComponent(id)}`);
+  if(!d.ok)toast("Suppression impossible : "+d.erreur);
+}
+async function saveCfg(){
+  const d=await api("PUT",`/api/pfmp/${encodeURIComponent(CLASSE)}/config`,{data:S.cfg});
+  toast(d.ok?"Paramètres enregistrés":"Enregistrement impossible : "+d.erreur);
+}
+async function chargerClasse(silencieux){
+  if(!CLASSE)return;
+  if(!silencieux)setSync("","Chargement…");
+  const d=await api("GET",`/api/pfmp/${encodeURIComponent(CLASSE)}`);
+  if(!d.ok){setSync("local",d.erreur);return}
+  const local=S.eleves.filter(x=>x.id===S.sel&&!d.eleves.some(y=>y.id===x.id)&&!x.nom);
+  S.eleves=d.eleves.concat(local);
+  S.cfg={...DEFAULT_CFG,...(d.config||{})};
+  const editing=document.activeElement&&(document.activeElement.closest("#editor")||document.activeElement.closest("#p-params")||document.activeElement.id==="profs-txt");
+  renderList(); if(!editing)renderEditor(); setSubtitle(); renderTypes();
+  if($("#p-docs").classList.contains("on"))renderDocs();
+  if($("#p-visites").classList.contains("on")&&!editing)renderVisites();
+  if($("#p-params").classList.contains("on")&&!editing)renderCfg();
+  const c=CLASSES.find(x=>x.id===CLASSE);
+  setSync("db","Enregistré sur le serveur LABORO"+(c?" · "+c.libelle:""));
+}
+
+/* ============ ONGLETS ============ */
+function showTab(t){document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id==="p-"+t));if(t==="docs")renderDocs();if(t==="params")renderCfg();if(t==="visites")renderVisites();window.scrollTo(0,0)}
+$("#tabs").addEventListener("click",ev=>{const b=ev.target.closest("button");if(b)showTab(b.dataset.t)});
+
+/* ============ LISTE ÉLÈVES ============ */
+function renderList(){
+  const el=sortE(S.eleves);
+  const conv=el.filter(e=>e.convention==="signee").length;
+  $("#countline").textContent=el.length?`${el.length} élèves · ${conv} convention(s) signée(s)`:"";
+  if(!el.length){$("#elist").innerHTML=`<div class="empty">Aucun élève pour l'instant.<br>Utilisez « Coller une liste » pour importer la classe en une fois.</div>`;return}
+  $("#elist").innerHTML=`<table class="list"><thead><tr><th>Élève</th><th>Lieu de PFMP</th><th>Statut</th><th></th></tr></thead><tbody>${el.map(e=>`
+   <tr data-id="${e.id}" class="${S.sel===e.id?"sel":""}" style="cursor:pointer">
+    <td><b>${esc((e.nom||"").toUpperCase())}</b> ${esc(e.prenom)}</td>
+    <td>${e.enseigne?esc(e.enseigne)+"<br>":`<span class="muted">—</span><br>`}${e.type?`<span class="chip ty">${esc(typeOf(e).label)}</span>`:""}</td>
+    <td>${e.convention==="signee"?`<span class="chip ok">Convention signée</span>`:e.enseigne?`<span class="chip wait">En attente</span>`:`<span class="chip wait">Pas de stage</span>`}</td>
+    <td style="text-align:right">${e.enseigne?`<button class="btn ghost sm" data-docs="${e.id}">Documents</button>`:""}</td>
+   </tr>`).join("")}</tbody></table>`;
+}
+$("#elist").addEventListener("click",ev=>{
+  const d=ev.target.closest("[data-docs]"); if(d){ev.stopPropagation();S.sel=d.dataset.docs;showTab("docs");return}
+  const tr=ev.target.closest("tr[data-id]"); if(tr){S.sel=tr.dataset.id;renderList();renderEditor();$("#editor").scrollIntoView({behavior:"smooth",block:"start"})}
+});
+$("#btn-new").onclick=()=>{const e={id:uid(),nom:"",prenom:"",type:"",periode:"1",convention:"attente",comps:null};S.eleves.push(e);S.sel=e.id;renderList();renderEditor(true)};
+$("#btn-import-toggle").onclick=()=>{const b=$("#importbox");b.style.display=b.style.display==="none"?"block":"none"};
+$("#btn-import").onclick=async()=>{
+  const lines=$("#importtxt").value.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);let n=0,dup=0;
+  const key=(a,b)=>((a||"")+"|"+(b||"")).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Za-z|]/g,"").toLowerCase();
+  const seen=new Set(S.eleves.map(e=>key(e.nom,e.prenom)));
+  for(const l of lines){
+    let nom="",prenom="",ent="";
+    const parts=l.split(/\s*[;\t]\s*/);
+    if(parts.length>=2){nom=parts[0];prenom=parts[1];ent=parts[2]||""}
+    else{const w=l.split(/\s+/);const up=w.filter(x=>x===x.toUpperCase()&&/[A-ZÀ-Ý]/.test(x));
+      if(up.length&&up.length<w.length){nom=up.join(" ");prenom=w.filter(x=>!up.includes(x)).join(" ")}else{nom=w[0];prenom=w.slice(1).join(" ")}}
+    if(seen.has(key(nom,prenom))){dup++;continue}
+    seen.add(key(nom,prenom));
+    const e={id:uid(),nom:nom.toUpperCase(),prenom,enseigne:ent,type:"",periode:"1",convention:"attente",comps:null};
+    if(await saveEleve(e))n++;
+  }
+  $("#importmsg").textContent=n+" élève(s) importé(s)"+(dup?`, ${dup} déjà présent(s) ignoré(s)`:"")+".";$("#importtxt").value="";renderList();
+};
+
+/* ============ ÉDITEUR ============ */
+function fld(k,label,e,opt={}){
+  const v=esc(e[k]??"");const w=opt.wide?" wide":"";
+  if(opt.type==="select")return `<label class="f${w}">${label}<select data-k="${k}">${opt.options.map(([val,l])=>`<option value="${val}"${(e[k]??"")===val?" selected":""}>${esc(l)}</option>`).join("")}</select></label>`;
+  if(opt.type==="area")return `<label class="f${w}">${label}<textarea data-k="${k}" rows="${opt.rows||3}" placeholder="${esc(opt.ph||"")}">${v}</textarea></label>`;
+  return `<label class="f${w}">${label}<input data-k="${k}" type="${opt.type||"text"}" value="${v}" placeholder="${esc(opt.ph||"")}"></label>`;
+}
+function renderEditor(focus){
+  const e=S.eleves.find(x=>x.id===S.sel); const box=$("#editor");
+  if(!e){box.innerHTML=`<div class="empty">Cliquez sur un élève dans la liste pour compléter sa fiche.</div>`;return}
+  const t=typeOf(e); const cs=compsOf(e);
+  box.innerHTML=`
+  <div class="row" style="justify-content:space-between;margin-bottom:6px"><h2>${esc(full(e))||"Nouvel élève"}</h2>
+   <span id="delzone"><button class="btn danger sm" id="btn-del">Supprimer</button></span></div>
+  <div class="step"><span class="n">1</span> Élève et période</div>
+  <div class="grid2">
+   ${fld("nom","Nom",e)}${fld("prenom","Prénom",e)}${fld("naissance","Date de naissance",e,{type:"date"})}
+   ${fld("convention","Convention",e,{type:"select",options:[["attente","En attente / pas de stage"],["signee","Signée"]]})}
+   ${fld("periode","Période",e,{type:"select",options:[["1",`${S.cfg.p1label} — du ${fdate(S.cfg.p1d,false)} au ${fdate(S.cfg.p1f,false)}`],["2",`${S.cfg.p2label} — du ${fdate(S.cfg.p2d,false)} au ${fdate(S.cfg.p2f,false)}`]]})}
+   ${fld("dateDebut","Début, si différent",e,{type:"date"})}${fld("dateFin","Fin, si différente",e,{type:"date"})}
+  </div>
+  <div class="step"><span class="n">2</span> Entreprise et tuteur <span class="muted" style="font-weight:400">(recopier la convention / Pronote)</span></div>
+  <div class="grid2">
+   ${fld("enseigne","Nom de l'entreprise",e,{ph:"ex. Laforêt Immobilier Brétigny"})}
+   ${fld("activite","Activité de l'entreprise",e,{ph:"ex. agence immobilière (transaction, location)"})}
+   ${fld("adresse","Adresse",e)}${fld("cpville","Code postal et ville",e)}
+   ${fld("telEnt","Téléphone de l'entreprise",e)}${fld("siret","N° d'immatriculation (SIRET)",e,{ph:"figure sur la convention"})}${fld("horaires","Horaires de l'élève",e,{ph:"ex. mar.-sam. 9h30-12h30 / 14h-18h"})}
+   ${fld("civTuteur","Tuteur : civilité",e,{type:"select",options:[["","—"],["Madame","Madame"],["Monsieur","Monsieur"]]})}
+   ${fld("tuteur","Tuteur : prénom et nom",e)}${fld("fonction","Tuteur : fonction",e)}
+   ${fld("telTuteur","Tuteur : téléphone",e)}${fld("mailTuteur","Tuteur : e-mail",e)}
+   <label class="f">Professeur référent (visite)<select data-k="visiteur">${(()=>{const o=["",...profsList()];if(e.visiteur&&!o.includes(e.visiteur))o.push(e.visiteur);return o.map(p=>`<option value="${esc(p)}"${(e.visiteur||"")===p?" selected":""}>${p?esc(p):"— à attribuer (ligne vide sur le livret) —"}</option>`).join("")})()}</select></label>
+  </div>
+  <div class="step"><span class="n">3</span> Adapter la grille à l'entreprise</div>
+  <div class="grid2">${fld("type","Secteur de l'entreprise",e,{type:"select",options:[["","— choisir —"],...Object.entries(TYPES).map(([k,v])=>[k,v.label])],wide:true})}</div>
+  <p class="hint" style="margin:8px 0">Pour chaque compétence, la grille affiche un exemple concret « chez vous ». Il est pré-rempli selon le secteur : <b>modifiez le texte</b> si besoin, ou <b>décochez</b> une compétence impossible à travailler dans cette entreprise (elle n'apparaîtra pas).</p>
+  <div class="comp-edit">${BLOCS.map(b=>`<div class="b">${esc(b.titre)}</div>`+b.comps.map(c=>{const ov=e.ex&&e.ex[c[0]];return `<div class="ce${cs.includes(c[0])?"":" off"}">
+    <label class="ck"><input type="checkbox" data-comp="${c[0]}"${cs.includes(c[0])?" checked":""}> <b>${c[0]}</b> ${esc(c[1])}</label>
+    <div class="exrow"><span class="muted">Chez vous :</span><input data-ex="${c[0]}" value="${esc(exOf(e,c[0]))}">${ov?`<button class="lnk" data-reset="${c[0]}" title="Revenir à l'exemple du secteur">↺</button>`:""}</div></div>`}).join("")).join("")}</div>
+  <div class="grid2" style="margin-top:12px">
+   ${fld("missions","Missions particulières convenues avec le tuteur (facultatif, une par ligne)",e,{type:"area",wide:true,rows:2})}
+   ${fld("notes","Notes internes (n'apparaissent sur aucun document)",e,{type:"area",wide:true,rows:2})}
+  </div>
+  <div class="row savebar">
+   <button class="btn" id="btn-save">Enregistrer</button>
+   <button class="btn ghost" id="btn-godocs">Enregistrer et voir les documents →</button>
+  </div>`;
+  if(focus){const i=box.querySelector('[data-k="nom"]');i&&i.focus()}
+  box.querySelector('[data-k="type"]').onchange=ev=>{const cur=readEditor(true);Object.assign(e,cur);e.type=ev.target.value;renderEditor()};
+  box.querySelectorAll("[data-comp]").forEach(i=>i.onchange=()=>i.closest(".ce").classList.toggle("off",!i.checked));
+  box.querySelectorAll("[data-reset]").forEach(b=>b.onclick=()=>{const cur=readEditor();Object.assign(e,cur);if(e.ex)delete e.ex[b.dataset.reset];renderEditor()});
+  $("#btn-save").onclick=async()=>{const cur=readEditor();Object.assign(e,cur);if(await saveEleve(e)){toast("Fiche enregistrée");renderList();renderEditor()}};
+  $("#btn-godocs").onclick=async()=>{const cur=readEditor();Object.assign(e,cur);await saveEleve(e);renderList();showTab("docs")};
+  $("#btn-del").onclick=()=>{$("#delzone").innerHTML=`<span class="inline-confirm">Supprimer cet élève ? <button class="btn danger sm" id="del-yes">Oui</button><button class="btn ghost sm" id="del-no">Non</button></span>`;
+    $("#del-yes").onclick=async()=>{await delEleve(e.id);S.sel=null;renderList();renderEditor();toast("Élève supprimé")};$("#del-no").onclick=()=>renderEditor()};
+}
+function readEditor(ignoreEx){
+  const box=$("#editor");const o={};const e=S.eleves.find(x=>x.id===S.sel)||{};
+  box.querySelectorAll("[data-k]").forEach(i=>o[i.dataset.k]=i.value.trim());
+  if(o.nom)o.nom=o.nom.toUpperCase();
+  const cs=[...box.querySelectorAll("[data-comp]")].filter(i=>i.checked).map(i=>i.dataset.comp);
+  o.comps=cs.length===ALLC.length?null:cs;
+  if(!ignoreEx){const def=typeOf({type:o.type}).ex;const ex={};
+    box.querySelectorAll("[data-ex]").forEach(i=>{const v=i.value.trim();if(v&&v!==def[i.dataset.ex])ex[i.dataset.ex]=v});
+    o.ex=ex;}
+  else o.ex=e.ex||{};
+  return o;
+}
+
+/* ============ DOCUMENTS ============ */
+function head(e,titre){return `<div class="lv-head"><div><b>${esc(S.cfg.lycee)}</b> — ${esc(S.cfg.cpville)}<br>${esc(S.cfg.classe)} · ${esc(periodeTxt(e))}</div><div style="text-align:right"><b>${esc(titre)}</b><br>${esc(full(e))} — ${esc(e.enseigne||"")}</div></div>`}
+function foot(e,p){return `<div class="lv-foot"><span>${esc(S.cfg.diplome)}, option B — ${esc(S.cfg.classe)} — ${esc(S.cfg.annee)}</span><span>${esc(p)}</span></div>`}
+function lycAddr(){const c=S.cfg;return `<b>${esc(c.lycee)}</b><br>${esc(c.adresse)}<br>${esc(c.cpville)}${c.tel?"<br>Tél. "+esc(c.tel):""}`}
+function missionsOf(e){return (e.missions||"").split(/\n/).map(s=>s.trim()).filter(Boolean)}
+
+function docLettre(e){
+  const {d,f}=dates(e);const c=S.cfg;const civ=e.civTuteur||"Madame, Monsieur";const cs=compsOf(e);const pn=e.prenom||"l'élève";
+  const pick=["C1.2","C4B.3","C3.2","C4B.5","C2.1"].filter(k=>cs.includes(k)).slice(0,3).map(k=>exOf(e,k));
+  const items=[...pick,...missionsOf(e)].map(s=>s.charAt(0).toLowerCase()+s.slice(1).replace(/\.$/,""));
+  const pr=pratiquePro();
+  const att=e.tuteur?`${e.civTuteur?e.civTuteur+" ":""}${e.tuteur}${e.fonction?", "+(/^[A-ZÀ-Ý][a-zà-ÿ]/.test(e.fonction)?e.fonction.charAt(0).toLowerCase()+e.fonction.slice(1):e.fonction):""}`:"";
+  return `<div class="lv-page lv-letter">
+   <div class="lt-top">
+    <div class="lt-from"><img class="lt-logo" src="${LOGO}" alt="Lycée Paul Belmondo"><div>${lycAddr()}</div></div>
+    <div class="lt-to"><b>${esc(e.enseigne||"…………………………")}</b><br>${esc(e.adresse||"")}${e.adresse?"<br>":""}${esc(e.cpville||"")}</div>
+   </div>
+   <div class="lt-date">${esc((c.cpville||"").replace(/^\d+\s*/,""))}, le ${fdate(new Date().toISOString().slice(0,10))}</div>
+   ${att?`<div class="lt-att">À l'attention de ${esc(att)}</div>`:""}
+   <div class="lt-obj"><b>Objet :</b> accueil de ${esc(full(e))} en période de formation en milieu professionnel (${esc(periodeTxt(e))})</div>
+   <p class="lt-p">${esc(civ)},</p>
+   <p class="lt-p">Vous avez accepté d'accueillir ${esc(full(e))}, élève de Première Bac Pro Métiers du Commerce et de la Vente, option B «&nbsp;Prospection clientèle et valorisation de l'offre commerciale&nbsp;», du <b>${fdate(d)}</b> au <b>${fdate(f)}</b>.</p>
+   <p class="lt-p">Nous vous en remercions sincèrement.</p>
+   <p class="lt-p">Cette période permet à ${esc(pn)} de découvrir le métier en situation réelle. Selon les situations et l'organisation de votre équipe, ${esc(pn)} pourra observer un collaborateur, travailler à ses côtés ou réaliser en autonomie des tâches à sa portée, par exemple :</p>
+   <ul class="lt-ul">${items.map((s,i)=>`<li>${esc(s)}${i===items.length-1?".":" ;"}</li>`).join("")}</ul>
+   <p class="lt-p">${esc(pn)} vous remettra dès les premiers jours le <b>livret de suivi</b> ci-joint. En fin de période, nous vous remercions d'y indiquer, pour chaque compétence, le niveau observé (de 1 «&nbsp;novice&nbsp;» à 4 «&nbsp;expert&nbsp;»), et d'apprécier son attitude professionnelle.</p>
+   <p class="lt-p">En classe de Première, ce positionnement est formatif : il ne compte pas pour l'examen et nous aide à accompagner l'élève dans sa progression.</p>
+   <p class="lt-p">Le dernier jour, merci de remettre à ${esc(pn)} le livret complété ainsi que l'attestation de stage signée, à charge pour ${esc(pn)} de les rapporter au lycée.</p>
+   <p class="lt-p">Un professeur de la classe prendra contact avec vous dans les premiers jours, puis fera le point avec vous en fin de période.</p>
+   <div class="lt-box"><b>Absences et changements d'horaires</b><br>Pour des raisons d'assurance et de responsabilité, toute absence ou modification d'horaires doit être signalée sans délai au lycée, au <b class="nw">${esc(c.tel)}</b>, auprès de ${esc(c.ddfptAssist)}, assistante du DDFPT, ou de ${esc(c.ddfpt)}, DDFPT. L'élève devra justifier son absence.</div>
+      <p class="lt-p">En vous remerciant pour votre accueil, nous vous prions d'agréer, ${esc(civ)}, l'expression de nos salutations distinguées.</p>
+   <div class="lt-sig">Pour l'équipe pédagogique de la ${esc(c.classe)},<br><b>${esc(c.prof1)}</b>${c.role1?"<br>"+esc(c.role1.charAt(0).toUpperCase()+c.role1.slice(1)):""}</div>
+  </div>`;
+}
+
+function docLivret(e){
+  const t=typeOf(e);const {d,f}=dates(e);const c=S.cfg;const cs=compsOf(e);const miss=missionsOf(e);
+  const cover=`<div class="lv-page"><div class="lv-cover">
+   <div class="lv-etab" style="display:flex;gap:5mm;align-items:flex-start"><img src="${LOGO}" alt="" style="width:22mm"><div>${lycAddr()}</div></div>
+   <div class="lv-title"><div class="lv-kicker">${esc(periodeTxt(e))} — année ${esc(c.annee)}</div>
+    <h1>Livret de suivi de PFMP</h1>
+    <div class="lv-dip">${esc(c.diplome)}<br>${esc(c.option)}<br><b>Classe de Première — ${esc(c.classe)}</b></div></div>
+   <div class="lv-box">
+    <div><span>Élève</span><b>${esc(full(e))}</b></div>
+    <div><span>Entreprise</span><b>${esc(e.enseigne||"")}</b></div>
+    <div><span>Activité</span>${esc(e.activite||t.label)}</div>
+    <div><span>Tuteur</span>${esc((e.civTuteur?e.civTuteur+" ":"")+(e.tuteur||""))}${e.fonction?", "+esc(e.fonction):""}</div>
+    <div><span>Période</span>du ${fdate(d)} au ${fdate(f)}</div>
+    <div><span>Pratique professionnelle</span>${esc(ppTxt())}</div>
+   </div>
+   <div class="lv-bottom">Livret remis au tuteur par l'élève dès les premiers jours.<br>En fin de période, l'élève rapporte au lycée ce livret complété et l'attestation de stage signée.</div>
+  </div></div>`;
+
+  const p2=`<div class="lv-page">${head(e,"Livret de suivi de PFMP — informations")}
+   <div class="lv-sec"><h2>1. Qui fait quoi ?</h2>
+   <table class="lv-t">
+    <tr><td class="k" style="width:30%">Élève</td><td>${esc(full(e))} — ${esc(c.classe)}${e.horaires?"<br><span class='lv-small'>Horaires : "+esc(e.horaires)+"</span>":""}</td></tr>
+    <tr><td class="k">Entreprise</td><td>${esc(e.enseigne||"")}<br>${esc(e.adresse||"")} ${esc(e.cpville||"")}${e.telEnt?" — "+esc(e.telEnt):""}</td></tr>
+    <tr><td class="k">Tuteur</td><td>${esc((e.civTuteur?e.civTuteur+" ":"")+(e.tuteur||""))}${e.fonction?", "+esc(e.fonction):""}${(e.telTuteur||e.mailTuteur)?"<br>"+esc([e.telTuteur,e.mailTuteur].filter(Boolean).join(" · ")):""}</td></tr>
+    <tr><td class="k">Enseignants de pratique professionnelle</td><td>${pratiquePro().map(p=>esc(p[0])+(p[1]?", "+esc(p[1]):"")+(p[2]?" — "+esc(p[2]):"")).join("<br>")}</td></tr>
+    <tr><td class="k">Professeur chargé de la visite</td><td style="height:8mm">${e.visiteur?esc(e.visiteur.replace(/\s+—.*$/,"")):""}</td></tr>
+   </table></div>
+   <div class="lv-sec"><h2>2. Mode d'emploi</h2>
+    <ol class="lv-ol">
+     <li><b>Au début :</b> l'élève remet ce livret à son tuteur.</li>
+     <li><b>En fin de période :</b> le tuteur coche, pour chaque compétence, ce que l'élève a réellement fait (page 3), puis apprécie son attitude professionnelle (page 4).</li>
+     <li><b>Lors de la visite :</b> le professeur fait le point avec le tuteur à partir de ces pages, complète le bilan et signe.</li>
+     <li><b>Au retour :</b> l'élève rapporte au lycée le livret et l'attestation de stage signée. L'appréciation globale est reportée sur Pronote (onglet « Suivi de stage »).</li>
+    </ol>
+    <p class="lv-p lv-small">En classe de Première, ce positionnement est formatif : il ne compte pas pour l'examen. Il sert à repérer les progrès de l'élève et ce qu'il reste à travailler.</p></div>
+   <div class="lv-sec"><h2>3. Absences et changements d'horaires</h2>
+    <div class="lv-alert">Toute absence ou modification d'horaires est signalée <b>immédiatement par téléphone au lycée : ${esc(c.tel)}</b>, auprès de ${esc(c.ddfptAssist)} (assistante du DDFPT) ou de ${esc(c.ddfpt)} (DDFPT). L'élève justifie son absence.</div></div>
+   <div class="lv-sec"><h2>4. Compétences travaillées pendant la PFMP</h2>
+    <p class="lv-p lv-small">Les compétences de la grille (page 3) sont celles du référentiel du diplôme. Chacune est illustrée par un exemple adapté à ${esc(t.art)} : ce sont des pistes, le tuteur confie les activités possibles dans l'entreprise.</p>
+    <p class="lv-p lv-small">En classe de Première, l'élève découvre le métier : il observe, assiste et participe, toujours sous la responsabilité de son tuteur. Il n'a pas vocation à agir seul face à un client. Une compétence qui n'a pas pu être abordée est simplement cochée « NE ».</p>
+    ${miss.length?`<div class="lv-ex"><b>Missions convenues avec le tuteur :</b><br>${miss.map(esc).join("<br>")}</div>`:""}
+   </div>
+   ${foot(e,"Page 2")}</div>`;
+
+  const legend=`<div class="lv-legend">${NIVEAUX.map(n=>`<span><b>${n[0]}</b> ${n[1]} : ${n[2]}</span>`).join("")}</div>`;
+  const thead=`<thead><tr><th>Compétence du référentiel <span style="font-weight:400">— et exemple chez vous</span></th>${NIVEAUX.map(n=>`<th class="cb">${n[0]}</th>`).join("")}</tr></thead>`;
+  const rowsOf=bl=>bl.map(b=>{const comps=b.comps.filter(x=>cs.includes(x[0]));if(!comps.length)return"";
+    return `<tr class="bloc"><td colspan="6">${esc(b.titre)}</td></tr>`+comps.map(x=>`<tr><td><span class="code">${x[0]}</span> <b>${esc(x[1])}</b><span class="act">Chez vous : ${esc(exOf(e,x[0]))}</span></td>${NIVEAUX.map(()=>`<td class="cb"><span class="box"></span></td>`).join("")}</tr>`).join("")}).join("");
+  const r1=rowsOf(BLOCS),r2="";
+  const g1=`<div class="lv-page">${head(e,"Livret de suivi de PFMP — positionnement des compétences")}
+   <div class="lv-sec"><h2>5. Positionnement des compétences <span class="lv-small" style="font-family:'Source Sans 3';font-weight:400">— à compléter par le tuteur</span></h2>
+   <p class="lv-p lv-small">Une croix par ligne, dans la colonne qui correspond le mieux à ce que l'élève a fait pendant la période.</p>
+   ${legend}
+   ${r1?`<table class="lv-t grid">${thead}<tbody>${r1}</tbody></table>`:""}
+   ${r2?"":`<p class="lv-p lv-small" style="margin-top:6px">Remarques du tuteur sur les compétences :</p>${[1,2].map(()=>`<div class="lv-lines"></div>`).join("")}`}
+   </div>${foot(e,"Page 3")}</div>`;
+  const g2=r2?`<div class="lv-page">${head(e,"Livret de suivi de PFMP — positionnement des compétences (suite)")}
+   <div class="lv-sec">${legend}<table class="lv-t grid">${thead}<tbody>${r2}</tbody></table>
+   <p class="lv-p lv-small" style="margin-top:8px">Remarques du tuteur sur les compétences :</p>${[1,2,3,4].map(()=>`<div class="lv-lines"></div>`).join("")}</div>
+   ${foot(e,"Page 4")}</div>`:"";
+
+  const p5=`<div class="lv-page">${head(e,"Livret de suivi de PFMP — attitude professionnelle et bilan")}
+   <div class="lv-sec"><h2>6. Attitude professionnelle <span class="lv-small" style="font-family:'Source Sans 3';font-weight:400">— à compléter par le tuteur</span></h2>
+   <table class="lv-t sav"><thead><tr><th>Attitude</th><th class="cb">Oui</th><th class="cb">Non</th><th style="width:34%">Remarques</th></tr></thead>
+   <tbody>${SAVOIR.map(s=>`<tr><td>${esc(s)}</td><td class="cb"><span class="box"></span></td><td class="cb"><span class="box"></span></td><td></td></tr>`).join("")}</tbody></table></div>
+   <div class="lv-sec"><h2>7. Appréciation globale du tuteur</h2>
+   ${[1,2,3,4].map(()=>`<div class="lv-lines"></div>`).join("")}</div>
+   <div class="lv-sec"><h2>8. Visite de fin de période</h2>
+   <table class="lv-t"><tr><td class="k" style="width:30%">Date et modalité</td><td>le ……/……/………… &nbsp;&nbsp; □ visite dans l'entreprise &nbsp;&nbsp; □ entretien téléphonique</td></tr>
+   <tr><td class="k">Professeur</td><td>${e.visiteur?esc(e.visiteur.replace(/\s+—.*$/,"")):""}</td></tr>
+   <tr><td class="k">Points forts / à travailler</td><td style="height:20mm"></td></tr></table></div>
+   <div class="lv-sign"><div>Le tuteur<br><span class="lv-small">nom, signature et cachet de l'entreprise</span></div><div>L'élève<br><span class="lv-small">signature</span></div><div>Le professeur<br><span class="lv-small">date et signature</span></div></div>
+   ${foot(e,g2?"Page 5":"Page 4")}</div>`;
+  return cover+p2+g1+g2+p5;
+}
+
+/* Attestation : reprise à l'identique du modèle de l'établissement, pré-remplie */
+function docAttest(e){
+  const {d,f}=dates(e);const c=S.cfg;
+  const L=(lab,val,w)=>`<div class="att-l"><span class="att-k">${lab}</span><span class="att-v"${w?` style="min-width:${w}"`:""}>${val?esc(val):""}</span></div>`;
+  return `<div class="lv-page lv-att">
+   <div style="display:flex;justify-content:space-between;align-items:flex-start"><div style="display:flex;gap:4mm;align-items:flex-start"><img src="${LOGO}" alt="" style="width:19mm"><div>${lycAddr()}</div></div><div><b>Année scolaire ${esc(c.annee)}</b></div></div>
+   <h1>ATTESTATION DE STAGE</h1>
+   <p class="att-i">Conformément à l'article D. 124-9 du code de l'éducation, une attestation de stage est délivrée par l'organisme d'accueil à tout élève.</p>
+   <p class="att-i"><b>Ce document doit être complété et signé le dernier jour du stage par un responsable autorisé de l'entreprise d'accueil.<br>Elle est remise au lycéen stagiaire qui la transmettra à l'établissement scolaire.<br>Elle est conservée dans l'entreprise et dans l'établissement.</b></p>
+   <div class="att-s"><b>L'entreprise (ou l'organisme d'accueil) :</b>
+    ${L("Nom :",e.enseigne)}${L("Adresse :",[e.adresse,e.cpville].filter(Boolean).join(", "))}${L("N° d'immatriculation de l'entreprise :",e.siret)}
+    <div class="att-2">${L("Représenté(e) par (nom) :","")}${L("Fonction :","")}</div></div>
+   <div class="att-s"><b>Atteste que l'élève désigné ci-dessous :</b>
+    <div class="att-2">${L("Nom :",(e.nom||"").toUpperCase())}${L("Prénom :",e.prenom)}</div>
+    <div class="att-2">${L("Classe :",c.classe)}${L("Date de naissance :",e.naissance?fdate(e.naissance,false):"")}</div></div>
+   <div class="att-s"><b>Scolarisé dans l'établissement ci-après :</b>
+    <p><b>Nom : ${esc(c.lycee)}</b><br><b>Adresse : ${esc(c.adresse)} ${esc(c.cpville)}</b><br><b>Représenté par ${esc(c.chef)} en qualité de chef d'établissement</b></p></div>
+   <div class="att-s"><p><b>a effectué un stage dans notre entreprise ou organisme du <span class="lv-fill" style="min-width:32mm"></span> au <span class="lv-fill" style="min-width:32mm"></span></b></p>
+    <p><b>Soit une durée effective totale de : <span class="lv-fill" style="min-width:25mm"></span> (en nombre de jours ouvrables)</b></p>
+    <p><b>Soit <span class="lv-fill" style="min-width:18mm"></span> jours d'absence</b></p></div>
+   <div style="display:flex;justify-content:space-between;margin-top:10mm;gap:10mm"><div><b>Fait à <span class="lv-fill" style="min-width:45mm"></span>, le <span class="lv-fill" style="min-width:30mm"></span></b><br><br><b>Signature</b></div><div class="att-cachet">Cachet de l'entreprise ou organisme</div></div>
+  </div>`;
+}
+
+function buildPages(e,o){return (o.lettre?docLettre(e):"")+(o.livret?docLivret(e):"")+(o.attest?docAttest(e):"")}
+function docOpts(){return{lettre:$("#d-lettre").checked,livret:$("#d-livret").checked,attest:$("#d-attest").checked}}
+function renderDocs(){
+  const sel=$("#d-eleve");const el=sortE(S.eleves).filter(e=>e.enseigne||e.id===S.sel);
+  sel.innerHTML=el.length?el.map(e=>`<option value="${e.id}"${e.id===S.sel?" selected":""}>${esc((e.nom||"").toUpperCase())} ${esc(e.prenom)}${e.enseigne?" — "+esc(e.enseigne):" (sans lieu)"}</option>`).join(""):`<option>Aucun élève avec un lieu de PFMP</option>`;
+  if(!el.length){$("#preview").innerHTML=`<div class="empty">Complétez d'abord l'entreprise d'un élève dans l'onglet 1.</div>`;return}
+  if(!el.find(e=>e.id===S.sel))S.sel=el[0].id;sel.value=S.sel;
+  const e=S.eleves.find(x=>x.id===S.sel);const o=docOpts();
+  const warn=[];if(!e.type)warn.push("secteur non choisi (exemples génériques)");if(!e.enseigne)warn.push("entreprise non renseignée");if(!e.tuteur)warn.push("tuteur non renseigné");
+  $("#preview").innerHTML=(warn.length?`<div class="note" style="max-width:210mm;margin:0 auto 14px">À compléter pour ${esc(full(e))} : ${warn.join(" · ")}. Les champs vides restent à remplir à la main.</div>`:"")+(buildPages(e,o)||`<div class="empty">Cochez au moins un document.</div>`);
+}
+$("#d-eleve").onchange=ev=>{S.sel=ev.target.value;renderDocs()};
+["#d-lettre","#d-livret","#d-attest"].forEach(s=>$(s).onchange=renderDocs);
+$("#btn-edit-from-docs").onclick=()=>{showTab("eleves");renderList();renderEditor()};
+
+function fileHTML(title,pages){return pages}
+function download(_nom,pages){
+  const zone=$("#print-area"); zone.innerHTML=pages;
+  const fin=()=>{zone.innerHTML="";window.removeEventListener("afterprint",fin)};
+  window.addEventListener("afterprint",fin);
+  setTimeout(()=>window.print(),150);
+}
+const slug=s=>(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"");
+$("#btn-dl-one").onclick=()=>{const e=S.eleves.find(x=>x.id===S.sel);if(!e)return;const p=buildPages(e,docOpts());if(!p)return toast("Cochez au moins un document");
+  download(`PFMP_${slug(S.cfg.classe)}_${slug(e.nom)}_${slug(e.prenom)}.html`,fileHTML(`PFMP — ${full(e)}`,p))};
+$("#btn-dl-all").onclick=()=>{const el=sortE(S.eleves).filter(e=>e.enseigne);if(!el.length)return toast("Aucun élève avec un lieu de PFMP renseigné");
+  download(`PFMP_${slug(S.cfg.classe)}_tous_les_eleves.html`,fileHTML(`PFMP ${S.cfg.classe} — ${el.length} élèves`,el.map(e=>buildPages(e,docOpts())).join("")))};
+
+/* ============ VISITES ============ */
+function profsList(){return (S.cfg.profsTxt||"").split(/\n/).map(s=>s.trim()).filter(Boolean)}
+function renderVisites(){
+  const ta=$("#profs-txt"); if(document.activeElement!==ta) ta.value=S.cfg.profsTxt||"";
+  const pl=profsList(); const el=sortE(S.eleves);
+  const cnt={};el.forEach(e=>{if(e.visiteur)cnt[e.visiteur]=(cnt[e.visiteur]||0)+1});
+  const avec=el.filter(e=>e.enseigne), sans=avec.filter(e=>!e.visiteur).length;
+  $("#vsum").innerHTML=(pl.length?pl.map(p=>`<span class="chip ty" style="margin:0 6px 6px 0">${esc(p)} : ${cnt[p]||0}</span>`).join(""):`<span class="muted">Ajoutez d'abord la liste des professeurs.</span>`)+(sans?`<div class="muted" style="margin-top:4px">${sans} élève(s) en stage sans professeur attribué.</div>`:"");
+  $("#vlist").innerHTML=`<table class="list"><thead><tr><th>Élève</th><th>Entreprise</th><th>Professeur de la visite</th></tr></thead><tbody>${el.map(e=>{const opts=["",...pl];if(e.visiteur&&!pl.includes(e.visiteur))opts.push(e.visiteur);
+    return `<tr${e.enseigne?"":` style="opacity:.5"`}><td><b>${esc((e.nom||"").toUpperCase())}</b> ${esc(e.prenom)}</td><td>${e.enseigne?esc(e.enseigne)+`<br><span class="muted">${esc(e.cpville||"")}</span>`:`<span class="muted">pas encore de stage</span>`}</td>
+    <td><select data-vis="${e.id}">${opts.map(p=>`<option value="${esc(p)}"${(e.visiteur||"")===p?" selected":""}>${p?esc(p):"— à attribuer —"}</option>`).join("")}</select></td></tr>`}).join("")}</tbody></table>`;
+  $("#vlist").querySelectorAll("[data-vis]").forEach(s=>s.onchange=async()=>{const e=S.eleves.find(x=>x.id===s.dataset.vis);if(!e)return;e.visiteur=s.value;if(await saveEleve(e)){toast("Visite attribuée");renderVisites()}});
+}
+$("#btn-profs").onclick=()=>{S.cfg.profsTxt=$("#profs-txt").value.split(/\n/).map(s=>s.trim()).filter(Boolean).join("\n");saveCfg();renderVisites()};
+function docVisites(prof,list){const c=S.cfg;
+  return `<div class="lv-page"><div class="lv-head"><div><b>${esc(c.lycee)}</b> — ${esc(c.cpville)}<br>${esc(c.classe)} · ${esc([...new Set(list.map(periodeTxt))].join(", "))}</div><div style="text-align:right"><b>Visites de PFMP</b><br>${esc(prof)}</div></div>
+   <h2 style="font-size:15pt;margin:2mm 0 2mm">Vos élèves à visiter — ${esc(prof)}</h2>
+   <p class="lv-p lv-small">Fin de période : prendre rendez-vous avec le tuteur, faire le point avec lui à partir de la grille du livret (page 3), compléter la partie « Visite de fin de période » (page 4) et signer. Absences : prévenir le lycée au ${esc(c.tel)}.</p>
+   <table class="lv-t"><thead><tr><th style="width:22%">Élève et dates</th><th style="width:34%">Entreprise</th><th style="width:26%">Tuteur</th><th>Horaires</th></tr></thead><tbody>
+   ${list.map(e=>{const {d,f}=dates(e);return `<tr><td><b>${esc(full(e))}</b><br><span class="lv-small">du ${fdate(d,false)} au ${fdate(f,false)}</span></td><td><b>${esc(e.enseigne||"")}</b><br>${esc(e.adresse||"")}<br>${esc(e.cpville||"")}${e.telEnt?"<br>"+esc(e.telEnt):""}</td><td>${esc((e.civTuteur?e.civTuteur+" ":"")+(e.tuteur||""))}${e.fonction?"<br><span class='lv-small'>"+esc(e.fonction)+"</span>":""}${e.telTuteur?"<br>"+esc(e.telTuteur):""}${e.mailTuteur?"<br><span class='lv-small'>"+esc(e.mailTuteur)+"</span>":""}</td><td class="lv-small">${esc(e.horaires||"")}</td></tr>`}).join("")}
+   </tbody></table>
+   <p class="lv-p lv-small" style="margin-top:6mm">Enseignants de pratique professionnelle de la classe : ${esc(ppTxt())}.</p>
+   <div class="lv-foot"><span>${esc(c.classe)} — ${esc(c.annee)}</span><span>Fiche de visite</span></div></div>`}
+$("#btn-dl-visites").onclick=()=>{const el=sortE(S.eleves).filter(e=>e.enseigne&&e.visiteur);if(!el.length)return toast("Aucune visite attribuée pour l'instant");
+  const by={};el.forEach(e=>(by[e.visiteur]=by[e.visiteur]||[]).push(e));
+  const order=[...profsList().filter(p=>by[p]),...Object.keys(by).filter(p=>!profsList().includes(p))];
+  download(`Visites_PFMP_${slug(S.cfg.classe)}.html`,fileHTML(`Visites PFMP ${S.cfg.classe}`,order.map(p=>docVisites(p,by[p])).join("")))};
+
+/* ============ LIEUX TYPES ============ */
+function renderTypes(){
+  $("#typesref").innerHTML=Object.values(TYPES).map(t=>`<details><summary><b>${esc(t.label)}</b> <span class="muted">— ${esc(t.desc)}</span></summary>
+   <table class="list" style="margin:6px 0 10px">${BLOCS.flatMap(b=>b.comps).map(c=>`<tr><td style="width:62px"><b>${c[0]}</b></td><td>${esc(t.ex[c[0]])}</td></tr>`).join("")}</table></details>`).join("");
+}
+
+/* ============ PARAMÈTRES ============ */
+function renderCfg(){
+  const c=S.cfg;const F=[["lycee","Établissement"],["adresse","Adresse du lycée"],["cpville","Code postal et ville"],["tel","Téléphone du lycée"],["chef","Chef d'établissement (attestation)"],["ddfpt","DDFPT"],["ddfptAssist","Assistante du DDFPT"],["classe","Classe"],["annee","Année scolaire"],["prof1","Enseignant de pratique pro 1"],["role1","Rôle (ex. professeure principale)"],["mail1","E-mail (facultatif)"],["prof2","Enseignant de pratique pro 2"],["role2","Rôle (facultatif)"],["mail2","E-mail (facultatif)"],["p1label","Intitulé période 1"],["p1d","Période 1 — début","date"],["p1f","Période 1 — fin","date"],["p2label","Intitulé période 2"],["p2d","Période 2 — début","date"],["p2f","Période 2 — fin","date"],["diplome","Diplôme",1],["option","Option",1]];
+  $("#cfgform").innerHTML=F.map(([k,l,t])=>`<label class="f${t===1?" wide":""}">${l}<input data-c="${k}" type="${t==="date"?"date":"text"}" value="${esc(c[k])}"></label>`).join("");
+}
+$("#btn-cfg").onclick=()=>{document.querySelectorAll("[data-c]").forEach(i=>S.cfg[i.dataset.c]=i.value.trim());setSubtitle();saveCfg();renderList()};
+function setSubtitle(){$("#subtitle").textContent=`${S.cfg.classe} — ${S.cfg.annee}`}
+
+/* ============ SAUVEGARDE ============ */
+$("#btn-export").onclick=()=>{
+  const data={classe:CLASSE,exporte_le:new Date().toISOString(),eleves:S.eleves,config:S.cfg};
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,1)],{type:"application/json"}));
+  a.download=`sauvegarde_PFMP_${slug(S.cfg.classe)}_${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();
+};
+$("#imp-file").onchange=async ev=>{
+  const f=ev.target.files[0];ev.target.value="";if(!f)return;
+  let data;try{data=JSON.parse(await f.text())}catch(_){$("#imp-msg").textContent="Fichier illisible.";return}
+  const d=await api("POST",`/api/pfmp/${encodeURIComponent(CLASSE)}/import`,{eleves:data.eleves||[],config:data.config||null});
+  $("#imp-msg").textContent=d.ok?`${d.fiches} fiche(s) importée(s)${d.config?" + paramètres":""}.`:"Import impossible : "+d.erreur;
+  if(d.ok)chargerClasse();
+};
+
+/* ============ CONNEXION ET DÉMARRAGE ============ */
+function afficherLogin(msg){$("#login").style.display="flex";$("#lg-msg").textContent=msg||"";setTimeout(()=>$("#lg-mail").focus(),50)}
+$("#login-form").onsubmit=async ev=>{
+  ev.preventDefault();$("#lg-msg").textContent="Connexion…";
+  let r,d={};
+  try{r=await fetch(API+"/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:$("#lg-mail").value.trim(),motDePasse:$("#lg-mdp").value})});d=await r.json()}
+  catch(e){$("#lg-msg").textContent="Serveur injoignable.";return}
+  if(!d.ok){$("#lg-msg").textContent=d.erreur==="Identifiants incorrects"?"E-mail ou mot de passe incorrect.":(d.erreur||"Connexion refusée.");return}
+  if(!d.utilisateur||d.utilisateur.role!=="enseignant"){$("#lg-msg").textContent="Réservé aux enseignants.";return}
+  try{localStorage.setItem("laboro_token",d.token)}catch(_){}
+  TOKEN=d.token;$("#lg-mdp").value="";$("#login").style.display="none";demarrer();
+};
+$("#btn-logout").onclick=()=>{try{localStorage.removeItem("laboro_token")}catch(_){}TOKEN=null;S.eleves=[];renderList();renderEditor();afficherLogin()};
+$("#classe-sel").onchange=ev=>{CLASSE=ev.target.value;try{localStorage.setItem("pfmp_classe",CLASSE)}catch(_){}S.sel=null;S.eleves=[];chargerClasse()};
+async function demarrer(){
+  TOKEN=TOKEN||lireToken();
+  if(!TOKEN){afficherLogin();return}
+  setSync("","Connexion…");
+  const d=await api("GET","/api/classes"); if(!d.ok){if(TOKEN)setSync("local",d.erreur);return}
+  CLASSES=d.classes||[];
+  if(!CLASSES.length){setSync("local","Aucune classe ne vous est attribuée dans LABORO Auto.");return}
+  let memo=null;try{memo=localStorage.getItem("pfmp_classe")}catch(_){}
+  CLASSE=(CLASSES.find(c=>c.id===memo)||CLASSES.find(c=>/MCV\s*-?\s*B|PVOC|1.?MCVB/i.test((c.libelle||"")+" "+(c.option||"")))||CLASSES[0]).id;
+  const sel=$("#classe-sel");sel.innerHTML=CLASSES.map(c=>`<option value="${esc(c.id)}">${esc(c.libelle||c.id)}${c.annee_scolaire?" ("+esc(c.annee_scolaire)+")":""}</option>`).join("");sel.value=CLASSE;
+  sel.style.display=CLASSES.length>1?"":"none";$("#btn-logout").style.display="";
+  await chargerClasse();
+}
+window.addEventListener("focus",()=>{if(TOKEN&&CLASSE)chargerClasse(true)});
+setInterval(()=>{if(TOKEN&&CLASSE&&!document.hidden)chargerClasse(true)},60000);
+renderList();renderEditor();renderTypes();setSubtitle();
+demarrer();
+</script>
+</body>
+</html>
